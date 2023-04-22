@@ -10,10 +10,6 @@ import yellowCircleImage from "../assets/spidi.png"
 import orangeCircleImage from "../assets/spidi.png"
 import pinkCircleImage from "../assets/spidi.png"
 
-const backgroundColor = styled.div`
-  back  
-`
-
 const CirclePageContainer = styled.div`
   width: 100%;
   height: 100vh;

@@ -13,22 +13,17 @@ export default function MiddleDividers() {
     <Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
       <Box sx={{ my: 3, mx: 2 }}>
         <Grid container alignItems="center">
-          <Grid item xs>
-            <Typography gutterBottom variant="h4" component="div">
+          <Grid item>
+          <Typography gutterBottom variant="h4" component="div">
               Details
             </Typography>
           </Grid>
-          <Grid item>
-            <Typography gutterBottom variant="h6" component="div">
-              $4.50
-            </Typography>
-          </Grid>
         </Grid>
-        <Typography color="text.secondary" variant="body2">
-          Pinstriped cornflower blue cotton blouse takes you on a walk to the park or
-          just down the hall.
+        <Typography color="text.secondary" variant="body1">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
         </Typography>
       </Box>
+      <Box sx={{ m: 2 }}>
       <Divider variant="middle" />
       <Grid container alignItems="center">
           <Grid item xs>
@@ -40,11 +35,12 @@ export default function MiddleDividers() {
           <QuiltedImageList />
           </Grid>
       </Grid>
+      </Box>
       <Divider variant="middle" />
       <Box sx={{ m: 2 }}>
-        <Typography gutterBottom variant="body1">
-          Circles
-        </Typography>
+      <Typography gutterBottom variant="h4" component="div">
+              Circles
+            </Typography>
         <Stack direction="row" spacing={1}>
           <Chip label="Circle1" />
           <Chip color="primary" label="Circle2" />

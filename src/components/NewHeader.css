@@ -1,9 +1,11 @@
+
 .EventHeader {
   flex:100%;
   flex-direction: column;
   display: flex;
   justify-content: flex-end;
-  width: 100vh;
+  width: 100wh;
+  height: 20%;
 }
 
 .EventBody {
@@ -11,7 +13,7 @@
   flex-direction: column;
   display: flex;
   justify-content: flex-start;
-  width: 100vh;
+  width: 100wh;
 }
 
 ul {
@@ -37,6 +39,7 @@ p {
   text-align: left;
 }
 
-#map {
-   height: 180px; 
-  }
+.leaflet-container {
+  width: 50wh; 
+  height: 30vh;
+}

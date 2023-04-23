@@ -1,6 +1,7 @@
 import ReactCardSlider from '../components/ReactCardSlider';
 import wasternWall from '../assets/western-wall-temple-mount.jpg';
 import nightOut from '../assets/nightOut.jpeg';
+import Button from '@mui/material/Button';
 
 function SlidingCardComponent(){
     const sliderClick = (slider)=>{
@@ -31,11 +32,15 @@ function SlidingCardComponent(){
       ]
       return (
         <div>
+          <div id="upper">let's create a new event!</div>
           <div id="title">Events</div>
           <div id="body"><ReactCardSlider slides={events} idSlide={FirstsliderName}/></div>
           <div id="title">Tips</div>
-          <div id="body"></div><ReactCardSlider slides={tips} idSlide={SecondsliderName}/></div>
+          <div id="body"></div><ReactCardSlider slides={tips} idSlide={SecondsliderName}/>
+          <Button variant="contained" color="success">Oter</Button>
+          </div>
         );
 }
 
 export default SlidingCardComponent;
+

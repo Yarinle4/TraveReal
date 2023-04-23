@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 // import {SwipeableTemporaryDrawer} from "../shared/components/moreComponents/drawer"
 
 // import { testComponent } from "../shared/components/moreComponents/testComponent";
-import SwipeableTemporaryDrawer from "../shared/components/moreComponents/drewar"
+import SwipeableTemporaryDrawer from "../shared/components/moreComponents/drawer"
 
 
 function HomePage() {

@@ -5,6 +5,6 @@ import PostComponent from "../components/PostComponent";
 function CommunityPage() {
     <div> 
         <PostComponent> </PostComponent>
- </div>
+    </div>
 }
 export default CommunityPage;

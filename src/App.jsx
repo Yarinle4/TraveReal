@@ -10,6 +10,7 @@ import HomePageHost from "./pages/HomePageHost"
 import SlidingCardComponent from "./pages/SlidingCardPage"
 import CommunityPage from "./pages/CommunityPage";
 import StoryComponent from "./components/PostComponent";
+import PostComponent from "./components/PostComponent";
 
 
 export default function App() {

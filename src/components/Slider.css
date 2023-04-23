@@ -12,20 +12,6 @@
     scroll-behavior: smooth;
 }
 
-#upper {
-    font-size: 35px;
-    justify-content: center;
-    align-items: center;
-    
-}
-
-#title {
-    font-size: 20px;
-    display: flex;
-    font-weight: 700;
-    padding: 8px;
-}
-
 #slider::-webkit-scrollbar{
     display: none;
 }

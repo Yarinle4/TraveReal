@@ -1,9 +1,10 @@
-import ReactCardSlider from '../components/ReactCardSlider';
-import wasternWall from '../assets/western-wall-temple-mount.jpg';
-import nightOut from '../assets/nightOut.jpeg';
+import './homeHost.css';
+import ReactCardSlider from '../../components/ReactCardSlider';
+import wasternWall from '../../assets/western-wall-temple-mount.jpg';
+import nightOut from '../../assets/nightOut.jpeg';
 import Button from '@mui/material/Button';
 
-function SlidingCardComponent(){
+function HomePageHost(){
     const sliderClick = (slider)=>{
         alert("hello world");
       }
@@ -37,10 +38,10 @@ function SlidingCardComponent(){
           <div id="body"><ReactCardSlider slides={events} idSlide={FirstsliderName}/></div>
           <div id="title">Tips</div>
           <div id="body"></div><ReactCardSlider slides={tips} idSlide={SecondsliderName}/>
-          <Button variant="contained" color="success">Oter</Button>
+          <button>Other</button>
           </div>
         );
 }
 
-export default SlidingCardComponent;
+export default HomePageHost;
 

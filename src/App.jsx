@@ -6,8 +6,8 @@ import HomePage from "./pages/HomePage";
 import SignUp from "./pages//SignUp"
 import Event from "./pages/EventPage"
 import CirclePage from "./pages/CirclePage"
-import HomePageHost from "./pages/HomePageHost"
-import SlidingCardComponent from "./pages/SlidingCardPage"
+import HomePageHost from "./pages/HomePageHost/homePageHost"
+// import SlidingCardComponent from "./pages/HomePageHost/homePageHost"
 
 
 export default function App() {
@@ -25,7 +25,7 @@ export default function App() {
 
         <Route path="/HomePageHost" element={<HomePageHost />} />
 
-        <Route path="/SlidingCardPage" element={<SlidingCardComponent />} />
+        {/* <Route path="/SlidingCardPage" element={<SlidingCardComponent />} /> */}
 
 
 

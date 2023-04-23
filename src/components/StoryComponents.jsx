@@ -1,5 +1,5 @@
 import React from "react";
 
 export default function StoryComponent(){
-    return <p>what is the story tavori</p>;
+    return <div>what is the story tavori</div>;
 }

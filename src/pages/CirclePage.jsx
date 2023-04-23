@@ -10,6 +10,7 @@ import codingImg from "../assets/coding.png"
 import patsImg from "../assets/dog.png"
 import barImg from "../assets/bar.png"
 import lockIcon from '../assets/lock.svg'; // Replace with the actual path to your lock icon SVG file
+import { useNavigate } from "react-router-dom";
 
 
 const CirclePageContainer = styled.div`
@@ -61,6 +62,11 @@ const ImageCircle = styled(Circle)`
 const ImageCircleSingle = styled(Circle)`
   background-image: url(${props => props.imageUrl});
   background-size: cover;
+
+  &:hover {
+    /* Add hover effect */
+    border: 2px solid #000;
+  }
 `
 
 const CircleText = styled.p`
@@ -149,13 +155,21 @@ const CirclePage = () => {
     console.log("123");
   }
 
+  const navigate = useNavigate(); 
+
+  const handleSingleCircleClick = () =>{ 
+    console.log("clicked");
+
+    navigate("/EventPage");
+  }
+
   return (
     <CirclePageContainer>
       <ColoredCircle
         size={centerCircleSize}
         color="#B7C8FF"
         position={centerCirclePosition}  
-        onClick = {()=> handleCircleClick()}
+        onClick = {()=> handleSCircleClick()}
         >
             
         </ColoredCircle>
@@ -189,6 +203,8 @@ const CirclePage = () => {
                        size={smallerCircleSize}
                        imageUrl={barImg}
                        position={smallerCirclePositionsSingle()}
+                       onClick={() => handleSingleCircleClick()}
+
                      >
                         </ImageCircleSingle>
       </CircleRapper>

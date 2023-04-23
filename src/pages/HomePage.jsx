@@ -1,9 +1,17 @@
 import { Link } from "react-router-dom";
 
+// import {SwipeableTemporaryDrawer} from "../shared/components/moreComponents/drawer"
+
+// import { testComponent } from "../shared/components/moreComponents/testComponent";
+import SwipeableTemporaryDrawer from "../shared/components/moreComponents/drewar"
+
+
 function HomePage() {
     return (
       <div>
+         {/* <testComponent/> */}
 
+        <SwipeableTemporaryDrawer></SwipeableTemporaryDrawer>
         <h1>Welcome to My Website</h1>
         <p>Thanks for visiting! Here's some information about what we do:</p>
         <ul>

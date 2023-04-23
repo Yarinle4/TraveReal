@@ -61,7 +61,7 @@ const CirclePage = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setRotationAngle(prevAngle => prevAngle + 0.5) // Rotate by 6 degrees every 50 milliseconds
+      setRotationAngle(prevAngle => prevAngle + 0.5 ) // Rotate by 6 degrees every 50 milliseconds
     }, 50)
 
     return () => {

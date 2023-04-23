@@ -8,6 +8,8 @@ import Event from "./pages/EventPage"
 import CirclePage from "./pages/CirclePage"
 import HomePageHost from "./pages/HomePageHost"
 import SlidingCardComponent from "./pages/SlidingCardPage"
+import CommunityPage from "./pages/CommunityPage";
+import StoryComponent from "./components/StoryComponent";
 
 
 export default function App() {

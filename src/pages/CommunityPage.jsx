@@ -1,8 +1,8 @@
 import React from "react";
-import StoryComponent from "../components/StoryComponents";
+import StoryComponent from "../components/StoryComponent";
 
 
-const CommunityPage = () => {
-    <div><StoryComponent></StoryComponent></div>
+function CommunityPage() {
+    <div><StoryComponent> </StoryComponent></div>
 }
 export default CommunityPage;

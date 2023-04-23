@@ -27,6 +27,8 @@ export default function App() {
 
         <Route path="/SlidingCardPage" element={<SlidingCardComponent />} />
 
+       <Route path="/CommunityPage" element={<StoryComponent/>} />
+
 
 
       </Routes>

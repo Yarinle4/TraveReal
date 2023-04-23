@@ -12,6 +12,7 @@ function HomePage() {
           <li><Link to="/EventPage">Event Page</Link></li>
           <li><Link to="/EventPageHost">Host Page</Link></li>
           <li><Link to="/SlidingCardPage">Sliding Card Page</Link></li>
+          <li><Link to="/CommunityPage">Sliding Card Page</Link></li>
 
 
 

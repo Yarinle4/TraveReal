@@ -9,7 +9,7 @@ import CirclePage from "./pages/CirclePage"
 import HomePageHost from "./pages/HomePageHost"
 import SlidingCardComponent from "./pages/SlidingCardPage"
 import CommunityPage from "./pages/CommunityPage";
-import StoryComponent from "./components/StoryComponent";
+import StoryComponent from "./components/PostComponent";
 
 
 export default function App() {
@@ -29,7 +29,7 @@ export default function App() {
 
         <Route path="/SlidingCardPage" element={<SlidingCardComponent />} />
 
-        <Route path="/CommunityPage" element={<StoryComponent/>} />
+        <Route path="/CommunityPage" element={<PostComponent/>} />
 
 
 

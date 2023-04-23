@@ -1,8 +1,10 @@
 import React from "react";
-import StoryComponent from "../components/StoryComponent";
+import PostComponent from "../components/PostComponent";
 
 
 function CommunityPage() {
-    <div><StoryComponent> </StoryComponent></div>
+    <div> 
+        <PostComponent> </PostComponent>
+ </div>
 }
 export default CommunityPage;

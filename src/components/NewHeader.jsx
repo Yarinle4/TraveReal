@@ -5,27 +5,28 @@ import ImageAvatars from './Avatar'
 import './NewHeader.css';
 import QuiltedImageList from './QuiltedImageList'
 import Button from '@mui/material/Button';
+import Card from '@mui/material/Card'
+import MiddleDividers from './MiddleDividers'
+import SimpleMap from'./SimpleMap'
+
+const lat = 123;
+const lng = 230;
+const mapLocation =  [lat, lng];
 
 const NewHeader = () => {
   return (
-    <div class="EventHeader">
-    <Stack direction="row" spacing={60}>
-        <ImageAvatars/>
-        <BasicRating />
-    </Stack>
-    <div class="EventBody">
-        <h1>DATES & TIMES</h1>
-            <li>date</li>
-            <li>time</li>
-            <li>location</li>
-            <li>requests</li>
-        <h1>About</h1>
-        <p>Details about the event</p>
+    <div className="EventHeader">
+      <Card>
+        {/* <div class="EventHeader"> */}
+        <Stack direction="row" spacing={60}>
+            <ImageAvatars/>
+            <BasicRating />
+        </Stack>
+      {/* </div> */}
+      </Card>
+    <div className="EventBody">
+        <MiddleDividers />
     </div>
-    <QuiltedImageList />
-    <Button variant="contained" color="success">
-    Join Now!
-    </Button>
     </div>
   )
 }

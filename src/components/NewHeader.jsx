@@ -10,6 +10,7 @@ import MiddleDividers from './MiddleDividers'
 import SimpleMap from'./SimpleMap'
 import "leaflet/dist/leaflet.css"
 import Box from '@mui/material/Box';
+import AlertDialogSlide from './PopUpDialog'
 
 const lat = 123;
 const lng = 230;
@@ -30,11 +31,14 @@ const NewHeader = () => {
       {/* </div> */}
     <div class="EventBody">
         <MiddleDividers />
+        
     </div>
     <Box sx={{ my: 3, mx: 2 }}>
     <Card>
       <SimpleMap />
     </Card>
+    <Box sx={{ my: 3, mx: 2 }}></Box>
+    <AlertDialogSlide />
     </Box>
     </div>
     </Box>

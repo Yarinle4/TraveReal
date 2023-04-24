@@ -48,11 +48,6 @@ export default function MiddleDividers() {
           <Chip label="Circle4" />
         </Stack>
       </Box>
-      <Box sx={{ mt: 3, ml: 1, mb: 1 }}>
-        <Button variant="contained" color="success">
-        Join Now!
-        </Button>
-      </Box>
     </Box>
   );
 }

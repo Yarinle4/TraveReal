@@ -8,17 +8,12 @@ export default function BasicRating() {
   const [value, setValue] = React.useState(2);
 
   return (
-      <Stack>
+      // <Stack>
+      <div>
+        <Typography component="legend">Rating</Typography>
+        <Rating name="read-only" value={value} readOnly />
+      </div>
 
-      <Typography component="legend">Add your rating</Typography>
-      <Rating
-        name="simple-controlled"
-        value={value}
-        onChange={(event, newValue) => {
-          setValue(newValue);
-        }}
-        />
-    
-        </Stack>
+      // </Stack>
   );
 }

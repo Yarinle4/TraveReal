@@ -10,7 +10,7 @@ import CirclePage from "./CirclePage";
 const Headline = styled.div`
 font-size: 36px; /* Adjust the font size as desired */
   font-weight: bold; /* Add or remove as desired */
-  color: #000; /* Choose a color that matches your design */
+  color: #FFFFFF; /* Choose a color that matches your design */
   text-align: center; /* Align the headline to center, or adjust as desired */
   text-transform: uppercase; /* Capitalize the headline, or change to desired text transformation */
   margin: 0; /* Remove any margin to fit seamlessly into your design */
@@ -26,7 +26,8 @@ const PageWrapper = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url(${imgg});
+  // background-image: url(${imgg});
+  background-color: #FAEBD7;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -34,15 +35,34 @@ const PageWrapper = styled.div`
 `;
 
 
+const WelcomeImg = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  width: 80%;
+  margin: auto;
+  margin-top: 50px; /* add margin-top */
+  background-image: url(${imgg});
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 1;
+`;
+
+
 
 function HomePage() {
     return (
       <PageWrapper>
-      <ResponsiveAppBar/>
+        <ResponsiveAppBar/>
+        
+        <WelcomeImg>
+          <Headline>
+            WELCOME TO TRAVEREAL
+          </Headline>
+        </WelcomeImg>
 
-      <Headline>
-      WELCOME TO TRAVEREAL
-    </Headline>
     <CirclePage/>
 
 

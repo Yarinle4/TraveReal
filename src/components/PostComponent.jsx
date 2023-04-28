@@ -11,22 +11,23 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 
 const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
   ...theme.typography.body2,
-  padding: theme.spacing(2),
+  padding: theme.spacing(1),
   textAlign: 'center',
   color: theme.palette.text.secondary,
 }));
 
 
 export default function PostComponent(image1){
+
   return (
     
-    <Card sx={{ maxWidth: 345 }}>
+    <Card   sx={{ maxWidth: 340 }}>
       <CardMedia
-        sx={{ height: 140 }}
-        image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjP--9XfmYOcd1qqkpGQr2OgAe1thSQphuNTjcXeOtCA&s"
-        title="green iguana"
+        sx={{ height: 200 }}
+        image = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqPqW28MwU003YObzi-U_j-hg3vh6KtLlCvA&usqp=CAU"
+        title="Fun time with new friends"
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">

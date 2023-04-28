@@ -31,7 +31,7 @@ export default function App() {
 
         <Route path="/CommunityPage" element={<CommunityPage/>} />
 
-
+   
 
       </Routes>
     </BrowserRouter>

@@ -29,7 +29,7 @@ export default function App() {
 
         <Route path="/SlidingCardPage" element={<SlidingCardComponent />} />
 
-        <Route path="/CommunityPage" element={<PostComponent/>} />
+        <Route path="/CommunityPage" element={<CommunityPage/>} />
 
 
 

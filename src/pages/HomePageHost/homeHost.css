@@ -9,6 +9,8 @@
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     padding: 15px;
+    font-family: Fantasy, "Copperplate";
+    
 }
 
 #title {
@@ -19,6 +21,7 @@
     font-weight: 700;
     padding: 8px;
     margin-top: 20px;
+    font-family: Monospace, "Monaco";
 }
 
 .body {

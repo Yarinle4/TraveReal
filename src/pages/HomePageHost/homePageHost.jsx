@@ -10,8 +10,6 @@ import challah from '../../assets/challah.png';
 import selfTour from '../../assets/selfTour.jpg';
 import picnic from '../../assets/picnic.jpg';
 import Button from '@mui/material/Button';
-
-
 import { Box } from '@mui/material';
 
 function HomePageHost(){
@@ -28,7 +26,7 @@ function HomePageHost(){
       {image: architecture ,title:"Architecture Circle",description:"This is a third description",clickEvent:sliderClick},
       {image: food, title:"Culinary Circle",description:"This is a fourth description",clickEvent:sliderClick},
       {image: hiking, title:"Hiking Circle",description:"This is a fifth description",clickEvent:sliderClick},
-      {image:"https://picsum.photos/800/700",title:"This is a sixth title",description:"This is a sixth description",clickEvent:sliderClick},
+      {image:"https://picsum.photos/800/700",title:"Digital Navigators Circle",description:"This is a sixth description",clickEvent:sliderClick},
       {image:"https://picsum.photos/300/400",title:"This is a seventh title",description:"This is a seventh description",clickEvent:sliderClick},
     ]
 

@@ -39,7 +39,23 @@ const WelcomeImg = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 80vh;
+  height: 80%;
+  width: 80%;
+  margin: auto;
+  margin-top: 50px; /* add margin-top */
+  background-image: url(${imgg});
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 1;
+`;
+
+
+const CircleWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80%;
   width: 80%;
   margin: auto;
   margin-top: 50px; /* add margin-top */
@@ -63,7 +79,9 @@ function HomePage() {
           </Headline>
         </WelcomeImg>
 
-    <CirclePage/>
+      <CircleWrapper>
+        <CirclePage/>
+      </CircleWrapper>
 
 
         <h1>Welcome to My Website</h1>

@@ -21,7 +21,7 @@ import { useNavigate } from "react-router-dom";
 
 import logoPic from "../../../assets/logo.png"
 
-const pages = ['Home Page', 'Events Page', 'My Community'];
+const pages = ['Home Page', 'Events Page', 'Host Page'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function ResponsiveAppBar() {
@@ -54,6 +54,9 @@ function ResponsiveAppBar() {
           return "/"
         case "Events Page":
           return "/EventPage"
+        case "Host Page":
+          return "/HomePageHost"
+          
       }
   }
 

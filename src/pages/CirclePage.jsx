@@ -119,18 +119,20 @@ const CirclePage = () => {
   }
 
 
-
-  const [rotationAngle, setRotationAngle] = useState(0)
-
+  const [rotationAngle, setRotationAngle] = useState(0);
+  const [isHovering, setIsHovering] = useState(false);
+  
   useEffect(() => {
     const interval = setInterval(() => {
-      setRotationAngle(prevAngle => prevAngle + 0.2 ) // Rotate by 6 degrees every 50 milliseconds
-    }, 50)
-
+      if (!isHovering) {
+        setRotationAngle(prevAngle => prevAngle + 0.2); // Rotate by 6 degrees every 50 milliseconds
+      }
+    }, 50);
+  
     return () => {
-      clearInterval(interval)
-    }
-  }, [])
+      clearInterval(interval);
+    };
+  }, [isHovering]);
 
   const getCirclePosition = (radius, angle) => {
     const centerX = 0
@@ -155,12 +157,24 @@ const CirclePage = () => {
     console.log("123");
   }
 
+  const handleMouseEnter = () => {
+    setIsHovering(true);
+  };
+  
+  const handleMouseLeave = () => {
+    setIsHovering(false);
+  };
+
   const navigate = useNavigate(); 
 
   const handleSingleCircleClick = () =>{ 
     console.log("clicked");
-
     navigate("/EventPage");
+  }
+
+  const handleSingleCircleHover = () =>{
+    console.log("hover");
+    setRotationAngle(prevAngle => prevAngle + 0 )
   }
 
   return (
@@ -204,6 +218,8 @@ const CirclePage = () => {
                        imageUrl={barImg}
                        position={smallerCirclePositionsSingle()}
                        onClick={() => handleSingleCircleClick()}
+                       onMouseEnter={() => handleMouseEnter()}
+                      onMouseLeave={() => handleMouseLeave()}
 
                      >
                         </ImageCircleSingle>

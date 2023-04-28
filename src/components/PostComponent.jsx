@@ -1,4 +1,3 @@
-
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
@@ -8,7 +7,7 @@ import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import Collapse from '@mui/material/Collapse';
 import Avatar from '@mui/material/Avatar';
-import IconButton, { IconButtonProps } from '@mui/material/IconButton';
+import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import { red } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -18,10 +17,7 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 
 
-interface ExpandMoreProps extends IconButtonProps {
-  expand: boolean;
-}
-const ExpandMore = styled((props: ExpandMoreProps) => {
+const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
   return <IconButton {...other} />;
 })(({ theme, expand }) => ({
@@ -33,9 +29,9 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 }));
 
 
-export default function PostComponent(){
+export default function PostComponent({imageId}){
   const [expanded, setExpanded] = React.useState(false);
-
+  console.log(imageId)
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
@@ -53,19 +49,19 @@ export default function PostComponent(){
             <MoreVertIcon />
           </IconButton>
         }
-        title="Shrimp and Chorizo Paella"
+        title="fun time at the dessert"
         subheader="September 14, 2016"
       />
       <CardMedia
         component="img"
         height="194"
-        image="/static/images/cards/paella.jpg"
-        alt="Paella dish"
+        image="https://thumbs.dreamstime.com/z/funny-portrait-camel-hat-close-up-image-35755276.jpg"
+        alt="Funny Cammel"
       />
       <CardContent>
         <Typography variant="body2" color="text.secondary">
-          This impressive paella is a perfect party dish and a fun meal to cook
-          together with your guests. Add 1 cup of frozen peas along with the mussels,
+         This impressive Cammel is a perfect party starter and a fun meal to cook
+          together with your guests. Add 1 cup of cammel peas along with the mussels,
           if you like.
         </Typography>
       </CardContent>
@@ -117,5 +113,8 @@ export default function PostComponent(){
     </Card>
   );
 }
+
+ 
+
 
 

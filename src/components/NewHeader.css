@@ -1,0 +1,45 @@
+
+.EventHeader {
+  flex:100%;
+  flex-direction: column;
+  display: flex;
+  justify-content: flex-end;
+  width: 100wh;
+  height: 20%;
+}
+
+.EventBody {
+  flex:100%;
+  flex-direction: column;
+  display: flex;
+  justify-content: flex-start;
+  width: 100wh;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+}
+
+h1 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+li {
+  font-size: 20px;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+p {
+  font-size: 18px;
+  text-align: left;
+}
+
+.leaflet-container {
+  width: 50wh; 
+  height: 30vh;
+}

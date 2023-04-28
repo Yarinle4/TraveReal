@@ -69,13 +69,17 @@ function HomePage() {
         <h1>Welcome to My Website</h1>
         <p>Thanks for visiting! Here's some information about what we do:</p>
         <ul>
-          <li><Link to="/SignUp">SIgn Up</Link></li>
+          <li><Link to="/SignUp">Sign Up</Link></li>
           <li><Link to="/CirclePage">Circle Page</Link></li>
           <li><Link to="/EventPage">Event Page</Link></li>
           <li><Link to="/EventPageHost">Host Page</Link></li>
+<<<<<<< HEAD
           <li><Link to="/SlidingCardPage">Sliding Card Page</Link></li>
           <li><Link to="/ActivityPage">Activity Page</Link></li>
 
+=======
+          <li><Link to="/HomePageHost">Home Page Host</Link></li>
+>>>>>>> origin/HostPage'
 
 
 

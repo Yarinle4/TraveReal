@@ -10,7 +10,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-<<<<<<< HEAD
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "@mui/icons-material": "^5.11.16",
@@ -21,16 +20,6 @@
     "leaflet": "^1.9.3",
     "mdb-react-ui-kit": "^6.0.0",
     "mdbreact": "^5.2.0",
-=======
-    "@emotion/react": "^11.10.8",
-    "@emotion/styled": "^11.10.8",
-    "@mui/base": "^5.0.0-alpha.126",
-    "@mui/icons-material": "^5.11.16",
-    "@mui/material": "^5.12.2",
-    "@mui/styled-engine-sc": "^5.12.0",
-    "@mui/system": "^5.12.1",
-    "bootstrap": "^5.3.0-alpha3",
->>>>>>> origin/Community
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.4",
     "react-dom": "^18.2.0",
@@ -38,12 +27,8 @@
     "react-icons-md": "^1.1.0",
     "react-leaflet": "^4.2.1",
     "react-router-dom": "^6.10.0",
-<<<<<<< HEAD
     "renovate": "^9.5.0",
     "styled-components": "^5.3.9"
-=======
-    "styled-components": "^5.3.10"
->>>>>>> origin/Community
   },
   "devDependencies": {
     "@types/react": "^18.0.28",

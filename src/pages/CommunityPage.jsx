@@ -6,8 +6,8 @@ import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
-import ResponsiveAppBar from "../shared/components/moreComponents/MainBar"
-
+import ResponsiveAppBar from "../shared/components/moreComponents/MainBar";
+import Post from "../components/BlogPost.jsx";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -54,6 +54,7 @@ function NestedGrid() {
 function CommunityPage() {
   return (
     <div>
+    
       <ResponsiveAppBar position="fixed"/>
       <Box sx={{ my: 3, mx: 2, mt:10 }}>
 

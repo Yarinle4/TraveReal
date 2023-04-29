@@ -19,7 +19,9 @@ const mapLocation =  [lat, lng];
 
 const NewHeader = () => {
   return (
+
     <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
+
     <Box sx={{ my: 3, mx: 2 }}>
     <div class="EventHeader">
         {/* <div class="EventHeader"> */}
@@ -38,6 +40,7 @@ const NewHeader = () => {
       <SimpleMap />
     </Card>
     <Box sx={{ my: 3, mx: 2 }}></Box>
+    
     <AlertDialogSlide />
     </Box>
     </div>

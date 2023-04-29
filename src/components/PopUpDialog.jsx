@@ -6,6 +6,8 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
+import '../pages/HomePageHost/homeHost.css';
+
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -24,7 +26,7 @@ export default function AlertDialogSlide() {
 
   return (
     <div>
-      <Button variant="contained" color="success" onClick={handleClickOpen}>
+      <Button variant="contained" color="success" className="buttonHost" onClick={handleClickOpen}>
         Join Now!
       </Button>
       <Dialog

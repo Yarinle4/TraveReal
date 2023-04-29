@@ -56,11 +56,14 @@ function CommunityPage() {
   return (
     <div>
       <ResponsiveAppBar position="fixed"/>
+      <Box sx={{ my: 3, mx: 2, mt:10 }}>
+
       <h1 > Community</h1>
       <h2 >Hello World</h2>
       <div>
       <NestedGrid></NestedGrid>
      </div>
+     </Box>
     </div>
   );
 }

@@ -15,7 +15,6 @@ import haveToVisit from '../../assets/haveToVisit.jpg';
 import beer from '../../assets/beer.jpg';
 
 import Button from '@mui/material/Button';
-import { Box } from '@mui/material';
 import ResponsiveAppBar from "../../shared/components/moreComponents/MainBar"
 
 
@@ -35,7 +34,6 @@ function HomePageHost(){
       {image: food, title:"Culinary Circle",description:"This is a fourth description",clickEvent:sliderClick},
       {image: hiking, title:"Hiking Circle",description:"This is a fifth description",clickEvent:sliderClick},
       {image: sharedWorkspace, title:"Working Circle",description:"This is a sixth description",clickEvent:sliderClick},
-      {image:"https://picsum.photos/300/400",title:"This is a seventh title",description:"This is a seventh description",clickEvent:sliderClick},
     ]
 
     const tips = [
@@ -56,12 +54,14 @@ function HomePageHost(){
       <div class="body">
         <div id="title">Add a Circle Event</div>
         <div><ReactCardSlider slides={events} idSlide={FirstsliderName}/></div>
+        <Button variant="contained" color="primary" className="buttonHost">Another Event</Button>
       </div>
       <div class="body">
         <div id="title">Add a Tip</div>
         <div><ReactCardSlider slides={tips} idSlide={SecondsliderName}/></div>
+        <Button variant="contained" color="primary" className="buttonHost">Another Tip</Button>
       </div>
-      <Button variant="contained" color="primary" className="buttonHost">Other</Button>
+
     </div>
     );
 }

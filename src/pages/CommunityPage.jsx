@@ -1,5 +1,6 @@
 import React from "react";
 import PostComponent from "../components/PostComponent";
+import Header from "../components/ComminityHeader.jsx";
 import { Link } from "react-router-dom";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
@@ -51,8 +52,13 @@ function NestedGrid() {
 function CommunityPage() {
   return (
     <div>
+      <h1 className=""> Community</h1>
+      <h2 >Hello World</h2>
+      <div>
       <NestedGrid></NestedGrid>
+     </div>
     </div>
   );
 }
 export default CommunityPage;
+

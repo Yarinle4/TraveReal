@@ -3,7 +3,8 @@
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
-import SignUp from "./pages//SignUp"
+import SignUp from "./pages/SignUp"
+import SignUp2 from "./pages/signUpLevel2"
 import Event from "./pages/EventPage"
 import CirclePage from "./pages/CirclePage"
 import ActivityPage from "./pages/ActivityPage"
@@ -44,6 +45,8 @@ export default function App() {
           <Route path="/ActivityPage" element={<ActivityPage />} />
 
           <Route path="/HomePageHost" element={<HomePageHost />} />
+
+          <Route path="/details" element={<SignUp2 />} />
 
 
 

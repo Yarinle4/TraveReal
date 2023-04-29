@@ -14,7 +14,6 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import ResponsiveAppBar from "../shared/components/moreComponents/MainBar"
 import '../pages/HomePageHost/homeHost.css';
-import level2 from "./signUpLevel2";
 
 export default function SignUp() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -54,12 +53,12 @@ export default function SignUp() {
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
-                  autoComplete="given-name"
-                  name="firstName"
+                  autoComplete="given-country"
+                  name="country"
                   required
                   fullWidth
-                  id="firstName"
-                  label="First Name"
+                  id="country"
+                  label="ountry"
                   autoFocus
                 />
               </Grid>
@@ -71,6 +70,16 @@ export default function SignUp() {
                   label="Last Name"
                   name="lastName"
                   autoComplete="family-name"
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  required
+                  fullWidth
+                  id="Country"
+                  label="Country"
+                  name="Country"
+                  autoComplete="Country"
                 />
               </Grid>
               <Grid item xs={12}>
@@ -94,14 +103,19 @@ export default function SignUp() {
                   autoComplete="new-password"
                 />
               </Grid>
-              <Grid item xs={12}>
+              {/* <Grid item xs={12}>
                 <FormControlLabel
                   control={
                     <Checkbox value="allowExtraEmails" color="primary" />
                   }
                   label="I want to receive inspiration, marketing promotions and updates via email."
                 />
-              </Grid>
+              </Grid> */}
+            </Grid>
+            <Grid>
+                <FormControlLabel control={<Checkbox defaultChecked />} label="Label" />
+                <FormControlLabel control={<Checkbox defaultChecked />} label="Label" />
+
             </Grid>
             <Button
               className="buttonHost"
@@ -111,7 +125,7 @@ export default function SignUp() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Next
+              Sign Up
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>

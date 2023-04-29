@@ -118,8 +118,6 @@ export default function SignUp() {
 
             </Grid>
             <Button
-              className="buttonHost"
-              // color="primary"
               type="submit"
               fullWidth
               variant="contained"

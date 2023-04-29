@@ -1,7 +1,7 @@
 #upper {
     position: relative;
     margin-top: 70px;
-    top: 40px;
+    top: 30px;
     font-size: 230%;
     display: flex;
     justify-content: center;
@@ -42,6 +42,4 @@
     align-items: center;
     border: none;
     border-radius: 8px;
-    font-size: 16px;
-    font-weight: 700;
 }

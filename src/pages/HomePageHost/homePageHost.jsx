@@ -1,23 +1,24 @@
 import './homeHost.css';
 import ReactCardSlider from '../../components/ReactCardSlider';
-import apps from '../../assets/apps.png';
-import architecture from '../../assets/architecture.png';
-import history from '../../assets/history.png';
-import hiking from '../../assets/hiking.png';
-import food from '../../assets/food.png';
-import challah from '../../assets/challah.png';
-import selfTour from '../../assets/selfTour.jpg';
-import picnic from '../../assets/picnic.jpg';
-import sharedWorkspace from '../../assets/sharedWorkspace.jpg';
-import shopping from '../../assets/shopping.jpg';
-import Workshop from '../../assets/Workshop.jpg';
-import haveToVisit from '../../assets/haveToVisit.jpg';
-import beer from '../../assets/beer.jpg';
-
 import Button from '@mui/material/Button';
 import ResponsiveAppBar from "../../shared/components/moreComponents/MainBar"
 
+//events:
+import beer from '../../assets/beer.jpg';
+import history from '../../assets/history.png';
+import architecture from '../../assets/architecture.png';
+import food from '../../assets/food.png';
+import hiking from '../../assets/hiking.png';
+import sharedWorkspace from '../../assets/sharedWorkspace.jpg';
 
+//tips:
+import selfTour from '../../assets/selfTour.jpg';
+import picnic from '../../assets/picnic.jpg';
+import challah from '../../assets/challah.png';
+import Workshop from '../../assets/Workshop.jpg';
+import apps from '../../assets/apps.png';
+import shopping from '../../assets/shopping.jpg';
+import haveToVisit from '../../assets/haveToVisit.jpg';
 
 function HomePageHost(){
   const sliderClick = (slider)=>{
@@ -31,18 +32,18 @@ function HomePageHost(){
       {image: beer, title:"Bonding Circle",description:"A night out at a local bar",clickEvent:sliderClick},
       {image: history, title:"History Circle",description:"Guided historical tour",clickEvent:sliderClick},
       {image: architecture ,title:"Architecture Circle",description:"Architecture tour of the city",clickEvent:sliderClick},
-      {image: food, title:"Culinary Circle",description:"This is a fourth description",clickEvent:sliderClick},
-      {image: hiking, title:"Hiking Circle",description:"This is a fifth description",clickEvent:sliderClick},
-      {image: sharedWorkspace, title:"Working Circle",description:"This is a sixth description",clickEvent:sliderClick},
+      {image: food, title:"Culinary Circle",description:"Eat local, travel global",clickEvent:sliderClick},
+      {image: hiking, title:"Hiking Circle",description:"Life is better in hiking boots",clickEvent:sliderClick},
+      {image: sharedWorkspace, title:"Digital Nomads",description:"Work is where the wifi is",clickEvent:sliderClick},
     ]
 
     const tips = [
       {image: selfTour ,title:"Self Tour",description:"General tutorials",clickEvent:sliderClick},
-      {image: picnic, title:"Picnic Spots",description:"This is a sixth description",clickEvent:sliderClick},
+      {image: picnic, title:"Picnic Spots",description:"Blue skies and good food",clickEvent:sliderClick},
       {image: challah ,title:"Saturday Attractions",description:"Attractions available",clickEvent:sliderClick},
-      {image: Workshop, title:"Workshops",description:"cooking, painting, etc.",clickEvent:sliderClick},
+      {image: Workshop, title:"Workshops",description:"Bring out the artist in you",clickEvent:sliderClick},
       {image: apps ,title:"Useful Apps",description:"Public Transport, etc.",clickEvent:sliderClick},
-      {image: shopping, title:"Shopping",description:"This is a fifth description",clickEvent:sliderClick},
+      {image: shopping, title:"Shopping",description:"A higher form of shopping",clickEvent:sliderClick},
       {image: haveToVisit, title:"Have to Visit",description:"Places not to be missed!",clickEvent:sliderClick},
     ]
   

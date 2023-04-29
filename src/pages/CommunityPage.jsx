@@ -52,7 +52,7 @@ function NestedGrid() {
 function CommunityPage() {
   return (
     <div>
-      <h1 className=""> Community</h1>
+      <h1 > Community</h1>
       <h2 >Hello World</h2>
       <div>
       <NestedGrid></NestedGrid>

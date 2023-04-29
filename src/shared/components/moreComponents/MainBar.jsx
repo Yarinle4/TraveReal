@@ -20,7 +20,7 @@ import { useNavigate } from "react-router-dom";
 
 
 
-const pages = ['Home Page', 'Events Page', 'Host Page'];
+const pages = ['Home Page', 'Events Page', 'Host Page','Community Page'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function ResponsiveAppBar() {
@@ -65,6 +65,9 @@ function ResponsiveAppBar() {
           return "/EventPage"
         case "Host Page":
           return "/HomePageHost"
+          case "Community Page":
+            return "/CommunityPage"
+          
           
       }
   }

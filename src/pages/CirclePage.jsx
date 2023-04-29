@@ -87,6 +87,8 @@ top: 50%;
 left: 50%;
 transform: translate(-50%, -50%) rotate(${props => props.rotationAngle}deg);
 background-color: red;
+display: ${props => props.isVisible ? 'block' : 'none'};
+
 `;
 
 const LockIcon = styled.div`
@@ -101,22 +103,18 @@ const LockIcon = styled.div`
 `;
 
 const CirclePage = () => {
-  const centerCircleSize = "200px"
-  const smallerCircleSize = "100px"
-  const largerCircleSize = "250px"
+  const centerCircleSize = "150px"
+  const smallerCircleSize = "90px"
+  
   const centerCirclePosition = {
-    top: "50%",
+    top: "26%",
     left: "50%",
     transform: "translate(-50%, -50%)"
   }
   const smallerCircleColors = ["empty", " pizza", " travel", "coding", "pats"]
 
-  const smallerCircleRadius = 250
-  const largerCirclePosition = {
-    bottom: "50%",
-    left: "50%",
-    transform: "translate(-50%, 50%)"
-  }
+  const smallerCircleRadius = 150
+
 
 
   const [rotationAngle, setRotationAngle] = useState(0);
@@ -136,7 +134,7 @@ const CirclePage = () => {
 
   const getCirclePosition = (radius, angle) => {
     const centerX = 0
-    const centerY = 0
+    const centerY = -200
     const xPos = centerX + radius * Math.cos((angle * Math.PI) / 180)
     const yPos = centerY + radius * Math.sin((angle * Math.PI) / 180)
     return {
@@ -153,8 +151,11 @@ const CirclePage = () => {
   const smallerCirclePositionsSingle = () =>
   getCirclePosition(smallerCircleRadius, rotationAngle + 5 * 72)
 
+  const [isVisible, setIsVisible] = useState(false);
+
   const handleCircleClick = () => {
     console.log("123");
+    setIsVisible(true);
   }
 
   const handleMouseEnter = () => {
@@ -179,18 +180,8 @@ const CirclePage = () => {
 
   return (
     <CirclePageContainer>
-      <ColoredCircle
-        size={centerCircleSize}
-        color="#B7C8FF"
-        position={centerCirclePosition}  
-        onClick = {()=> handleSCircleClick()}
-        >
-            
-        </ColoredCircle>
-        
-        
-    
-      <CircleRapper>
+
+      <CircleRapper isVisible={isVisible}>
         {smallerCircleColors.map((color, index) => (
           <ImageCircle
             key={index}
@@ -226,12 +217,12 @@ const CirclePage = () => {
       </CircleRapper>
       <ColoredCircle
       size={centerCircleSize}
-      color="#B7C8FF"
+      color="#f2fff2"
       position={centerCirclePosition}
       onClick={() => handleCircleClick()}
     >
       <CircleText size={centerCircleSize}>Hello Yarin!<br />
-    Choose Your Circle</CircleText>
+    Click here to see your Circles</CircleText>
     </ColoredCircle>
 
     </CirclePageContainer>

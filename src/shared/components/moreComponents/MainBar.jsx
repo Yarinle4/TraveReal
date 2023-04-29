@@ -12,33 +12,42 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-import Switch from '@mui/material/Switch';
-import FormControlLabel from '@mui/material/FormControlLabel';
 import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Switch from '@mui/material/Switch';
 import { useNavigate } from "react-router-dom";
-// import logoImg from "../../../assets/logo.png"
 
 
-import logoPic from "../../../assets/logo.png"
+
 
 const pages = ['Home Page', 'Events Page', 'Host Page'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
+    
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const [auth, setAuth] = React.useState(true);
-  
-  const handleChange = (event) => {
-    setAuth(event.target.checked);
-  };
 
+  const handleOpenNavMenu = (event) => {
+    setAnchorElNav(event.currentTarget);
+  };
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
 
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
+
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+
+
+  const [auth, setAuth] = React.useState(true);
+
+  const handleChange = (event) => {
+    setAuth(event.target.checked);
   };
 
   const navigate = useNavigate(); 
@@ -61,16 +70,10 @@ function ResponsiveAppBar() {
   }
 
   return (
-    
-    <Box sx={{ flexGrow: 1 }}>
-    
-    <AppBar position="static" color="primary" sx={{ width : '100%'}} >
+    <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-        <IconButton onClick={()=>routeChange('Home Page')} sx={{ display: { xs: 'none', md: 'flex', ml: 12 } }}>
-                <Avatar src={logoPic} />
-        </IconButton> 
-
+          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
           <Typography
             variant="h6"
             noWrap
@@ -86,21 +89,67 @@ function ResponsiveAppBar() {
               textDecoration: 'none',
             }}
           >
-            
+            LOGO
           </Typography>
+         
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={()=>routeChange(page)}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                {page}
-              </Button>
-            ))}
+          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+            <IconButton
+              size="large"
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleOpenNavMenu}
+              color="inherit"
+            >
+              <MenuIcon />
+            </IconButton>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorElNav}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'left',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'left',
+              }}
+              open={Boolean(anchorElNav)}
+              onClose={handleCloseNavMenu}
+              sx={{
+                display: { xs: 'block', md: 'none' },
+              }}
+            >
+              {pages.map((page) => (
+                <MenuItem key={page} onClick={()=>routeChange(page)}>
+                  <Typography textAlign="center">{page}</Typography>
+                </MenuItem>
+              ))}
+            </Menu>
           </Box>
-          <FormGroup>
+          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+          
+          <Typography
+            variant="h5"
+            noWrap
+            component="a"
+            href=""
+            sx={{
+              mr: 3,
+              display: { xs: 'flex', md: 'none' },
+              flexGrow: 0,
+              fontFamily: 'monospace',
+              fontWeight: 700,
+              letterSpacing: '.3rem',
+              color: 'inherit',
+              textDecoration: 'none',
+            }}
+          >
+            LOGO
+          </Typography>
+           <FormGroup>
         <FormControlLabel
           label={auth ? 'Host' : 'Traveler'}
           control={
@@ -114,6 +163,19 @@ function ResponsiveAppBar() {
           
         />
       </FormGroup>
+          
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+            {pages.map((page) => (
+              <Button
+                key={page}
+                onClick={()=>routeChange(page)}
+                sx={{ my: 2, color: 'white', display: 'block' }}
+              >
+                {page}
+              </Button>
+            ))}
+          </Box>
+
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -144,12 +206,8 @@ function ResponsiveAppBar() {
             </Menu>
           </Box>
         </Toolbar>
-
       </Container>
     </AppBar>
-
-    </Box>
-
   );
 }
 export default ResponsiveAppBar;

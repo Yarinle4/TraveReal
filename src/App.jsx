@@ -10,7 +10,6 @@ import ActivityPage from "./pages/ActivityPage"
 import HomePageHost from "./pages/HomePageHost/homePageHost"
 
 
-
 import { createTheme, colors, ThemeProvider } from "@mui/material";
 
 

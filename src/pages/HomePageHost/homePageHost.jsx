@@ -11,6 +11,7 @@ import selfTour from '../../assets/selfTour.jpg';
 import picnic from '../../assets/picnic.jpg';
 import Button from '@mui/material/Button';
 import { Box } from '@mui/material';
+import ResponsiveAppBar from "../../shared/components/moreComponents/MainBar"
 
 
 
@@ -44,6 +45,7 @@ function HomePageHost(){
   
   return (
     <div className='hostHome'>
+        <ResponsiveAppBar position="fixed"/>
 
       <div id="upper">let's create a new event!</div>
       <div class="body">

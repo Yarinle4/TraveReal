@@ -14,7 +14,8 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import ResponsiveAppBar from "../shared/components/moreComponents/MainBar"
 import '../pages/HomePageHost/homeHost.css';
-import level2 from "./signUpLevel2";
+import { useNavigate } from "react-router-dom";
+
 
 export default function SignUp() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -25,6 +26,8 @@ export default function SignUp() {
       password: data.get("password"),
     });
   };
+
+  const navigate = useNavigate(); 
 
   return (
       <>
@@ -73,6 +76,17 @@ export default function SignUp() {
                   autoComplete="family-name"
                 />
               </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  autoComplete="given-country"
+                  name="country"
+                  required
+                  fullWidth
+                  id="country"
+                  label="Country"
+                  autoFocus
+                />
+              </Grid>
               <Grid item xs={12}>
                 <TextField
                   required
@@ -104,6 +118,7 @@ export default function SignUp() {
               </Grid>
             </Grid>
             <Button
+              onClick={() => navigate("/details")}
               type="submit"
               fullWidth
               variant="contained"

@@ -28,7 +28,7 @@
     background-color: rgba(201, 216, 220, 0.3);
 }
 
-button {
+.buttonHost {
     cursor: pointer;
     outline: 30px;
     color: white;

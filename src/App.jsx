@@ -10,31 +10,49 @@ import ActivityPage from "./pages/ActivityPage"
 import HomePageHost from "./pages/HomePageHost/homePageHost"
 
 
+
+import { createTheme, colors, ThemeProvider } from "@mui/material";
+
+
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      // Purple and green play nicely together.
+      main: '#679E84',
+     }
+    }
+  });
+
+
+
 export default function App() {
   return (
 
+    <ThemeProvider theme={theme}>
 
-    <BrowserRouter>
-      <Routes>
+      <BrowserRouter>
+        <Routes>
 
-        <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<HomePage />} />
 
-        <Route path="/SignUp" element={<SignUp />} />
+          <Route path="/SignUp" element={<SignUp />} />
 
-        <Route path="/EventPage" element={<Event />} />
+          <Route path="/EventPage" element={<Event />} />
 
-        <Route path="/CirclePage" element={<CirclePage />} />
+          <Route path="/CirclePage" element={<CirclePage />} />
 
-        <Route path="/HomePageHost" element={<HomePageHost />} />
+          <Route path="/ActivityPage" element={<ActivityPage />} />
 
-        {/* <Route path="/SlidingCardPage" element={<SlidingCardComponent />} /> */}
-
-        <Route path="/ActivityPage" element={<ActivityPage />} />
-
+          <Route path="/HomePageHost" element={<HomePageHost />} />
 
 
 
-      </Routes>
-    </BrowserRouter>
+
+
+        </Routes>
+      </BrowserRouter>
+    </ThemeProvider>
+
   );
 }

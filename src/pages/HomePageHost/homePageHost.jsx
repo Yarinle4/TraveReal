@@ -12,7 +12,6 @@ import picnic from '../../assets/picnic.jpg';
 import Button from '@mui/material/Button';
 import { Box } from '@mui/material';
 
-import ResponsiveAppBar from "../../shared/components/moreComponents/MainBar"
 
 
 function HomePageHost(){
@@ -45,7 +44,6 @@ function HomePageHost(){
   
   return (
     <div className='hostHome'>
-      <ResponsiveAppBar/>
 
       <div id="upper">let's create a new event!</div>
       <div class="body">
@@ -56,7 +54,7 @@ function HomePageHost(){
         <div id="title">Add a Tip</div>
         <div><ReactCardSlider slides={tips} idSlide={SecondsliderName}/></div>
       </div>
-      <Button variant="contained" color="primary">Other</Button>
+      <Button variant="contained" color="primary" className="buttonHost">Other</Button>
     </div>
     );
 }

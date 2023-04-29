@@ -64,10 +64,10 @@ function ResponsiveAppBar() {
     
     <Box sx={{ flexGrow: 1 }}>
     
-    <AppBar position="static" color="secondary">
+    <AppBar position="static" color="primary" sx={{ width : '100%'}} >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-        <IconButton onClick={()=>routeChange('Home Page')} sx={{ p: 0 }}>
+        <IconButton onClick={()=>routeChange('Home Page')} sx={{ display: { xs: 'none', md: 'flex', ml: 12 } }}>
                 <Avatar src={logoPic} />
         </IconButton> 
 

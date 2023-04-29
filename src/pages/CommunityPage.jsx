@@ -6,7 +6,6 @@ import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
-
 import ResponsiveAppBar from "../shared/components/moreComponents/MainBar"
 
 
@@ -58,8 +57,8 @@ function CommunityPage() {
       <ResponsiveAppBar position="fixed"/>
       <Box sx={{ my: 3, mx: 2, mt:10 }}>
 
-      <h1 > Community</h1>
-      <h2 >Hello World</h2>
+      <Box  sx={{textAlign: 'center',fontWeight: 'bold', fontSize: 40 , my: 3, mx: 2, mt:10 }}> Community</Box>
+      <Box  sx={{textAlign: 'center', fontSize: 25 , my: 3, mx: 1, mt:5 }}> This is where we share our experience!</Box>
       <div>
       <NestedGrid></NestedGrid>
      </div>

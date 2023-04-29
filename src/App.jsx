@@ -24,6 +24,9 @@ const theme = createTheme({
   });
 
 
+import CommunityPage from "./pages/CommunityPage";
+import PostComponent from "./components/PostComponent";
+
 
 export default function App() {
   return (
@@ -48,10 +51,12 @@ export default function App() {
 
 
 
+        <Route path="/CommunityPage" element={<CommunityPage/>} />
 
         </Routes>
       </BrowserRouter>
     </ThemeProvider>
+
 
   );
 }

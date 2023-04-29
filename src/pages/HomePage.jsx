@@ -77,9 +77,11 @@ function HomePage() {
           <li><Link to="/CirclePage">Circle Page</Link></li>
           <li><Link to="/EventPage">Event Page</Link></li>
           <li><Link to="/EventPageHost">Host Page</Link></li>
-          <li><Link to="/SlidingCardPage">Sliding Card Page</Link></li>
+
           <li><Link to="/ActivityPage">Activity Page</Link></li>
           <li><Link to="/HomePageHost">Home Page Host</Link></li>
+          <li><Link to="/CommunityPage">Community Page</Link></li>
+
 
 
 

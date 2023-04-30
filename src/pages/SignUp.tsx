@@ -1,4 +1,5 @@
 import * as React from "react";
+// import Map from "../assets/photoMap.jpg" sx={{backgroundImage: `url(${Map})`}};
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -12,8 +13,9 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-
-const theme = createTheme();
+import ResponsiveAppBar from "../shared/components/moreComponents/MainBar"
+import '../pages/HomePageHost/homeHost.css';
+import { useNavigate } from "react-router-dom";
 
 export default function SignUp() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -24,20 +26,26 @@ export default function SignUp() {
       password: data.get("password"),
     });
   };
+  
+  const Image = {
+      url: Map,
+      opacity: 0.5
+    }
+  const navigate = useNavigate(); 
 
   return (
-    <ThemeProvider theme={theme}>
+      <>
+      <ResponsiveAppBar/>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 8,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+          <Avatar sx={{ mt: 10, mb: 1, bgcolor: "secondary.main" }}>
             {/* <LockOutlinedIcon /> */}
           </Avatar>
           <Typography component="h1" variant="h5">
@@ -75,6 +83,16 @@ export default function SignUp() {
                 <TextField
                   required
                   fullWidth
+                  id="country"
+                  label="Country"
+                  name="country"
+                  autoComplete="country"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
                   id="email"
                   label="Email Address"
                   name="email"
@@ -102,12 +120,13 @@ export default function SignUp() {
               </Grid>
             </Grid>
             <Button
+              onClick={() => navigate("/details")}
               type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign Up
+              Next
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
@@ -119,6 +138,6 @@ export default function SignUp() {
           </Box>
         </Box>
       </Container>
-    </ThemeProvider>
+    </>
   );
 }

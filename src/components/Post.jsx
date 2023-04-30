@@ -27,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between',
   },
   commentForm: {
+
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -63,6 +64,7 @@ const Post = ({ username, avatarUrl, imageUrl, caption, comments }) => {
           </IconButton>
         }
         title={username}
+        
       />
       <CardMedia
         className={classes.media}
@@ -80,7 +82,7 @@ const Post = ({ username, avatarUrl, imageUrl, caption, comments }) => {
           <ChatBubbleIcon />
         </IconButton>
       </div>
-      <CardContent>
+      <CardContent >
         <p>{likes} like{likes !== 1 ? 's' : ''}</p>
         <div>
           {postComments.map((comment, index) => (

@@ -18,7 +18,7 @@ export default function AlertButton() {
             aria-label="alert"
             onClick={() => navigate("/EventPage")}
       >
-        <NotificationsNoneIcon />
+        <NotificationsNoneIcon size={60}/>
       </Fab>
       
   );

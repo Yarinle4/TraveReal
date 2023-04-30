@@ -65,24 +65,21 @@ const CircleWrapper = styled.div`
 function HomePage() {
     return (
       
-        <PageWrapper>
-
-
+        <>
         <ResponsiveAppBar position="fixed"/>
-
+      
         {/* <WelcomeImg>
           <Headline>
             WELCOME TO TRAVEREAL
           </Headline>
         </WelcomeImg> */}
 
-        
+        <Box sx={{mt:10, fontSize:40, display: 'flex', justifyContent: 'center', alignItems: 'center'}}>Welcome!</Box>
         <FloatingActionButtons />
         <DraggableDialog/>
-
-      <CircleWrapper>
+      <Box sx={{mt:2}}>
         <CirclePage/>
-      </CircleWrapper>
+      </Box>
       <SimpleBottomNavigation />
 
       
@@ -112,7 +109,7 @@ function HomePage() {
           <li>We're dedicated to customer satisfaction.</li>
         </ul>
         <p>Feel free to browse our site and learn more about us.</p>
-       </PageWrapper>
+       </>
     );
   }
   

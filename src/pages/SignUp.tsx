@@ -1,4 +1,5 @@
 import * as React from "react";
+// import Map from "../assets/photoMap.jpg" sx={{backgroundImage: `url(${Map})`}};
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -16,7 +17,6 @@ import ResponsiveAppBar from "../shared/components/moreComponents/MainBar"
 import '../pages/HomePageHost/homeHost.css';
 import { useNavigate } from "react-router-dom";
 
-
 export default function SignUp() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -26,7 +26,11 @@ export default function SignUp() {
       password: data.get("password"),
     });
   };
-
+  
+  const Image = {
+      url: Map,
+      opacity: 0.5
+    }
   const navigate = useNavigate(); 
 
   return (
@@ -36,13 +40,12 @@ export default function SignUp() {
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 8,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+          <Avatar sx={{ mt: 10, mb: 1, bgcolor: "secondary.main" }}>
             {/* <LockOutlinedIcon /> */}
           </Avatar>
           <Typography component="h1" variant="h5">
@@ -76,15 +79,14 @@ export default function SignUp() {
                   autoComplete="family-name"
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12}>
                 <TextField
-                  autoComplete="given-country"
-                  name="country"
                   required
                   fullWidth
                   id="country"
                   label="Country"
-                  autoFocus
+                  name="country"
+                  autoComplete="country"
                 />
               </Grid>
               <Grid item xs={12}>

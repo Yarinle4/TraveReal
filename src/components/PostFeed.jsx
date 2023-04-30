@@ -4,6 +4,7 @@ import Post from './Post';
 
 const useStyles = makeStyles((theme) => ({
   feedContainer: {
+    
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -16,10 +17,10 @@ const PostFeed = () => {
   const posts = [
     {
       id: 1,
-      username: 'john_doe',
+      username: 'Yoel the Hardon',
       avatarUrl: 'https://picsum.photos/id/1/50',
-      imageUrl: 'https://picsum.photos/id/10/600/400',
-      caption: 'Beautiful sunset at the beach #sunset #beach #vacation',
+      imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRgV3dJAW5rOmw3TTh7mSx8AbmDCWICFjrhFCcqocXhfjIZ9F3NIFQ0P4WVymruBnkUME&usqp=CAU',
+      caption: 'From last night #MADA!!!!',
     },
     {
       id: 2,
@@ -40,7 +41,13 @@ const PostFeed = () => {
   return (
     <div className={classes.feedContainer}>
       {posts.map((post) => (
-        <Post key={post.id} {...post} />
+        <Post
+          key={post.id}
+          username={post.username}
+          avatarUrl={post.avatarUrl}
+          imageUrl={post.imageUrl}
+          caption={post.caption}
+        />
       ))}
     </div>
   );

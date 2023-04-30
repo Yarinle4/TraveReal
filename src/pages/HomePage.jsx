@@ -70,11 +70,13 @@ function HomePage() {
 
         <ResponsiveAppBar position="fixed"/>
 
-        <WelcomeImg>
+        {/* <WelcomeImg>
           <Headline>
             WELCOME TO TRAVEREAL
           </Headline>
-        </WelcomeImg>
+        </WelcomeImg> */}
+
+        
         <FloatingActionButtons />
         <DraggableDialog/>
 

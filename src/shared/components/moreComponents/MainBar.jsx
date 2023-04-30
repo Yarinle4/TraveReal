@@ -16,12 +16,27 @@ import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 import { useNavigate } from "react-router-dom";
+import styled from 'styled-components';
+
+
+import logo from "../../../assets/newlogo.png";
+
+const avatarPic = 'https://marketplace.canva.com/EAFEits4-uw/1/0/1600w/canva-boy-cartoon-gamer-animated-twitch-profile-photo-oEqs2yqaL8s.jpg';
 
 
 
 
 const pages = ['Home Page', 'Events Page', 'Host Page','Community Page'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = ['Profile', 'Logout'];
+
+const LogoContainer = styled('div')({
+  fontFamily: 'Montserrat, sans-serif',
+  // fontWeight: 'bold',
+  fontSize: '20px',
+  color: '#fff',
+  textTransform: 'uppercase',
+});
+
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -75,27 +90,13 @@ function ResponsiveAppBar() {
   return (
     <AppBar position="fixed" dispay="flex" >
       <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            LOGO
-          </Typography>
-         
+        <Toolbar disableGutters sx={{ display: 'flex', justifyContent: 'space-between' }}>
 
+          <LogoContainer>
+          TraveReal
+          </LogoContainer>
+         
+{/* 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
@@ -131,28 +132,25 @@ function ResponsiveAppBar() {
                 </MenuItem>
               ))}
             </Menu>
-          </Box>
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+          </Box> */}
+
+          {/* <Avatar
+          alt="Logo"
+          src={logo}
+          sx={{
+            marginRight: '10px',
+            backgroundColor: 'transparent',
+            '& img': {
+              backgroundColor: 'transparent',
+              objectFit: 'contain',
+            },
+            width: 100,
+            height: 100,
+          }}
+        />   */}
           
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href=""
-            sx={{
-              mr: 3,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 0,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            LOGO
-          </Typography>
-           <FormGroup>
+
+           {/* <FormGroup>
         <FormControlLabel
           label={auth ? 'Host' : 'Traveler'}
           control={
@@ -165,9 +163,9 @@ function ResponsiveAppBar() {
           }
           
         />
-      </FormGroup>
+      </FormGroup> */}
           
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          {/* <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
                 key={page}
@@ -177,12 +175,13 @@ function ResponsiveAppBar() {
                 {page}
               </Button>
             ))}
-          </Box>
+          </Box> */}
 
-          <Box sx={{ flexGrow: 0 }}>
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>
             <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, }}>
+                <Avatar alt="Remy Sharp" src={avatarPic} sx={{width: 50,
+            height: 50,}} />
               </IconButton>
             </Tooltip>
             <Menu

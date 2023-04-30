@@ -15,7 +15,8 @@ import Button from '@mui/material/Button';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 600,
+    minWidth: 285,
+    maxWidth: 285,
     marginBottom: theme.spacing(2),
   },
   media: {
@@ -59,34 +60,33 @@ const Post = ({ username, avatarUrl, imageUrl, caption, comments }) => {
       <CardHeader
         avatar={<Avatar alt={username} src={avatarUrl} />}
         action={
-          <IconButton aria-label="settings">
+          <IconButton style={{ fontSize: '12px' }} aria-label="settings">
             <MoreVertIcon />
           </IconButton>
         }
         title={username}
-        
       />
-      <CardMedia
-        className={classes.media}
-        image={imageUrl}
-        title={username}
-      />
+      <CardMedia className={classes.media} image={imageUrl} title={username} />
       <CardContent>
         <p>{caption}</p>
       </CardContent>
       <div className={classes.actions}>
-        <IconButton aria-label="like" onClick={handleLikeClick}>
-          <FavoriteIcon color={likes > 0 ? 'error' : 'inherit'} />
-        </IconButton>
+        <div style={{ display: 'flex' }}>
+          <IconButton style={{ marginTop: '-10px' }} aria-label="like" onClick={handleLikeClick}>
+            <FavoriteIcon color={likes > 0 ? 'error' : 'inherit'} />
+          </IconButton>
+          <p style={{ fontSize: '15px', marginLeft: '4px' }}>
+            {likes} like{likes !== 1 ? 's' : ''}
+          </p>
+        </div>
         <IconButton aria-label="comment">
           <ChatBubbleIcon />
         </IconButton>
       </div>
-      <CardContent >
-        <p>{likes} like{likes !== 1 ? 's' : ''}</p>
+      <CardContent>
         <div>
           {postComments.map((comment, index) => (
-            <p key={index}>
+            <p style={{ fontSize: '15px' }} key={index}>
               <b>{comment.username}:</b> {comment.text}
             </p>
           ))}
@@ -99,7 +99,12 @@ const Post = ({ username, avatarUrl, imageUrl, caption, comments }) => {
             value={comment}
             onChange={(event) => setComment(event.target.value)}
           />
-          <Button type="submit" variant="contained" size="small">
+          <Button
+            style={{ fontSize: '14px' }}
+            type="submit"
+            variant="contained"
+            size="small"
+          >
             Post
           </Button>
         </form>

@@ -31,7 +31,7 @@ const PostFeed = () => {
     },
     {
       id: 2,
-      username: 'Traveler_ash_from_gil_6',
+      username: 'Traveler_6',
       avatarUrl: 'https://picsum.photos/id/2/50',
       imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGgvx68hCsAu6aLpXVUTWSW0gtOY6C8HjmSg&usqp=CAU',
       caption: 'Yummy brunch with friends #brunch #friends #foodie',

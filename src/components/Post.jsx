@@ -50,7 +50,8 @@ const useStyles = makeStyles((theme) => ({
     setPostComments((prevComments) => [
       ...prevComments,
       {
-        username: 'Israel Israeli',
+        
+        username: username,
         text: comment,
         avatarUrl: 'https://marketplace.canva.com/EAFEits4-uw/1/0/1600w/canva-boy-cartoon-gamer-animated-twitch-profile-photo-oEqs2yqaL8s.jpg' // Add the avatar URL here
         
@@ -69,10 +70,11 @@ const useStyles = makeStyles((theme) => ({
           </IconButton>
         }
         title={username}
+        
       />
       <CardMedia className={classes.media} image={imageUrl} title={username} />
       <CardContent>
-        <p>{caption}</p>
+        <p style={{fontSize:'15px', marginLeft:'-10px'}} >{caption}</p>
       </CardContent>
       <div className={classes.actions}>
         <div style={{ display: 'flex' }}>

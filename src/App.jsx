@@ -3,11 +3,12 @@
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
-import SignUp from "./pages//SignUp"
+import SignUp from "./pages/SignUp"
+import SignUp2 from "./pages/signUpLevel2"
 import Event from "./pages/EventPage"
-import CirclePage from "./pages/CirclePage"
 import ActivityPage from "./pages/ActivityPage"
 import HomePageHost from "./pages/HomePageHost/homePageHost"
+import Profile from "./pages/ProfilePage"
 
 
 import { createTheme, colors, ThemeProvider } from "@mui/material";
@@ -41,11 +42,14 @@ export default function App() {
 
           <Route path="/EventPage" element={<Event />} />
 
-          <Route path="/CirclePage" element={<CirclePage />} />
-
           <Route path="/ActivityPage" element={<ActivityPage />} />
 
           <Route path="/HomePageHost" element={<HomePageHost />} />
+
+          <Route path="/details" element={<SignUp2 />} />
+
+          <Route path="/ProfilePage" element={<Profile />} />
+
 
         <Route path="/CommunityPage" element={<CommunityPage/>} />
 

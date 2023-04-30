@@ -19,7 +19,6 @@ const mapLocation =  [lat, lng];
 
 const NewHeader = () => {
   return (
-
     <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
     <Box sx={{ my: 3, mx: 2, mt:10 }}>
     <div class="EventHeader">

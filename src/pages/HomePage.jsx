@@ -4,7 +4,15 @@ import ResponsiveAppBar from "../shared/components/moreComponents/MainBar"
 import BackgroundImagePage from "../components/bgImg"
 import imgg from "../assets/newewew.png"
 import styled from 'styled-components';
-import CirclePage from "./CirclePage";
+
+import SimpleBottomNavigation from "../shared/components/moreComponents/BottomNav";
+
+
+import CirclePage from "../components/CirclePage";
+import FloatingActionButtons from "../components/AddButton";
+import { Box } from "@mui/system";
+import AlertButton from "../components/AlartButton";
+import DraggableDialog from "../components/AlertPopUp";
 
 
 const Headline = styled.div`
@@ -56,7 +64,10 @@ const CircleWrapper = styled.div`
 
 function HomePage() {
     return (
+      
         <PageWrapper>
+
+
         <ResponsiveAppBar position="fixed"/>
 
         <WelcomeImg>
@@ -64,10 +75,15 @@ function HomePage() {
             WELCOME TO TRAVEREAL
           </Headline>
         </WelcomeImg>
+        <FloatingActionButtons />
+        <DraggableDialog/>
 
       <CircleWrapper>
         <CirclePage/>
       </CircleWrapper>
+      <SimpleBottomNavigation />
+
+      
 
 
         <h1>Welcome to My Website</h1>
@@ -77,10 +93,12 @@ function HomePage() {
           <li><Link to="/CirclePage">Circle Page</Link></li>
           <li><Link to="/EventPage">Event Page</Link></li>
           <li><Link to="/EventPageHost">Host Page</Link></li>
+          <li><Link to="/ProfilePage">Profile Page</Link></li>
 
           <li><Link to="/ActivityPage">Activity Page</Link></li>
           <li><Link to="/HomePageHost">Home Page Host</Link></li>
           <li><Link to="/CommunityPage">Community Page</Link></li>
+
 
 
 

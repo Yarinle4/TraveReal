@@ -4,6 +4,10 @@ import ResponsiveAppBar from "../shared/components/moreComponents/MainBar"
 import BackgroundImagePage from "../components/bgImg"
 import imgg from "../assets/newewew.png"
 import styled from 'styled-components';
+
+import SimpleBottomNavigation from "../shared/components/moreComponents/BottomNav";
+
+
 import CirclePage from "./CirclePage";
 
 
@@ -56,9 +60,11 @@ const CircleWrapper = styled.div`
 
 function HomePage() {
     return (
+      
         <PageWrapper>
-        <ResponsiveAppBar position="fixed"/>
 
+
+        <ResponsiveAppBar position="fixed"/>
         <WelcomeImg>
           <Headline>
             WELCOME TO TRAVEREAL
@@ -68,6 +74,9 @@ function HomePage() {
       <CircleWrapper>
         <CirclePage/>
       </CircleWrapper>
+      <SimpleBottomNavigation />
+
+      
 
 
         <h1>Welcome to My Website</h1>

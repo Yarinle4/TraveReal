@@ -91,7 +91,7 @@ top: 50%;
 left: 50%;
 transform: translate(-50%, -50%) rotate(${props => props.rotationAngle}deg);
 background-color: red;
-display: ${props => props.isVisible ? 'block' : 'none'};
+// display: ${props => props.isVisible ? 'block' : 'none'};
 
 `;
 
@@ -155,11 +155,10 @@ const CirclePage = () => {
   const smallerCirclePositionsSingle = () =>
   getCirclePosition(smallerCircleRadius, rotationAngle + 5 * 72)
 
-  const [isVisible, setIsVisible] = useState(false);
+  // const [isVisible, setIsVisible] = useState(false);
 
   const handleCircleClick = () => {
-    console.log("123");
-    setIsVisible(true);
+    navigate("/ProfilePage");
   }
 
   const handleMouseEnter = () => {
@@ -185,7 +184,9 @@ const CirclePage = () => {
   return (
     <CirclePageContainer>
 
-      <CircleRapper isVisible={isVisible}>
+      {/* <CircleRapper isVisible={isVisible}> */}
+      <CircleRapper >
+
         {smallerCircleColors.map((color, index) => (
           <ImageCircle
             key={index}

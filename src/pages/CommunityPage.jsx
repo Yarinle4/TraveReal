@@ -18,7 +18,7 @@ import IconButton from '@mui/material/IconButton';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Skeleton from '@mui/material/Skeleton';
 import Post from "../components/Post.jsx"
-
+import PostCard from "../components/NewPost.jsx";
 
 
 

@@ -10,7 +10,7 @@ import QuiltedImageList from './QuiltedImageList'
 
 export default function MiddleDividers() {
   return (
-    <Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+    <Box sx={{ width: '100%', maxWidth: 360 }}>
       <Box sx={{ my: 3, mx: 2 }}>
         <Grid container alignItems="center">
           <Grid item>

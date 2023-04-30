@@ -20,12 +20,12 @@ const mapLocation =  [lat, lng];
 const NewHeader = () => {
   return (
     <Box sx={{ width: '100%'}}>
-    <Box sx={{ my: 3, mx: 2, mt:7 }}>
+    <Box sx={{ my: 3, mx: 2 }}>
     <div class="EventHeader">
         {/* <div class="EventHeader"> */}
-        <Stack direction="row" spacing={3}>
+        <Stack direction="row" spacing={3} sx={{ mt: 8}}>
             <ImageAvatars/>
-            <h2>Event_Name</h2>
+            <h2 >Event_Name</h2>
             <BasicRating />
         </Stack>
       {/* </div> */}

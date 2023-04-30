@@ -8,7 +8,11 @@ import styled from 'styled-components';
 import SimpleBottomNavigation from "../shared/components/moreComponents/BottomNav";
 
 
-import CirclePage from "./CirclePage";
+import CirclePage from "../components/CirclePage";
+import FloatingActionButtons from "../components/AddButton";
+import { Box } from "@mui/system";
+import AlertButton from "../components/AlartButton";
+import DraggableDialog from "../components/AlertPopUp";
 
 
 const Headline = styled.div`
@@ -65,11 +69,14 @@ function HomePage() {
 
 
         <ResponsiveAppBar position="fixed"/>
+
         <WelcomeImg>
           <Headline>
             WELCOME TO TRAVEREAL
           </Headline>
         </WelcomeImg>
+        <FloatingActionButtons />
+        <DraggableDialog/>
 
       <CircleWrapper>
         <CirclePage/>

@@ -21,7 +21,7 @@ export default function FloatingActionButtons() {
                                       bottom: '10%',
                                       right: '5%'}} 
       >
-        <AddIcon />
+        <AddIcon fontSize="large"/>
       </Fab>
       
   );

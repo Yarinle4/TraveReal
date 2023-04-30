@@ -9,6 +9,7 @@ import Event from "./pages/EventPage"
 import HomePageHost from "./pages/HomePageHost/homePageHost"
 import Activities from "./pages/activities/activities"
 import Profile from "./pages/ProfilePage"
+import './App.css';
 import CreateEventPage from "./pages/CreateNewEvent"
 
 
@@ -33,6 +34,7 @@ export default function App() {
   return (
 
     <ThemeProvider theme={theme}>
+      <div style={{background:"#F3FBF4"}}>
 
       <BrowserRouter>
         <Routes>
@@ -57,6 +59,7 @@ export default function App() {
 
         </Routes>
       </BrowserRouter>
+    </div>
     </ThemeProvider>
 
 

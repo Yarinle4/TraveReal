@@ -90,6 +90,8 @@ function HomePage() {
           <li><Link to="/ActivityPage">Activity Page</Link></li>
           <li><Link to="/HomePageHost">Home Page Host</Link></li>
           <li><Link to="/CommunityPage">Community Page</Link></li>
+          <li><Link to="/activities">Activities</Link></li>
+
 
 
 

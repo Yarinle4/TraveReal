@@ -9,6 +9,7 @@ import Event from "./pages/EventPage"
 import CirclePage from "./pages/CirclePage"
 import ActivityPage from "./pages/ActivityPage"
 import HomePageHost from "./pages/HomePageHost/homePageHost"
+import Activities from "./pages/activities/activities"
 
 
 import { createTheme, colors, ThemeProvider } from "@mui/material";
@@ -50,6 +51,9 @@ export default function App() {
           <Route path="/HomePageHost" element={<HomePageHost />} />
 
           <Route path="/details" element={<SignUp2 />} />
+
+          <Route path="/activities" element={<Activities />} />
+
 
 
 

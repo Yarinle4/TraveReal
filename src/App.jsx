@@ -6,8 +6,8 @@ import HomePage from "./pages/HomePage";
 import SignUp from "./pages/SignUp"
 import SignUp2 from "./pages/signUpLevel2"
 import Event from "./pages/EventPage"
-import ActivityPage from "./pages/ActivityPage"
 import HomePageHost from "./pages/HomePageHost/homePageHost"
+import Activities from "./pages/activities/activities"
 import Profile from "./pages/ProfilePage"
 
 
@@ -36,17 +36,18 @@ export default function App() {
       <BrowserRouter>
         <Routes>
 
-          <Route path="/" element={<HomePage />} />
+          <Route path="/HomePage" element={<HomePage />} />
 
-          <Route path="/SignUp" element={<SignUp />} />
+          <Route path="/" element={<SignUp />} />
 
           <Route path="/EventPage" element={<Event />} />
-
-          <Route path="/ActivityPage" element={<ActivityPage />} />
 
           <Route path="/HomePageHost" element={<HomePageHost />} />
 
           <Route path="/details" element={<SignUp2 />} />
+
+          <Route path="/activities" element={<Activities />} />
+
 
           <Route path="/ProfilePage" element={<Profile />} />
 

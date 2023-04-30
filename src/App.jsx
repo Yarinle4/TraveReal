@@ -10,6 +10,7 @@ import ActivityPage from "./pages/ActivityPage"
 import HomePageHost from "./pages/HomePageHost/homePageHost"
 import Activities from "./pages/activities/activities"
 import Profile from "./pages/ProfilePage"
+import CreateEventPage from "./pages/CreateNewEvent"
 
 
 import { createTheme, colors, ThemeProvider } from "@mui/material";
@@ -54,6 +55,7 @@ export default function App() {
 
           <Route path="/ProfilePage" element={<Profile />} />
 
+          <Route path="/CreateNewEvent" element={<CreateEventPage/>} />
 
         <Route path="/CommunityPage" element={<CommunityPage/>} />
 

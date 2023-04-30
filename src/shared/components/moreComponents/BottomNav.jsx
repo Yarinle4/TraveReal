@@ -11,27 +11,18 @@ import { useNavigate } from "react-router-dom";
 
 
 export default function SimpleBottomNavigation() {
-  const [value, setValue] = React.useState(0);
+  
+  const pathname = window.location.pathname; // in case user visits the path directly. The BottomNavBar is able to follow suit.
+  const [value, setValue] = React.useState(pathname);
 
   const navigate = useNavigate(); 
 
 
-const changePage = (newValue) => {
-  const path = getPagePath(newValue);
-  navigate(path);
-  setValue(newValue);
-};
-
-  const getPagePath = (valuePage) =>{
-    switch (valuePage){
-      case 0:
-        return "/activities";
-      case 1:
-        return "/HomePage";
-      case 2:
-        return "/CommunityPage";
-    }
+  const changePage = (event, newValue) => {
+        setValue(newValue);    
+        navigate(newValue)
   }
+
 
 
   return (
@@ -41,13 +32,10 @@ const changePage = (newValue) => {
         <BottomNavigation
             showLabels
             value={value}
-            onChange={(event, newValue) => {
-              changePage(newValue);}}
-            
-        >
-            <BottomNavigationAction label="Activities" icon={<SportsHandballIcon style={{ fontSize: 32 }}/>} />
-            <BottomNavigationAction label="Home" icon={<HomeIcon style={{ fontSize: 32 }}/>} />
-            <BottomNavigationAction label="Community" icon={<GroupIcon style={{ fontSize: 32 }}/>} />
+            onChange={changePage} >
+            <BottomNavigationAction value="/activities" label="Activities" icon={<SportsHandballIcon style={{ fontSize: 32 }}/>} />
+            <BottomNavigationAction value="/HomePage" label="Home" icon={<HomeIcon style={{ fontSize: 32 }}/>} />
+            <BottomNavigationAction value="/CommunityPage" label="Community" icon={<GroupIcon style={{ fontSize: 32 }}/>} />
         </BottomNavigation>
         </Box>
     </Paper>

@@ -49,7 +49,6 @@ export default function App() {
 
           <Route path="/activities" element={<Activities />} />
 
-
           <Route path="/ProfilePage" element={<Profile />} />
 
           <Route path="/CreateNewEvent" element={<CreateEventPage/>} />

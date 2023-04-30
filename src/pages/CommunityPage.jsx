@@ -1,5 +1,4 @@
 import React from "react";
-import PostComponent from "../components/PostComponent";
 import Header from "../components/ComminityHeader.jsx";
 import { Link } from "react-router-dom";
 import { styled } from "@mui/material/styles";
@@ -17,9 +16,7 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Skeleton from '@mui/material/Skeleton';
-import Post from "../components/Post.jsx"
-
-
+import PostFeed from "../components/PostFeed.jsx";
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -31,54 +28,19 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 
-function FormRow(props) {
-  return (
-    <React.Fragment>
-      <Grid item xs={4}>
-      <Post ></Post>
-      </Grid>
-      <Grid item xs={4}>
-      <Post/>
-      </Grid>
-      <Grid item xs={4}>
-      <Post/>
-      </Grid>
-    </React.Fragment>
-  );
-}
-function NestedGrid() {
-  return (
-    <Box sx={{ flexGrow: 1 }}>
-      <Grid container spacing={1}>
-        <Grid container item spacing={3}>
-        <FormRow> </FormRow>
-        </Grid>
-        <Grid container item spacing={3}>
-        <FormRow></FormRow>
-        </Grid>
-        <Grid container item spacing={3}>
-          <FormRow />
-        </Grid>
-      </Grid>
-    </Box>
-  );
-}
 
 function CommunityPage() {
   return (
     <div>
-      
       <ResponsiveAppBar position="fixed"/>
-      <Box sx={{ my: 3, mx: 2, mt:10 }}>
+      <Box sx={{ my: 3, mx: 2, mt:10 }}/>
       <Box  sx={{textAlign: 'center',fontWeight: 'bold', fontSize: 40 , my: 3, mx: 2, mt:10 }}> Community</Box>
       <Box  sx={{textAlign: 'center', fontSize: 25 , my: 3, mx: 1, mt:5 }}> This is where we share our experience!</Box>
-      <div>
-      <Box sx={{ my: 3, mx: 2, mt:10 }}> </Box>
-      </div>
-      <div>
-      <NestedGrid></NestedGrid>
-     </div>
-     </Box>
+      <Box sx={{ my: 3, mx: 2, mt:10 }}></Box>
+
+      <Box><PostFeed/></Box>
+
+    
     </div>
   );
 }

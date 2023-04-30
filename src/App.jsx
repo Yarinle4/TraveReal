@@ -26,7 +26,6 @@ const theme = createTheme({
 
 
 import CommunityPage from "./pages/CommunityPage";
-import PostComponent from "./components/PostComponent";
 
 
 export default function App() {
@@ -50,8 +49,6 @@ export default function App() {
           <Route path="/details" element={<SignUp2 />} />
 
           <Route path="/ProfilePage" element={<Profile />} />
-
-
 
 
         <Route path="/CommunityPage" element={<CommunityPage/>} />

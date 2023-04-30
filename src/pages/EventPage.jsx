@@ -8,12 +8,10 @@ import ResponsiveAppBar from "../shared/components/moreComponents/MainBar"
 import styled from 'styled-components';
 import { Box } from '@mui/system';
 
-
 function Event () {
   return ( 
     <>
       <ResponsiveAppBar position="fixed"/>
-  
       <NewHeader />
     </>
 

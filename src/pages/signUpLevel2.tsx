@@ -6,10 +6,10 @@ import Box from "@mui/material/Box";
 // import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import ResponsiveAppBar from "../shared/components/moreComponents/MainBar"
-import '../pages/HomePageHost/homeHost.css';
+import ResponsiveAppBar from "../shared/components/moreComponents/MainBar";
+import "../pages/HomePageHost/homeHost.css";
 import { useNavigate } from "react-router-dom";
-import CircleSelection from '../components/SelectCircle';
+import CircleSelection from "../components/SelectCircle";
 
 export default function SignUp() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -21,11 +21,11 @@ export default function SignUp() {
     });
   };
 
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   return (
-      <>
-      <ResponsiveAppBar/>
+    <>
+      <ResponsiveAppBar />
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -36,16 +36,11 @@ export default function SignUp() {
             alignItems: "center",
           }}
         >
-          <Typography 
-          component="h1"
-          fontSize={18}
-          sx={{ mt: 2, mb: 1 }}>
-          Choose a circle that interests you
+          <Typography component="h1" fontSize={18} sx={{ mt: 2, mb: 1 }}>
+            Choose a circle that interests you
           </Typography>
-          <Typography 
-          component="h1"
-          fontSize={13}>
-          Currently, you can only select one circle
+          <Typography component="h1" fontSize={13}>
+            Currently, you can only select one circle
           </Typography>
           <Box
             component="form"
@@ -53,11 +48,10 @@ export default function SignUp() {
             onSubmit={handleSubmit}
             sx={{ mt: 3 }}
           >
-            <Grid container spacing={2}>
-            </Grid>
+            <Grid container spacing={2}></Grid>
             <CircleSelection />
             <Button
-              onClick={() => navigate("/")}
+              onClick={() => navigate("/HomePage")}
               type="submit"
               fullWidth
               variant="contained"
@@ -66,8 +60,7 @@ export default function SignUp() {
               Sign Up
             </Button>
             <Grid container justifyContent="flex-end">
-              <Grid item>
-              </Grid>
+              <Grid item></Grid>
             </Grid>
           </Box>
         </Box>

@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { Box, Button, TextField, Typography } from "@mui/material";
+import { Box, Button, TextField, Typography, AppBar, Toolbar, Divider} from "@mui/material";
 import styled from "styled-components";
 import ResponsiveAppBar from "../shared/components/moreComponents/MainBar";
 import SimpleBottomNavigation from "../shared/components/moreComponents/BottomNav";
+import { useNavigate } from "react-router-dom";
 
 const StyledTitle = styled(Typography)`
-  color: #7a7a7a;
   font-weight: bold;
   margin-bottom: 20px;
 `;
@@ -15,13 +15,15 @@ const PageHeader = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 50px;
+  padding: 40px;
 `;
 
 const StyledDiv = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-left: 5%;
+  margin-right: 5%;
 `;
 
 function CreateEventPage() {
@@ -69,6 +71,8 @@ function CreateEventPage() {
     };
     console.log(eventData); // send this data to server or do something else
   };
+
+  const navigate = useNavigate(); 
 
   return (
     <StyledDiv>
@@ -130,16 +134,20 @@ function CreateEventPage() {
           onChange={handleLocationChange}
         />
         <Box mb={2}>
-          <Button variant="contained" component="label">
+          <Button variant="contained" component="label" sx={{width: 400}}>
             Upload Event Photos
             <input type="file" multiple hidden onChange={handlePhotoUpload} />
           </Button>
         </Box>
-        <Button type="submit" variant="contained" color="primary">
-          Create Event
-        </Button>
-        <SimpleBottomNavigation/>
-
+        <AppBar position="fixed" sx={{ top: 'auto', bottom: 0 }}>
+          <Toolbar sx={{ display: 'flex', justifyContent: 'space-around', border: 'none' }}>
+            <Button onClick={() => navigate("/HomePage")}
+             variant="Outlined" sx={{ width: '120px' }}>Cancel</Button>
+            <Divider orientation="vertical" flexItem sx={{ marginLeft: '-30px', width:'30px', borderColor:'#F3FBF4' }} />
+            <Button onClick={() => navigate("/HomePageHost")}
+             variant="Outlined" sx={{ width: '120px' }}>Next</Button>
+          </Toolbar>
+        </AppBar>
       </Box>
     </StyledDiv>
   );

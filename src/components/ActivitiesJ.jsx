@@ -18,7 +18,7 @@ const CardSlider =(props)=>{
     }
 
     return(
-        <div id="main-slider-container">
+        <div id="main-activity-container">
             <MdChevronLeft size={40} className="slider-icon left" onClick={slideLeft}/>
             <div class="slider" id={props.idSlide}>
                { 

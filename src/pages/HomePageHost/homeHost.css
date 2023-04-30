@@ -24,6 +24,15 @@
     font-family: Monospace, "Monaco";
 }
 
+#mid {
+    font-size: 20px;
+    display: flex;
+    font-weight: 700;
+    margin-left: 45%;
+    margin-top: 3%;
+    font-family: Monospace, "Monaco";
+}
+
 .body {
     background-color: rgba(201, 216, 220, 0.3);
 }

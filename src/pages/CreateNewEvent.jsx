@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Box, Button, TextField, Typography } from "@mui/material";
 import styled from "styled-components";
 import ResponsiveAppBar from "../shared/components/moreComponents/MainBar";
+import SimpleBottomNavigation from "../shared/components/moreComponents/BottomNav";
 
 const StyledTitle = styled(Typography)`
   color: #7a7a7a;
@@ -137,6 +138,8 @@ function CreateEventPage() {
         <Button type="submit" variant="contained" color="primary">
           Create Event
         </Button>
+        <SimpleBottomNavigation/>
+
       </Box>
     </StyledDiv>
   );

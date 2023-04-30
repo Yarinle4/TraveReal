@@ -16,9 +16,21 @@ export default function SimpleBottomNavigation() {
   const navigate = useNavigate(); 
 
 
-  const changePage = (event, newValue) => {
-        console.log(value);
-        setValue(newValue);    
+const changePage = (newValue) => {
+  const path = getPagePath(newValue);
+  navigate(path);
+  setValue(newValue);
+};
+
+  const getPagePath = (valuePage) =>{
+    switch (valuePage){
+      case 0:
+        return "/activities";
+      case 1:
+        return "/HomePage";
+      case 2:
+        return "/CommunityPage";
+    }
   }
 
 
@@ -29,12 +41,13 @@ export default function SimpleBottomNavigation() {
         <BottomNavigation
             showLabels
             value={value}
-            onChange={changePage}
+            onChange={(event, newValue) => {
+              changePage(newValue);}}
             
         >
-            <BottomNavigationAction onClick={() => navigate("/activities")} label="Activities" icon={<SportsHandballIcon style={{ fontSize: 32 }}/>} />
-            <BottomNavigationAction onClick={() => navigate("/HomePage")} label="Home" icon={<HomeIcon style={{ fontSize: 32 }}/>} />
-            <BottomNavigationAction onClick={() => navigate("/CommunityPage")} label="Community" icon={<GroupIcon style={{ fontSize: 32 }}/>} />
+            <BottomNavigationAction label="Activities" icon={<SportsHandballIcon style={{ fontSize: 32 }}/>} />
+            <BottomNavigationAction label="Home" icon={<HomeIcon style={{ fontSize: 32 }}/>} />
+            <BottomNavigationAction label="Community" icon={<GroupIcon style={{ fontSize: 32 }}/>} />
         </BottomNavigation>
         </Box>
     </Paper>

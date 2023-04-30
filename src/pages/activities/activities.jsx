@@ -1,5 +1,6 @@
 import './activities.css';
 import ActivitiesCards from '../../components/ActivitiesJ';
+import ReactCardSlider from '../../components/ReactCardSlider';
 import Button from '@mui/material/Button';
 import ResponsiveAppBar from "../../shared/components/moreComponents/MainBar"
 
@@ -28,12 +29,12 @@ function HomePageHost(){
     const SecondsliderName = "addTip";
 
     const events = [
-      {image: WineryTour, title:"Winery Tour",description:"Cheers to good times",date:"2222",clickEvent:sliderClick},
-      {image: foodWorkshop, title:"Food Workshop",description:"Bring out the artist in you",clickEvent:sliderClick},
-      {image: market ,title:"Street Food Tour",description:"Eat local, travel global",clickEvent:sliderClick},
-      {image: food, title:"Chef Restaurant",description:"Tasting the best",clickEvent:sliderClick},
-      {image: cheese, title:"Boutique Dairies",description:"Say cheese!",clickEvent:sliderClick},
-      {image: challah ,title:"Hafrashat Challah",description:"Observance of Torah mitzva",clickEvent:sliderClick},
+      {image: WineryTour, title:"Winery Tour",description:"Cheers to good times",date:"Today | 5PM",points:"10 pts.",clickEvent:sliderClick},
+      {image: foodWorkshop, title:"Food Workshop",description:"Bring out the artist in you",date:"Tomorrow | 10AM",points:"15 pts.",clickEvent:sliderClick},
+      {image: market ,title:"Street Food Tour",description:"Eat local, travel global",date:"Sun 30 Apr | 2PM",points:"10 pts.",clickEvent:sliderClick},
+      {image: food, title:"Chef Restaurant",description:"Tasting the best",date:"Tue 2 May | 8PM",points:"20 pts.",clickEvent:sliderClick},
+      {image: cheese, title:"Boutique Dairies",description:"Say cheese!",date:"Thu 4 May | 10AM",points:"5 pts.",clickEvent:sliderClick},
+      {image: challah ,title:"Hafrashat Challah",description:"Observance of Torah mitzva", date:"Mon 8 May | 9PM",points:"5 pts.",clickEvent:sliderClick},
     ]
 
     const tips = [
@@ -56,7 +57,7 @@ function HomePageHost(){
       </div>
       <div class="body">
         <div id="title">Tips</div>
-        <div><ActivitiesCards slides={tips} idSlide={SecondsliderName}/></div>
+        <div><ReactCardSlider slides={tips} idSlide={SecondsliderName}/></div>
         {/* <Button variant="contained" color="primary" className="buttonHost">Another Tip</Button> */}
       </div>
 

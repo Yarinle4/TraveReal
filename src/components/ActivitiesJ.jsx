@@ -2,6 +2,7 @@ import React from 'react';
 import './ActivitiesCards.css';
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md'
 import AccessTimeRoundedIcon from '@mui/icons-material/AccessTimeRounded';
+import StarBorderRoundedIcon from '@mui/icons-material/StarBorderRounded';
 
 const CardSlider =(props)=>{
     const slideLeft =()=>{
@@ -26,8 +27,12 @@ const CardSlider =(props)=>{
                             <div className="slider-card" key={index} onClick={()=>slide.clickEvent()}>
                                 <div className="slider-card-image" style={{backgroundImage:`url(${slide.image})`,backgroundSize:'cover'}}></div>
                                 <p className="slider-card-title">{slide.title}</p>
-                                <p className="slider-card-description">{slide.description}</p>
-                                <svg><AccessTimeRoundedIcon/></svg>
+                                {/* <p className="slider-card-description">{slide.description}</p> */}
+                                <hr class="slant-line"></hr>
+                                <p className="slider-card-date">
+                                    <AccessTimeRoundedIcon fontSize="small" sx={{ml:1, mr:1}}/>{slide.date}</p>
+                                <p className="slider-card-points">
+                                    <StarBorderRoundedIcon fontSize="medium" sx={{ml:0.9, mr:1}}/>{slide.points}</p>
                             </div>
                         )
                     })

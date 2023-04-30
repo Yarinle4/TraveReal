@@ -92,12 +92,10 @@ function HomePage() {
         <p>Thanks for visiting! Here's some information about what we do:</p>
         <ul>
           <li><Link to="/SignUp">Sign Up</Link></li>
-          <li><Link to="/CirclePage">Circle Page</Link></li>
           <li><Link to="/EventPage">Event Page</Link></li>
           <li><Link to="/EventPageHost">Host Page</Link></li>
           <li><Link to="/ProfilePage">Profile Page</Link></li>
 
-          <li><Link to="/ActivityPage">Activity Page</Link></li>
           <li><Link to="/HomePageHost">Home Page Host</Link></li>
           <li><Link to="/CommunityPage">Community Page</Link></li>
           <li><Link to="/activities">Activities</Link></li>

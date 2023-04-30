@@ -19,6 +19,7 @@ import picnic from '../../assets/picnic.jpg';
 import apps from '../../assets/apps.png';
 import strawberryPicking from '../../assets/strawberryPicking.jpg';
 import resturant from '../../assets/resturant.jpg';
+import SimpleBottomNavigation from '../../shared/components/moreComponents/BottomNav';
 
 function HomePageHost(){
   const sliderClick = (slider)=>{
@@ -60,6 +61,8 @@ function HomePageHost(){
         <div><ReactCardSlider slides={tips} idSlide={SecondsliderName}/></div>
         {/* <Button variant="contained" color="primary" className="buttonHost">Another Tip</Button> */}
       </div>
+      <SimpleBottomNavigation/>
+
 
     </div>
     );

@@ -2,10 +2,10 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
-import RestoreIcon from '@mui/icons-material/Restore';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
+import GroupIcon from '@mui/icons-material/Group';
+import HomeIcon from '@mui/icons-material/Home';
 import Paper from '@mui/material/Paper';
+import SportsHandballIcon from '@mui/icons-material/SportsHandball';
 
 
 export default function SimpleBottomNavigation() {
@@ -27,9 +27,9 @@ export default function SimpleBottomNavigation() {
             onChange={changePage}
             
         >
-            <BottomNavigationAction label="Circles" icon={<RestoreIcon />} />
-            <BottomNavigationAction label="Home" icon={<FavoriteIcon />} />
-            <BottomNavigationAction label="Profile" icon={<LocationOnIcon />} />
+            <BottomNavigationAction label="Activities" icon={<SportsHandballIcon />} />
+            <BottomNavigationAction label="Home" icon={<HomeIcon />} />
+            <BottomNavigationAction label="Community" icon={<GroupIcon />} />
         </BottomNavigation>
         </Box>
     </Paper>

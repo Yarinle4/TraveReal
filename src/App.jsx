@@ -6,7 +6,6 @@ import HomePage from "./pages/HomePage";
 import SignUp from "./pages/SignUp"
 import SignUp2 from "./pages/signUpLevel2"
 import Event from "./pages/EventPage"
-import CirclePage from "./pages/CirclePage"
 import ActivityPage from "./pages/ActivityPage"
 import HomePageHost from "./pages/HomePageHost/homePageHost"
 
@@ -42,8 +41,6 @@ export default function App() {
           <Route path="/SignUp" element={<SignUp />} />
 
           <Route path="/EventPage" element={<Event />} />
-
-          <Route path="/CirclePage" element={<CirclePage />} />
 
           <Route path="/ActivityPage" element={<ActivityPage />} />
 

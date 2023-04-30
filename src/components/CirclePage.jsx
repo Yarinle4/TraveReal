@@ -11,6 +11,9 @@ import patsImg from "../assets/dog.png"
 import barImg from "../assets/bar.png"
 import lockIcon from '../assets/lock.svg'; // Replace with the actual path to your lock icon SVG file
 import { useNavigate } from "react-router-dom";
+import Avatar from '@mui/material/Avatar';
+
+const avatarPic = 'https://marketplace.canva.com/EAFEits4-uw/1/0/1600w/canva-boy-cartoon-gamer-animated-twitch-profile-photo-oEqs2yqaL8s.jpg';
 
 
 const CirclePageContainer = styled.div`
@@ -40,7 +43,8 @@ justify-content: center; /* Horizontally align items to center */
 `
 
 const ColoredCircle = styled(Circle)`
-  background-color: ${props => props.color};
+  background-image: url(${props => props.imageUrl});
+
 `
 
 const ImageCircle = styled(Circle)`
@@ -217,12 +221,16 @@ const CirclePage = () => {
       </CircleRapper>
       <ColoredCircle
       size={centerCircleSize}
-      color="#f2fff2"
+      // imageUrl={barImg}
       position={centerCirclePosition}
       onClick={() => handleCircleClick()}
     >
-      <CircleText size={centerCircleSize}>Hello Yarin!<br />
-    Click here to see your Circles</CircleText>
+            {/* <Avatar alt="Remy Sharp" src='https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp' /> */}
+
+            <Avatar   sx={{ width: 150, height: 150 }}
+                      alt="Remy Sharp"
+                      src={avatarPic} />
+
     </ColoredCircle>
 
     </CirclePageContainer>

@@ -25,7 +25,6 @@ const theme = createTheme({
 
 
 import CommunityPage from "./pages/CommunityPage";
-import PostComponent from "./components/PostComponent";
 
 
 export default function App() {
@@ -47,9 +46,6 @@ export default function App() {
           <Route path="/ActivityPage" element={<ActivityPage />} />
 
           <Route path="/HomePageHost" element={<HomePageHost />} />
-
-
-
 
         <Route path="/CommunityPage" element={<CommunityPage/>} />
 

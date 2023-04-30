@@ -28,7 +28,6 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between',
   },
   commentForm: {
-
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -36,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Post = ({ username, avatarUrl, imageUrl, caption, comments }) => {
+  const Post = ({ username, avatarUrl, imageUrl, caption, comments }) => {
   const classes = useStyles();
   const [likes, setLikes] = React.useState(0);
   const [comment, setComment] = React.useState('');
@@ -50,7 +49,12 @@ const Post = ({ username, avatarUrl, imageUrl, caption, comments }) => {
     event.preventDefault();
     setPostComments((prevComments) => [
       ...prevComments,
-      { username: 'Nadav Luvaton', text: comment },
+      {
+        username: 'Israel Israeli',
+        text: comment,
+        avatarUrl: 'https://marketplace.canva.com/EAFEits4-uw/1/0/1600w/canva-boy-cartoon-gamer-animated-twitch-profile-photo-oEqs2yqaL8s.jpg' // Add the avatar URL here
+        
+      },
     ]);
     setComment('');
   };
@@ -58,9 +62,9 @@ const Post = ({ username, avatarUrl, imageUrl, caption, comments }) => {
   return (
     <Card className={classes.root}>
       <CardHeader
-        avatar={<Avatar alt={username} src={avatarUrl} />}
+        avatar={<Avatar  style={{ marginLeft: '-12px' }} sx={{ width: 35, height: 35 }} alt={username} src={avatarUrl} />}
         action={
-          <IconButton style={{ fontSize: '12px' }} aria-label="settings">
+          <IconButton aria-label="settings">
             <MoreVertIcon />
           </IconButton>
         }
@@ -75,7 +79,7 @@ const Post = ({ username, avatarUrl, imageUrl, caption, comments }) => {
           <IconButton style={{ marginTop: '-10px' }} aria-label="like" onClick={handleLikeClick}>
             <FavoriteIcon color={likes > 0 ? 'error' : 'inherit'} />
           </IconButton>
-          <p style={{ fontSize: '15px', marginLeft: '4px' }}>
+          <p style={{ fontSize: '14px', marginLeft: '4px' }}>
             {likes} like{likes !== 1 ? 's' : ''}
           </p>
         </div>
@@ -84,15 +88,20 @@ const Post = ({ username, avatarUrl, imageUrl, caption, comments }) => {
         </IconButton>
       </div>
       <CardContent>
-        <div>
-          {postComments.map((comment, index) => (
-            <p style={{ fontSize: '15px' }} key={index}>
-              <b>{comment.username}:</b> {comment.text}
-            </p>
-          ))}
-        </div>
+      <div style={{ marginLeft: '-13px'}}>
+      {postComments.map((comment, index) => (
+      <div key={index} style={{ display: 'flex', alignItems: 'center', marginBottom: '5px' }}>
+        <Avatar sx={{ width: 26, height: 26 }} alt={comment.username} src={comment.avatarUrl} style={{marginTop: '-10px', marginRight: '10px' }} />
+        <p >
+        <b>{comment.username}: </b>{comment.text}
+        </p>
+      </div>
+))}
+        </div >
+        
         <form onSubmit={handleCommentSubmit} className={classes.commentForm}>
           <TextField
+            style={{marginLeft: '-10px'}}
             label="Add a comment"
             variant="outlined"
             size="small"

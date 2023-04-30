@@ -1,0 +1,45 @@
+#upper {
+    position: relative;
+    margin-top: 70px;
+    top: 30px;
+    font-size: 200%;
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    padding: 5px;
+    font-family: Fantasy, "Copperplate";
+    
+}
+
+#title {
+    font-size: 20px;
+    display: flex;
+    left: 10%;
+    font-weight: 700;
+    padding: 8px;
+    margin-top: 20px;
+    font-family: Monospace, "Monaco";
+}
+
+.body {
+    background-color: rgba(201, 216, 220, 0.3);
+}
+
+.buttonHost {
+    cursor: pointer;
+    outline: 30px;
+    width: 80%;
+    height: 40px;
+    display: flex;
+    position: relative;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 8px;
+}

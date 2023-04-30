@@ -109,6 +109,7 @@ function ProfilePage() {
           <Chip color="primary" label="Circle2" />
         </Stack>
       </DetailsWrapper>
+      <SimpleBottomNavigation/>
     </>
     //   </PageWrapper>
   );

@@ -16,12 +16,12 @@ export default function FloatingActionButtons() {
   return (
       <Fab color="primary"
             aria-label="add"
-            onClick={() => navigate("/EventPage")}
+            onClick={() => navigate("/CreateNewEvent")}
             sx={{  position: 'fixed',
                                       bottom: '10%',
                                       right: '5%'}} 
       >
-        <AddIcon />
+        <AddIcon fontSize="large"/>
       </Fab>
       
   );

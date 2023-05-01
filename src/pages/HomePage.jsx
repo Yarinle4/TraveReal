@@ -14,7 +14,6 @@ import { Box } from "@mui/system";
 import AlertButton from "../components/AlartButton";
 import DraggableDialog from "../components/AlertPopUp";
 
-
 const Headline = styled.div`
 font-size: 20px; /* Adjust the font size as desired */
   font-weight: bold; /* Add or remove as desired */
@@ -54,6 +53,13 @@ const WelcomeImg = styled.div`
   z-index: 1;
 `;
 
+const BgCol = styled.div`
+backgroundColor: '#B1D8B7',
+minHeight: '100vh', // Set the minimum height of the box to the height of the viewport
+display: 'flex',
+flexDirection: 'column', // Add a flex column layout
+`;
+
 
 const CircleWrapper = styled.div`
   display: flex;
@@ -61,29 +67,31 @@ const CircleWrapper = styled.div`
 `;
 
 
-
 function HomePage() {
-    return (
-      
-        <PageWrapper>
+  return (
+    <>
+      <ResponsiveAppBar position="fixed" />
+        <Box sx={{ flex: '1 1 auto', p: 2 }}>
+          <Box
+            sx={{
+              mt: 10,
+              fontSize: 40,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            Welcome!
+          </Box>
+          <FloatingActionButtons />
+          <DraggableDialog />
+          <Box sx={{ mt: 2 }}>
+            <CirclePage />
+          </Box>
+        </Box>
+        <SimpleBottomNavigation />
 
 
-        <ResponsiveAppBar position="fixed"/>
-
-        {/* <WelcomeImg>
-          <Headline>
-            WELCOME TO TRAVEREAL
-          </Headline>
-        </WelcomeImg> */}
-
-        
-        <FloatingActionButtons />
-        <DraggableDialog/>
-
-      <CircleWrapper>
-        <CirclePage/>
-      </CircleWrapper>
-      <SimpleBottomNavigation />
 
       
 
@@ -92,14 +100,14 @@ function HomePage() {
         <p>Thanks for visiting! Here's some information about what we do:</p>
         <ul>
           <li><Link to="/SignUp">Sign Up</Link></li>
-          <li><Link to="/CirclePage">Circle Page</Link></li>
           <li><Link to="/EventPage">Event Page</Link></li>
           <li><Link to="/EventPageHost">Host Page</Link></li>
           <li><Link to="/ProfilePage">Profile Page</Link></li>
 
-          <li><Link to="/ActivityPage">Activity Page</Link></li>
           <li><Link to="/HomePageHost">Home Page Host</Link></li>
           <li><Link to="/CommunityPage">Community Page</Link></li>
+          <li><Link to="/activities">Activities</Link></li>
+          <li><Link to="/CreateNewEvent">CreateNewEvent</Link></li>
 
 
 
@@ -110,7 +118,8 @@ function HomePage() {
           <li>We're dedicated to customer satisfaction.</li>
         </ul>
         <p>Feel free to browse our site and learn more about us.</p>
-       </PageWrapper>
+        {/* </div> */}
+       </>
     );
   }
   

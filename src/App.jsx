@@ -6,9 +6,11 @@ import HomePage from "./pages/HomePage";
 import SignUp from "./pages/SignUp"
 import SignUp2 from "./pages/signUpLevel2"
 import Event from "./pages/EventPage"
-import ActivityPage from "./pages/ActivityPage"
 import HomePageHost from "./pages/HomePageHost/homePageHost"
+import Activities from "./pages/activities/activities"
 import Profile from "./pages/ProfilePage"
+import './App.css';
+import CreateEventPage from "./pages/CreateNewEvent"
 
 
 import { createTheme, colors, ThemeProvider } from "@mui/material";
@@ -32,31 +34,35 @@ export default function App() {
   return (
 
     <ThemeProvider theme={theme}>
+      <div style={{background:"#F3FBF4"}}>
 
       <BrowserRouter>
         <Routes>
 
-          <Route path="/" element={<HomePage />} />
+          <Route path="/HomePage" element={<HomePage />} />
 
-          <Route path="/SignUp" element={<SignUp />} />
+          <Route path="/" element={<SignUp />} />
 
           <Route path="/EventPage" element={<Event />} />
-
-          <Route path="/ActivityPage" element={<ActivityPage />} />
 
           <Route path="/HomePageHost" element={<HomePageHost />} />
 
           <Route path="/details" element={<SignUp2 />} />
 
+          <Route path="/activities" element={<Activities />} />
+
           <Route path="/ProfilePage" element={<Profile />} />
 
+          <Route path="/CreateNewEvent" element={<CreateEventPage/>} />
 
         <Route path="/CommunityPage" element={<CommunityPage/>} />
 
         </Routes>
       </BrowserRouter>
+    </div>
     </ThemeProvider>
 
 
   );
 }
+  

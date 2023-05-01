@@ -7,12 +7,15 @@ import Container from '@mui/material/Container'
 import ResponsiveAppBar from "../shared/components/moreComponents/MainBar"
 import styled from 'styled-components';
 import { Box } from '@mui/system';
+import SimpleBottomNavigation from '../shared/components/moreComponents/BottomNav';
 
 function Event () {
   return ( 
     <>
       <ResponsiveAppBar position="fixed"/>
       <NewHeader />
+      <SimpleBottomNavigation/>
+
     </>
 
   );

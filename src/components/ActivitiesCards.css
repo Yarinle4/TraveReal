@@ -1,8 +1,8 @@
-#main-slider-container{
+#main-activity-container{
     width: 90%;
-    height: 100%;
+    height: 290px;
     left: 5%;
-    /* margin-bottom: 50px; */
+    margin-bottom: 50px;
 }
 
 .slider{
@@ -25,12 +25,16 @@
 }
 
 
-.slider-card-title, .slider-card-description{
+.slider-card-title, .slider-card-description {
     margin: 5px 0px 5px 10px;
 }
 
+.slider-card-date, .slider-card-points {
+    font-size: 14px;
+}
+
 .slider-card-title{
-    font-weight: 500;
+    font-weight: 550;
     margin-top: 10px;
 }
 
@@ -79,4 +83,12 @@
     margin-right: 5px;
     box-shadow: 2px 2px 2px 2px rgb(0 0 0 / 12%);
     cursor: pointer;
+}
+
+.slant-line {
+  width: 90%;
+  margin: auto;
+  margin-bottom: 7%;
+  border-color: black;
+  opacity: 0.5;
 }

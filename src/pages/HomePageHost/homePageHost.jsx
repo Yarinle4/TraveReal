@@ -1,7 +1,10 @@
 import './homeHost.css';
 import ReactCardSlider from '../../components/ReactCardSlider';
-import Button from '@mui/material/Button';
+// import Button from '@mui/material/Button';
 import ResponsiveAppBar from "../../shared/components/moreComponents/MainBar"
+import { Button, AppBar, Toolbar, Divider} from "@mui/material";
+import { useNavigate } from "react-router-dom";
+
 
 //events:
 import beer from '../../assets/beer.jpg';
@@ -21,6 +24,7 @@ import shopping from '../../assets/shopping.jpg';
 import haveToVisit from '../../assets/haveToVisit.jpg';
 
 function HomePageHost(){
+  const navigate = useNavigate(); 
   const sliderClick = (slider)=>{
       alert("hello world");
     }
@@ -53,16 +57,27 @@ function HomePageHost(){
 
       <div id="upper">let's create a new event!</div>
       <div class="body">
-        <div id="title">Add a Circle Event</div>
+        <div id="title">Select the relevant circles:</div>
         <div><ReactCardSlider slides={events} idSlide={FirstsliderName}/></div>
-        <Button variant="contained" color="primary" className="buttonHost">Another Event</Button>
-      </div>
-      <div class="body">
-        <div id="title">Add a Tip</div>
-        <div><ReactCardSlider slides={tips} idSlide={SecondsliderName}/></div>
-        <Button variant="contained" color="primary" className="buttonHost">Another Tip</Button>
       </div>
 
+      <div id="mid">Or</div>
+
+      <div class="body">
+        <div id="title">Select the relevant tip:</div>
+        <div><ReactCardSlider slides={tips} idSlide={SecondsliderName}/></div>
+        <Button variant="contained" color="primary" className="buttonHost" sx={{mt:5}}>Another Type of Tip</Button>
+      </div>
+
+      <AppBar position="fixed" sx={{ top: 'auto', bottom: 0, position: 'fixed', width: '100%' }}>
+      <Toolbar position="fixed" sx={{ display: 'flex', justifyContent: 'space-around', border: 'none' }}>
+          <Button onClick={() => navigate("/CreateNewEvent")}
+            variant="Outlined" sx={{ width: '120px' }}>Back</Button>
+          <Divider orientation="vertical" flexItem sx={{ marginLeft: '-30px', width:'30px', borderColor:'#F3FBF4' }} />
+          <Button onClick={() => navigate("/HomePage")}
+            variant="Outlined" sx={{ width: '120px' }}>Create</Button>
+      </Toolbar>
+      </AppBar>
     </div>
     );
 }

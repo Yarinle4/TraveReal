@@ -17,6 +17,7 @@ import IconButton from '@mui/material/IconButton';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Skeleton from '@mui/material/Skeleton';
 import PostFeed from "../components/PostFeed.jsx";
+import SimpleBottomNavigation from "../shared/components/moreComponents/BottomNav.jsx";
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -38,7 +39,10 @@ function CommunityPage() {
       <Box  sx={{textAlign: 'center', fontSize: 25 , my: 2, mx: 1, mt:1 }}> This is where we share our experience!</Box>
       <Box  sx={{ my: 3, mx: 2, mt:4 }}></Box>
       <Box><PostFeed/></Box>
+
       <Box  sx={{ my: 3, mx: 2, mt:6 }}></Box>
+      <SimpleBottomNavigation/>
+
 
     
     </div>

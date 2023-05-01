@@ -4,11 +4,12 @@ import { Link } from "react-router-dom";
 
 
 import blueCircleImage from "../assets/bar.png"
-import pizzaImg from "../assets/pizza.png"
-import hikingImg from "../assets/hiking.png"
-import codingImg from "../assets/coding.png"
-import patsImg from "../assets/dog.png"
-import barImg from "../assets/bar.png"
+import beer from '../assets/beer.jpg';
+import history from '../assets/history.png';
+import architecture from '../assets/architecture.png';
+import food from '../assets/food.png';
+import sharedWorkspace from '../assets/sharedWorkspace.jpg';
+
 import lockIcon from '../assets/lock.svg'; // Replace with the actual path to your lock icon SVG file
 import { useNavigate } from "react-router-dom";
 import Avatar from '@mui/material/Avatar';
@@ -195,10 +196,10 @@ const CirclePage = () => {
               index === 0
                 ? blueCircleImage
                 : [
-                    pizzaImg,
-                    hikingImg,
-                    codingImg,
-                    patsImg,
+                    history,
+                    architecture,
+                    beer,
+                    sharedWorkspace,
                   ][index - 1]
             }
             position={smallerCirclePositions[index]}
@@ -211,7 +212,7 @@ const CirclePage = () => {
         <ImageCircleSingle
                        key={4}
                        size={smallerCircleSize}
-                       imageUrl={barImg}
+                       imageUrl={food}
                        position={smallerCirclePositionsSingle()}
                        onClick={() => handleSingleCircleClick()}
                        onMouseEnter={() => handleMouseEnter()}

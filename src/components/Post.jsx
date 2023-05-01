@@ -15,7 +15,8 @@ import Button from '@mui/material/Button';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 600,
+    minWidth: 285,
+    maxWidth: 285,
     marginBottom: theme.spacing(2),
   },
   media: {
@@ -34,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Post = ({ username, avatarUrl, imageUrl, caption, comments }) => {
+  const Post = ({ username, avatarUrl, imageUrl, caption, comments }) => {
   const classes = useStyles();
   const [likes, setLikes] = React.useState(0);
   const [comment, setComment] = React.useState('');
@@ -48,7 +49,13 @@ const Post = ({ username, avatarUrl, imageUrl, caption, comments }) => {
     event.preventDefault();
     setPostComments((prevComments) => [
       ...prevComments,
-      { username: 'Nadav Luvaton', text: comment },
+      {
+        
+        username: username,
+        text: comment,
+        avatarUrl: 'https://marketplace.canva.com/EAFEits4-uw/1/0/1600w/canva-boy-cartoon-gamer-animated-twitch-profile-photo-oEqs2yqaL8s.jpg' // Add the avatar URL here
+        
+      },
     ]);
     setComment('');
   };
@@ -56,48 +63,59 @@ const Post = ({ username, avatarUrl, imageUrl, caption, comments }) => {
   return (
     <Card className={classes.root}>
       <CardHeader
-        avatar={<Avatar alt={username} src={avatarUrl} />}
+        avatar={<Avatar  style={{ marginLeft: '-12px' }} sx={{ width: 35, height: 35 }} alt={username} src={avatarUrl} />}
         action={
           <IconButton aria-label="settings">
             <MoreVertIcon />
           </IconButton>
         }
         title={username}
+        
       />
-      <CardMedia
-        className={classes.media}
-        image={imageUrl}
-        title={username}
-      />
+      <CardMedia className={classes.media} image={imageUrl} title={username} />
       <CardContent>
-        <p>{caption}</p>
+        <p style={{fontSize:'15px', marginLeft:'-10px'}} >{caption}</p>
       </CardContent>
       <div className={classes.actions}>
-        <IconButton aria-label="like" onClick={handleLikeClick}>
-          <FavoriteIcon color={likes > 0 ? 'error' : 'inherit'} />
-        </IconButton>
+        <div style={{ display: 'flex' }}>
+          <IconButton style={{ marginTop: '-10px' }} aria-label="like" onClick={handleLikeClick}>
+            <FavoriteIcon color={likes > 0 ? 'error' : 'inherit'} />
+          </IconButton>
+          <p style={{ fontSize: '14px', marginLeft: '4px' }}>
+            {likes} like{likes !== 1 ? 's' : ''}
+          </p>
+        </div>
         <IconButton aria-label="comment">
           <ChatBubbleIcon />
         </IconButton>
       </div>
       <CardContent>
-        <p>{likes} like{likes !== 1 ? 's' : ''}</p>
-        <div>
-          {postComments.map((comment, index) => (
-            <p key={index}>
-              <b>{comment.username}:</b> {comment.text}
-            </p>
-          ))}
-        </div>
+      <div style={{ marginLeft: '-13px'}}>
+      {postComments.map((comment, index) => (
+      <div key={index} style={{ display: 'flex', alignItems: 'center', marginBottom: '5px' }}>
+        <Avatar sx={{ width: 26, height: 26 }} alt={comment.username} src={comment.avatarUrl} style={{marginTop: '-10px', marginRight: '10px' }} />
+        <p >
+        <b>{comment.username}: </b>{comment.text}
+        </p>
+      </div>
+))}
+        </div >
+        
         <form onSubmit={handleCommentSubmit} className={classes.commentForm}>
           <TextField
+            style={{marginLeft: '-10px'}}
             label="Add a comment"
             variant="outlined"
             size="small"
             value={comment}
             onChange={(event) => setComment(event.target.value)}
           />
-          <Button type="submit" variant="contained" size="small">
+          <Button
+            style={{ fontSize: '14px' }}
+            type="submit"
+            variant="contained"
+            size="small"
+          >
             Post
           </Button>
         </form>

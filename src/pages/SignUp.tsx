@@ -13,8 +13,8 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import ResponsiveAppBar from "../shared/components/moreComponents/MainBar"
-import '../pages/HomePageHost/homeHost.css';
+import ResponsiveAppBar from "../shared/components/moreComponents/MainBar";
+import "../pages/HomePageHost/homeHost.css";
 import { useNavigate } from "react-router-dom";
 
 export default function SignUp() {
@@ -26,16 +26,16 @@ export default function SignUp() {
       password: data.get("password"),
     });
   };
-  
+
   const Image = {
-      url: Map,
-      opacity: 0.5
-    }
-  const navigate = useNavigate(); 
+    url: Map,
+    opacity: 0.5,
+  };
+  const navigate = useNavigate();
 
   return (
-      <>
-      <ResponsiveAppBar/>
+    <>
+      <ResponsiveAppBar />
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box

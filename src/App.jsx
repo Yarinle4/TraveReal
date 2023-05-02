@@ -1,16 +1,10 @@
 // App.js
 
-import ReactDOM from "react-dom/client";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import HomePage from "./pages/HomePage";
-import SignUp from "./pages/SignUp";
-import SignUp2 from "./pages/signUpLevel2";
-import Event from "./pages/EventPage";
-import HomePageHost from "./pages/HomePageHost/homePageHost";
-import Activities from "./pages/activities/activities";
-import Profile from "./pages/ProfilePage";
+import { BrowserRouter } from "react-router-dom";
+
 import "./App.css";
-import CreateEventPage from "./pages/CreateNewEvent";
+import styled from "styled-components";
+import Routess from "./pages/RoutesPage";
 
 import { createTheme, colors, ThemeProvider } from "@mui/material";
 
@@ -23,35 +17,26 @@ const theme = createTheme({
   },
 });
 
-import CommunityPage from "./pages/CommunityPage";
+const FirstScreen = styled.div`
+  background: #f3fbf4;
+  min-height: max-content;
+`;
+
+const SecondScreen = styled.div`
+  min-height: 100vh;
+  font-size: 3vw;
+  font-family: "Roboto";
+`;
 
 export default function App() {
   return (
     <BrowserRouter>
       <ThemeProvider theme={theme}>
-        <div style={{ background: "#F3FBF4", minHeight: "max-content" }}>
-          <div style={{ minHeight: "100vh" }}>
-            <Routes>
-              <Route path="/HomePage" element={<HomePage />} />
-
-              <Route path="/" element={<SignUp />} />
-
-              <Route path="/EventPage" element={<Event />} />
-
-              <Route path="/HomePageHost" element={<HomePageHost />} />
-
-              <Route path="/details" element={<SignUp2 />} />
-
-              <Route path="/activities" element={<Activities />} />
-
-              <Route path="/ProfilePage" element={<Profile />} />
-
-              <Route path="/CreateNewEvent" element={<CreateEventPage />} />
-
-              <Route path="/CommunityPage" element={<CommunityPage />} />
-            </Routes>
-          </div>
-        </div>
+        <FirstScreen>
+          <SecondScreen>
+            <Routess />
+          </SecondScreen>
+        </FirstScreen>
       </ThemeProvider>
     </BrowserRouter>
   );

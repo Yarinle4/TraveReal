@@ -17,6 +17,10 @@ import ResponsiveAppBar from "../shared/components/moreComponents/MainBar";
 import "../pages/HomePageHost/homeHost.css";
 import { useNavigate } from "react-router-dom";
 
+const textFieldStyle = {
+  backgroundColor: "white",
+};
+
 export default function SignUp() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -67,6 +71,7 @@ export default function SignUp() {
                   id="firstName"
                   label="First Name"
                   autoFocus
+                  style={textFieldStyle}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -77,6 +82,7 @@ export default function SignUp() {
                   label="Last Name"
                   name="lastName"
                   autoComplete="family-name"
+                  style={textFieldStyle}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -87,6 +93,7 @@ export default function SignUp() {
                   label="Country"
                   name="country"
                   autoComplete="country"
+                  style={textFieldStyle}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -97,6 +104,7 @@ export default function SignUp() {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  style={textFieldStyle}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -108,6 +116,7 @@ export default function SignUp() {
                   type="password"
                   id="password"
                   autoComplete="new-password"
+                  style={textFieldStyle}
                 />
               </Grid>
               <Grid item xs={12}>

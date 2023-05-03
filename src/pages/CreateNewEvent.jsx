@@ -26,6 +26,10 @@ const StyledDiv = styled.div`
   margin-right: 5%;
 `;
 
+const textFieldStyle = {
+  backgroundColor: "white",
+};
+
 function CreateEventPage() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -90,6 +94,8 @@ function CreateEventPage() {
           fullWidth
           value={name}
           onChange={handleNameChange}
+          style={textFieldStyle}
+
         />
         <TextField
           id="event-description"
@@ -101,6 +107,8 @@ function CreateEventPage() {
           rows={4}
           value={description}
           onChange={handleDescriptionChange}
+          style={textFieldStyle}
+
         />
         <TextField
           id="event-date"
@@ -112,6 +120,8 @@ function CreateEventPage() {
           value={date}
           onChange={handleDateChange}
           InputLabelProps={{ shrink: true }}
+          style={textFieldStyle}
+
         />
         <TextField
           id="event-time"
@@ -123,6 +133,8 @@ function CreateEventPage() {
           value={time}
           onChange={handleTimeChange}
           InputLabelProps={{ shrink: true }}
+          style={textFieldStyle}
+
         />
         <TextField
           id="event-location"
@@ -132,6 +144,8 @@ function CreateEventPage() {
           fullWidth
           value={location}
           onChange={handleLocationChange}
+          style={textFieldStyle}
+
         />
         <Box mb={2}>
           <Button variant="contained" component="label" sx={{width: 400}}>

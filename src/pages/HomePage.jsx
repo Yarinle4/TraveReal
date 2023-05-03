@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import StarIcon from "@mui/icons-material/Star";
 
 import ResponsiveAppBar from "../shared/components/moreComponents/MainBar";
-import BackgroundImagePage from "../components/bgImg";
 import imgg from "../assets/newewew.png";
 import styled from "styled-components";
 
@@ -62,6 +66,14 @@ const CircleWrapper = styled.div`
 `;
 
 function HomePage() {
+  function generate(element) {
+    return [0, 1, 2].map((value) =>
+      React.cloneElement(element, {
+        key: value,
+      })
+    );
+  }
+
   return (
     <>
       <ResponsiveAppBar position="fixed" />
@@ -82,6 +94,22 @@ function HomePage() {
         <Box sx={{ mt: 2 }}>
           <CirclePage />
         </Box>
+        {/* <Box sx={{ display: "flex" }}>
+          <List>
+            <ListItem disablePadding>
+              <ListItemIcon>
+                <StarIcon />
+              </ListItemIcon>
+              <ListItemText primary="Inbox" />
+            </ListItem>
+            <ListItem disablePadding>
+              <ListItemIcon>
+                <StarIcon />
+              </ListItemIcon>
+              <ListItemText primary="Drafts" />
+            </ListItem>
+          </List>
+        </Box> */}
       </Box>
       <SimpleBottomNavigation />
     </>

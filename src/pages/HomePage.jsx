@@ -122,7 +122,7 @@ function HomePage() {
             width: "67%",
             padding: "10px",
             borderRadius: "25px",
-            bgcolor: "#8FBC8F",
+            bgcolor: "#84A98C ",
             color: "white",
           }}
         >

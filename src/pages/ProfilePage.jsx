@@ -30,12 +30,12 @@ const ProfileImage = styled.img`
 `;
 
 const ProfileName = styled.h1`
-  font-size: 24px;
+  font-size: 30px;
   margin: 0;
 `;
 
 const ProfileBio = styled.p`
-  font-size: 16px;
+  font-size: 20px;
   margin: 10px 0;
 `;
 
@@ -47,14 +47,14 @@ const DetailsWrapper = styled.div`
 `;
 
 const ProfileContact = styled.p`
-  font-size: 16px;
+  font-size: 20px;
   margin: 10px 0;
   font-weight: bold;
   text-align: left;
 `;
 
 const ProfileData = styled.p`
-  font-size: 16px;
+  font-size: 20px;
   margin: 10px 0;
   font-weight: normal;
   text-align: left;
@@ -67,12 +67,12 @@ const CoinWrapper = styled.div`
 `;
 
 const CoinIcon = styled(FcRating)`
-  font-size: 24px;
+  font-size: 30px;
   margin-right: 5px;
 `;
 
 const CoinCount = styled.span`
-  font-size: 16px;
+  font-size: 20px;
   margin-left: 5px;
   font-weight: normal;
 `;
@@ -120,8 +120,8 @@ function ProfilePage() {
         </ProfileContact>
         <ProfileContact>Circles:</ProfileContact>
         <Stack direction="row" spacing={1}>
-          <Chip color="primary" label="Circle1" />
-          <Chip color="primary" label="Circle2" />
+          <Chip color="primary" label="Culinary Circle" />
+          <Chip color="primary" label="Love Circle" />
         </Stack>
       </DetailsWrapper>
     </>

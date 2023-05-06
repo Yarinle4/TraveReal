@@ -13,7 +13,7 @@ function Event() {
   return (
     <>
       <ResponsiveAppBar position="fixed" />
-      <NewHeader />
+        <NewHeader />
       <SimpleBottomNavigation />
     </>
   );

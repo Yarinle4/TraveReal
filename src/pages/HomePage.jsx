@@ -4,9 +4,9 @@ import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import StarIcon from "@mui/icons-material/Star";
+import * as React from "react";
 
 import ResponsiveAppBar from "../shared/components/moreComponents/MainBar";
-import imgg from "../assets/newewew.png";
 import styled from "styled-components";
 
 import SimpleBottomNavigation from "../shared/components/moreComponents/BottomNav";
@@ -14,56 +14,74 @@ import SimpleBottomNavigation from "../shared/components/moreComponents/BottomNa
 import CirclePage from "../components/CirclePage";
 import FloatingActionButtons from "../components/AddButton";
 import { Box } from "@mui/system";
-import AlertButton from "../components/AlartButton";
 import DraggableDialog from "../components/AlertPopUp";
+import Rating from "@mui/material/Rating";
+import { FcRating } from "react-icons/fc";
 
-const Headline = styled.div`
-  font-size: 20px; /* Adjust the font size as desired */
-  font-weight: bold; /* Add or remove as desired */
-  color: #ffffff; /* Choose a color that matches your design */
-  text-align: center; /* Align the headline to center, or adjust as desired */
-  text-transform: uppercase; /* Capitalize the headline, or change to desired text transformation */
-  margin: 5; /* Remove any margin to fit seamlessly into your design */
-  padding: 80px; /* Add padding as desired */
-  border: none; /* Remove any border or customize as needed */
-  border-radius: 1px; /* Add rounded corners, or remove if not needed */
+import { createGlobalStyle } from 'styled-components';
+
+const CoinIcon = styled(FcRating)`
+  font-size: 20px;
+  margin-right: 2px;
 `;
 
-const PageWrapper = styled.div`
-  width: 100%;
-  height: 100%;
-  background-color: #faebd7;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  z-index: 1; /* Update the z-index to a higher value */
+const GlobalStyle = createGlobalStyle`
+  html {
+    overflow: hidden;
+  }
 `;
 
-const WelcomeImg = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 80%;
-  width: 80%;
-  margin: auto;
-  margin-top: 50px; /* add margin-top */
-  background-image: url(${imgg});
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  z-index: 1;
-`;
+const RatingcustomStyle = {
+  "& .MuiRating-iconFilled": {
+    color: "#FFFF00",
+  },
+  "& .MuiRating-iconHover": {
+    color: "purple",
+  },
+  "& .MuiRating-decimal:hover": {
+    transform: "scale(2.5)",
+  },
+};
 
-const BgCol = styled.div`
-backgroundColor: '#B1D8B7',
-minHeight: '100vh', // Set the minimum height of the box to the height of the viewport
-display: 'flex',
-flexDirection: 'column', // Add a flex column layout
-`;
+const ListcustomStyle = {
+  "& .MuiRating-icon": {
+    fontSize: "30px",
+    color: "#FFD700",
+  },
+};
 
-const CircleWrapper = styled.div`
-  display: flex;
-`;
+const BigList = () => {
+  const [value, setValue] = React.useState(4);
+
+  return (
+    <List>
+      <ListItem disablePadding>
+        <ListItemIcon sx={{ fontSize: "40px" }}>
+          <StarIcon sx={{ fontSize: "30px" }} />
+        </ListItemIcon>
+        <ListItemText
+          primary="You earned 15 points"
+          primaryTypographyProps={{ fontSize: "16px" }}
+        /> <CoinIcon/>
+      </ListItem>
+      <ListItem disablePadding>
+        <ListItemIcon sx={{ fontSize: "40px" }}>
+          <StarIcon sx={{ fontSize: "30px" }} />
+        </ListItemIcon>
+        <ListItemText
+          primary="Your Rating"
+          primaryTypographyProps={{ fontSize: "16px" }}
+        />
+        <Rating
+          name="read-only"
+          value={value}
+          readOnly
+          sx={RatingcustomStyle}
+        />
+      </ListItem>
+    </List>
+  );
+};
 
 function HomePage() {
   function generate(element) {
@@ -76,6 +94,7 @@ function HomePage() {
 
   return (
     <>
+    <GlobalStyle />
       <ResponsiveAppBar position="fixed" />
       <Box sx={{ flex: "1 1 auto" }}>
         <Box
@@ -94,24 +113,23 @@ function HomePage() {
         <Box sx={{ mt: 2 }}>
           <CirclePage />
         </Box>
-        {/* <Box sx={{ display: "flex" }}>
-          <List>
-            <ListItem disablePadding>
-              <ListItemIcon>
-                <StarIcon />
-              </ListItemIcon>
-              <ListItemText primary="Inbox" />
-            </ListItem>
-            <ListItem disablePadding>
-              <ListItemIcon>
-                <StarIcon />
-              </ListItemIcon>
-              <ListItemText primary="Drafts" />
-            </ListItem>
-          </List>
-        </Box> */}
+
+        <Box
+          sx={{
+            position: "absolute",
+            bottom: "10%",
+            left: "6%",
+            width: "67%",
+            padding: "10px",
+            borderRadius: "25px",
+            bgcolor: "#8FBC8F",
+            color: "white",
+          }}
+        >
+          <BigList />
+        </Box>
+        <SimpleBottomNavigation />
       </Box>
-      <SimpleBottomNavigation />
     </>
   );
 }

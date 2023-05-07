@@ -43,13 +43,6 @@ const PostFeed = () => {
       imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrGwI2Sww60oOTeGO5usWbNfrzxzwlJRPnDA&usqp=CAU',
       caption: 'We found the coolest hidden winery #relaxation #weekendvibes',
       },
-    {
-      id: 3,
-      username: "jim_smith",
-      avatarUrl: "https://picsum.photos/id/3/50",
-      imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrGwI2Sww60oOTeGO5usWbNfrzxzwlJRPnDA&usqp=CAU',
-      caption: 'We found the coolest hidden winery #relaxation #weekendvibes',
-    },
   ];
 
   return (

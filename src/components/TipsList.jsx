@@ -85,7 +85,7 @@ const TipsList = () => {
           mt: 7,
         }}
       >
-        Recomended Apps!
+        Useful Apps!
       </Box>
       <Box sx={{ mt: 12 }} className={classes.pictureRow}>
         {generateCards(apps)}

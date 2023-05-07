@@ -7,6 +7,8 @@ import ResponsiveAppBar from "../shared/components/moreComponents/MainBar";
 import IconButton from "@mui/material/IconButton";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { useNavigate } from "react-router-dom";
+import avatarPic from "../assets/profile_picture_new.jpg";
+
 
 const ProfileWrapper = styled.div`
   display: flex;
@@ -101,7 +103,7 @@ function ProfilePage() {
           <ArrowBackIcon fontSize="inherit" />
         </IconButton>
         <ProfileImage
-          src="https://marketplace.canva.com/EAFEits4-uw/1/0/1600w/canva-boy-cartoon-gamer-animated-twitch-profile-photo-oEqs2yqaL8s.jpg"
+          src={avatarPic}
           alt="Profile picture"
         />
         <ProfileName>Yarin Levy</ProfileName>

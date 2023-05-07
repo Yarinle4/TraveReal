@@ -12,9 +12,10 @@ import sharedWorkspace from "../assets/sharedWorkspace.jpg";
 import lockIcon from "../assets/lock.svg"; // Replace with the actual path to your lock icon SVG file
 import { useNavigate } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
+import avatarPic from "../assets/profile_picture_new.jpg";
 
-const avatarPic =
-  "https://marketplace.canva.com/EAFEits4-uw/1/0/1600w/canva-boy-cartoon-gamer-animated-twitch-profile-photo-oEqs2yqaL8s.jpg";
+// const avatarPic =
+//   "https://marketplace.canva.com/EAFEits4-uw/1/0/1600w/canva-boy-cartoon-gamer-animated-twitch-profile-photo-oEqs2yqaL8s.jpg";
 
 const CirclePageContainer = styled.div`
   width: 100%;

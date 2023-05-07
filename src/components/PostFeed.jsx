@@ -24,26 +24,31 @@ const PostFeed = () => {
   const posts = [
     {
       id: 1,
-      username: "Tourist123",
-      avatarUrl: "https://picsum.photos/id/1/50",
-      imageUrl:
-        "https://media-cdn.tripadvisor.com/media/photo-s/14/75/0c/44/beers-and-friends.jpg",
-      caption: "From last night #MADA!!!",
+      username: 'Tourist123',
+      avatarUrl: 'https://picsum.photos/id/1/50',
+      imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbtG2Vs54jqsYi5CDzNu_Tl4dKxW9I9tdCMA&usqp=CAU',
+      caption: 'Home made cooking class #Mafrum #Lahoh',
     },
     {
       id: 2,
       username: "Traveler_6",
       avatarUrl: "https://picsum.photos/id/2/50",
-      imageUrl:
-        "https://www.shutterstock.com/image-photo/people-leisure-friendship-technology-concept-260nw-490626616.jpg",
-      caption: "Yummy brunch with friends #brunch #friends #foodie",
+      imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSPIDcGedjz2btGNezBme1P5GPb6tL0R3cmA&usqp=CAU',
+      caption: 'Yummy brunch with new friends #brunch #friends #TRAVELREAL',
     },
+    {
+      id: 3,
+      username: 'jim_smith',
+      avatarUrl: 'https://picsum.photos/id/3/50',
+      imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrGwI2Sww60oOTeGO5usWbNfrzxzwlJRPnDA&usqp=CAU',
+      caption: 'We found the coolest hidden winery #relaxation #weekendvibes',
+      },
     {
       id: 3,
       username: "jim_smith",
       avatarUrl: "https://picsum.photos/id/3/50",
-      imageUrl: "https://c.stocksy.com/a/9pT400/z9/1067959.jpg",
-      caption: "Chilling by the pool #pool #relaxation #weekendvibes",
+      imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrGwI2Sww60oOTeGO5usWbNfrzxzwlJRPnDA&usqp=CAU',
+      caption: 'We found the coolest hidden winery #relaxation #weekendvibes',
     },
   ];
 

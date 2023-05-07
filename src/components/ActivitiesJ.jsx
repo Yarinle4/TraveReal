@@ -3,6 +3,8 @@ import './ActivitiesCards.css';
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md'
 import AccessTimeRoundedIcon from '@mui/icons-material/AccessTimeRounded';
 import StarBorderRoundedIcon from '@mui/icons-material/StarBorderRounded';
+import { useNavigate } from "react-router-dom";
+
 
 const CardSlider =(props)=>{
     const slideLeft =()=>{
@@ -17,6 +19,9 @@ const CardSlider =(props)=>{
         slider.scrollLeft = slider.scrollLeft + 500;
     }
 
+    const navigate = useNavigate();
+
+
     return(
         <div id="main-activity-container">
             <MdChevronLeft size={40} className="slider-icon left" onClick={slideLeft}/>
@@ -24,7 +29,9 @@ const CardSlider =(props)=>{
                { 
                 props.slides.map((slide,index)=>{
                         return(
-                            <div className="slider-card" key={index} onClick={()=>slide.clickEvent()}>
+                            // <div className="slider-card" key={index} onClick={()=>slide.clickEvent()}> להשתמש בזה אחכ
+                            <div className="slider-card" key={index} onClick={() => navigate("/EventPage")}>
+
                                 <div className="slider-card-image" style={{backgroundImage:`url(${slide.image})`,backgroundSize:'cover'}}></div>
                                 <p className="slider-card-title">{slide.title}</p>
                                 {/* <p className="slider-card-description">{slide.description}</p> */}

@@ -1,4 +1,4 @@
-#upper {
+#upper_1 {
     position: relative;
     margin-top: 70px;
     top: 30px;
@@ -10,27 +10,24 @@
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     padding: 5px;
-    font-family: Fantasy, "Copperplate";
     
 }
 
-#title {
+#title_1 {
     font-size: 20px;
     display: flex;
     left: 10%;
     font-weight: 700;
     padding: 8px;
     margin-top: 20px;
-    font-family: Monospace, "Monaco";
 }
 
-#mid {
+#mid_1 {
     font-size: 20px;
     display: flex;
     font-weight: 700;
     margin-left: 45%;
     margin-top: 3%;
-    font-family: Monospace, "Monaco";
 }
 
 .body {

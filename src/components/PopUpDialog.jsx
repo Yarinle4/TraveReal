@@ -1,13 +1,13 @@
-import * as React from 'react';
-import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
-import Slide from '@mui/material/Slide';
-import '../pages/HomePageHost/homeHost.css';
-
+import * as React from "react";
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+import Slide from "@mui/material/Slide";
+import "../pages/HomePageHost/homeHost.css";
+import { useNavigate } from "react-router-dom";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -24,9 +24,17 @@ export default function AlertDialogSlide() {
     setOpen(false);
   };
 
+  const navigate = useNavigate();
+
   return (
     <div>
-      <Button variant="contained" color="success" className="buttonHost" onClick={handleClickOpen}>
+      <Button
+        variant="contained"
+        color="primary"
+        className="buttonHost"
+        onClick={handleClickOpen}
+        sx={{ mt: 2 }}
+      >
         Join Now!
       </Button>
       <Dialog
@@ -43,7 +51,7 @@ export default function AlertDialogSlide() {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} >Join</Button>
+          <Button onClick={() => navigate("/HomePage")}>Join</Button>
           <Button onClick={handleClose}>Cancel</Button>
         </DialogActions>
       </Dialog>

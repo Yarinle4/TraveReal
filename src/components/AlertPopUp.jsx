@@ -9,6 +9,8 @@ import Paper from '@mui/material/Paper';
 import Draggable from 'react-draggable';
 import Fab from '@mui/material/Fab';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
+import Alert from '@mui/material/Alert';
+
 
 function PaperComponent(props) {
   return (
@@ -60,22 +62,24 @@ export default function DraggableDialog() {
         
       >
 
-        <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title">
-          Upcoming Events!
+        <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title" >
         </DialogTitle>
         
-        <DialogContent>
+        <DialogContent >
           <DialogContentText>
-            To subscribe to this website, please enter your email address here. We
-            will send updates occasionally.
+            <Alert variant="standard" severity="info" sx={{ fontSize: '1.5rem' }}>
+            <strong>You have a tour in Mahne Yehoda market tomorrow!</strong>
+            </Alert>
+            <Alert variant="standard" severity="success" sx={{ fontSize: '1.5rem' }}>
+            <strong>There is a new member in your circle - dont forget to say hello!</strong>
+            </Alert>
           </DialogContentText>
         </DialogContent>
 
         <DialogActions>
           <Button autoFocus onClick={handleClose}>
-            Cancel
+            Back
           </Button>
-          <Button onClick={handleClose}>Subscribe</Button>
         </DialogActions>
       </Dialog>
     </div>

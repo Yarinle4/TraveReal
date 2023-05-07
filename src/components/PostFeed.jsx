@@ -1,18 +1,18 @@
-import React from 'react';
-import { makeStyles } from '@mui/styles';
-import Post from './Post';
+import React from "react";
+import { makeStyles } from "@mui/styles";
+import Post from "./Post";
+import foodPic from "../assets/food.png";
 
 const useStyles = makeStyles((theme) => ({
   feedContainer: {
-    
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
     paddingTop: theme.spacing(2),
   },
   post: {
     marginBottom: theme.spacing(2),
-    width: '100%',
+    width: "100%",
     [theme.breakpoints.up(3)]: {
       maxWidth: 600,
     },
@@ -31,8 +31,8 @@ const PostFeed = () => {
     },
     {
       id: 2,
-      username: 'Traveler_6',
-      avatarUrl: 'https://picsum.photos/id/2/50',
+      username: "Traveler_6",
+      avatarUrl: "https://picsum.photos/id/2/50",
       imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSPIDcGedjz2btGNezBme1P5GPb6tL0R3cmA&usqp=CAU',
       caption: 'Yummy brunch with new friends #brunch #friends #TRAVELREAL',
     },
@@ -40,6 +40,13 @@ const PostFeed = () => {
       id: 3,
       username: 'jim_smith',
       avatarUrl: 'https://picsum.photos/id/3/50',
+      imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrGwI2Sww60oOTeGO5usWbNfrzxzwlJRPnDA&usqp=CAU',
+      caption: 'We found the coolest hidden winery #relaxation #weekendvibes',
+      },
+    {
+      id: 3,
+      username: "jim_smith",
+      avatarUrl: "https://picsum.photos/id/3/50",
       imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrGwI2Sww60oOTeGO5usWbNfrzxzwlJRPnDA&usqp=CAU',
       caption: 'We found the coolest hidden winery #relaxation #weekendvibes',
     },
@@ -55,7 +62,6 @@ const PostFeed = () => {
           imageUrl={post.imageUrl}
           caption={post.caption}
           className={classes.post}
-          
         />
       ))}
     </div>

@@ -1,68 +1,47 @@
 // App.js
 
-import ReactDOM from "react-dom/client";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import HomePage from "./pages/HomePage";
-import SignUp from "./pages/SignUp"
-import SignUp2 from "./pages/signUpLevel2"
-import Event from "./pages/EventPage"
-import HomePageHost from "./pages/HomePageHost/homePageHost"
-import Activities from "./pages/activities/activities"
-import Profile from "./pages/ProfilePage"
-import './App.css';
-import CreateEventPage from "./pages/CreateNewEvent"
+import { BrowserRouter } from "react-router-dom";
 
+import "./App.css";
+import styled from "styled-components";
+import Routess from "./pages/RoutesPage";
 
 import { createTheme, colors, ThemeProvider } from "@mui/material";
-
-
 
 const theme = createTheme({
   palette: {
     primary: {
       // Purple and green play nicely together.
-      main: '#679E84',
-     }
-    }
-  });
+      main: "#679E84",
+    },
+  },
+  typography: {
+    fontFamily: "Montserrat",
+  },
+});
 
+const FirstScreen = styled.div`
+  background: #f3fbf4;
+  min-height: max-content;
+`;
 
-import CommunityPage from "./pages/CommunityPage";
-
+const SecondScreen = styled.div`
+  min-height: 100vh;
+  font-size: 3vw;
+  font-family: "Montserrat";
+`;
 
 export default function App() {
   return (
-
-    <ThemeProvider theme={theme}>
-      <div style={{background:"#F3FBF4"}}>
-
-      <BrowserRouter>
-        <Routes>
-
-          <Route path="/HomePage" element={<HomePage />} />
-
-          <Route path="/" element={<SignUp />} />
-
-          <Route path="/EventPage" element={<Event />} />
-
-          <Route path="/HomePageHost" element={<HomePageHost />} />
-
-          <Route path="/details" element={<SignUp2 />} />
-
-          <Route path="/activities" element={<Activities />} />
-
-          <Route path="/ProfilePage" element={<Profile />} />
-
-          <Route path="/CreateNewEvent" element={<CreateEventPage/>} />
-
-        <Route path="/CommunityPage" element={<CommunityPage/>} />
-
-        </Routes>
-      </BrowserRouter>
-    </div>
-    </ThemeProvider>
-
-
+    <BrowserRouter>
+      <style>@import url('https://fonts.cdnfonts.com/css/montserrat');</style>
+      <ThemeProvider theme={theme}>
+        <FirstScreen>
+          <SecondScreen>
+            <Routess />
+          </SecondScreen>
+        </FirstScreen>
+      </ThemeProvider>
+    </BrowserRouter>
   );
 }
-  

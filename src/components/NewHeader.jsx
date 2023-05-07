@@ -18,7 +18,7 @@ const mapLocation = [lat, lng];
 
 const NewHeader = () => {
   return (
-    <Box sx={{ width: "100%" }}>
+    <Box sx={{ width: "100%"}}>
       <Box sx={{ my: 3, mx: 2 }}>
         <div class="EventHeader">
           {/* <div class="EventHeader"> */}

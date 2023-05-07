@@ -25,12 +25,13 @@ const FirstScreen = styled.div`
 const SecondScreen = styled.div`
   min-height: 100vh;
   font-size: 3vw;
-  font-family: "Georgia";
+  font-family: "Montserrat";
 `;
 
 export default function App() {
   return (
     <BrowserRouter>
+      <style>@import url('https://fonts.cdnfonts.com/css/montserrat');</style>
       <ThemeProvider theme={theme}>
         <FirstScreen>
           <SecondScreen>

@@ -14,7 +14,11 @@ export default function MiddleDividers() {
       <Box sx={{ my: 3, mx: 2 }}>
         <Grid container alignItems="center">
           <Grid item>
-            <Typography gutterBottom variant="h4" component="div">
+            <Typography
+              gutterBottom
+              variant="h4"
+              sx={{ fontfamily: "Montserrat" }}
+            >
               Details
             </Typography>
           </Grid>

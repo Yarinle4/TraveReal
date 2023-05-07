@@ -54,8 +54,8 @@ const BigList = () => {
           <StarIcon sx={{ fontSize: "30px" }} />
         </ListItemIcon>
         <ListItemText
-          primary="You earned 15 points"
-          primaryTypographyProps={{ fontSize: "16px" }}
+          primary="You earned 15 stars"
+          primaryTypographyProps={{ fontSize: "16px", fontFamily:"Montserrat" }}
         /> <CoinIcon/>
       </ListItem>
       <ListItem disablePadding>
@@ -64,7 +64,7 @@ const BigList = () => {
         </ListItemIcon>
         <ListItemText
           primary="Your Rating"
-          primaryTypographyProps={{ fontSize: "16px" }}
+          primaryTypographyProps={{ fontSize: "16px", fontFamily:"Montserrat" }}
         />
         <Rating
           name="read-only"

@@ -108,7 +108,7 @@ function ProfilePage() {
         <ProfileBio>Web developer and coffee addict.</ProfileBio>
         <CoinWrapper>
           <CoinIcon />
-          <CoinCount>1000</CoinCount>
+          <CoinCount>15</CoinCount>
         </CoinWrapper>
       </ProfileWrapper>
       <DetailsWrapper>
@@ -121,7 +121,7 @@ function ProfilePage() {
         <ProfileContact>Circles:</ProfileContact>
         <Stack direction="row" spacing={1}>
           <Chip color="primary" label="Culinary Circle" />
-          <Chip color="primary" label="Love Circle" />
+          {/* <Chip color="primary" label="Love Circle" /> */}
         </Stack>
       </DetailsWrapper>
     </>

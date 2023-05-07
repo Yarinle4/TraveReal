@@ -16,6 +16,7 @@ import { useNavigate } from "react-router-dom";
 const StyledTitle = styled(Typography)`
   font-weight: bold;
   margin-bottom: 20px;
+  font-family: "Montserrat";
 `;
 
 const PageHeader = styled.div`
@@ -90,7 +91,7 @@ function CreateEventPage() {
     <StyledDiv>
       <ResponsiveAppBar position="fixed" />
       <PageHeader></PageHeader>
-      <StyledTitle variant="h5" component="h1">
+      <StyledTitle variant="h4" component="h1">
         Create New Event
       </StyledTitle>
       <Box component="form" onSubmit={handleSubmit} width="100%" maxWidth={400}>

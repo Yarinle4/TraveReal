@@ -7,6 +7,7 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
 import "../pages/HomePageHost/homeHost.css";
+import { useNavigate } from "react-router-dom";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -22,6 +23,8 @@ export default function AlertDialogSlide() {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const navigate = useNavigate();
 
   return (
     <div>
@@ -48,7 +51,7 @@ export default function AlertDialogSlide() {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Join</Button>
+          <Button onClick={() => navigate("/activities")}>Join</Button>
           <Button onClick={handleClose}>Cancel</Button>
         </DialogActions>
       </Dialog>

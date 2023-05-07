@@ -70,18 +70,20 @@ const useStyles = makeStyles((theme) => ({
           </IconButton>
         }
         title={username}
+        titleTypographyProps={{variant:'h5' }}
+
         
       />
       <CardMedia className={classes.media} image={imageUrl} title={username} />
       <CardContent>
-        <p style={{fontSize:'15px', marginLeft:'-10px'}} >{caption}</p>
+        <p style={{ marginLeft:'-10px'}} >{caption}</p>
       </CardContent>
       <div className={classes.actions}>
         <div style={{ display: 'flex' }}>
           <IconButton style={{ marginTop: '-10px' }} aria-label="like" onClick={handleLikeClick}>
             <FavoriteIcon color={likes > 0 ? 'error' : 'inherit'} />
           </IconButton>
-          <p style={{ fontSize: '14px', marginLeft: '4px' }}>
+          <p style={{ marginLeft: '4px' }}>
             {likes} like{likes !== 1 ? 's' : ''}
           </p>
         </div>

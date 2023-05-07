@@ -5,6 +5,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import StarIcon from "@mui/icons-material/Star";
 import * as React from "react";
+import { useState, useEffect } from "react";
 
 import ResponsiveAppBar from "../shared/components/moreComponents/MainBar";
 import styled from "styled-components";
@@ -18,7 +19,7 @@ import DraggableDialog from "../components/AlertPopUp";
 import Rating from "@mui/material/Rating";
 import { FcRating } from "react-icons/fc";
 
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
 const CoinIcon = styled(FcRating)`
   font-size: 20px;
@@ -43,7 +44,6 @@ const RatingcustomStyle = {
   },
 };
 
-
 const BigList = () => {
   const [value, setValue] = React.useState(4);
 
@@ -55,8 +55,12 @@ const BigList = () => {
         </ListItemIcon>
         <ListItemText
           primary="You earned 15 stars"
-          primaryTypographyProps={{ fontSize: "16px", fontFamily:"Montserrat" }}
-        /> <CoinIcon/>
+          primaryTypographyProps={{
+            fontSize: "16px",
+            fontFamily: "Montserrat",
+          }}
+        />{" "}
+        <CoinIcon />
       </ListItem>
       <ListItem disablePadding>
         <ListItemIcon sx={{ fontSize: "40px" }}>
@@ -64,7 +68,10 @@ const BigList = () => {
         </ListItemIcon>
         <ListItemText
           primary="Your Rating"
-          primaryTypographyProps={{ fontSize: "16px", fontFamily:"Montserrat" }}
+          primaryTypographyProps={{
+            fontSize: "16px",
+            fontFamily: "Montserrat",
+          }}
         />
         <Rating
           name="read-only"
@@ -86,9 +93,13 @@ function HomePage() {
     );
   }
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <>
-    <GlobalStyle />
+      <GlobalStyle />
       <ResponsiveAppBar position="fixed" />
       <Box sx={{ flex: "1 1 auto" }}>
         <Box

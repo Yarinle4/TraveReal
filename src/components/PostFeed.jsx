@@ -1,7 +1,10 @@
 import React from "react";
 import { makeStyles } from "@mui/styles";
 import Post from "./Post";
-import foodPic from "../assets/food.png";
+import foodPic from "../assets/wineFun.png";
+import falafelPic from "../assets/falafel.png";
+
+import boysPic from "../assets/boys.png";
 
 const useStyles = makeStyles((theme) => ({
   feedContainer: {
@@ -24,25 +27,25 @@ const PostFeed = () => {
   const posts = [
     {
       id: 1,
-      username: 'Tourist123',
-      avatarUrl: 'https://picsum.photos/id/1/50',
-      imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbtG2Vs54jqsYi5CDzNu_Tl4dKxW9I9tdCMA&usqp=CAU',
-      caption: 'Home made cooking class #Mafrum #Lahoh',
+      username: "Tourist123",
+      avatarUrl: "https://picsum.photos/id/1/50",
+      imageUrl: falafelPic,
+      caption: "we had the best Israely FALAFEL!! #FALAFEL #SO_GOOOOOD",
     },
     {
       id: 2,
       username: "Traveler_6",
       avatarUrl: "https://picsum.photos/id/2/50",
-      imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSPIDcGedjz2btGNezBme1P5GPb6tL0R3cmA&usqp=CAU',
-      caption: 'Yummy brunch with new friends #brunch #friends #TRAVELREAL',
+      imageUrl: boysPic,
+      caption: "Beer with my boys! #brunch #friends #TRAVELREAL",
     },
     {
       id: 3,
-      username: 'jim_smith',
-      avatarUrl: 'https://picsum.photos/id/3/50',
-      imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrGwI2Sww60oOTeGO5usWbNfrzxzwlJRPnDA&usqp=CAU',
-      caption: 'We found the coolest hidden winery #relaxation #weekendvibes',
-      },
+      username: "jim_smith",
+      avatarUrl: "https://picsum.photos/id/3/50",
+      imageUrl: foodPic,
+      caption: "We found the coolest hidden winery #relaxation #weekendvibes",
+    },
   ];
 
   return (

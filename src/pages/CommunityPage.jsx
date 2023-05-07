@@ -35,7 +35,7 @@ function CommunityPage() {
     <div>
       <ResponsiveAppBar position="fixed"/>
       
-      <Box  sx={{textAlign: 'center',fontWeight: 'bold', fontSize: 40 , my: 1, mx: 1, mt:7 }}> Community</Box>
+      <Box  sx={{textAlign: 'center',fontWeight: 'bold', fontSize: 40 , my: 1, mx: 1, mt:7 }}> </Box>
       <Box  sx={{textAlign: 'center', fontSize: 25 , my: 2, mx: 1, mt:1 }}> This is where we share our experience!</Box>
       <Box  sx={{ my: 3, mx: 2, mt:4 }}></Box>
       <Box><PostFeed/></Box>

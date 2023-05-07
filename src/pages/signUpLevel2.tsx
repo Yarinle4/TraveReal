@@ -36,7 +36,11 @@ export default function SignUp() {
             alignItems: "center",
           }}
         >
-          <Typography component="h1" fontSize={18} sx={{ mt: 2, mb: 1 }}>
+          <Typography
+            component="h1"
+            fontSize={20}
+            sx={{ mt: 2, mb: 1, fontWeight: "20px" }}
+          >
             Choose a circle that interests you
           </Typography>
           <Typography component="h1" fontSize={13}>

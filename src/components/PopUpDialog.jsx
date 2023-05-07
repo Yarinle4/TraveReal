@@ -51,7 +51,7 @@ export default function AlertDialogSlide() {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => navigate("/activities")}>Join</Button>
+          <Button onClick={() => navigate("/HomePage")}>Join</Button>
           <Button onClick={handleClose}>Cancel</Button>
         </DialogActions>
       </Dialog>

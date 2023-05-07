@@ -17,7 +17,6 @@ export default function MiddleDividers() {
             <Typography
               gutterBottom
               variant="h4"
-              sx={{ fontfamily: "Montserrat" }}
             >
               Details
             </Typography>

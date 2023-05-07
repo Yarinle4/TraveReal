@@ -15,6 +15,9 @@ const theme = createTheme({
       main: "#679E84",
     },
   },
+  typography: {
+    fontFamily: "Montserrat",
+  },
 });
 
 const FirstScreen = styled.div`

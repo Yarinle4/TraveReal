@@ -43,12 +43,6 @@ const RatingcustomStyle = {
   },
 };
 
-const ListcustomStyle = {
-  "& .MuiRating-icon": {
-    fontSize: "30px",
-    color: "#FFD700",
-  },
-};
 
 const BigList = () => {
   const [value, setValue] = React.useState(4);

@@ -25,7 +25,7 @@ const FirstScreen = styled.div`
 const SecondScreen = styled.div`
   min-height: 100vh;
   font-size: 3vw;
-  font-family: "Roboto";
+  font-family: "Georgia";
 `;
 
 export default function App() {

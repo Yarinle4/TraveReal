@@ -25,7 +25,7 @@ import avatarPic from "../../../assets/no_pic.png";
 //   "https://marketplace.canva.com/EAFEits4-uw/1/0/1600w/canva-boy-cartoon-gamer-animated-twitch-profile-photo-oEqs2yqaL8s.jpg";
 
 const pages = ["Home Page", "Events Page", "Host Page", "Community Page"];
-const settings = ["Profile", "Logout"];
+const settings = ["Profile", "Host Profile","Logout"];
 
 const LogoContainer = styled("div")({
   fontFamily: "Montserrat, sans-serif",
@@ -71,6 +71,8 @@ function ResponsiveAppBar() {
     switch (pageName) {
       case "Profile":
         return "/ProfilePage";
+      case "Host Profile":
+          return "/HostProfilePage";
       case "Logout":
         return "/";
     }

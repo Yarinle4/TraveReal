@@ -51,7 +51,7 @@ function CommunityPage() {
       </Box>
       <Box sx={{ my: 3, mx: 2, mt: 4 }}></Box>
       <Box>
-        <PostFeed />
+        <PostFeed/>
       </Box>
 
       <Box sx={{ my: 3, mx: 2, mt: 6 }}></Box>

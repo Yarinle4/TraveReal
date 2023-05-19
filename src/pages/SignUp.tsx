@@ -15,13 +15,17 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import ResponsiveAppBar from "../shared/components/moreComponents/MainBar";
 import "../pages/HomePageHost/homeHost.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate  } from "react-router-dom";
+import UserInfoPage from "./UserInfoPage";
 
 const textFieldStyle = {
   backgroundColor: "white",
 };
 
+
 export default function SignUp() {
+  const navigate = useNavigate();
+  
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -35,7 +39,6 @@ export default function SignUp() {
     url: Map,
     opacity: 0.5,
   };
-  const navigate = useNavigate();
 
   return (
     <>
@@ -145,6 +148,16 @@ export default function SignUp() {
               </Grid>
             </Grid>
           </Box>
+        </Box> {/* this is the transition to the user info page */}
+        <Box>
+        <Button
+          onClick={() => navigate("/UserInfoPage")}
+          type="submit"
+          fullWidth
+          variant="contained"
+          sx={{ mt: 3, mb: 2 }}>
+          User Info
+        </Button>
         </Box>
       </Container>
     </>

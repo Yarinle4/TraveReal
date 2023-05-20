@@ -16,7 +16,8 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import ResponsiveAppBar from "../shared/components/moreComponents/MainBar";
 import "../pages/HomePageHost/homeHost.css";
 import { useNavigate  } from "react-router-dom";
-import UserInfoPage from "./UserInfoPage";
+
+import UserInfoButton from "../components/UserInfoButton.jsx";
 
 const textFieldStyle = {
   backgroundColor: "white",
@@ -148,16 +149,17 @@ export default function SignUp() {
               </Grid>
             </Grid>
           </Box>
-        </Box> {/* this is the transition to the user info page */}
-        <Box>
+        </Box> 
+        <Box> {/* this is the transition to the user info page */}
         <Button
-          onClick={() => navigate("/UserInfoPage")}
-          type="submit"
-          fullWidth
-          variant="contained"
-          sx={{ mt: 3, mb: 2 }}>
-          User Info
-        </Button>
+              onClick={() => navigate("/UserInfoPage")}
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
+              user info
+            </Button>
         </Box>
       </Container>
     </>

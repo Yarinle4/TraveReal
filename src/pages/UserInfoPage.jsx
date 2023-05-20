@@ -27,6 +27,7 @@ const textFieldStyle = {
 };
 
 export default function UserInfoPage() {
+  const navigate = useNavigate();
   const GlobalStyle = createGlobalStyle`
     html {
       overflow: auto;
@@ -60,6 +61,15 @@ export default function UserInfoPage() {
               <AboutMe />
             </Grid>
           </Grid>
+          <Button
+              onClick={() => navigate("/details")}
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
+              Next
+            </Button>
         </Box>
       </Container>
     </>

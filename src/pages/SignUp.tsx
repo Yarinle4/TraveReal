@@ -16,7 +16,6 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import ResponsiveAppBar from "../shared/components/moreComponents/MainBar";
 import "../pages/HomePageHost/homeHost.css";
 import { useNavigate  } from "react-router-dom";
-
 import UserInfoButton from "../components/UserInfoButton.jsx";
 
 const textFieldStyle = {
@@ -132,7 +131,7 @@ export default function SignUp() {
                 />
               </Grid>
             </Grid>
-            <Button
+            {/* <Button
               onClick={() => navigate("/details")}
               type="submit"
               fullWidth
@@ -140,7 +139,7 @@ export default function SignUp() {
               sx={{ mt: 3, mb: 2 }}
             >
               Next
-            </Button>
+            </Button> */}
             <Grid container justifyContent="flex-end">
               <Grid item>
                 <Link href="#" variant="body2">
@@ -159,7 +158,7 @@ export default function SignUp() {
               sx={{ mt: 3, mb: 2 }}
             >
               user info
-            </Button>
+        </Button>
         </Box>
       </Container>
     </>

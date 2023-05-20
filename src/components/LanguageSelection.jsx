@@ -77,15 +77,15 @@ export default function LanguageSelection() {
         value={selectedLanguages}
         onChange={handleLanguageChange}
         renderValue={(selected) => (
-          <div style={{ display: "flex", flexWrap: "wrap" }}>
+          <div style={{  display: "flex", flexWrap: "wrap" }}>
             {selected.map((language) => (
-              <Chip key={language} label={language} style={{ margin: 2 }} />
+              <Chip key={language} label={language} style={{ margin: 2}} />
             ))}
           </div>
         )}
       >
         {languagesList.map((language) => (
-          <MenuItem key={language} value={language}>
+          <MenuItem key={language} value={language} sx={{ '&.Mui-selected': { backgroundColor: '#98FB98' } }} >
             {language}
           </MenuItem>
         ))}

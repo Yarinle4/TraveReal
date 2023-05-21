@@ -10,6 +10,7 @@ import Profile from "./ProfilePage";
 import CommunityPage from "./CommunityPage";
 import CreateEventPage from "./CreateNewEvent";
 import TipsPage from "./TipsPage";
+import HostProfilePage from "./HostProfilePage";
 
 function Routess() {
   return (
@@ -33,6 +34,8 @@ function Routess() {
       <Route path="/CommunityPage" element={<CommunityPage />} />
 
       <Route path="/TipsPage" element={<TipsPage />} />
+
+      <Route path="/HostProfilePage" element={<HostProfilePage />} />
     </Routes>
   );
 }

@@ -7,6 +7,7 @@ import styled from "styled-components";
 import Routess from "./pages/RoutesPage";
 
 import { createTheme, colors, ThemeProvider } from "@mui/material";
+import { AuthContextProvider } from "./context/AuthContext";
 
 const theme = createTheme({
   palette: {
@@ -33,15 +34,17 @@ const SecondScreen = styled.div`
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <style>@import url('https://fonts.cdnfonts.com/css/montserrat');</style>
-      <ThemeProvider theme={theme}>
-        <FirstScreen>
-          <SecondScreen>
-            <Routess />
-          </SecondScreen>
-        </FirstScreen>
-      </ThemeProvider>
-    </BrowserRouter>
+    <AuthContextProvider>
+      <BrowserRouter>
+        <style>@import url('https://fonts.cdnfonts.com/css/montserrat');</style>
+        <ThemeProvider theme={theme}>
+          <FirstScreen>
+            <SecondScreen>
+              <Routess />
+            </SecondScreen>
+          </FirstScreen>
+        </ThemeProvider>
+      </BrowserRouter>
+     </AuthContextProvider>
   );
 }

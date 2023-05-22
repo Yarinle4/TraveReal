@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useState, useEffect } from "react";
 // import Map from "../assets/photoMap.jpg" sx={{backgroundImage: `url(${Map})`}};
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
@@ -17,25 +18,56 @@ import ResponsiveAppBar from "../shared/components/moreComponents/MainBar";
 import "../pages/HomePageHost/homeHost.css";
 import { useNavigate } from "react-router-dom";
 
+import { UserAuth } from "../context/AuthContext";
+
 const textFieldStyle = {
   backgroundColor: "white",
 };
 
 export default function SignUp() {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+
+  const { signUp } = UserAuth();
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+
+    try {
+      setError("");
+      await signUp(email, password);
+      navigate("/details");
+    } catch (error) {
+      setError(error.message);
+      console.log(error);
+    }
+  };
+
+    // const data = new FormData(event.currentTarget);
+    // console.log({
+    //   email: data.get("email"),
+    //   password: data.get("password"),
+    // });
+    // try{
+    //   const user_details = {
+    //     first_name : data.get("firstName"),
+    //     last_name : data.get("lastName"),
+    //   }
+    //   await createUser(data.get('email'), data.get('password'))
+    //   await addToUserdb(user_details)
+    //   navigate('/home')
+    // }catch(e){
+    //   console.log(e.message)
+    //   setError(e.message)
+    // }
   };
 
   const Image = {
     url: Map,
     opacity: 0.5,
   };
-  const navigate = useNavigate();
 
   return (
     <>
@@ -105,6 +137,7 @@ export default function SignUp() {
                   name="email"
                   autoComplete="email"
                   style={textFieldStyle}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -117,6 +150,7 @@ export default function SignUp() {
                   id="password"
                   autoComplete="new-password"
                   style={textFieldStyle}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -129,7 +163,6 @@ export default function SignUp() {
               </Grid>
             </Grid>
             <Button
-              onClick={() => navigate("/details")}
               type="submit"
               fullWidth
               variant="contained"

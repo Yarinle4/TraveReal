@@ -55,6 +55,9 @@ export default function SignUp() {
       if (e.code === "auth/missing-password") {
         setError("Missing password");
       }
+      if (e.code === "auth/email-already-in-use") {
+        setError("Email already in use");
+      }
     }
 
     // const data = new FormData(event.currentTarget);

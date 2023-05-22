@@ -10,6 +10,9 @@ import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
+import Alert from "@mui/material/Alert";
+import Stack from "@mui/material/Stack";
+
 // import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
@@ -36,14 +39,23 @@ export default function SignUp() {
     event.preventDefault();
 
     try {
+      console.log("111" + email + " " + password);
+
       setError("");
       await signUp(email, password);
       navigate("/details");
-    } catch (error) {
-      setError(error.message);
-      console.log(error);
+    } catch (e) {
+      console.log(e.code);
+      if (e.code === "auth/weak-password") {
+        setError("Password should be at least 6 characters");
+      }
+      if (e.code === "auth/invalid-email") {
+        setError("Invalid email");
+      }
+      if (e.code === "auth/missing-password") {
+        setError("Missing password");
+      }
     }
-  };
 
     // const data = new FormData(event.currentTarget);
     // console.log({
@@ -87,6 +99,16 @@ export default function SignUp() {
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
+          <Stack sx={{ width: "100%" }} spacing={2}>
+            {error && (
+              <Alert
+                severity="error"
+                sx={{ fontSize: "14px", fontFamily: "Montserrat" }}
+              >
+                {error}
+              </Alert>
+            )}
+          </Stack>
           <Box
             component="form"
             noValidate

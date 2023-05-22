@@ -1,8 +1,9 @@
 #main-activity-container{
     width: 90%;
     height: 290px;
-    left: 5%;
-    margin-bottom: 50px;
+    margin-left: 5%;
+    margin-bottom: 20px;
+    margin-top: 10px;
 }
 
 .slider{
@@ -22,6 +23,7 @@
     position: relative;
     display: flex;
     align-items: center;
+    margin-top: 10px;
 }
 
 

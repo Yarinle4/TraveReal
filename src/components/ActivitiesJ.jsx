@@ -22,17 +22,29 @@ const CardSlider =(props)=>{
     const navigate = useNavigate();
 
 
-    return(
-        <div id="main-activity-container">
-            <MdChevronLeft size={40} className="slider-icon left" onClick={slideLeft}/>
+    return (
+        <div id="main-slider-container">
+            <MdChevronLeft 
+                size={40} 
+                className="slider-icon left" 
+                onClick={slideLeft}
+            />
             <div class="slider" id={props.idSlide}>
-               { 
-                props.slides.map((slide,index)=>{
-                        return(
+               {props.slides.map((slide, index) => {
+                        return (
                             // <div className="slider-card" key={index} onClick={()=>slide.clickEvent()}> להשתמש בזה אחכ
-                            <div className="slider-card" key={index} onClick={() => navigate("/EventPage")}>
-
-                                <div className="slider-card-image" style={{backgroundImage:`url(${slide.image})`,backgroundSize:'cover'}}></div>
+                            <div 
+                                className="slider-card" 
+                                key={index} 
+                                onClick={() => navigate("/EventPage")}
+                            >
+                                <div 
+                                    className="slider-card-image" 
+                                    style={{
+                                        backgroundImage:`url(${slide.image})`,
+                                        backgroundSize:'cover',
+                                    }}
+                                ></div>
                                 <p className="slider-card-title">{slide.title}</p>
                                 {/* <p className="slider-card-description">{slide.description}</p> */}
                                 <hr class="slant-line"></hr>
@@ -41,12 +53,15 @@ const CardSlider =(props)=>{
                                 <p className="slider-card-points">
                                     <StarBorderRoundedIcon fontSize="medium" sx={{ml:0.9, mr:1}}/>{slide.points}</p>
                             </div>
-                        )
-                    })
-                }
+                        );
+                })}
             </div>
-            <MdChevronRight size={40} className="slider-icon right" onClick={slideRight}/>
+            <MdChevronRight 
+                size={40} 
+                className="slider-icon right" 
+                onClick={slideRight}
+            />
         </div>
-    )
-}
+    );
+};
 export default CardSlider;

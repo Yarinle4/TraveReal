@@ -20,7 +20,6 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import ResponsiveAppBar from "../shared/components/moreComponents/MainBar";
 import "../pages/HomePageHost/homeHost.css";
 import { useNavigate  } from "react-router-dom";
-import UserInfoButton from "../components/UserInfoButton.jsx";
 
 import { UserAuth } from "../context/AuthContext";
 

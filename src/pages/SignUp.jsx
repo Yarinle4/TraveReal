@@ -19,14 +19,13 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import ResponsiveAppBar from "../shared/components/moreComponents/MainBar";
 import "../pages/HomePageHost/homeHost.css";
-import { useNavigate  } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { UserAuth } from "../context/AuthContext";
 
 const textFieldStyle = {
   backgroundColor: "white",
 };
-
 
 export default function SignUp() {
   const [email, setEmail] = useState("");
@@ -204,8 +203,7 @@ export default function SignUp() {
               </Grid>
             </Grid>
           </Box>
-        </Box> 
-
+        </Box>
       </Container>
     </>
   );

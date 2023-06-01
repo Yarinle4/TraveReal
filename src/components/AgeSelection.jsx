@@ -21,11 +21,11 @@ export default function AgeSelection() {
   };
 
   return (
-    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+    <Box  sx={{ display: 'flex', alignItems: 'center' }}>
       <Typography variant="h6" sx={{ mr: 1 }}>
         Select Your Age:
       </Typography>
-      <Select value={selectedAge} onChange={handleAgeChange} sx={{ minWidth: 200 }}>
+      <Select value={selectedAge}  onChange={handleAgeChange} sx={{ minWidth: 200 }}>
         <MenuItem value="">Select Age</MenuItem>
         {generateAgeOptions()}
       </Select>

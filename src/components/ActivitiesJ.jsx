@@ -3,6 +3,7 @@ import './ActivitiesCards.css';
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md'
 import AccessTimeRoundedIcon from '@mui/icons-material/AccessTimeRounded';
 import StarBorderRoundedIcon from '@mui/icons-material/StarBorderRounded';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
 import { useNavigate } from "react-router-dom";
 
 
@@ -50,8 +51,10 @@ const CardSlider =(props)=>{
                                 <hr class="slant-line"></hr>
                                 <p className="slider-card-date">
                                     <AccessTimeRoundedIcon fontSize="small" sx={{ml:1, mr:1}}/>{slide.date}</p>
-                                <p className="slider-card-points">
-                                    <StarBorderRoundedIcon fontSize="medium" sx={{ml:0.9, mr:1}}/>{slide.points}</p>
+                                {/* <p className="slider-card-points">
+                                    <StarBorderRoundedIcon fontSize="medium" sx={{ml:0.9, mr:1}}/>{slide.points}</p> */}
+                                <p className="slider-card-location">
+                                    <LocationOnIcon fontSize="medium" sx={{ml:0.9, mr:1}}/>{slide.location}</p>
                             </div>
                         );
                 })}

@@ -76,7 +76,8 @@ function HomePageHost() {
       title: "Winery Tour",
       description: "Cheers to good times",
       date: "Today | 5PM",
-      points: "10 stars",
+      // points: "10 stars",
+      location: '1.7km away',
       clickEvent: sliderClick,
     },
     {
@@ -84,7 +85,8 @@ function HomePageHost() {
       title: "Food Workshop",
       description: "Bring out the artist in you",
       date: "Tomorrow | 10AM",
-      points: "15 stars",
+      // points: "15 stars",
+      location: '2.3km away',
       clickEvent: sliderClick,
     },
     {
@@ -92,7 +94,8 @@ function HomePageHost() {
       title: "Street Food Tour",
       description: "Eat local, travel global",
       date: "Sun 30 Apr | 2PM",
-      points: "10 stars",
+      // points: "10 stars",
+      location: '500m away',
       clickEvent: sliderClick,
     },
     {
@@ -100,7 +103,8 @@ function HomePageHost() {
       title: "Food Tour",
       description: "Tasting the best",
       date: "Tue 2 May | 8PM",
-      points: "20 stars",
+      // points: "20 stars",
+      location: '300m away',
       clickEvent: sliderClick,
     },
     {
@@ -108,7 +112,8 @@ function HomePageHost() {
       title: "Boutique Dairies",
       description: "Say cheese!",
       date: "Thu 4 May | 10AM",
-      points: "5 stars",
+      // points: "5 stars",
+      location: '1.5 km away',
       clickEvent: sliderClick,
     },
     {
@@ -116,7 +121,8 @@ function HomePageHost() {
       title: "Hafrashat Challah",
       description: "Observance of Torah mitzva",
       date: "Mon 8 May | 9PM",
-      points: "5 stars",
+      // points: "5 stars",
+      location: '3.7 km away',
       clickEvent: sliderClick,
     },
   ];

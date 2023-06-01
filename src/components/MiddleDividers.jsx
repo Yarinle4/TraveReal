@@ -52,6 +52,15 @@ export default function MiddleDividers() {
           <Chip label="Bonding Circle" />
         </Stack>
       </Box>
+      <Divider variant="middle" />
+      <Box sx={{ ml:2, mt:2 }}>
+        <Typography gutterBottom variant="h4" component="div">
+          Location
+        </Typography>
+        <Typography gutterBottom variant="h5" component="div">
+          Mahane Yehuda
+        </Typography>
+      </Box>
     </Box>
   );
 }

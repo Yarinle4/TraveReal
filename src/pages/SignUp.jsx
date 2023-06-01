@@ -1,6 +1,5 @@
 import * as React from "react";
-import { useState, useEffect } from "react";
-// import Map from "../assets/photoMap.jpg" sx={{backgroundImage: `url(${Map})`}};
+import { useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -12,22 +11,25 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Alert from "@mui/material/Alert";
 import Stack from "@mui/material/Stack";
-
-// import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { useNavigate } from "react-router-dom";
+import { collection, addDoc } from "firebase/firestore"; // Assuming Firestore is being used
+
 import ResponsiveAppBar from "../shared/components/moreComponents/MainBar";
 import "../pages/HomePageHost/homeHost.css";
-import { useNavigate } from "react-router-dom";
-
-import { UserAuth } from "../context/AuthContext";
+import { auth , db } from "../firebase";
+import { UserAuth } from "../context/AuthContext"
 
 const textFieldStyle = {
   backgroundColor: "white",
 };
 
 export default function SignUp() {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [country, setCountry] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -39,9 +41,21 @@ export default function SignUp() {
     event.preventDefault();
 
     try {
-      console.log("111" + email + " " + password);
-
       setError("");
+
+      // Create a new user document
+      const userDoc = {
+        firstName,
+        lastName,
+        country,
+        email,
+      };
+
+      // Add the user document to the "users" collection
+      const docRef = await addDoc(collection(db, "users"), userDoc);
+
+      console.log("User document added with ID: ", docRef.id);
+
       await signUp(email, password);
       navigate("/UserInfoPage");
     } catch (e) {
@@ -59,29 +73,6 @@ export default function SignUp() {
         setError("Email already in use");
       }
     }
-
-    // const data = new FormData(event.currentTarget);
-    // console.log({
-    //   email: data.get("email"),
-    //   password: data.get("password"),
-    // });
-    // try{
-    //   const user_details = {
-    //     first_name : data.get("firstName"),
-    //     last_name : data.get("lastName"),
-    //   }
-    //   await createUser(data.get('email'), data.get('password'))
-    //   await addToUserdb(user_details)
-    //   navigate('/home')
-    // }catch(e){
-    //   console.log(e.message)
-    //   setError(e.message)
-    // }
-  };
-
-  const Image = {
-    url: Map,
-    opacity: 0.5,
   };
 
   return (
@@ -96,9 +87,7 @@ export default function SignUp() {
             alignItems: "center",
           }}
         >
-          <Avatar sx={{ mt: 10, mb: 1, bgcolor: "secondary.main" }}>
-            {/* <LockOutlinedIcon /> */}
-          </Avatar>
+          <Avatar sx={{ mt: 10, mb: 1, bgcolor: "secondary.main" }}></Avatar>
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
@@ -112,12 +101,7 @@ export default function SignUp() {
               </Alert>
             )}
           </Stack>
-          <Box
-            component="form"
-            noValidate
-            onSubmit={handleSubmit}
-            sx={{ mt: 3 }}
-          >
+          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -129,6 +113,8 @@ export default function SignUp() {
                   label="First Name"
                   autoFocus
                   style={textFieldStyle}
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -140,6 +126,8 @@ export default function SignUp() {
                   name="lastName"
                   autoComplete="family-name"
                   style={textFieldStyle}
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -151,6 +139,8 @@ export default function SignUp() {
                   name="country"
                   autoComplete="country"
                   style={textFieldStyle}
+                  value={country}
+                  onChange={(e) => setCountry(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -162,6 +152,7 @@ export default function SignUp() {
                   name="email"
                   autoComplete="email"
                   style={textFieldStyle}
+                  value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </Grid>
@@ -175,14 +166,13 @@ export default function SignUp() {
                   id="password"
                   autoComplete="new-password"
                   style={textFieldStyle}
+                  value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
                 <FormControlLabel
-                  control={
-                    <Checkbox value="allowExtraEmails" color="primary" />
-                  }
+                  control={<Checkbox value="allowExtraEmails" color="primary" />}
                   label="I want to receive inspiration, marketing promotions and updates via email."
                 />
               </Grid>

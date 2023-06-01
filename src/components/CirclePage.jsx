@@ -13,6 +13,9 @@ import lockIcon from "../assets/lock.svg"; // Replace with the actual path to yo
 import { useNavigate } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
 import avatarPic from "../assets/profile_picture_new.jpg";
+// import { getAuth } from "../context/AuthContext";
+
+// const auth = getAuth();
 
 import { db } from "../firebase";
 
@@ -61,7 +64,7 @@ const ImageCircle = styled(Circle)`
   right: 0;
   bottom: 0;
   background-color: ${(props) =>
-    props.isLocked ? "rgba(128, 128, 128, 0.5)" : "transparent"};
+    props.isLocked ? "transparent" : "rgba(128, 128, 128, 0.5)"};
   z-index: 1; /* Set z-index to overlap with circle content */
 
   &:hover {
@@ -176,6 +179,20 @@ const CirclePage = () => {
     setRotationAngle((prevAngle) => prevAngle + 0);
   };
 
+  // const [curr_user, setCurrUser] = useState("");
+
+  // useEffect(() => {
+  //   const loadUsers = async () => {
+  //     const curr = await auth.currentUser;
+  //     setCurrUser(curr);
+  //     console.log(curr_user);
+  //   };
+
+  //   loadUsers();
+  // }, []);
+
+  const fakeCircleList = [false, true, false, false, false];
+
   const circleCollectionRef = collection(db, "circles");
   const [circleList, setCircleList] = useState([]);
 
@@ -184,8 +201,6 @@ const CirclePage = () => {
       const data = await getDocs(circleCollectionRef);
       const dataFilltered = data.docs.map((doc) => ({ ...doc.data() }));
       setCircleList(dataFilltered);
-      console.log(dataFilltered);
-      console.log(dataFilltered.map((x) => x.img));
     };
 
     getImg();
@@ -201,9 +216,9 @@ const CirclePage = () => {
             imageUrl={circle.img}
             position={smallerCirclePositions[index]}
             onClick={() => handleSingleCircleClick()}
-            isLocked={index !== 0}
+            isLocked={fakeCircleList[index]}
           >
-            {index !== 0 && <LockIcon />}
+            {!fakeCircleList[index] && <LockIcon />}
           </ImageCircle>
         ))}
         {/* <ImageCircleSingle

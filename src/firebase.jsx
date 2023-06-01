@@ -3,19 +3,17 @@ import { getAnalytics } from "firebase/analytics";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
-
 const firebaseConfig = {
-  apiKey: "AIzaSyB-juNLp7IasipvQF4RFXRZ49pedHDVV5I",
-  authDomain: "travelrealwebproject.firebaseapp.com",
-  projectId: "travelrealwebproject",
-  storageBucket: "travelrealwebproject.appspot.com",
-  messagingSenderId: "469144741764",
-  appId: "1:469144741764:web:1e9f181b38cefa5de81fd1",
-  measurementId: "G-0WWT660NV0",
+  apiKey: "AIzaSyCpYA8PPTfW-YvrWTqbWpbLJWhsLcO2EpY",
+  authDomain: "new-treavereal-project.firebaseapp.com",
+  projectId: "new-treavereal-project",
+  storageBucket: "new-treavereal-project.appspot.com",
+  messagingSenderId: "578369314258",
+  appId: "1:578369314258:web:a796fafaca4d72f4be3c0b",
+  measurementId: "G-0BE0LWG47G",
 };
 
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
-

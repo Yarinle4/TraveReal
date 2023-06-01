@@ -13,9 +13,13 @@ import lockIcon from "../assets/lock.svg"; // Replace with the actual path to yo
 import { useNavigate } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
 import avatarPic from "../assets/profile_picture_new.jpg";
+// import { getAuth } from "../context/AuthContext";
 
-// const avatarPic =
-//   "https://marketplace.canva.com/EAFEits4-uw/1/0/1600w/canva-boy-cartoon-gamer-animated-twitch-profile-photo-oEqs2yqaL8s.jpg";
+// const auth = getAuth();
+
+import { db } from "../firebase";
+
+import { collection, getDocs } from "firebase/firestore";
 
 const CirclePageContainer = styled.div`
   width: 100%;
@@ -43,7 +47,7 @@ justify-content: center; /* Horizontally align items to center */
 }
 `;
 
-const ColoredCircle = styled(Circle)`
+const ProfileCircle = styled(Circle)`
   background-image: url(${(props) => props.imageUrl});
 `;
 
@@ -59,8 +63,14 @@ const ImageCircle = styled(Circle)`
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(128, 128, 128, 0.5); /* Set gray color with 50% opacity */
+  background-color: ${(props) =>
+    props.isLocked ? "transparent" : "rgba(128, 128, 128, 0.5)"};
   z-index: 1; /* Set z-index to overlap with circle content */
+
+  &:hover {
+    /* Add hover effect */
+    border: 2px solid #000;
+  }
 `;
 
 const ImageCircleSingle = styled(Circle)`
@@ -71,14 +81,6 @@ const ImageCircleSingle = styled(Circle)`
     /* Add hover effect */
     border: 2px solid #000;
   }
-`;
-
-const CircleText = styled.p`
-  text-align: center;
-  margin: 0;
-  padding: 0;
-  line-height: 1;
-  font-weight: bold; /* Add font-weight property to make text more bold */
 `;
 
 const CircleRapper = styled.div`
@@ -148,8 +150,8 @@ const CirclePage = () => {
     getCirclePosition(smallerCircleRadius, rotationAngle + index * 72)
   );
 
-  const smallerCirclePositionsSingle = () =>
-    getCirclePosition(smallerCircleRadius, rotationAngle + 5 * 72);
+  // const smallerCirclePositionsSingle = () =>
+  //   getCirclePosition(smallerCircleRadius, rotationAngle + 5 * 72);
 
   // const [isVisible, setIsVisible] = useState(false);
 
@@ -157,13 +159,13 @@ const CirclePage = () => {
     navigate("/ProfilePage");
   };
 
-  const handleMouseEnter = () => {
-    setIsHovering(true);
-  };
+  // const handleMouseEnter = () => {
+  //   setIsHovering(true);
+  // };
 
-  const handleMouseLeave = () => {
-    setIsHovering(false);
-  };
+  // const handleMouseLeave = () => {
+  //   setIsHovering(false);
+  // };
 
   const navigate = useNavigate();
 
@@ -177,35 +179,60 @@ const CirclePage = () => {
     setRotationAngle((prevAngle) => prevAngle + 0);
   };
 
+  // const [curr_user, setCurrUser] = useState("");
+
+  // useEffect(() => {
+  //   const loadUsers = async () => {
+  //     const curr = await auth.currentUser;
+  //     setCurrUser(curr);
+  //     console.log(curr_user);
+  //   };
+
+  //   loadUsers();
+  // }, []);
+
+  const fakeCircleList = [false, true, false, false, false];
+
+  const circleCollectionRef = collection(db, "circles");
+  const [circleList, setCircleList] = useState([]);
+
+  useEffect(() => {
+    const getImg = async () => {
+      const data = await getDocs(circleCollectionRef);
+      const dataFilltered = data.docs.map((doc) => ({ ...doc.data() }));
+      setCircleList(dataFilltered);
+    };
+
+    getImg();
+  });
+
   return (
     <CirclePageContainer>
-      {/* <CircleRapper isVisible={isVisible}> */}
       <CircleRapper>
-        {smallerCircleColors.map((color, index) => (
+        {circleList.map((circle, index) => (
           <ImageCircle
             key={index}
             size={smallerCircleSize}
-            imageUrl={
-              index === 0
-                ? blueCircleImage
-                : [history, architecture, beer, sharedWorkspace][index - 1]
-            }
+            imageUrl={circle.img}
             position={smallerCirclePositions[index]}
+            onClick={() => handleSingleCircleClick()}
+            isLocked={fakeCircleList[index]}
           >
-            <LockIcon />
+            {!fakeCircleList[index] && <LockIcon />}
           </ImageCircle>
         ))}
-        <ImageCircleSingle
+        {/* <ImageCircleSingle
           key={4}
           size={smallerCircleSize}
+          //singleCircle.map((circle) => {circle.img})
           imageUrl={food}
-          position={smallerCirclePositionsSingle()}
-          onClick={() => handleSingleCircleClick()}
-          onMouseEnter={() => handleMouseEnter()}
-          onMouseLeave={() => handleMouseLeave()}
-        ></ImageCircleSingle>
+          // position={smallerCirclePositionsSingle()}
+          // onClick={() => handleSingleCircleClick()}
+          // onMouseEnter={() => handleMouseEnter()}
+          // onMouseLeave={() => handleMouseLeave()}
+        ></ImageCircleSingle> */}
       </CircleRapper>
-      <ColoredCircle
+      <ProfileCircle
         size={centerCircleSize}
         // imageUrl={barImg}
         position={centerCirclePosition}
@@ -218,7 +245,7 @@ const CirclePage = () => {
           alt="Remy Sharp"
           src={avatarPic}
         />
-      </ColoredCircle>
+      </ProfileCircle>
     </CirclePageContainer>
   );
 };

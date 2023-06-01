@@ -13,9 +13,7 @@ import lockIcon from "../assets/lock.svg"; // Replace with the actual path to yo
 import { useNavigate } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
 import avatarPic from "../assets/profile_picture_new.jpg";
-// import { getAuth } from "../context/AuthContext";
-
-// const auth = getAuth();
+import { getAuth } from "firebase/auth";
 
 import { db } from "../firebase";
 
@@ -122,17 +120,17 @@ const CirclePage = () => {
   const [rotationAngle, setRotationAngle] = useState(0);
   const [isHovering, setIsHovering] = useState(false);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (!isHovering) {
-        setRotationAngle((prevAngle) => prevAngle + 0.2); // Rotate by 6 degrees every 50 milliseconds
-      }
-    }, 50);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     if (!isHovering) {
+  //       setRotationAngle((prevAngle) => prevAngle + 0.2); // Rotate by 6 degrees every 50 milliseconds
+  //     }
+  //   }, 50);
 
-    return () => {
-      clearInterval(interval);
-    };
-  }, [isHovering]);
+  //   return () => {
+  //     clearInterval(interval);
+  //   };
+  // }, [isHovering]);
 
   const getCirclePosition = (radius, angle) => {
     const centerX = 0;
@@ -181,26 +179,33 @@ const CirclePage = () => {
 
   // const [curr_user, setCurrUser] = useState("");
 
+  // const auth = getAuth();
+
   // useEffect(() => {
   //   const loadUsers = async () => {
-  //     const curr = await auth.currentUser;
-  //     setCurrUser(curr);
+  //     const user =await auth.currentUser;
+  //     console.log(user.email);
+  //     setCurrUser(user);
   //     console.log(curr_user);
   //   };
 
   //   loadUsers();
   // }, []);
 
-  const fakeCircleList = [false, true, false, false, false];
+  const fakeCircleList = [false, true, true, false, false];
 
   const circleCollectionRef = collection(db, "circles");
   const [circleList, setCircleList] = useState([]);
 
   useEffect(() => {
     const getImg = async () => {
-      const data = await getDocs(circleCollectionRef);
-      const dataFilltered = data.docs.map((doc) => ({ ...doc.data() }));
-      setCircleList(dataFilltered);
+      try {
+        const data = await getDocs(circleCollectionRef);
+        const dataFilltered = data.docs.map((doc) => ({ ...doc.data() }));
+        setCircleList(dataFilltered);
+      } catch (e) {
+        console.error(e);
+      }
     };
 
     getImg();

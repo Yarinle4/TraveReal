@@ -177,20 +177,18 @@ const CirclePage = () => {
     setRotationAngle((prevAngle) => prevAngle + 0);
   };
 
-  // const [curr_user, setCurrUser] = useState("");
+  const [curr_user, setCurrUser] = useState("");
 
-  // const auth = getAuth();
+  const auth = getAuth();
 
-  // useEffect(() => {
-  //   const loadUsers = async () => {
-  //     const user =await auth.currentUser;
-  //     console.log(user.email);
-  //     setCurrUser(user);
-  //     console.log(curr_user);
-  //   };
+  useEffect(() => {
+    const loadUsers = async () => {
+      const user = await auth.currentUser;
+      setCurrUser(user);
+    };
 
-  //   loadUsers();
-  // }, []);
+    loadUsers();
+  }, []);
 
   const fakeCircleList = [false, true, true, false, false];
 

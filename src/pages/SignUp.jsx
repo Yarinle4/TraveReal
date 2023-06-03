@@ -19,8 +19,8 @@ import { collection, addDoc } from "firebase/firestore"; // Assuming Firestore i
 
 import ResponsiveAppBar from "../shared/components/moreComponents/MainBar";
 import "../pages/HomePageHost/homeHost.css";
-import { auth , db } from "../firebase";
-import { UserAuth } from "../context/AuthContext"
+import { auth, db } from "../firebase";
+import { UserAuth } from "../context/AuthContext";
 
 const textFieldStyle = {
   backgroundColor: "white",
@@ -36,6 +36,7 @@ export default function SignUp() {
   const navigate = useNavigate();
 
   const { signUp } = UserAuth();
+  const { addToUserdb } = UserAuth();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -52,11 +53,14 @@ export default function SignUp() {
       };
 
       // Add the user document to the "users" collection
-      const docRef = await addDoc(collection(db, "users"), userDoc);
-
-      console.log("User document added with ID: ", docRef.id);
 
       await signUp(email, password);
+      await addToUserdb(userDoc);
+
+      // const docRef = await addDoc(collection(db, "users"), userDoc);
+
+      // console.log("User document added with ID: ", docRef.id);
+
       navigate("/UserInfoPage");
     } catch (e) {
       console.log(e.code);
@@ -101,7 +105,12 @@ export default function SignUp() {
               </Alert>
             )}
           </Stack>
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+          <Box
+            component="form"
+            noValidate
+            onSubmit={handleSubmit}
+            sx={{ mt: 3 }}
+          >
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -172,7 +181,9 @@ export default function SignUp() {
               </Grid>
               <Grid item xs={12}>
                 <FormControlLabel
-                  control={<Checkbox value="allowExtraEmails" color="primary" />}
+                  control={
+                    <Checkbox value="allowExtraEmails" color="primary" />
+                  }
                   label="I want to receive inspiration, marketing promotions and updates via email."
                 />
               </Grid>

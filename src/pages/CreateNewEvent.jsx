@@ -182,7 +182,7 @@ function CreateEventPage() {
               }}
             />
             <Button
-              onClick={() => navigate("/details")}
+              onClick={() => navigate("/CreateEventCircles")}
               variant="Outlined"
               sx={{ width: "120px" }}
             >

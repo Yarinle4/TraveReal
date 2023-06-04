@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Box, Typography, Select, MenuItem } from '@mui/material';
 
-export default function AgeSelection() {
-  const [selectedAge, setSelectedAge] = useState('');
-
+export default function AgeSelection(props) {
   const handleAgeChange = (event) => {
-    setSelectedAge(event.target.value);
+    props.setAge(event.target.value);
   };
 
   const generateAgeOptions = () => {
@@ -21,11 +19,11 @@ export default function AgeSelection() {
   };
 
   return (
-    <Box  sx={{ display: 'flex', alignItems: 'center' }}>
+    <Box sx={{ display: 'flex', alignItems: 'center' }}>
       <Typography variant="h6" sx={{ mr: 1 }}>
         Select Your Age:
       </Typography>
-      <Select value={selectedAge}  onChange={handleAgeChange} sx={{ minWidth: 200 }}>
+      <Select value={props.age} onChange={handleAgeChange} sx={{ minWidth: 200 }}>
         <MenuItem value="">Select Age</MenuItem>
         {generateAgeOptions()}
       </Select>

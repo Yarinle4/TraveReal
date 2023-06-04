@@ -4,34 +4,18 @@ import { Box, Typography, FormControl, InputLabel, Select, MenuItem } from '@mui
 const genderList = [
   'Female',
   'Male',
-  'Non-binary',
-  'Transgender',
-  'Agender',
-  'Genderqueer',
-  'Genderfluid',
-  'Two-Spirit',
-  'Bigender',
-  'Androgynous',
-  'Demigender',
-  'Neutrois',
-  'Pangender',
-  'Gender Nonconforming',
-  'Prefer Not to Say',
-  'Cisgender Female',
-  'Cisgender Male',
   'Other',
 ];
 
-export default function GenderSelection() {
-  const [selectedGender, setSelectedGender] = useState('');
+export default function GenderSelection(props) {
 
   const handleGenderChange = (event) => {
-    setSelectedGender(event.target.value);
+    props.setGender(event.target.value);
   };
 
   const getMenuItemStyle = (gender) => {
     return {
-      fontWeight: selectedGender === gender ? 600 : 400,
+      fontWeight: gender === gender ? 600 : 400,
     };
   };
 
@@ -47,7 +31,7 @@ export default function GenderSelection() {
         <Select
           labelId="gender-select-label"
           id="gender-select"
-          value={selectedGender}
+          value={props.gender}
           onChange={handleGenderChange}
         >
           {genderList.map((gender) => (

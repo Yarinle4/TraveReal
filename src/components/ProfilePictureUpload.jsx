@@ -1,21 +1,20 @@
 import React, { useState } from 'react';
 import { Box, Typography, Avatar, Button } from '@mui/material';
 
-export default function ProfilePictureUpload() {
-  const [selectedFile, setSelectedFile] = useState(null);
+export default function ProfilePictureUpload(props) {
   const [previewImage, setPreviewImage] = useState(null);
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
-    setSelectedFile(file);
+    props.setSelectedFile(file);
     setPreviewImage(URL.createObjectURL(file));
   };
 
   const handleUpload = () => {
     // Implement your file upload logic here
-    console.log('Selected File:', selectedFile);
+    console.log('Selected File:', props.selectedFile);
     // Reset the selected file and preview image after upload
-    setSelectedFile(null);
+    props.setSelectedFile(null);
     setPreviewImage(null);
   };
 
@@ -50,9 +49,9 @@ export default function ProfilePictureUpload() {
         </Button>
       </label>
       <Typography variant="body1" sx={{ mt: 1 }}>
-        {selectedFile ? selectedFile.name : 'No file selected'}
+        {props.selectedFile ? props.selectedFile.name : 'No file selected'}
       </Typography>
-      {selectedFile && (
+      {props.selectedFile && (
         <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
           <Button variant="contained" onClick={handleUpload}>
             Upload

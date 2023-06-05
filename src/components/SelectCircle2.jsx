@@ -111,7 +111,13 @@ const ImageMarked = styled('span')(({ theme }) => ({
 
 export default function ButtonBases(props) {
     const handleCircleSelect = (circleTitle) => {
-        props.setCircle(circleTitle);
+        if (props.circle.includes(circleTitle)) {
+            // If the circle is already selected, remove it from the array
+            props.setCircle(props.circle.filter((item) => item !== circleTitle));
+          } else {
+            // If the circle is not selected, add it to the array
+            props.setCircle([...props.circle, circleTitle]);
+          }
       };
 
   return (

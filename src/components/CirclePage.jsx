@@ -183,8 +183,13 @@ const CirclePage = () => {
 
   useEffect(() => {
     const loadUsers = async () => {
-      const user = await auth.currentUser;
-      setCurrUser(user);
+      try {
+        console.log("user");
+        const user = await auth.currentUser;
+        setCurrUser(user);
+      } catch (e) {
+        console.error(e);
+      }
     };
 
     loadUsers();
@@ -198,6 +203,7 @@ const CirclePage = () => {
   useEffect(() => {
     const getImg = async () => {
       try {
+        console.log("circles");
         const data = await getDocs(circleCollectionRef);
         const dataFilltered = data.docs.map((doc) => ({ ...doc.data() }));
         setCircleList(dataFilltered);
@@ -207,7 +213,7 @@ const CirclePage = () => {
     };
 
     getImg();
-  });
+  }, []);
 
   return (
     <CirclePageContainer>

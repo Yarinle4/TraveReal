@@ -9,19 +9,51 @@ import Container from "@mui/material/Container";
 import ResponsiveAppBar from "../shared/components/moreComponents/MainBar";
 import "../pages/HomePageHost/homeHost.css";
 import { useNavigate } from "react-router-dom";
-import CircleSelection from "../components/SelectCircle";
+import CircleSelection from "../components/SelectCircle2";
+import { useState } from "react";
+import { getAuth } from "firebase/auth";
+import { getFirestore, doc, updateDoc, collection } from "firebase/firestore";
+import { db } from "../firebase"
 
 export default function SignUp() {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
-  };
+  const [circle, setCircle] = useState([]);
 
   const navigate = useNavigate();
+
+  // const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  //   event.preventDefault();
+  //   const data = new FormData(event.currentTarget);
+  //   console.log({
+  //     email: data.get("email"),
+  //     password: data.get("password"),
+  //   });
+  // };
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    console.log("entered handlesubmit");
+    try {
+      const auth = getAuth();
+      const user = auth.currentUser;
+      const uid = user ? user.uid : "a";
+      const userRef = doc(db, 'users', "user_"+uid);
+      console.log("Document ref is updated with UID: ", uid);
+
+       // Update the fields of the user document
+       await updateDoc(userRef, {
+        // selectedFile,
+        circle
+      });
+
+      console.log("Document updated succefully with UID: ", uid);
+  
+      // Navigate to "/details" after successful submission
+      navigate("/HomePage");
+    } catch (error) {
+      console.error("Error updating document: ", error);
+    }
+  };
+
+
 
   return (
     <>
@@ -52,13 +84,16 @@ export default function SignUp() {
             onSubmit={handleSubmit}
             sx={{ mt: 3 }}
           >
-            <Grid container spacing={2}></Grid>
-            <CircleSelection />
+            <Grid container spacing={2}>
+            <CircleSelection circle={circle} setCircle={setCircle} />
+            </Grid>
+            
             <Button
-              onClick={() => navigate("/HomePage")}
+              onClick={() => {handleSubmit}}
               type="submit"
               fullWidth
               variant="contained"
+              // onSubmit={handleSubmit}
               sx={{ mt: 3, mb: 2 }}
             >
               Continue

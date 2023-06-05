@@ -118,7 +118,6 @@ export default function ButtonBases(props) {
     <Box sx={{ display: 'flex', flexWrap: 'wrap', minWidth: 300, width: '100%' }}>
       {images.map((image) => (
         <ImageButton
-        //   type="submit"
           focusRipple
           key={image.title}
           style={{

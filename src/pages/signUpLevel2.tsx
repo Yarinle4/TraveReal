@@ -16,7 +16,7 @@ import { getFirestore, doc, updateDoc, collection } from "firebase/firestore";
 import { db } from "../firebase"
 
 export default function SignUp() {
-  const [circle, setCircle] = useState("");
+  const [circle, setCircle] = useState([]);
 
   const navigate = useNavigate();
 
@@ -28,12 +28,15 @@ export default function SignUp() {
   //     password: data.get("password"),
   //   });
   // };
-  const handleSubmit = async () => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    console.log("entered handlesubmit");
     try {
       const auth = getAuth();
       const user = auth.currentUser;
-      const userRef = doc(db, 'users', "user_"+user.uid);
-      console.log("Document ref is updated with UID: ", user.uid);
+      const uid = user ? user.uid : "a";
+      const userRef = doc(db, 'users', "user_"+uid);
+      console.log("Document ref is updated with UID: ", uid);
 
        // Update the fields of the user document
        await updateDoc(userRef, {
@@ -41,10 +44,10 @@ export default function SignUp() {
         circle
       });
 
-      console.log("Document updated succefully with UID: ", userRef.uid);
-
+      console.log("Document updated succefully with UID: ", uid);
+  
       // Navigate to "/details" after successful submission
-      navigate("/details");
+      navigate("/HomePage");
     } catch (error) {
       console.error("Error updating document: ", error);
     }
@@ -81,10 +84,12 @@ export default function SignUp() {
             onSubmit={handleSubmit}
             sx={{ mt: 3 }}
           >
-            <Grid container spacing={2}></Grid>
+            <Grid container spacing={2}>
             <CircleSelection circle={circle} setCircle={setCircle} />
+            </Grid>
+            
             <Button
-              onClick={() => navigate("/HomePage")}
+              onClick={() => {handleSubmit}}
               type="submit"
               fullWidth
               variant="contained"

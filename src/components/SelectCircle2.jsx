@@ -113,11 +113,12 @@ export default function ButtonBases(props) {
     const handleCircleSelect = (circleTitle) => {
         props.setCircle(circleTitle);
       };
-      
+
   return (
     <Box sx={{ display: 'flex', flexWrap: 'wrap', minWidth: 300, width: '100%' }}>
       {images.map((image) => (
         <ImageButton
+        //   type="submit"
           focusRipple
           key={image.title}
           style={{

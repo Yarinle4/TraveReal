@@ -12,6 +12,9 @@ import styled from "styled-components";
 import ResponsiveAppBar from "../shared/components/moreComponents/MainBar";
 import SimpleBottomNavigation from "../shared/components/moreComponents/BottomNav";
 import { useNavigate } from "react-router-dom";
+import { getFirestore, doc, updateDoc, collection } from "firebase/firestore";
+import { db } from "../firebase";
+import { getAuth } from "firebase/auth";
 
 const StyledTitle = styled(Typography)`
   font-weight: bold;
@@ -72,7 +75,7 @@ function CreateEventPage() {
     setPhotos((prevPhotos) => [...prevPhotos, ...uploadedPhotos]);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const eventData = {
       name,
@@ -80,9 +83,18 @@ function CreateEventPage() {
       date,
       time,
       location,
-      photos,
+      host: "Your event host data",
     };
-    console.log(eventData); // send this data to server or do something else
+
+    try {
+      // Store the event data in Firebase Firestore using the existing instance
+      const docRef = await collection(db, "events");
+      await docRef.add(eventData);
+      console.log("Event created with ID: ", docRef.id);
+      // Perform any additional actions or navigate to another page
+    } catch (error) {
+      console.error("Error adding event: ", error);
+    }
   };
 
   const navigate = useNavigate();

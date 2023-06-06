@@ -12,9 +12,11 @@ import styled from "styled-components";
 import ResponsiveAppBar from "../shared/components/moreComponents/MainBar";
 import SimpleBottomNavigation from "../shared/components/moreComponents/BottomNav";
 import { useNavigate } from "react-router-dom";
-import { getFirestore, doc, updateDoc, collection } from "firebase/firestore";
+import EventCircleSelection from "../components/EventCircleSelection.jsx";
+import { getFirestore, doc,addDoc, updateDoc, collection } from "firebase/firestore";
 import { db } from "../firebase";
 import { getAuth } from "firebase/auth";
+
 
 const StyledTitle = styled(Typography)`
   font-weight: bold;
@@ -43,12 +45,19 @@ const textFieldStyle = {
 };
 
 function CreateEventPage() {
+  // State variables to hold user input
+  const currentDate = new Date().toISOString().split("T")[0]; // Get current date in "YYYY-MM-DD" format
+  const currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }); // Get current time in "HH:MM AM/PM" format
+  
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [date, setDate] = useState("");
-  const [time, setTime] = useState("");
+  const [date, setDate] = useState(currentDate);
+  const [time, setTime] = useState(currentTime);
   const [location, setLocation] = useState("");
   const [photos, setPhotos] = useState([]);
+  const [host, setHost] = useState("");
+  const [circle, setCircle] = useState("");
+
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -63,7 +72,8 @@ function CreateEventPage() {
   };
 
   const handleTimeChange = (e) => {
-    setTime(e.target.value);
+    const selectedTime = e.target.value;
+    setTime(selectedTime.toString());
   };
 
   const handleLocationChange = (e) => {
@@ -85,12 +95,12 @@ function CreateEventPage() {
       location,
       host: "Your event host data",
     };
-
+  
     try {
-      // Store the event data in Firebase Firestore using the existing instance
-      const docRef = await collection(db, "events");
-      await docRef.add(eventData);
+      // Store the event data in Firebase Firestore
+      const docRef = await addDoc(collection(db, "events"), eventData);
       console.log("Event created with ID: ", docRef.id);
+  
       // Perform any additional actions or navigate to another page
     } catch (error) {
       console.error("Error adding event: ", error);
@@ -106,7 +116,10 @@ function CreateEventPage() {
       <StyledTitle variant="h4" component="h1">
         Create New Event
       </StyledTitle>
-      <Box component="form" onSubmit={handleSubmit} width="100%" maxWidth={400}>
+      <Box  mb={2} component="form" onSubmit={handleSubmit} width="100%" maxWidth={400}>
+        <Box mt={3}>
+        {/* <EventCircleSelection eventCircle ={circle} setCircle={setCircle} /> */}
+        </Box>
         <TextField
           id="event-name"
           label="Event Name"
@@ -142,17 +155,16 @@ function CreateEventPage() {
           style={textFieldStyle}
         />
         <TextField
-          id="event-time"
-          label="Event Time"
-          type="time"
-          variant="outlined"
-          margin="normal"
-          fullWidth
-          value={time}
-          onChange={handleTimeChange}
-          InputLabelProps={{ shrink: true }}
-          style={textFieldStyle}
-        />
+            id="event-time"
+            label="Event Time"
+            type="time"
+            variant="outlined"
+            margin="normal"
+            fullWidth
+            value={time}
+            onChange={handleTimeChange}
+            InputLabelProps={{ shrink: true }}
+            style={textFieldStyle} />
         <TextField
           id="event-location"
           label="Event Location"
@@ -163,7 +175,7 @@ function CreateEventPage() {
           onChange={handleLocationChange}
           style={textFieldStyle}
         />
-        <Box mb={2}>
+        <Box mb={2} >
           <Button variant="contained" component="label" sx={{ width: 400 }}>
             Upload Event Photos
             <input type="file" multiple hidden onChange={handlePhotoUpload} />
@@ -194,7 +206,14 @@ function CreateEventPage() {
               }}
             />
             <Button
-              onClick={() => navigate("/CreateEventCircles")}
+              onClick={handleSubmit}
+              variant="Outlined"
+              sx={{ width: "120px" }}
+            >
+              submit
+            </Button>
+            <Button
+              onClick={() => navigate("/HomePage")}
               variant="Outlined"
               sx={{ width: "120px" }}
             >

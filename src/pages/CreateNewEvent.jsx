@@ -59,6 +59,10 @@ function CreateEventPage() {
   const [circle, setCircle] = useState("");
 
 
+  const handleHostChange = (e)  => {
+    setHost(e.target.value)
+  };
+
   const handleNameChange = (e) => {
     setName(e.target.value);
   };
@@ -80,20 +84,28 @@ function CreateEventPage() {
     setLocation(e.target.value);
   };
 
+  const handleCircleChange = (e) => {
+    setCircle(e.target.value);
+  };
+
   const handlePhotoUpload = (e) => {
     const uploadedPhotos = Array.from(e.target.files);
     setPhotos((prevPhotos) => [...prevPhotos, ...uploadedPhotos]);
   };
 
   const handleSubmit = async (e) => {
+    if (e) {
+      e.preventDefault();
+    }
     e.preventDefault();
     const eventData = {
+      circle,
       name,
       description,
       date,
       time,
       location,
-      host: "Your event host data",
+      host: getAuth().currentUser.uid, // Set host as user's UID,
     };
   
     try {
@@ -109,6 +121,12 @@ function CreateEventPage() {
 
   const navigate = useNavigate();
 
+  const handleNext = async () => {
+    const event = { preventDefault: () => {} }; // Create a dummy event object to prevent the error
+    await handleSubmit(event); // Pass the event object to handleSubmit
+    navigate("/HomePage"); // Navigate to the next page
+  };
+
   return (
     <StyledDiv>
       <ResponsiveAppBar position="fixed" />
@@ -118,7 +136,7 @@ function CreateEventPage() {
       </StyledTitle>
       <Box  mb={2} component="form" onSubmit={handleSubmit} width="100%" maxWidth={400}>
         <Box mt={3}>
-        {/* <EventCircleSelection eventCircle ={circle} setCircle={setCircle} /> */}
+        <EventCircleSelection circle ={circle} setCircle={setCircle} />
         </Box>
         <TextField
           id="event-name"
@@ -206,18 +224,11 @@ function CreateEventPage() {
               }}
             />
             <Button
-              onClick={handleSubmit}
+              onClick={handleNext}
               variant="Outlined"
               sx={{ width: "120px" }}
             >
-              submit
-            </Button>
-            <Button
-              onClick={() => navigate("/HomePage")}
-              variant="Outlined"
-              sx={{ width: "120px" }}
-            >
-              Next
+              Done!
             </Button>
           </Toolbar>
         </AppBar>

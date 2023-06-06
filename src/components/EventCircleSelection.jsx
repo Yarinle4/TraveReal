@@ -1,9 +1,9 @@
 import React from 'react';
 import { Box, Typography, Select, MenuItem } from '@mui/material';
 
-function CircleSelection(props) {
+function EventCircleSelection(props) {
   const handleCircleChange = (event) => {
-    props.setSelectedCircle(event.target.value);
+    props.setCircle(event.target.value);
   };
 
   const generateCircleOptions = () => {
@@ -28,12 +28,11 @@ function CircleSelection(props) {
       <Typography variant="h6" sx={{ mr: 1 }}>
         Select Circle:
       </Typography>
-      <Select value={props.selectedCircle} onChange={handleCircleChange} sx={{ minWidth: 200 }}>
-        <MenuItem value="">Select Circle</MenuItem>
+      <Select value={props.Circle} onChange={handleCircleChange} sx={{ minWidth: 200 }}>
         {generateCircleOptions()}
       </Select>
     </Box>
   );
 }
 
-export default CircleSelection;
+export default EventCircleSelection;

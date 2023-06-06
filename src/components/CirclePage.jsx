@@ -17,7 +17,7 @@ import { getAuth } from "firebase/auth";
 
 import { db } from "../firebase";
 
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, getDoc, doc } from "firebase/firestore";
 
 const CirclePageContainer = styled.div`
   width: 100%;
@@ -177,16 +177,18 @@ const CirclePage = () => {
     setRotationAngle((prevAngle) => prevAngle + 0);
   };
 
-  const [curr_user, setCurrUser] = useState("");
-
-  const auth = getAuth();
+  const [userCircleList, setUserCircleList] = useState([]);
 
   useEffect(() => {
     const loadUsers = async () => {
       try {
-        console.log("user");
-        const user = await auth.currentUser;
-        setCurrUser(user);
+        const auth = getAuth();
+        const user = auth.currentUser;
+        const uid = user ? user.uid : "a";
+        const userRef = doc(db, "users", "user_" + uid);
+        const userDoc = await getDoc(userRef);
+        const circles = userDoc.data().circle;
+        setUserCircleList(circles);
       } catch (e) {
         console.error(e);
       }
@@ -215,6 +217,12 @@ const CirclePage = () => {
     getImg();
   }, []);
 
+  const isInUserCircle = (name) => {
+    console.log(name);
+    console.log(userCircleList);
+    return userCircleList.includes(name);
+  };
+
   return (
     <CirclePageContainer>
       <CircleRapper>
@@ -225,9 +233,9 @@ const CirclePage = () => {
             imageUrl={circle.img}
             position={smallerCirclePositions[index]}
             onClick={() => handleSingleCircleClick()}
-            isLocked={fakeCircleList[index]}
+            isLocked={isInUserCircle(circle.name)}
           >
-            {!fakeCircleList[index] && <LockIcon />}
+            {!isInUserCircle(circle.name) && <LockIcon />}
           </ImageCircle>
         ))}
         {/* <ImageCircleSingle

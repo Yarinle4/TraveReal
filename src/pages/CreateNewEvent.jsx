@@ -12,7 +12,9 @@ import styled from "styled-components";
 import ResponsiveAppBar from "../shared/components/moreComponents/MainBar";
 import SimpleBottomNavigation from "../shared/components/moreComponents/BottomNav";
 import { useNavigate } from "react-router-dom";
-import { db } from "../firebase"; // Replace with the correct path to your Firebase instance
+import { getFirestore, doc, updateDoc, collection } from "firebase/firestore";
+import { db } from "../firebase";
+import { getAuth } from "firebase/auth";
 
 const StyledTitle = styled(Typography)`
   font-weight: bold;
@@ -83,20 +85,17 @@ function CreateEventPage() {
       location,
       host: "Your event host data",
     };
-  
+
     try {
       // Store the event data in Firebase Firestore using the existing instance
-      const docRef = await db.collection("events").doc();
-      await docRef.set(eventData);
+      const docRef = await collection(db, "events");
+      await docRef.add(eventData);
       console.log("Event created with ID: ", docRef.id);
       // Perform any additional actions or navigate to another page
     } catch (error) {
       console.error("Error adding event: ", error);
     }
   };
-
-    
-  
 
   const navigate = useNavigate();
 
@@ -206,4 +205,6 @@ function CreateEventPage() {
       </Box>
     </StyledDiv>
   );
-} export default CreateEventPage;
+}
+
+export default CreateEventPage;

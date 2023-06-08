@@ -12,6 +12,11 @@ import styled from "styled-components";
 import ResponsiveAppBar from "../shared/components/moreComponents/MainBar";
 import SimpleBottomNavigation from "../shared/components/moreComponents/BottomNav";
 import { useNavigate } from "react-router-dom";
+import EventCircleSelection from "../components/EventCircleSelection.jsx";
+import { getFirestore, doc,addDoc, updateDoc, collection } from "firebase/firestore";
+import { db } from "../firebase";
+import { getAuth } from "firebase/auth";
+
 
 const StyledTitle = styled(Typography)`
   font-weight: bold;
@@ -88,7 +93,10 @@ function CreateEventPage() {
     setPhotos((prevPhotos) => [...prevPhotos, ...uploadedPhotos]);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
+    if (e) {
+      e.preventDefault();
+    }
     e.preventDefault();
     const eventData = {
       circle,
@@ -97,9 +105,18 @@ function CreateEventPage() {
       date,
       time,
       location,
-      photos,
+      host: getAuth().currentUser.uid, // Set host as user's UID,
     };
-    console.log(eventData); // send this data to server or do something else
+  
+    try {
+      // Store the event data in Firebase Firestore
+      const docRef = await addDoc(collection(db, "events"), eventData);
+      console.log("Event created with ID: ", docRef.id);
+  
+      // Perform any additional actions or navigate to another page
+    } catch (error) {
+      console.error("Error adding event: ", error);
+    }
   };
 
   const navigate = useNavigate();
@@ -112,12 +129,12 @@ function CreateEventPage() {
 
   return (
     <StyledDiv>
-      <ResponsiveAppBar position="fixed" />
-      <PageHeader></PageHeader>
-      <StyledTitle variant="h4" component="h1">
+      <ResponsiveAppBar />
+        <PageHeader></PageHeader>
+        <StyledTitle variant="h4" component="h1">
         Create New Event
-      </StyledTitle>
-      <Box  mb={2} component="form" onSubmit={handleSubmit} width="100%" maxWidth={400}>
+    </StyledTitle>
+    <Box mb={2} component="form" onSubmit={handleSubmit} width="100%" maxWidth={400}>
         <Box mt={3}>
         <EventCircleSelection circle ={circle} setCircle={setCircle} />
         </Box>
@@ -183,41 +200,44 @@ function CreateEventPage() {
           </Button>
         </Box>
         <AppBar position="fixed" sx={{ top: "auto", bottom: 0 }}>
-          <Toolbar
-            sx={{
-              display: "flex",
-              justifyContent: "space-around",
-              border: "none",
-            }}
-          >
-            <Button
-              onClick={() => navigate("/HomePage")}
-              variant="Outlined"
-              sx={{ width: "120px" }}
-            >
-              Cancel
-            </Button>
-            <Divider
-              orientation="vertical"
-              flexItem
-              sx={{
-                marginLeft: "-30px",
-                width: "30px",
-                borderColor: "#F3FBF4",
-              }}
-            />
-            <Button
-              onClick={handleNext}
-              variant="Outlined"
-              sx={{ width: "120px" }}
-            >
-              Done!
-            </Button>
-          </Toolbar>
-        </AppBar>
-      </Box>
-    </StyledDiv>
+  <Toolbar
+    sx={{
+      display: "flex",
+      justifyContent: "space-around",
+      border: "none",
+    }}
+  >
+    <Button
+      onClick={() => navigate("/HomePage")}
+      variant="Outlined"
+      sx={{ width: "120px" }}
+    >
+      Cancel
+    </Button>
+    <Divider
+      orientation="vertical"
+      flexItem
+      sx={{
+        marginLeft: "-30px",
+        width: "30px",
+        borderColor: "#F3FBF4",
+      }}
+    />
+    <Button
+      onClick={handleNext}
+      variant="Outlined"
+      sx={{ width: "120px" }}
+    >
+      Done!
+    </Button>
+  </Toolbar>
+</AppBar>
+
+  </Box>
+</StyledDiv>
   );
 }
 
 export default CreateEventPage;
+
+

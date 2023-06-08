@@ -129,12 +129,12 @@ function CreateEventPage() {
 
   return (
     <StyledDiv>
-      <ResponsiveAppBar position="fixed" />
-      <PageHeader></PageHeader>
-      <StyledTitle variant="h4" component="h1">
+      <ResponsiveAppBar />
+        <PageHeader></PageHeader>
+        <StyledTitle variant="h4" component="h1">
         Create New Event
-      </StyledTitle>
-      <Box  mb={2} component="form" onSubmit={handleSubmit} width="100%" maxWidth={400}>
+    </StyledTitle>
+    <Box mb={2} component="form" onSubmit={handleSubmit} width="100%" maxWidth={400}>
         <Box mt={3}>
         <EventCircleSelection circle ={circle} setCircle={setCircle} />
         </Box>
@@ -200,41 +200,44 @@ function CreateEventPage() {
           </Button>
         </Box>
         <AppBar position="fixed" sx={{ top: "auto", bottom: 0 }}>
-          <Toolbar
-            sx={{
-              display: "flex",
-              justifyContent: "space-around",
-              border: "none",
-            }}
-          >
-            <Button
-              onClick={() => navigate("/HomePage")}
-              variant="Outlined"
-              sx={{ width: "120px" }}
-            >
-              Cancel
-            </Button>
-            <Divider
-              orientation="vertical"
-              flexItem
-              sx={{
-                marginLeft: "-30px",
-                width: "30px",
-                borderColor: "#F3FBF4",
-              }}
-            />
-            <Button
-              onClick={handleNext}
-              variant="Outlined"
-              sx={{ width: "120px" }}
-            >
-              Done!
-            </Button>
-          </Toolbar>
-        </AppBar>
-      </Box>
-    </StyledDiv>
+  <Toolbar
+    sx={{
+      display: "flex",
+      justifyContent: "space-around",
+      border: "none",
+    }}
+  >
+    <Button
+      onClick={() => navigate("/HomePage")}
+      variant="Outlined"
+      sx={{ width: "120px" }}
+    >
+      Cancel
+    </Button>
+    <Divider
+      orientation="vertical"
+      flexItem
+      sx={{
+        marginLeft: "-30px",
+        width: "30px",
+        borderColor: "#F3FBF4",
+      }}
+    />
+    <Button
+      onClick={handleNext}
+      variant="Outlined"
+      sx={{ width: "120px" }}
+    >
+      Done!
+    </Button>
+  </Toolbar>
+</AppBar>
+
+  </Box>
+</StyledDiv>
   );
 }
 
 export default CreateEventPage;
+
+

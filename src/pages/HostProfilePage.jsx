@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import { FcRating } from "react-icons/fc";
 import Stack from "@mui/joy/Stack";
@@ -9,9 +9,6 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { useNavigate } from "react-router-dom";
 import avatarPic from "../assets/profile_picture_new.jpg";
 import { Button } from "@mui/material";
-import { doc, getDoc } from "@firebase/firestore";
-import { db } from "../firebase";
-import {getDownloadURL} from 'firebase/storage'
 
 
 const ProfileWrapper = styled.div`
@@ -86,46 +83,8 @@ const CoinCount = styled.span`
   font-weight: normal;
 `;
 
-const example_uid = 'user_w8C4C8C9M4P8gnjkHjf4D1jkruC2';
-
 function ProfilePage() {
   const navigate = useNavigate();
-  const [downloadURL, setDownloadURL] = useState('');
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [aboutText, setAboutText] = useState('');
-  const [age, setAge] = useState('');
-  const [country, setCountry] = useState('');
-  const [hobbies, setHobbies] = useState('');
-  const [gender, setGender] = useState('');
-  const [languages, setLanguages] = useState('');
-  const [circles, setCircles] = useState('');
-
-  useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const userSnapshot = await getDoc(doc(db, 'users', example_uid));
-        //edit example uid to passed uid from
-        const userData = userSnapshot.data();
-        if (userData && userData.profilePictureUrl) {
-          setDownloadURL(userData.profilePictureUrl);
-          setFirstName(userData.firstName);
-          setLastName(userData.lastName);
-          setAboutText(userData.aboutText);
-          setAge(userData.age);
-          setCountry(userData.country);
-          setHobbies(userData.selectedHobbies);
-          setGender(userData.gender);
-          setLanguages(userData.selectedLanguages);
-          setCircles(userData.circle)
-        }
-      } catch (error) {
-        console.error('Error fetching user data:', error);
-      }
-    };
-
-    fetchUserData();
-  }, []);
 
   return (
     <>
@@ -148,45 +107,46 @@ function ProfilePage() {
           <ArrowBackIcon fontSize="inherit" />
         </IconButton>
         <ProfileImage
-          src={downloadURL || avatarPic}
+          src={avatarPic}
           alt="Profile picture"
         />
-        <ProfileName>{firstName} {lastName}</ProfileName>
-        <ProfileBio>{aboutText}</ProfileBio>
-
+        <ProfileName>Yarin Levy</ProfileName>
+        <ProfileBio>Web developer and coffee addict.</ProfileBio>
+        <ProfileBio>Talk to me about... NBA and Youtube</ProfileBio>
       </ProfileWrapper>
       <DetailsWrapper>
         <ProfileContact>
-        Country: <ProfileData>{country}</ProfileData>
+        Country: <ProfileData>Israel</ProfileData>
         </ProfileContact>
         <ProfileContact>
         Home Town: <ProfileData>Jerusalem</ProfileData>
         </ProfileContact>
         <ProfileContact>
-        Age: <ProfileData>{age}</ProfileData>
+        Age: <ProfileData>25</ProfileData>
         </ProfileContact>
         <ProfileContact>
-        Gender: <ProfileData>{gender}</ProfileData>
+        Gender: <ProfileData>Prefer not to say</ProfileData>
         </ProfileContact>
         <ProfileContact>
         Profession: <ProfileData>CS Student</ProfileData>
         </ProfileContact>
         <ProfileContact>
-          Languges: <ProfileData>{languages}</ProfileData>
+          Languges: <ProfileData>English, Hebrew</ProfileData>
         </ProfileContact>
         <ProfileContact>
           Email: <ProfileData>john.doe@example.com</ProfileData>
         </ProfileContact>
-        {/* <ProfileContact>Hobbies:</ProfileContact>
+        <ProfileContact>Hobbies:</ProfileContact>
         <Stack useFlexGap="true" direction="row" spacing={1}>
           <Chip color="primary" label="Dogs" />
           <Chip color="primary" label="Math" />
           <Chip color="primary" label="Cooking" />
-        </Stack> */}
+          {/* <Chip color="primary" label="Love Circle" /> */}
+        </Stack>
         <ProfileContact></ProfileContact>
         <ProfileContact>Circles:</ProfileContact>
         <Stack useFlexGap="true"  direction="row" spacing={1}>
-          <Chip color="primary" label={"circle"} />
+          <Chip color="primary" label="Culinary Circle" />
           {/* <Chip color="primary" label="Love Circle" /> */}
         </Stack>
 

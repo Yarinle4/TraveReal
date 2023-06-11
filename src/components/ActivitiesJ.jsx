@@ -30,7 +30,7 @@ const CardSlider =(props)=>{
                 className="slider-icon left" 
                 onClick={slideLeft}
             />
-            <div class="slider" id={props.idSlide}>
+            <div class="slider" id={props.idPeople}>
                {props.slides.map((slide, index) => {
                         return (
                             // <div className="slider-card" key={index} onClick={()=>slide.clickEvent()}> להשתמש בזה אחכ

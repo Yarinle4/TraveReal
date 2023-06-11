@@ -25,8 +25,6 @@ import { getFirestore, doc, updateDoc, collection } from "firebase/firestore";
 import { db } from "../firebase";
 import { getAuth } from "firebase/auth";
  
-
-
 const textFieldStyle = {
   backgroundColor: "white",
 };
@@ -70,11 +68,21 @@ export default function UserInfoPage() {
           if (stars !== null) {
             setStars(stars);
           }
-        })
+      })
         .catch((error) => {
           console.error("Error fetching stars: ", error);
+
+         // Update the fields of the user document
+          await updateDoc(userRef, {
+          profilePictureUrl: selectedFile.downloadURL,
+          age,
+          selectedHobbies,
+          selectedLanguages,
+          gender,
+          aboutText,
+
         });
-    }
+    };);
   }, []); // Empty dependency array to run the effect only once
 
 

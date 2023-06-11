@@ -179,6 +179,7 @@ const CirclePage = () => {
   // };
 
   const [userCircleList, setUserCircleList] = useState([]);
+  const [userImg, setUserImg] = useState([]);
 
   useEffect(() => {
     const loadUsers = async () => {
@@ -189,6 +190,8 @@ const CirclePage = () => {
         const userRef = doc(db, "users", "user_" + uid);
         const userDoc = await getDoc(userRef);
         const circles = userDoc.data().circle;
+        const img = userDoc.data().profilePictureUrl;
+        setUserImg(img);
         setUserCircleList(circles);
       } catch (e) {
         console.error(e);
@@ -235,29 +238,16 @@ const CirclePage = () => {
             {!isInUserCircle(circle.name) && <LockIcon />}
           </ImageCircle>
         ))}
-        {/* <ImageCircleSingle
-          key={4}
-          size={smallerCircleSize}
-          //singleCircle.map((circle) => {circle.img})
-          imageUrl={food}
-          // position={smallerCirclePositionsSingle()}
-          // onClick={() => handleSingleCircleClick()}
-          // onMouseEnter={() => handleMouseEnter()}
-          // onMouseLeave={() => handleMouseLeave()}
-        ></ImageCircleSingle> */}
       </CircleRapper>
       <ProfileCircle
         size={centerCircleSize}
-        // imageUrl={barImg}
         position={centerCirclePosition}
         onClick={() => handleCircleClick()}
       >
-        {/* <Avatar alt="Remy Sharp" src='https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp' /> */}
-
         <Avatar
           sx={{ width: 150, height: 150 }}
           alt="Remy Sharp"
-          src={avatarPic}
+          src={userImg}
         />
       </ProfileCircle>
     </CirclePageContainer>

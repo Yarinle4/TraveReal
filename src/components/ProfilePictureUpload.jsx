@@ -13,18 +13,11 @@ export default function ProfilePictureUpload(props) {
     setPreviewImage(URL.createObjectURL(file));
   };
 
-  // const handleUpload = () => {
-  //   // Implement your file upload logic here
-  //   console.log('Selected File:', props.selectedFile);
-  //   // Reset the selected file and preview image after upload
-  //   props.setSelectedFile(null);
-  //   setPreviewImage(null);
-  // };
   const handleUpload = async () => {
     console.log('called');
     try {
       console.log('inner call');
-      const storageRef = ref(storage, props.selectedFile.name);
+      const storageRef = ref(storage, 'users/'+props.selectedFile.name);
       await uploadBytes(storageRef, props.selectedFile);
       
       // Get the download URL of the uploaded file

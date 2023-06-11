@@ -33,11 +33,11 @@ const images = [
     title: 'Culinary Circle',
     width: '30%',
   },
-  {
-    url: hiking,
-    title: 'Hiking Circle',
-    width: '30%',
-  },
+  // {
+  //   url: hiking,
+  //   title: 'Hiking Circle',
+  //   width: '30%',
+  // },
   {
     url: sharedWorkspace,
     title: 'Digital Nomads Circle',

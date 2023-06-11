@@ -13,10 +13,16 @@ import ResponsiveAppBar from "../shared/components/moreComponents/MainBar";
 import SimpleBottomNavigation from "../shared/components/moreComponents/BottomNav";
 import { useNavigate } from "react-router-dom";
 import EventCircleSelection from "../components/EventCircleSelection.jsx";
-import { getFirestore, doc,addDoc, updateDoc, collection } from "firebase/firestore";
+import {
+  getFirestore,
+  doc,
+  addDoc,
+  updateDoc,
+  collection,
+} from "firebase/firestore";
 import { db } from "../firebase";
 import { getAuth } from "firebase/auth";
-
+import CitySelection from "../components/CitySelection";
 
 const StyledTitle = styled(Typography)`
   font-weight: bold;
@@ -47,8 +53,11 @@ const textFieldStyle = {
 function CreateEventPage() {
   // State variables to hold user input
   const currentDate = new Date().toISOString().split("T")[0]; // Get current date in "YYYY-MM-DD" format
-  const currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }); // Get current time in "HH:MM AM/PM" format
-  
+  const currentTime = new Date().toLocaleTimeString([], {
+    hour: "2-digit",
+    minute: "2-digit",
+  }); // Get current time in "HH:MM AM/PM" format
+
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [date, setDate] = useState(currentDate);
@@ -57,10 +66,10 @@ function CreateEventPage() {
   const [photos, setPhotos] = useState([]);
   const [host, setHost] = useState("");
   const [circle, setCircle] = useState("");
+  const [city, setCity] = useState("");
 
-
-  const handleHostChange = (e)  => {
-    setHost(e.target.value)
+  const handleHostChange = (e) => {
+    setHost(e.target.value);
   };
 
   const handleNameChange = (e) => {
@@ -100,6 +109,7 @@ function CreateEventPage() {
     e.preventDefault();
     const eventData = {
       circle,
+      city,
       name,
       description,
       date,
@@ -107,12 +117,12 @@ function CreateEventPage() {
       location,
       host: getAuth().currentUser.uid, // Set host as user's UID,
     };
-  
+
     try {
       // Store the event data in Firebase Firestore
       const docRef = await addDoc(collection(db, "events"), eventData);
       console.log("Event created with ID: ", docRef.id);
-  
+
       // Perform any additional actions or navigate to another page
     } catch (error) {
       console.error("Error adding event: ", error);
@@ -130,13 +140,22 @@ function CreateEventPage() {
   return (
     <StyledDiv>
       <ResponsiveAppBar />
-        <PageHeader></PageHeader>
-        <StyledTitle variant="h4" component="h1">
+      <PageHeader></PageHeader>
+      <StyledTitle variant="h4" component="h1">
         Create New Event
-    </StyledTitle>
-    <Box mb={2} component="form" onSubmit={handleSubmit} width="100%" maxWidth={400}>
+      </StyledTitle>
+      <Box
+        mb={2}
+        component="form"
+        onSubmit={handleSubmit}
+        width="100%"
+        maxWidth={400}
+      >
         <Box mt={3}>
-        <EventCircleSelection circle ={circle} setCircle={setCircle} />
+          <EventCircleSelection circle={circle} setCircle={setCircle} />
+        </Box>
+        <Box mt={3}>
+          <CitySelection city={city} setCity={setCity} />
         </Box>
         <TextField
           id="event-name"
@@ -173,16 +192,17 @@ function CreateEventPage() {
           style={textFieldStyle}
         />
         <TextField
-            id="event-time"
-            label="Event Time"
-            type="time"
-            variant="outlined"
-            margin="normal"
-            fullWidth
-            value={time}
-            onChange={handleTimeChange}
-            InputLabelProps={{ shrink: true }}
-            style={textFieldStyle} />
+          id="event-time"
+          label="Event Time"
+          type="time"
+          variant="outlined"
+          margin="normal"
+          fullWidth
+          value={time}
+          onChange={handleTimeChange}
+          InputLabelProps={{ shrink: true }}
+          style={textFieldStyle}
+        />
         <TextField
           id="event-location"
           label="Event Location"
@@ -193,51 +213,48 @@ function CreateEventPage() {
           onChange={handleLocationChange}
           style={textFieldStyle}
         />
-        <Box mb={2} >
+        <Box mb={2}>
           <Button variant="contained" component="label" sx={{ width: 400 }}>
             Upload Event Photos
             <input type="file" multiple hidden onChange={handlePhotoUpload} />
           </Button>
         </Box>
         <AppBar position="fixed" sx={{ top: "auto", bottom: 0 }}>
-  <Toolbar
-    sx={{
-      display: "flex",
-      justifyContent: "space-around",
-      border: "none",
-    }}
-  >
-    <Button
-      onClick={() => navigate("/HomePage")}
-      variant="Outlined"
-      sx={{ width: "120px" }}
-    >
-      Cancel
-    </Button>
-    <Divider
-      orientation="vertical"
-      flexItem
-      sx={{
-        marginLeft: "-30px",
-        width: "30px",
-        borderColor: "#F3FBF4",
-      }}
-    />
-    <Button
-      onClick={handleNext}
-      variant="Outlined"
-      sx={{ width: "120px" }}
-    >
-      Done!
-    </Button>
-  </Toolbar>
-</AppBar>
-
-  </Box>
-</StyledDiv>
+          <Toolbar
+            sx={{
+              display: "flex",
+              justifyContent: "space-around",
+              border: "none",
+            }}
+          >
+            <Button
+              onClick={() => navigate("/HomePage")}
+              variant="Outlined"
+              sx={{ width: "120px" }}
+            >
+              Cancel
+            </Button>
+            <Divider
+              orientation="vertical"
+              flexItem
+              sx={{
+                marginLeft: "-30px",
+                width: "30px",
+                borderColor: "#F3FBF4",
+              }}
+            />
+            <Button
+              onClick={handleNext}
+              variant="Outlined"
+              sx={{ width: "120px" }}
+            >
+              Done!
+            </Button>
+          </Toolbar>
+        </AppBar>
+      </Box>
+    </StyledDiv>
   );
 }
 
 export default CreateEventPage;
-
-

@@ -13,13 +13,9 @@ import ResponsiveAppBar from "../shared/components/moreComponents/MainBar";
 import SimpleBottomNavigation from "../shared/components/moreComponents/BottomNav";
 import { useNavigate } from "react-router-dom";
 import EventCircleSelection from "../components/EventCircleSelection.jsx";
-import {
-  getFirestore,
-  doc,
-  addDoc,
-  updateDoc,
-  collection,
-} from "firebase/firestore";
+
+import { getFirestore, doc,addDoc, updateDoc, collection,increment, } from "firebase/firestore";
+
 import { db } from "../firebase";
 import { getAuth } from "firebase/auth";
 import EventCitySelection from "../components/CitySelection";
@@ -123,6 +119,12 @@ function CreateEventPage() {
       // Store the event data in Firebase Firestore
       const docRef = await addDoc(collection(db, "events"), eventData);
       console.log("Event created with ID: ", docRef.id);
+
+      // Increment the stars for the user
+      const userRef = doc(db, "users", "user_" + getAuth().currentUser.uid);
+      await updateDoc(userRef, {
+      stars: increment(5), // Increment the stars by 5
+    });
 
       // Perform any additional actions or navigate to another page
     } catch (error) {

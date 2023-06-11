@@ -167,15 +167,16 @@ const CirclePage = () => {
 
   const navigate = useNavigate();
 
-  const handleSingleCircleClick = () => {
-    console.log("clicked");
-    navigate("/activities");
+  const handleSingleCircleClick = (curCircle) => {
+    if (isInUserCircle(curCircle)) {
+      navigate("/activities", { state: { curCircle } });
+    }
   };
 
-  const handleSingleCircleHover = () => {
-    console.log("hover");
-    setRotationAngle((prevAngle) => prevAngle + 0);
-  };
+  // const handleSingleCircleHover = () => {
+  //   console.log("hover");
+  //   setRotationAngle((prevAngle) => prevAngle + 0);
+  // };
 
   const [userCircleList, setUserCircleList] = useState([]);
 
@@ -197,8 +198,6 @@ const CirclePage = () => {
     loadUsers();
   }, []);
 
-  const fakeCircleList = [false, true, true, false, false];
-
   const circleCollectionRef = collection(db, "circles");
   const [circleList, setCircleList] = useState([]);
 
@@ -218,8 +217,6 @@ const CirclePage = () => {
   }, []);
 
   const isInUserCircle = (name) => {
-    console.log(name);
-    console.log(userCircleList);
     return userCircleList.includes(name);
   };
 
@@ -232,7 +229,7 @@ const CirclePage = () => {
             size={smallerCircleSize}
             imageUrl={circle.img}
             position={smallerCirclePositions[index]}
-            onClick={() => handleSingleCircleClick()}
+            onClick={() => handleSingleCircleClick(circle.name)}
             isLocked={isInUserCircle(circle.name)}
           >
             {!isInUserCircle(circle.name) && <LockIcon />}

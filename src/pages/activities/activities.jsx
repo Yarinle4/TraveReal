@@ -4,7 +4,7 @@ import ReactCardSlider from "../../components/ReactCardSlider";
 import ResponsiveAppBar from "../../shared/components/moreComponents/MainBar";
 import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import Typography from "@mui/material/Typography";
 
 //people:
@@ -238,18 +238,34 @@ function HomePageHost() {
   const [events, setEvents] = useState([]);
   const [city, setCity] = useState("");
 
+  const location = useLocation();
+  const circleclicked = location.state.curCircle;
+
+  const getCircle = (circleclicked) => {
+    switch (circleclicked) {
+      case "Culinary Circle":
+        return "culinary";
+      case "Digital Nomads Circle":
+        return "digital-nomads";
+      case "History Circle":
+        return "History";
+      case "Bonding Circle":
+        return "bonding";
+      case "Architecture Circle":
+        return "architecture";
+    }
+  };
+
   useEffect(() => {
-    console.log(city);
     const fetchEvents = async () => {
       try {
         const q = query(
           collection(db, "events"),
-          where("circle", "==", fakeCircle),
+          where("circle", "==", getCircle(circleclicked)),
           where("city", "==", city)
         );
         const querySnapshot = await getDocs(q);
         const eventsData = querySnapshot.docs.map((doc) => doc.data());
-        console.log(eventsData);
         setEvents(eventsData);
       } catch (error) {
         console.error("Error fetching events:", error);

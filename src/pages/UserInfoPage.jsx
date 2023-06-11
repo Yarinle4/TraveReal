@@ -47,44 +47,36 @@ export default function UserInfoPage() {
 
   const navigate = useNavigate();
 
-         // Update the fields of the user document
-        await updateDoc(userRef, {
-          profilePictureUrl: selectedFile.downloadURL,
-          age,
-          selectedHobbies,
-          selectedLanguages,
-          gender,
-          aboutText,};);
-  // Fetch the stars for the user
   useEffect(() => {
     const auth = getAuth();
     const user = auth.currentUser;
-
+  
     if (user) {
       const uid = user.uid;
-
+  
       fetchStars(uid)
         .then((stars) => {
           if (stars !== null) {
             setStars(stars);
           }
-      })
+        })
         .catch((error) => {
           console.error("Error fetching stars: ", error);
-
-         // Update the fields of the user document
-          await updateDoc(userRef, {
-          profilePictureUrl: selectedFile.downloadURL,
-          age,
-          selectedHobbies,
-          selectedLanguages,
-          gender,
-          aboutText,
-
+          // Update the fields of the user document
+          updateDoc(userRef, {
+            profilePictureUrl: selectedFile.downloadURL,
+            age,
+            selectedHobbies,
+            selectedLanguages,
+            gender,
+            aboutText,
+          }).catch((error) => {
+            console.error("Error updating user document: ", error);
+          });
         });
-    };);
+    }
   }, []); // Empty dependency array to run the effect only once
-
+  
 
   
   // Function to handle form submission

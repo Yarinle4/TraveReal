@@ -120,7 +120,7 @@ function HomePageHost() {
       <ResponsiveAppBar position="fixed" />
 
       <div id="upper_1">let's create a new event!</div>
-      <div class="body">
+      <div className="body">
         <div id="title_1">Select the relevant circles:</div>
         <div>
           <ReactCardSlider slides={events} idSlide={FirstsliderName} />
@@ -129,7 +129,7 @@ function HomePageHost() {
 
       <div id="mid_1">Or</div>
 
-      <div class="body">
+      <div className="body">
         <div id="title">Select the relevant tip:</div>
         <div>
           <ReactCardSlider slides={tips} idSlide={SecondsliderName} />

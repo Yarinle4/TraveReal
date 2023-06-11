@@ -20,11 +20,15 @@ import AboutMe from "../components/AboutMe.jsx";
 import HobbySelection from "../components/HobbySelection.jsx";
 import GenderSelection from "../components/GenderSelection.jsx";
 import LanguageSelection from "../components/LanguageSelection.jsx";
+
 import { useState, useEffect } from "react";
 import { getFirestore, doc, updateDoc, collection } from "firebase/firestore";
 import { db } from "../firebase";
 import { getAuth } from "firebase/auth";
  
+
+
+
 
 
 const textFieldStyle = {
@@ -63,9 +67,19 @@ export default function UserInfoPage() {
           if (stars !== null) {
             setStars(stars);
           }
-        })
+      })
         .catch((error) => {
           console.error("Error fetching stars: ", error);
+
+         // Update the fields of the user document
+          await updateDoc(userRef, {
+          profilePictureUrl: selectedFile.downloadURL,
+          age,
+          selectedHobbies,
+          selectedLanguages,
+          gender,
+          aboutText,
+
         });
     }
   }, []); // Empty dependency array to run the effect only once
@@ -137,6 +151,7 @@ export default function UserInfoPage() {
             Next
           </Button>
           {/* <Typography variant="body1">You earned {stars} stars</Typography> */}
+
         </Box>
       </Container>
     </>

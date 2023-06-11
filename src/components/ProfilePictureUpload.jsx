@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { Box, Typography, Avatar, Button } from '@mui/material';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { storage } from '../firebase';
+
 
 export default function ProfilePictureUpload(props) {
   const [previewImage, setPreviewImage] = useState(null);
@@ -10,13 +13,32 @@ export default function ProfilePictureUpload(props) {
     setPreviewImage(URL.createObjectURL(file));
   };
 
-  const handleUpload = () => {
-    // Implement your file upload logic here
-    console.log('Selected File:', props.selectedFile);
-    // Reset the selected file and preview image after upload
-    props.setSelectedFile(null);
-    setPreviewImage(null);
+  // const handleUpload = () => {
+  //   // Implement your file upload logic here
+  //   console.log('Selected File:', props.selectedFile);
+  //   // Reset the selected file and preview image after upload
+  //   props.setSelectedFile(null);
+  //   setPreviewImage(null);
+  // };
+  const handleUpload = async () => {
+    console.log('called');
+    try {
+      console.log('inner call');
+      const storageRef = ref(storage, props.selectedFile.name);
+      await uploadBytes(storageRef, props.selectedFile);
+      
+      // Get the download URL of the uploaded file
+      const downloadURL = await getDownloadURL(storageRef);
+      console.log('File uploaded successfully. Download URL:', downloadURL);
+
+      // Pass the download URL to the parent component
+      props.setSelectedFile({ file: props.selectedFile, downloadURL });
+  
+    } catch (error) {
+      console.error('Error uploading file:', error);
+    }
   };
+  
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>

@@ -21,9 +21,10 @@ import HobbySelection from "../components/HobbySelection.jsx";
 import GenderSelection from "../components/GenderSelection.jsx";
 import LanguageSelection from "../components/LanguageSelection.jsx";
 import { useState } from "react";
-import { getFirestore, doc, updateDoc, collection } from "firebase/firestore";
 import { db } from "../firebase"
 import { getAuth}  from "firebase/auth"
+import { getFirestore, doc, updateDoc } from 'firebase/firestore';
+
 
 
 const textFieldStyle = {
@@ -56,9 +57,10 @@ export default function UserInfoPage() {
         const userRef = doc(db, 'users', "user_"+user.uid);
         console.log("Document ref is updated with UID: ", user.uid);
 
+
          // Update the fields of the user document
          await updateDoc(userRef, {
-          // selectedFile,
+          profilePictureUrl: selectedFile.downloadURL,
           age,
           selectedHobbies,
           selectedLanguages,
@@ -103,7 +105,6 @@ export default function UserInfoPage() {
             </Grid>
           </Grid>
           <Button
-              // onClick={() => navigate("/details")}
               onClick={handleSubmit}
               type="submit"
               fullWidth

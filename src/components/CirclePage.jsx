@@ -179,6 +179,7 @@ const CirclePage = () => {
   // };
 
   const [userCircleList, setUserCircleList] = useState([]);
+  const [userImg, setUserImg] = useState([]);
 
   useEffect(() => {
     const loadUsers = async () => {
@@ -189,6 +190,9 @@ const CirclePage = () => {
         const userRef = doc(db, "users", "user_" + uid);
         const userDoc = await getDoc(userRef);
         const circles = userDoc.data().circle;
+        const img = userDoc.data().profilePictureUrl;
+        console.log(uid + img);
+        setUserImg(img);
         setUserCircleList(circles);
       } catch (e) {
         console.error(e);

@@ -119,6 +119,7 @@ function CreateEventPage() {
     };
 
     try {
+      console.log(host);
       // Store the event data in Firebase Firestore
       const docRef = await addDoc(collection(db, "events"), eventData);
       console.log("Event created with ID: ", docRef.id);

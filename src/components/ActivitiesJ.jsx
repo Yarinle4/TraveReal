@@ -46,11 +46,11 @@ const CardSlider =(props)=>{
                                         backgroundSize:'cover',
                                     }}
                                 ></div>
-                                <p className="slider-card-title">{slide.title}</p>
+                                <p className="slider-card-title">{slide.name}</p>
                                 {/* <p className="slider-card-description">{slide.description}</p> */}
                                 <hr class="slant-line"></hr>
                                 <p className="slider-card-date">
-                                    <AccessTimeRoundedIcon fontSize="small" sx={{ml:1, mr:1}}/>{slide.date}</p>
+                                    <AccessTimeRoundedIcon fontSize="small" sx={{ml:1, mr:1}}/>{slide.date + " | " + slide.time}</p>
                                 {/* <p className="slider-card-points">
                                     <StarBorderRoundedIcon fontSize="medium" sx={{ml:0.9, mr:1}}/>{slide.points}</p> */}
                                 <p className="slider-card-location">

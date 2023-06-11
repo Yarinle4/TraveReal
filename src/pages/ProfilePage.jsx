@@ -50,7 +50,7 @@ const DetailsWrapper = styled.div`
   margin: 80px 50px;
 `;
 
-const ProfileContact = styled.p`
+const ProfileContact = styled.p
   font-size: 20px;
   margin: 10px 0;
   font-weight: bold;

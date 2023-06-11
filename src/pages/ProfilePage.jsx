@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { FcRating } from "react-icons/fc";
 import Stack from "@mui/joy/Stack";
@@ -8,7 +8,9 @@ import IconButton from "@mui/material/IconButton";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { useNavigate } from "react-router-dom";
 import avatarPic from "../assets/profile_picture_new.jpg";
-
+import { getFirestore, doc, onSnapshot } from "firebase/firestore";
+import { db } from "../firebase";
+import { getAuth } from "firebase/auth";
 
 const ProfileWrapper = styled.div`
   display: flex;
@@ -80,37 +82,60 @@ const CoinCount = styled.span`
 `;
 
 function ProfilePage() {
+  const [stars, setStars] = useState(0);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const loadStars = async () => {
+      try {
+        const auth = getAuth();
+        const user = auth.currentUser;
+        const uid = user ? user.uid : "";
+        const userRef = doc(db, "users", "user_" + uid);
+
+        const unsubscribe = onSnapshot(userRef, (doc) => {
+          if (doc.exists()) {
+            const userStars = doc.data().stars;
+            setStars(userStars);
+          }
+        });
+
+        return () => unsubscribe();
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    loadStars();
+  }, []);
 
   return (
     <>
       <ResponsiveAppBar position="fixed" />
 
       <ProfileWrapper sx={{ mt: 10 }}>
-        <ProfileHeader></ProfileHeader>
-        <IconButton
-          aria-label="Back"
-          size="large"
-          onClick={() => navigate("/HomePage")}
-          sx={{
-            top: 0,
-            left: 0,
-            display: "flex",
-            position: "absolute",
-            mt: 10,
-          }}
-        >
-          <ArrowBackIcon fontSize="inherit" />
-        </IconButton>
-        <ProfileImage
-          src={avatarPic}
-          alt="Profile picture"
-        />
+        <ProfileHeader>
+          <IconButton
+            aria-label="Back"
+            size="large"
+            onClick={() => navigate("/HomePage")}
+            sx={{
+              top: 0,
+              left: 0,
+              display: "flex",
+              position: "absolute",
+              mt: 10,
+            }}
+          >
+            <ArrowBackIcon fontSize="inherit" />
+          </IconButton>
+        </ProfileHeader>
+        <ProfileImage src={avatarPic} alt="Profile picture" />
         <ProfileName>Yarin Levy</ProfileName>
         <ProfileBio>Web developer and coffee addict.</ProfileBio>
         <CoinWrapper>
           <CoinIcon />
-          <CoinCount>15</CoinCount>
+          <CoinCount>{stars}</CoinCount>
         </CoinWrapper>
       </ProfileWrapper>
       <DetailsWrapper>

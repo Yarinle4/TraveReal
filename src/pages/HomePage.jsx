@@ -1,3 +1,7 @@
+import { useState, useEffect } from "react";
+import { getFirestore, doc, onSnapshot } from "firebase/firestore";
+import { db } from "../firebase";
+import { getAuth } from "firebase/auth";
 import { Link } from "react-router-dom";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -5,20 +9,15 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import StarIcon from "@mui/icons-material/Star";
 import * as React from "react";
-import { useState, useEffect } from "react";
-
 import ResponsiveAppBar from "../shared/components/moreComponents/MainBar";
 import styled from "styled-components";
-
 import SimpleBottomNavigation from "../shared/components/moreComponents/BottomNav";
-
 import CirclePage from "../components/CirclePage";
 import FloatingActionButtons from "../components/AddButton";
 import { Box } from "@mui/system";
 import DraggableDialog from "../components/AlertPopUp";
 import Rating from "@mui/material/Rating";
 import { FcRating } from "react-icons/fc";
-
 import { createGlobalStyle } from "styled-components";
 
 const CoinIcon = styled(FcRating)`
@@ -44,59 +43,81 @@ const RatingcustomStyle = {
   },
 };
 
-const BigList = () => {
-  const [value, setValue] = React.useState(4);
-
-  return (
-    <List>
-      <ListItem disablePadding>
-        <ListItemIcon sx={{ fontSize: "40px" }}>
-          <StarIcon sx={{ fontSize: "30px" }} />
-        </ListItemIcon>
-        <ListItemText
-          primary="You earned 15 stars"
-          primaryTypographyProps={{
-            fontSize: "16px",
-            fontFamily: "Montserrat",
-          }}
-        />{" "}
-        <CoinIcon />
-      </ListItem>
-      <ListItem disablePadding>
-        <ListItemIcon sx={{ fontSize: "40px" }}>
-          <StarIcon sx={{ fontSize: "30px" }} />
-        </ListItemIcon>
-        <ListItemText
-          primary="Your Rating"
-          primaryTypographyProps={{
-            fontSize: "16px",
-            fontFamily: "Montserrat",
-          }}
-        />
-        <Rating
-          name="read-only"
-          value={value}
-          readOnly
-          sx={RatingcustomStyle}
-        />
-      </ListItem>
-    </List>
-  );
-};
+const BigList = ({ stars }) => (
+  <List>
+    <ListItem disablePadding>
+      <ListItemIcon sx={{ fontSize: "40px" }}>
+        <StarIcon sx={{ fontSize: "30px" }} />
+      </ListItemIcon>
+      <ListItemText
+        primary={`You earned ${stars} stars`}
+        primaryTypographyProps={{
+          fontSize: "16px",
+          fontFamily: "Montserrat",
+        }}
+      />{" "}
+      <CoinIcon />
+    </ListItem>
+    <ListItem disablePadding>
+      <ListItemIcon sx={{ fontSize: "40px" }}>
+        <StarIcon sx={{ fontSize: "30px" }} />
+      </ListItemIcon>
+      <ListItemText
+        primary="Your Rating"
+        primaryTypographyProps={{
+          fontSize: "16px",
+          fontFamily: "Montserrat",
+        }}
+      />
+      <Rating name="read-only" value={4} readOnly sx={RatingcustomStyle} />
+    </ListItem>
+  </List>
+);
 
 function HomePage() {
-  function generate(element) {
-    return [0, 1, 2].map((value) =>
-      React.cloneElement(element, {
-        key: value,
-      })
-    );
-  }
+  const [stars, setStars] = useState(0);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    const loadStars = async () => {
+      let userRef;
+  
+      try {
+        const auth = getAuth();
+        const user = auth.currentUser;
+        const uid = user ? user.uid : "";
+        userRef = doc(db, "users", "user_" + uid);
+  
+        const unsubscribe = onSnapshot(userRef, (doc) => {
+          if (doc.exists()) {
+            const userStars = doc.data().stars;
+            const parsedStars = parseInt(userStars);
+            setStars(parsedStars);
+            localStorage.setItem("stars", parsedStars.toString());
+          }
+        });
+  
+        return () => unsubscribe();
+      } catch (error) {
+        console.error(error);
+      }
+    };
+  
+    try {
+      const storedStars = localStorage.getItem("stars");
+      const trimmedStars = storedStars ? storedStars.trim() : "";
+  
+      if (trimmedStars && !Number.isNaN(parseInt(trimmedStars))) {
+        setStars(parseInt(trimmedStars));
+      } else {
+        setStars(0);
+      }
+  
+      loadStars(); // Fetch the stars value on every page load
+    } catch (error) {
+      console.error(error);
+    }
   }, []);
-
+  
   return (
     <>
       <GlobalStyle />
@@ -131,7 +152,7 @@ function HomePage() {
             color: "white",
           }}
         >
-          <BigList />
+          <BigList stars={stars} />
         </Box>
         <SimpleBottomNavigation />
       </Box>

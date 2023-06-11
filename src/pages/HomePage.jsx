@@ -20,7 +20,7 @@ import Rating from "@mui/material/Rating";
 import { FcRating } from "react-icons/fc";
 import { createGlobalStyle } from "styled-components";
 
-const CoinIcon = styled(FcRating)
+const CoinIcon = styled(FcRating)`
   font-size: 20px;
   margin-right: 2px;
 `;

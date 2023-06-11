@@ -12,74 +12,74 @@ import { getFirestore, doc, onSnapshot } from "firebase/firestore";
 import { db } from "../firebase";
 import { getAuth } from "firebase/auth";
 
-const ProfileWrapper = styled.div
+const ProfileWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-;
+`;
 
-const ProfileHeader = styled.div
+const ProfileHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
   padding: 30px;
-;
+`;
 
-const ProfileImage = styled.img
+const ProfileImage = styled.img`
   width: 200px;
   height: 200px;
   border-radius: 50%;
   margin: 20px 0;
-;
+`;
 
-const ProfileName = styled.h1
+const ProfileName = styled.h1`
   font-size: 30px;
   margin: 0;
-;
+`;
 
-const ProfileBio = styled.p
+const ProfileBio = styled.p`
   font-size: 20px;
   margin: 10px 0;
-;
+`;
 
-const DetailsWrapper = styled.div
+const DetailsWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: left;
   margin: 80px 50px;
-;
+`;
 
-const ProfileContact = styled.p
+const ProfileContact = styled.p`
   font-size: 20px;
   margin: 10px 0;
   font-weight: bold;
   text-align: left;
-;
+`;
 
-const ProfileData = styled.p
+const ProfileData = styled.p`
   font-size: 20px;
   margin: 10px 0;
   font-weight: normal;
   text-align: left;
-;
+`;
 
-const CoinWrapper = styled.div
+const CoinWrapper = styled.div`
   display: flex;
   align-items: center;
   margin-top: 20px;
-;
+`;
 
-const CoinIcon = styled(FcRating)
+const CoinIcon = styled(FcRating)`
   font-size: 30px;
   margin-right: 5px;
-;
+`;
 
-const CoinCount = styled.span
+const CoinCount = styled.span`
   font-size: 20px;
   margin-left: 5px;
   font-weight: normal;
-;
+`;
 
 function ProfilePage() {
   const [stars, setStars] = useState(0);

@@ -235,9 +235,6 @@ function HomePageHost() {
     );
   };
 
-  const [events, setEvents] = useState([]);
-  const [city, setCity] = useState("");
-
   const location = useLocation();
   const circleclicked = location.state.curCircle;
 
@@ -256,6 +253,10 @@ function HomePageHost() {
     }
   };
 
+  const [events, setEvents] = useState([]);
+  const [city, setCity] = useState("");
+  const [hostArray, setHostArray] = useState("");
+
   useEffect(() => {
     const fetchEvents = async () => {
       try {
@@ -266,7 +267,10 @@ function HomePageHost() {
         );
         const querySnapshot = await getDocs(q);
         const eventsData = querySnapshot.docs.map((doc) => doc.data());
+        const userFields = eventsData.map((doc) => doc.host);
         setEvents(eventsData);
+        setHostArray(userFields);
+        console.log(hostArray);
       } catch (error) {
         console.error("Error fetching events:", error);
       }

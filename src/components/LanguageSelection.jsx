@@ -55,11 +55,10 @@ const languagesList = [
   ];
   
 
-export default function LanguageSelection() {
-  const [selectedLanguages, setSelectedLanguages] = useState([]);
+export default function LanguageSelection(props) {
 
   const handleLanguageChange = (event) => {
-    setSelectedLanguages(event.target.value);
+    props.setSelectedLanguages(event.target.value);
   };
 
   return (
@@ -74,7 +73,7 @@ export default function LanguageSelection() {
         labelId="language-select-label"
         id="language-select"
         multiple
-        value={selectedLanguages}
+        value={props.selectedLanguages}
         onChange={handleLanguageChange}
         renderValue={(selected) => (
           <div style={{  display: "flex", flexWrap: "wrap" }}>

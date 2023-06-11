@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { Box, Typography, TextField } from '@mui/material';
 
-export default function AboutMe() {
-  const [aboutText, setAboutText] = useState('');
+export default function AboutMe(props) {
 
   const handleAboutChange = (event) => {
-    setAboutText(event.target.value);
+    props.setAboutText(event.target.value);
   };
 
   return (
@@ -21,7 +20,7 @@ export default function AboutMe() {
         multiline
         rows={4}
         variant="outlined"
-        value={aboutText}
+        value={props.aboutText}
         onChange={handleAboutChange}
         sx={{ width: 300 }}
       />

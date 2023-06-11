@@ -282,7 +282,7 @@ function HomePageHost() {
   return (
     <div className="hostHome">
       <ResponsiveAppBar position="fixed" />
-      <div id="upper">Welcome to the Culinary Circle!</div>
+      <div id="upper">{circleclicked}</div>
       <Box mt={3}>
         <EventCitySelection city={city} setCity={setCity} />
       </Box>

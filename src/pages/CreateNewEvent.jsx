@@ -22,7 +22,7 @@ import {
 } from "firebase/firestore";
 import { db } from "../firebase";
 import { getAuth } from "firebase/auth";
-import CitySelection from "../components/CitySelection";
+import EventCitySelection from "../components/CitySelection";
 
 const StyledTitle = styled(Typography)`
   font-weight: bold;
@@ -156,7 +156,7 @@ function CreateEventPage() {
           <EventCircleSelection circle={circle} setCircle={setCircle} />
         </Box>
         <Box mt={3}>
-          <CitySelection city={city} setCity={setCity} />
+          <EventCitySelection city={city} setCity={setCity} />
         </Box>
         <TextField
           id="event-name"

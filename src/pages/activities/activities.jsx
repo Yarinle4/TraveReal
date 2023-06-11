@@ -39,6 +39,7 @@ import {
   query,
   where,
 } from "firebase/firestore";
+import EventCitySelection from "../../components/CitySelection";
 
 function HomePageHost() {
   const fakeCircle = "culinary";
@@ -235,13 +236,16 @@ function HomePageHost() {
   };
 
   const [events, setEvents] = useState([]);
+  const [city, setCity] = useState("");
 
   useEffect(() => {
+    console.log(city);
     const fetchEvents = async () => {
       try {
         const q = query(
           collection(db, "events"),
-          where("circle", "==", fakeCircle)
+          where("circle", "==", fakeCircle),
+          where("city", "==", city)
         );
         const querySnapshot = await getDocs(q);
         const eventsData = querySnapshot.docs.map((doc) => doc.data());
@@ -253,12 +257,15 @@ function HomePageHost() {
     };
 
     fetchEvents();
-  }, []);
+  }, [city]);
 
   return (
     <div className="hostHome">
       <ResponsiveAppBar position="fixed" />
       <div id="upper">Welcome to the Culinary Circle!</div>
+      <Box mt={3}>
+        <EventCitySelection city={city} setCity={setCity} />
+      </Box>
       <div class="body">
         <div id="title">People</div>
         <People />

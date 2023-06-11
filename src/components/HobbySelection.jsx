@@ -38,16 +38,16 @@ const hobbiesList = [
   'Woodworking',
 ];
 
-export default function HobbySelection() {
-  const [selectedHobbies, setSelectedHobbies] = useState([]);
+export default function HobbySelection(props) {
+
 
   const handleHobbyChange = (event) => {
-    setSelectedHobbies(event.target.value);
+    props.setSelectedHobbies(event.target.value);
   };
 
   const getMenuItemStyle = (hobby) => {
     return {
-      fontWeight: selectedHobbies.includes(hobby) ? 600 : 400,
+      fontWeight: props.selectedHobbies.includes(hobby) ? 600 : 400,
     };
   };
 
@@ -64,7 +64,7 @@ export default function HobbySelection() {
           labelId="hobby-select-label"
           id="hobby-select"
           multiple
-          value={selectedHobbies}
+          value={props.selectedHobbies}
           onChange={handleHobbyChange}
           renderValue={(selected) => selected.join(', ')}
         >

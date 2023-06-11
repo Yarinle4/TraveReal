@@ -12,6 +12,7 @@ import CreateEventPage from "./CreateNewEvent";
 import TipsPage from "./TipsPage";
 import HostProfilePage from "./HostProfilePage";
 import UserInfoPage from "./UserInfoPage";
+import SelectCircle from "./CreateEventCircles";
 
 
 
@@ -40,7 +41,10 @@ function Routess() {
       <Route path="/TipsPage" element={<TipsPage />} />
 
       <Route path="/HostProfilePage" element={<HostProfilePage />} />
+
       <Route path="/UserInfoPage" element={<UserInfoPage />} />
+
+      <Route path="/CreateEventCircles" element={<SelectCircle />} />
 
 
 

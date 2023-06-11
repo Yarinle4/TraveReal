@@ -13,13 +13,11 @@ import lockIcon from "../assets/lock.svg"; // Replace with the actual path to yo
 import { useNavigate } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
 import avatarPic from "../assets/profile_picture_new.jpg";
-// import { getAuth } from "../context/AuthContext";
-
-// const auth = getAuth();
+import { getAuth } from "firebase/auth";
 
 import { db } from "../firebase";
 
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, getDoc, doc } from "firebase/firestore";
 
 const CirclePageContainer = styled.div`
   width: 100%;
@@ -122,17 +120,17 @@ const CirclePage = () => {
   const [rotationAngle, setRotationAngle] = useState(0);
   const [isHovering, setIsHovering] = useState(false);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (!isHovering) {
-        setRotationAngle((prevAngle) => prevAngle + 0.2); // Rotate by 6 degrees every 50 milliseconds
-      }
-    }, 50);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     if (!isHovering) {
+  //       setRotationAngle((prevAngle) => prevAngle + 0.2); // Rotate by 6 degrees every 50 milliseconds
+  //     }
+  //   }, 50);
 
-    return () => {
-      clearInterval(interval);
-    };
-  }, [isHovering]);
+  //   return () => {
+  //     clearInterval(interval);
+  //   };
+  // }, [isHovering]);
 
   const getCirclePosition = (radius, angle) => {
     const centerX = 0;
@@ -179,32 +177,51 @@ const CirclePage = () => {
     setRotationAngle((prevAngle) => prevAngle + 0);
   };
 
-  // const [curr_user, setCurrUser] = useState("");
+  const [userCircleList, setUserCircleList] = useState([]);
 
-  // useEffect(() => {
-  //   const loadUsers = async () => {
-  //     const curr = await auth.currentUser;
-  //     setCurrUser(curr);
-  //     console.log(curr_user);
-  //   };
+  useEffect(() => {
+    const loadUsers = async () => {
+      try {
+        const auth = getAuth();
+        const user = auth.currentUser;
+        const uid = user ? user.uid : "a";
+        const userRef = doc(db, "users", "user_" + uid);
+        const userDoc = await getDoc(userRef);
+        const circles = userDoc.data().circle;
+        setUserCircleList(circles);
+      } catch (e) {
+        console.error(e);
+      }
+    };
 
-  //   loadUsers();
-  // }, []);
+    loadUsers();
+  }, []);
 
-  const fakeCircleList = [false, true, false, false, false];
+  const fakeCircleList = [false, true, true, false, false];
 
   const circleCollectionRef = collection(db, "circles");
   const [circleList, setCircleList] = useState([]);
 
   useEffect(() => {
     const getImg = async () => {
-      const data = await getDocs(circleCollectionRef);
-      const dataFilltered = data.docs.map((doc) => ({ ...doc.data() }));
-      setCircleList(dataFilltered);
+      try {
+        console.log("circles");
+        const data = await getDocs(circleCollectionRef);
+        const dataFilltered = data.docs.map((doc) => ({ ...doc.data() }));
+        setCircleList(dataFilltered);
+      } catch (e) {
+        console.error(e);
+      }
     };
 
     getImg();
-  });
+  }, []);
+
+  const isInUserCircle = (name) => {
+    console.log(name);
+    console.log(userCircleList);
+    return userCircleList.includes(name);
+  };
 
   return (
     <CirclePageContainer>
@@ -216,9 +233,9 @@ const CirclePage = () => {
             imageUrl={circle.img}
             position={smallerCirclePositions[index]}
             onClick={() => handleSingleCircleClick()}
-            isLocked={fakeCircleList[index]}
+            isLocked={isInUserCircle(circle.name)}
           >
-            {!fakeCircleList[index] && <LockIcon />}
+            {!isInUserCircle(circle.name) && <LockIcon />}
           </ImageCircle>
         ))}
         {/* <ImageCircleSingle

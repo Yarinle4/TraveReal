@@ -20,6 +20,10 @@ import AboutMe from "../components/AboutMe.jsx";
 import HobbySelection from "../components/HobbySelection.jsx";
 import GenderSelection from "../components/GenderSelection.jsx";
 import LanguageSelection from "../components/LanguageSelection.jsx";
+import { useState } from "react";
+import { getFirestore, doc, updateDoc, collection } from "firebase/firestore";
+import { db } from "../firebase"
+import { getAuth}  from "firebase/auth"
 
 
 const textFieldStyle = {
@@ -27,12 +31,49 @@ const textFieldStyle = {
 };
 
 export default function UserInfoPage() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const GlobalStyle = createGlobalStyle`
     html {
       overflow: auto;
     }
   `;
+    // State variables to hold user input
+    const [selectedFile, setSelectedFile] = useState(null);
+    const [age, setAge] = useState("");
+    const [selectedHobbies, setSelectedHobbies] = useState([]);
+    const [selectedLanguages, setSelectedLanguages] = useState([]);
+    const [gender, setGender] = useState("");
+    const [aboutText, setAboutText] = useState('');
+
+    const navigate = useNavigate();
+
+  
+    // Function to handle form submission
+    const handleSubmit = async () => {
+      try {
+        const auth = getAuth();
+        const user = auth.currentUser;
+        const userRef = doc(db, 'users', "user_"+user.uid);
+        console.log("Document ref is updated with UID: ", user.uid);
+
+         // Update the fields of the user document
+         await updateDoc(userRef, {
+          // selectedFile,
+          age,
+          selectedHobbies,
+          selectedLanguages,
+          gender,
+          aboutText,
+        });
+  
+        console.log("Document updated succefully with UID: ", userRef.uid);
+  
+        // Navigate to "/details" after successful submission
+        navigate("/details");
+      } catch (error) {
+        console.error("Error updating document: ", error);
+      }
+    };
 
   return (
     <>
@@ -43,26 +84,27 @@ export default function UserInfoPage() {
         <Box sx={{ pt: 10, margin: 2, display: "flex", flexDirection: "column", alignItems: "center" }}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6} sx={{ pt: 10, margin: 2, display: "flex", flexDirection: "column", alignItems: "center" }}>
-              <ProfilePictureUpload />
+              <ProfilePictureUpload selectedFile={selectedFile} setSelectedFile={setSelectedFile}/>
             </Grid>
             <Grid item xs={12} sm={6}>
-              <AgeSelection />
+              <AgeSelection age={age} setAge={setAge} />
             </Grid>
             <Grid item xs={12} sm={6}>
-              <HobbySelection />
+              <HobbySelection selectedHobbies={selectedHobbies} setSelectedHobbies={setSelectedHobbies}/>
             </Grid>
             <Grid item xs={12} sm={6}>
-              <LanguageSelection/>
+              <LanguageSelection selectedLanguages={selectedLanguages} setSelectedLanguages={setSelectedLanguages}/>
             </Grid>
             <Grid item xs={12} sm={6}>
-              <GenderSelection />
+              <GenderSelection gender={gender} setGender={setGender} />
             </Grid>
             <Grid item xs={12} sm={6}>
-              <AboutMe />
+              <AboutMe aboutText={aboutText} setAboutText={setAboutText}/>
             </Grid>
           </Grid>
           <Button
-              onClick={() => navigate("/details")}
+              // onClick={() => navigate("/details")}
+              onClick={handleSubmit}
               type="submit"
               fullWidth
               variant="contained"

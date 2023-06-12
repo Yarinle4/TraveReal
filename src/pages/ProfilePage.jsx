@@ -213,6 +213,12 @@ function ProfilePage() {
         Gender: <ProfileData>{gender}</ProfileData>
         </ProfileContact>
         <ProfileContact>
+        Country: <ProfileData>{country}</ProfileData>
+        </ProfileContact>
+        <ProfileContact>
+        Email: <ProfileData>{email}</ProfileData>
+        </ProfileContact>
+        <ProfileContact>
           Languges: <ProfileData>{languages && languages.join(", ")}</ProfileData>
         </ProfileContact>
         <ProfileContact>

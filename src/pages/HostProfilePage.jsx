@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { FcRating } from "react-icons/fc";
 import Stack from "@mui/joy/Stack";
@@ -8,8 +8,10 @@ import IconButton from "@mui/material/IconButton";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { useNavigate } from "react-router-dom";
 import avatarPic from "../assets/profile_picture_new.jpg";
-import { Button } from "@mui/material";
-
+import { Button, Dialog, DialogTitle, DialogContent, DialogActions } from "@mui/material";
+import { doc, getDoc } from "@firebase/firestore";
+import { db } from "../firebase";
+import {getDownloadURL} from 'firebase/storage';
 
 const ProfileWrapper = styled.div`
   display: flex;
@@ -83,8 +85,57 @@ const CoinCount = styled.span`
   font-weight: normal;
 `;
 
+const example_uid = 'user_w8C4C8C9M4P8gnjkHjf4D1jkruC2';
+
 function ProfilePage() {
   const navigate = useNavigate();
+  const [downloadURL, setDownloadURL] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [aboutText, setAboutText] = useState('');
+  const [age, setAge] = useState('');
+  const [country, setCountry] = useState('');
+  const [hobbies, setHobbies] = useState('');
+  const [gender, setGender] = useState('');
+  const [languages, setLanguages] = useState('');
+  const [circles, setCircles] = useState([]);
+  const [email,setEmail] = useState('');
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const userSnapshot = await getDoc(doc(db, 'users', example_uid));
+        //edit example uid to passed uid from
+        const userData = userSnapshot.data();
+        if (userData && userData.profilePictureUrl) {
+          setDownloadURL(userData.profilePictureUrl);
+          setFirstName(userData.firstName);
+          setLastName(userData.lastName);
+          setEmail(userData.email);
+          setAboutText(userData.aboutText);
+          setAge(userData.age);
+          setCountry(userData.country);
+          setHobbies(userData.selectedHobbies);
+          setGender(userData.gender);
+          setLanguages(userData.selectedLanguages);
+          setCircles(userData.circle);
+        }
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    };
+
+    fetchUserData();
+  }, []);
 
   return (
     <>
@@ -107,53 +158,62 @@ function ProfilePage() {
           <ArrowBackIcon fontSize="inherit" />
         </IconButton>
         <ProfileImage
-          src={avatarPic}
+          src={downloadURL || avatarPic}
           alt="Profile picture"
         />
-        <ProfileName>Yarin Levy</ProfileName>
-        <ProfileBio>Web developer and coffee addict.</ProfileBio>
-        <ProfileBio>Talk to me about... NBA and Youtube</ProfileBio>
+        <ProfileName>{firstName} {lastName}</ProfileName>
+        <ProfileBio>{aboutText}</ProfileBio>
+
       </ProfileWrapper>
       <DetailsWrapper>
         <ProfileContact>
-        Country: <ProfileData>Israel</ProfileData>
+        Country: <ProfileData>{country}</ProfileData>
         </ProfileContact>
         <ProfileContact>
-        Home Town: <ProfileData>Jerusalem</ProfileData>
+        Age: <ProfileData>{age}</ProfileData>
         </ProfileContact>
         <ProfileContact>
-        Age: <ProfileData>25</ProfileData>
+        Gender: <ProfileData>{gender}</ProfileData>
         </ProfileContact>
         <ProfileContact>
-        Gender: <ProfileData>Prefer not to say</ProfileData>
+          Languges: <ProfileData>{languages && languages.join(", ")}</ProfileData>
         </ProfileContact>
         <ProfileContact>
-        Profession: <ProfileData>CS Student</ProfileData>
+        Hobbies: <ProfileData>{hobbies && hobbies.join(", ")}</ProfileData>
         </ProfileContact>
-        <ProfileContact>
-          Languges: <ProfileData>English, Hebrew</ProfileData>
-        </ProfileContact>
-        <ProfileContact>
-          Email: <ProfileData>john.doe@example.com</ProfileData>
-        </ProfileContact>
-        <ProfileContact>Hobbies:</ProfileContact>
+        {/* <ProfileContact>Hobbies:</ProfileContact>
         <Stack useFlexGap="true" direction="row" spacing={1}>
           <Chip color="primary" label="Dogs" />
           <Chip color="primary" label="Math" />
           <Chip color="primary" label="Cooking" />
-          {/* <Chip color="primary" label="Love Circle" /> */}
-        </Stack>
+        </Stack> */}
         <ProfileContact></ProfileContact>
-        <ProfileContact>Circles:</ProfileContact>
-        <Stack useFlexGap="true"  direction="row" spacing={1}>
-          <Chip color="primary" label="Culinary Circle" />
-          {/* <Chip color="primary" label="Love Circle" /> */}
+        <ProfileContact>
+        Circles:
+        </ProfileContact>
+        <Stack useFlexGap="true" direction="row" spacing={1}>
+        {circles.map((circle, index) => (
+        <Chip key={index} color="primary" label={circle} />
+        ))}
         </Stack>
-
       </DetailsWrapper>
+      
       <DetailsWrapper>
-      <Button variant="outlined">Contact me!</Button>
+      <Button variant="outlined" onClick={handleOpen}>Contact me!</Button>
       </DetailsWrapper>
+
+      <Dialog open={open} onClose={handleClose}>
+        <DialogTitle>Contact Information</DialogTitle>
+        
+        <DialogContent>
+        <ProfileContact>
+          Email: <ProfileData>{email}</ProfileData>
+        </ProfileContact>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Close</Button>
+        </DialogActions>
+      </Dialog>
     </>
   );
 }

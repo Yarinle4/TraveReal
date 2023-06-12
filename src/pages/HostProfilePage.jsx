@@ -42,6 +42,7 @@ const ProfileName = styled.h1`
 const ProfileBio = styled.p`
   font-size: 20px;
   margin: 10px 0;
+  text-align: center;
 `;
 
 const DetailsWrapper = styled.div`
@@ -191,7 +192,7 @@ function ProfilePage() {
         <ProfileContact>
         Circles:
         </ProfileContact>
-        <Stack useFlexGap="true" direction="row" spacing={1}>
+        <Stack direction="row" spacing={1}>
         {circles.map((circle, index) => (
         <Chip key={index} color="primary" label={circle} />
         ))}

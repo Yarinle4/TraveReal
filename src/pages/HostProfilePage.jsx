@@ -8,10 +8,10 @@ import IconButton from "@mui/material/IconButton";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { useNavigate } from "react-router-dom";
 import avatarPic from "../assets/profile_picture_new.jpg";
-import { Button } from "@mui/material";
+import { Button, Dialog, DialogTitle, DialogContent, DialogActions } from "@mui/material";
 import { doc, getDoc } from "@firebase/firestore";
 import { db } from "../firebase";
-import {getDownloadURL} from 'firebase/storage'
+import {getDownloadURL} from 'firebase/storage';
 
 const ProfileWrapper = styled.div`
   display: flex;
@@ -98,8 +98,17 @@ function ProfilePage() {
   const [hobbies, setHobbies] = useState('');
   const [gender, setGender] = useState('');
   const [languages, setLanguages] = useState('');
-  const [circles, setCircles] = useState('');
+  const [circles, setCircles] = useState([]);
   const [email,setEmail] = useState('');
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -160,23 +169,17 @@ function ProfilePage() {
         <ProfileContact>
         Country: <ProfileData>{country}</ProfileData>
         </ProfileContact>
-        {/* <ProfileContact>
-        Home Town: <ProfileData>Jerusalem</ProfileData>
-        </ProfileContact> */}
         <ProfileContact>
         Age: <ProfileData>{age}</ProfileData>
         </ProfileContact>
         <ProfileContact>
         Gender: <ProfileData>{gender}</ProfileData>
         </ProfileContact>
-        {/* <ProfileContact>
-        Profession: <ProfileData>CS Student</ProfileData>
-        </ProfileContact> */}
         <ProfileContact>
-          Languges: <ProfileData>{languages}</ProfileData>
+          Languges: <ProfileData>{languages && languages.join(", ")}</ProfileData>
         </ProfileContact>
         <ProfileContact>
-          Email: <ProfileData>{email}</ProfileData>
+        Hobbies: <ProfileData>{hobbies && hobbies.join(", ")}</ProfileData>
         </ProfileContact>
         {/* <ProfileContact>Hobbies:</ProfileContact>
         <Stack useFlexGap="true" direction="row" spacing={1}>
@@ -185,16 +188,32 @@ function ProfilePage() {
           <Chip color="primary" label="Cooking" />
         </Stack> */}
         <ProfileContact></ProfileContact>
-        <ProfileContact>Circles:</ProfileContact>
-        <Stack useFlexGap="true"  direction="row" spacing={1}>
-          <Chip color="primary" label={"circle"} />
-          {/* <Chip color="primary" label="Love Circle" /> */}
+        <ProfileContact>
+        Circles:
+        </ProfileContact>
+        <Stack useFlexGap="true" direction="row" spacing={1}>
+        {circles.map((circle, index) => (
+        <Chip key={index} color="primary" label={circle} />
+        ))}
         </Stack>
-
       </DetailsWrapper>
+      
       <DetailsWrapper>
-      <Button variant="outlined">Contact me!</Button>
+      <Button variant="outlined" onClick={handleOpen}>Contact me!</Button>
       </DetailsWrapper>
+
+      <Dialog open={open} onClose={handleClose}>
+        <DialogTitle>Contact Information</DialogTitle>
+        
+        <DialogContent>
+        <ProfileContact>
+          Email: <ProfileData>{email}</ProfileData>
+        </ProfileContact>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Close</Button>
+        </DialogActions>
+      </Dialog>
     </>
   );
 }

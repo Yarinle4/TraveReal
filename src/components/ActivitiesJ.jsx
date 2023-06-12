@@ -37,12 +37,12 @@ const CardSlider =(props)=>{
                             <div 
                                 className="slider-card" 
                                 key={index} 
-                                onClick={() => navigate("/EventPage")}
-                            >
+                                onClick={() => navigate("/EventPage", { state: { slide: slide, slideId: slide.id }})}
+                            > 
                                 <div 
                                     className="slider-card-image" 
                                     style={{
-                                        backgroundImage:`url(${slide.image})`,
+                                        backgroundImage:`url(${slide.eventPictureUrl})`,
                                         backgroundSize:'cover',
                                     }}
                                 ></div>

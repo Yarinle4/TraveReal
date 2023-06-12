@@ -17,6 +17,8 @@ import { getFirestore, doc,addDoc, updateDoc, collection,increment, } from "fire
 import { db } from "../firebase";
 import { getAuth } from "firebase/auth";
 import EventCitySelection from "../components/CitySelection";
+import EventPictureUpload from "../components/EventPictureUpload.jsx";
+
 
 const StyledTitle = styled(Typography)`
   font-weight: bold;
@@ -61,6 +63,13 @@ function CreateEventPage() {
   const [host, setHost] = useState("");
   const [circle, setCircle] = useState("");
   const [city, setCity] = useState("");
+  const [selectedFile, setSelectedFile] = useState(null);
+  // const [eventPictureUrl, setEventPictureUrl] = useState("");
+
+  // const handleEventPictureUrl = (e) => {
+  //   setEventPictureUrl(e.target.value);
+  // };
+
 
   const handleHostChange = (e) => {
     setHost(e.target.value);
@@ -110,6 +119,7 @@ function CreateEventPage() {
       time,
       location,
       host: getAuth().currentUser.uid, // Set host as user's UID,
+      eventPictureUrl: selectedFile.downloadURL,
     };
 
     try {
@@ -217,10 +227,11 @@ function CreateEventPage() {
           style={textFieldStyle}
         />
         <Box mb={2}>
-          <Button variant="contained" component="label" sx={{ width: 400 }}>
+        <EventPictureUpload selectedFile={selectedFile} setSelectedFile={setSelectedFile}/>
+          {/* <Button variant="contained" component="label" sx={{ width: 400 }}>
             Upload Event Photos
             <input type="file" multiple hidden onChange={handlePhotoUpload} />
-          </Button>
+          </Button> */}
         </Box>
         <AppBar position="fixed" sx={{ top: "auto", bottom: 0 }}>
           <Toolbar

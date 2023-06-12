@@ -11,7 +11,6 @@ import avatarPic from "../assets/profile_picture_new.jpg";
 import { getFirestore, doc, onSnapshot } from "firebase/firestore";
 import { db } from "../firebase";
 import { getAuth } from "firebase/auth";
-
 const ProfileWrapper = styled.div`
   display: flex;
   flex-direction: column;

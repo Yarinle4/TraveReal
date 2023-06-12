@@ -8,7 +8,9 @@ import Divider from "@mui/material/Divider";
 import Typography from "@mui/material/Typography";
 import QuiltedImageList from "./QuiltedImageList";
 
-export default function MiddleDividers() {
+export default function MiddleDividers({time, name, details, photos, circles, location }) {
+
+  
   return (
     <Box sx={{ width: "100%", maxWidth: 360 }}>
       <Box sx={{ my: 3, mx: 2 }}>
@@ -23,8 +25,7 @@ export default function MiddleDividers() {
           </Grid>
         </Grid>
         <Typography sx={{ fontSize: "4vw" }}>
-          One of the most famous markets in Jerusalem is Mahane Yehuda, located
-          in the heart of the city.
+          {details}
         </Typography>
       </Box>
       <Box sx={{ m: 2 }}>
@@ -36,7 +37,7 @@ export default function MiddleDividers() {
             </Typography>
           </Grid>
           <Grid item>
-            <QuiltedImageList />
+            <QuiltedImageList photos={photos}/>
           </Grid>
         </Grid>
       </Box>
@@ -46,10 +47,17 @@ export default function MiddleDividers() {
           Circles
         </Typography>
         <Stack direction="row" spacing={1}>
-          <Chip label="History Circle" />
-          <Chip color="primary" label="Culinary Circle" />
-          <Chip color="primary" label="Love Circle" />
-          <Chip label="Bonding Circle" />
+          {circles.map((circle) => (
+            <Chip label={circle} />
+          ))}
+        </Stack>
+      </Box>
+      <Divider variant="middle" />
+      <Box sx={{ m: 2 }}>
+        <Typography gutterBottom variant="h4" component="div">
+          Time: {time}
+        </Typography>
+        <Stack direction="row" spacing={1}>
         </Stack>
       </Box>
       <Divider variant="middle" />
@@ -58,7 +66,7 @@ export default function MiddleDividers() {
           Location
         </Typography>
         <Typography gutterBottom variant="h5" component="div">
-          Mahane Yehuda
+          {location}
         </Typography>
       </Box>
     </Box>

@@ -8,7 +8,7 @@ import IconButton from "@mui/material/IconButton";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { useNavigate } from "react-router-dom";
 import avatarPic from "../assets/profile_picture_new.jpg";
-import { getFirestore, doc, onSnapshot } from "firebase/firestore";
+import { doc, onSnapshot, getDoc } from "firebase/firestore";
 import { db } from "../firebase";
 import { getAuth } from "firebase/auth";
 
@@ -41,28 +41,54 @@ const ProfileName = styled.h1`
 const ProfileBio = styled.p`
   font-size: 20px;
   margin: 10px 0;
+  text-align: center;
 `;
 
+// const DetailsWrapper = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   align-items: left;
+//   margin: 80px 50px;
+// `;
 const DetailsWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: left;
-  margin: 80px 50px;
+  margin: 40px 50px;
 `;
 
 const ProfileContact = styled.p`
-  font-size: 20px;
-  margin: 10px 0;
+display: flex;
+flex-direction: row;
+  font-size: 16px;
   font-weight: bold;
   text-align: left;
 `;
 
 const ProfileData = styled.p`
-  font-size: 20px;
-  margin: 10px 0;
+display: flex;
+flex-direction: row;
+  font-size: 16px;
+  margin: 0px 10px;
   font-weight: normal;
   text-align: left;
 `;
+
+// const ProfileContact = styled.p`
+//   display: flex;
+//   flex-direction: row;
+//   font-size: 20px;
+//   margin: 10px 0;
+//   font-weight: bold;
+//   text-align: left;
+// `;
+
+// const ProfileData = styled.p`
+//   font-size: 20px;
+//   margin: 10px 0;
+//   font-weight: normal;
+//   text-align: left;
+// `;
 
 const CoinWrapper = styled.div`
   display: flex;
@@ -84,15 +110,27 @@ const CoinCount = styled.span`
 function ProfilePage() {
   const [stars, setStars] = useState(0);
   const navigate = useNavigate();
+  const [downloadURL, setDownloadURL] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [aboutText, setAboutText] = useState('');
+  const [age, setAge] = useState('');
+  const [country, setCountry] = useState('');
+  const [hobbies, setHobbies] = useState('');
+  const [gender, setGender] = useState('');
+  const [languages, setLanguages] = useState('');
+  const [circles, setCircles] = useState([]);
+  const [email,setEmail] = useState('');
+
+  const auth = getAuth();
+  const user = auth.currentUser;
+  const uid = user ? user.uid : "";
+  const userRef = doc(db, "users", "user_" + uid);
+  console.log("Document ref is updated with UID: ", uid);
 
   useEffect(() => {
     const loadStars = async () => {
       try {
-        const auth = getAuth();
-        const user = auth.currentUser;
-        const uid = user ? user.uid : "";
-        const userRef = doc(db, "users", "user_" + uid);
-
         const unsubscribe = onSnapshot(userRef, (doc) => {
           if (doc.exists()) {
             const userStars = doc.data().stars;
@@ -107,6 +145,32 @@ function ProfilePage() {
     };
 
     loadStars();
+
+    const fetchUserData = async () => {
+      try {
+        const userSnapshot = await getDoc(userRef);
+        //edit example uid to passed uid from
+        const userData = userSnapshot.data();
+        if (userData && userData.profilePictureUrl) {
+          setDownloadURL(userData.profilePictureUrl);
+          setFirstName(userData.firstName);
+          setLastName(userData.lastName);
+          setEmail(userData.email);
+          setAboutText(userData.aboutText);
+          setAge(userData.age);
+          setCountry(userData.country);
+          setHobbies(userData.selectedHobbies);
+          setGender(userData.gender);
+          setLanguages(userData.selectedLanguages);
+          setCircles(userData.circle);
+        }
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    }
+
+    fetchUserData();
+
   }, []);
 
   return (
@@ -130,9 +194,9 @@ function ProfilePage() {
             <ArrowBackIcon fontSize="inherit" />
           </IconButton>
         </ProfileHeader>
-        <ProfileImage src={avatarPic} alt="Profile picture" />
-        <ProfileName>Yarin Levy</ProfileName>
-        <ProfileBio>Web developer and coffee addict.</ProfileBio>
+        <ProfileImage src={downloadURL||avatarPic} alt="Profile picture" />
+        <ProfileName>{firstName} {lastName}</ProfileName>
+        <ProfileBio>{aboutText}</ProfileBio>
         <CoinWrapper>
           <CoinIcon />
           <CoinCount>{stars}</CoinCount>
@@ -140,15 +204,27 @@ function ProfilePage() {
       </ProfileWrapper>
       <DetailsWrapper>
         <ProfileContact>
-          Email: <ProfileData>john.doe@example.com</ProfileData>
+        Country: <ProfileData>{country}</ProfileData>
         </ProfileContact>
         <ProfileContact>
-          Country: <ProfileData>Israel</ProfileData>
+        Age: <ProfileData>{age}</ProfileData>
         </ProfileContact>
-        <ProfileContact>Circles:</ProfileContact>
+        <ProfileContact>
+        Gender: <ProfileData>{gender}</ProfileData>
+        </ProfileContact>
+        <ProfileContact>
+          Languges: <ProfileData>{languages && languages.join(", ")}</ProfileData>
+        </ProfileContact>
+        <ProfileContact>
+        Hobbies: <ProfileData>{hobbies && hobbies.join(", ")}</ProfileData>
+        </ProfileContact>
+        <ProfileContact>
+        Circles:
+        </ProfileContact>
         <Stack direction="row" spacing={1}>
-          <Chip color="primary" label="Culinary Circle" />
-          {/* <Chip color="primary" label="Love Circle" /> */}
+        {circles.map((circle, index) => (
+        <Chip key={index} color="primary" label={circle} />
+        ))}
         </Stack>
       </DetailsWrapper>
     </>

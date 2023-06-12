@@ -23,16 +23,13 @@ import LanguageSelection from "../components/LanguageSelection.jsx";
 import { useState } from "react";
 import { db } from "../firebase"
 import { getAuth}  from "firebase/auth"
-import { getFirestore, doc, updateDoc } from 'firebase/firestore';
-
-
+import { doc, updateDoc } from 'firebase/firestore';
 
 const textFieldStyle = {
   backgroundColor: "white",
 };
 
 export default function UserInfoPage() {
-  // const navigate = useNavigate();
   const GlobalStyle = createGlobalStyle`
     html {
       overflow: auto;

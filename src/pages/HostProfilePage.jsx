@@ -13,7 +13,6 @@ import { doc, getDoc } from "@firebase/firestore";
 import { db } from "../firebase";
 import {getDownloadURL} from 'firebase/storage'
 
-
 const ProfileWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -100,6 +99,7 @@ function ProfilePage() {
   const [gender, setGender] = useState('');
   const [languages, setLanguages] = useState('');
   const [circles, setCircles] = useState('');
+  const [email,setEmail] = useState('');
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -111,13 +111,14 @@ function ProfilePage() {
           setDownloadURL(userData.profilePictureUrl);
           setFirstName(userData.firstName);
           setLastName(userData.lastName);
+          setEmail(userData.email);
           setAboutText(userData.aboutText);
           setAge(userData.age);
           setCountry(userData.country);
           setHobbies(userData.selectedHobbies);
           setGender(userData.gender);
           setLanguages(userData.selectedLanguages);
-          setCircles(userData.circle)
+          setCircles(userData.circle);
         }
       } catch (error) {
         console.error('Error fetching user data:', error);
@@ -159,23 +160,23 @@ function ProfilePage() {
         <ProfileContact>
         Country: <ProfileData>{country}</ProfileData>
         </ProfileContact>
-        <ProfileContact>
+        {/* <ProfileContact>
         Home Town: <ProfileData>Jerusalem</ProfileData>
-        </ProfileContact>
+        </ProfileContact> */}
         <ProfileContact>
         Age: <ProfileData>{age}</ProfileData>
         </ProfileContact>
         <ProfileContact>
         Gender: <ProfileData>{gender}</ProfileData>
         </ProfileContact>
-        <ProfileContact>
+        {/* <ProfileContact>
         Profession: <ProfileData>CS Student</ProfileData>
-        </ProfileContact>
+        </ProfileContact> */}
         <ProfileContact>
           Languges: <ProfileData>{languages}</ProfileData>
         </ProfileContact>
         <ProfileContact>
-          Email: <ProfileData>john.doe@example.com</ProfileData>
+          Email: <ProfileData>{email}</ProfileData>
         </ProfileContact>
         {/* <ProfileContact>Hobbies:</ProfileContact>
         <Stack useFlexGap="true" direction="row" spacing={1}>

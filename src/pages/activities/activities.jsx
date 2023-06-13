@@ -1,5 +1,6 @@
 import "./activities.css";
 import ActivitiesCards from "../../components/ActivitiesJ";
+import People from "../../components/PoepleActivities";
 import ReactCardSlider from "../../components/ReactCardSlider";
 import ResponsiveAppBar from "../../shared/components/moreComponents/MainBar";
 import Avatar from "@mui/material/Avatar";
@@ -52,75 +53,83 @@ function HomePageHost() {
 
   const FirstsliderName = "addEvent";
   const SecondsliderName = "addTip";
+  const Firstpeople = "addPeople";
 
-  const People = () => {
-    return (
-      <div
-        style={{
-          overflowY: "auto", // Enable vertical scrolling
-          maxHeight: "calc(100vh - 100px)", // Set the maximum height of the container
-        }}
-      >
-        <Box sx={{ display: "flex", gap: "10px", ml: 2, mr: 2, mb: 2 }}>
-          <div>
-            <Avatar
-              sx={{ width: 80, height: 80, mb: 1 }}
-              alt="Person 1"
-              src={avatarPic}
-              onClick={() => navigate("/ProfilePage")}
-            />
-            <Typography sx={{ fontSize: "100%" }} align="center">
-              Yarin Levy
-            </Typography>
-          </div>
-          <div>
-            <Avatar
-              sx={{ width: 80, height: 80, mb: 1 }}
-              alt="Person 2"
-              src={avatarPic}
-              onClick={() => navigate("/ProfilePage")}
-            />
-            <Typography sx={{ fontSize: "100%" }} align="center">
-              Yarin Levy
-            </Typography>
-          </div>
-          <div>
-            <Avatar
-              sx={{ width: 80, height: 80, mb: 1 }}
-              alt="Person 3"
-              src={avatarPic}
-              onClick={() => navigate("/ProfilePage")}
-            />
-            <Typography sx={{ fontSize: "100%" }} align="center">
-              Yarin Levy
-            </Typography>
-          </div>
-          <div>
-            <Avatar
-              sx={{ width: 80, height: 80, mb: 1 }}
-              alt="Person 4"
-              src={avatarPic}
-              onClick={() => navigate("/ProfilePage")}
-            />
-            <Typography sx={{ fontSize: "100%" }} align="center">
-              Yarin Levy
-            </Typography>
-          </div>
-          <div>
-            <Avatar
-              sx={{ width: 80, height: 80, mb: 1 }}
-              alt="Person 5"
-              src={avatarPic}
-              onClick={() => navigate("/ProfilePage")}
-            />
-            <Typography sx={{ fontSize: "100%" }} align="center">
-              Yarin Levy
-            </Typography>
-          </div>
-        </Box>
-      </div>
-    );
-  };
+  // const hosts = [
+  //     {
+  //       photo: avatarPic,
+  //       name: "Dana"
+  //     },
+  //   ];
+
+  // const People = () => {
+  //   return (
+  //     <div
+  //       style={{
+  //         overflowY: "auto", // Enable vertical scrolling
+  //         maxHeight: "calc(100vh - 100px)", // Set the maximum height of the container
+  //       }}
+  //     >
+  //       <Box sx={{ display: "flex", gap: "10px", ml: 2, mr: 2, mb: 2 }}>
+  //         <div>
+  //           <Avatar
+  //             sx={{ width: 80, height: 80, mb: 1 }}
+  //             alt="Person 1"
+  //             src={avatarPic}
+  //             onClick={() => navigate("/ProfilePage")}
+  //           />
+  //           <Typography sx={{ fontSize: "100%" }} align="center">
+  //             Yarin Levy
+  //           </Typography>
+  //         </div>
+  //         <div>
+  //           <Avatar
+  //             sx={{ width: 80, height: 80, mb: 1 }}
+  //             alt="Person 2"
+  //             src={avatarPic}
+  //             onClick={() => navigate("/ProfilePage")}
+  //           />
+  //           <Typography sx={{ fontSize: "100%" }} align="center">
+  //             Yarin Levy
+  //           </Typography>
+  //         </div>
+  //         <div>
+  //           <Avatar
+  //             sx={{ width: 80, height: 80, mb: 1 }}
+  //             alt="Person 3"
+  //             src={avatarPic}
+  //             onClick={() => navigate("/ProfilePage")}
+  //           />
+  //           <Typography sx={{ fontSize: "100%" }} align="center">
+  //             Yarin Levy
+  //           </Typography>
+  //         </div>
+  //         <div>
+  //           <Avatar
+  //             sx={{ width: 80, height: 80, mb: 1 }}
+  //             alt="Person 4"
+  //             src={avatarPic}
+  //             onClick={() => navigate("/ProfilePage")}
+  //           />
+  //           <Typography sx={{ fontSize: "100%" }} align="center">
+  //             Yarin Levy
+  //           </Typography>
+  //         </div>
+  //         <div>
+  //           <Avatar
+  //             sx={{ width: 80, height: 80, mb: 1 }}
+  //             alt="Person 5"
+  //             src={avatarPic}
+  //             onClick={() => navigate("/ProfilePage")}
+  //           />
+  //           <Typography sx={{ fontSize: "100%" }} align="center">
+  //             Yarin Levy
+  //           </Typography>
+  //         </div>
+  //       </Box>
+  //     </div>
+  //   );
+  // };
 
   // const events = [
   //   {
@@ -254,8 +263,8 @@ function HomePageHost() {
   };
 
   const [events, setEvents] = useState([]);
+  const [hosts, setHosts] = useState([]);
   const [city, setCity] = useState("");
-  const [hostArray, setHostArray] = useState("");
 
   useEffect(() => {
     const fetchEvents = async () => {
@@ -268,9 +277,17 @@ function HomePageHost() {
         const querySnapshot = await getDocs(q);
         const eventsData = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
         const userFields = eventsData.map((doc) => doc.host);
+        console.log(userFields);
         setEvents(eventsData);
-        setHostArray(userFields);
-        console.log(hostArray);
+
+        const h = query(
+          collection(db, "users"),
+          where("uid", "in", userFields)
+        );
+        const querySnapshot_1 = await getDocs(h);
+        const eventsData_1 = querySnapshot_1.docs.map((doc) => doc.data());
+        console.log(eventsData_1);
+        setHosts(eventsData_1);
       } catch (error) {
         console.error("Error fetching events:", error);
       }
@@ -288,7 +305,7 @@ function HomePageHost() {
       </Box>
       <div class="body">
         <div id="title">People</div>
-        <People />
+        <People users={hosts} idPeople={Firstpeople} />
       </div>
       <div class="body">
         <div id="title">Upcoming Events</div>

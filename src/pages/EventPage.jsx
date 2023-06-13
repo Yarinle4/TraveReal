@@ -36,7 +36,7 @@ function Event() {
           title: eventData.name, 
           rating: 4.3, // This needs to be updated with the correct field from Firestore
           details: eventData.description,
-          photos: `url(${eventData.eventPictureUrl})`,
+          photos: eventData.eventPictureUrl,
           circles: [eventData.circle], // This needs to be updated if 'circle' field in Firestore is an array
           location: eventData.location,
           mapLocation: [123, 230] // This needs to be updated with the correct field from Firestore

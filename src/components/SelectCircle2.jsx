@@ -11,6 +11,9 @@ import architecture from '../assets/architecture.png';
 import food from '../assets/food.png';
 import hiking from '../assets/hiking.png';
 import sharedWorkspace from '../assets/sharedWorkspace.jpg';
+import { getAuth } from 'firebase/auth';
+import { doc, updateDoc } from 'firebase/firestore';
+import { db } from '../firebase';
 
 const images = [
   {
@@ -110,14 +113,33 @@ const ImageMarked = styled('span')(({ theme }) => ({
 }));
 
 export default function ButtonBases(props) {
-    const handleCircleSelect = (circleTitle) => {
-        if (props.circle.includes(circleTitle)) {
-            // If the circle is already selected, remove it from the array
-            props.setCircle(props.circle.filter((item) => item !== circleTitle));
-          } else {
-            // If the circle is not selected, add it to the array
-            props.setCircle([...props.circle, circleTitle]);
-          }
+
+      const handleCircleSelect = async (circleTitle) => {
+        if (props.circle === circleTitle) {
+          // If the selected circle is already the current circle, no action needed
+          return;
+        }
+      
+        try {
+          const auth = getAuth();
+          const user = auth.currentUser;
+          const uid = user ? user.uid : "a";
+          const userRef = doc(db, 'users', "user_" + uid);
+      
+          // Clear the 'circle' field of the user document
+          await updateDoc(userRef, {
+            circle: ""
+          });
+      
+          // Update the 'circle' field with the new value
+          await updateDoc(userRef, {
+            circle: circleTitle
+          });
+      
+          props.setCircle(circleTitle);
+        } catch (error) {
+          console.error("Error updating document: ", error);
+        }
       };
 
   return (
@@ -128,6 +150,7 @@ export default function ButtonBases(props) {
           key={image.title}
           style={{
             width: image.width,
+            opacity: props.circle === image.title ? 0.5 : 1, // Reduce opacity for selected circles
           }}
           onClick={() => handleCircleSelect(image.title)}
         >
@@ -146,7 +169,7 @@ export default function ButtonBases(props) {
               }}
             >
               {image.title}
-              <ImageMarked className="MuiImageMarked-root" />
+              {props.circle === image.title && <ImageMarked className="MuiImageMarked-root" />}
             </Typography>
           </Image>
         </ImageButton>

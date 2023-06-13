@@ -21,7 +21,7 @@ function EventCitySelection(props) {
   };
 
   return (
-    <Box sx={{ display: "flex", alignItems: "center" }}>
+    <Box sx={{ display: "flex", alignItems: "center", justifyContent: 'center',}}>
       <Typography variant="h6" sx={{ mr: 2.5  }}>
         Select City:
       </Typography>

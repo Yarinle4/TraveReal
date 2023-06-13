@@ -20,9 +20,6 @@ const CardSlider = (props) => {
     slider.scrollLeft = slider.scrollLeft + 500;
   };
 
-  const navigate = useNavigate();
-
-
     const navigate = useNavigate();
 
 

@@ -6,7 +6,7 @@ import Chip from "@mui/material/Chip";
 import ResponsiveAppBar from "../shared/components/moreComponents/MainBar";
 import IconButton from "@mui/material/IconButton";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import avatarPic from "../assets/profile_picture_new.jpg";
 import { Button, Dialog, DialogTitle, DialogContent, DialogActions } from "@mui/material";
 import { doc, getDoc } from "@firebase/firestore";
@@ -86,9 +86,14 @@ const CoinCount = styled.span`
   font-weight: normal;
 `;
 
-const example_uid = 'user_w8C4C8C9M4P8gnjkHjf4D1jkruC2';
+
+// const example_uid = 'user_w8C4C8C9M4P8gnjkHjf4D1jkruC2';
 
 function ProfilePage() {
+  
+  const location = useLocation();
+  const user_uid = 'user_' + location.state.uid;
+
   const navigate = useNavigate();
   const [downloadURL, setDownloadURL] = useState('');
   const [firstName, setFirstName] = useState('');
@@ -114,7 +119,7 @@ function ProfilePage() {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const userSnapshot = await getDoc(doc(db, 'users', example_uid));
+        const userSnapshot = await getDoc(doc(db, 'users', user_uid));
         //edit example uid to passed uid from
         const userData = userSnapshot.data();
         if (userData && userData.profilePictureUrl) {

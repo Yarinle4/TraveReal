@@ -16,7 +16,7 @@ const lat = 123;
 const lng = 230;
 const mapLocation = [lat, lng];
 
-const NewHeader = () => {
+const NewHeader = ({ eventData }) => {
   return (
     <Box sx={{ width: "100%"}}>
       <Box sx={{ my: 3, mx: 2 }}>
@@ -24,16 +24,23 @@ const NewHeader = () => {
           {/* <div class="EventHeader"> */}
           <Stack direction="row" spacing={3} sx={{ mt: 8 }}>
             <ImageAvatars />
-            <h2>Food Tour</h2>
-            <BasicRating />
+            <h2>{eventData.title}</h2>
+            <BasicRating rating={eventData.rating}/>
           </Stack>
           {/* </div> */}
           <div class="EventBody">
-            <MiddleDividers />
+            <MiddleDividers 
+              time = {eventData.time}
+              name = {eventData.name}
+              details={eventData.details}
+              photos={eventData.photos}
+              circles={eventData.circles}
+              location={eventData.location}
+            />
           </div>
           <Box sx={{ my: 3, mx: 2 }}>
             <Card>
-              <SimpleMap />
+              <SimpleMap location={eventData.mapLocation}/>
             </Card>
             <Box sx={{ my: 3, mx: 2 }}></Box>
 
@@ -44,5 +51,6 @@ const NewHeader = () => {
     </Box>
   );
 };
+
 
 export default NewHeader;

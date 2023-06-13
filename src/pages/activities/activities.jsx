@@ -275,7 +275,7 @@ function HomePageHost() {
           where("city", "==", city)
         );
         const querySnapshot = await getDocs(q);
-        const eventsData = querySnapshot.docs.map((doc) => doc.data());
+        const eventsData = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
         const userFields = eventsData.map((doc) => doc.host);
         console.log(userFields);
         setEvents(eventsData);

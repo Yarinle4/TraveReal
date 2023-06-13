@@ -22,37 +22,39 @@ const CardSlider = (props) => {
 
   const navigate = useNavigate();
 
-  return (
-    <div id="main-slider-container">
-      <MdChevronLeft
-        size={40}
-        className="slider-icon left"
-        onClick={slideLeft}
-      />
-      <div class="slider" id={props.idPeople}>
-        {props.slides.map((slide, index) => {
-          return (
-            // <div className="slider-card" key={index} onClick={()=>slide.clickEvent()}> להשתמש בזה אחכ
-            <div
-              className="slider-card"
-              key={index}
-              onClick={() => navigate("/EventPage")}
-            >
-              <div
-                className="slider-card-image"
-                style={{
-                  backgroundImage: `url(${slide.eventPictureUrl})`,
-                  backgroundSize: "cover",
-                }}
-              ></div>
-              <p className="slider-card-title">{slide.name}</p>
-              {/* <p className="slider-card-description">{slide.description}</p> */}
-              <hr class="slant-line"></hr>
-              <p className="slider-card-date">
-                <AccessTimeRoundedIcon fontSize="small" sx={{ ml: 1, mr: 1 }} />
-                {slide.date + " | " + slide.time}
-              </p>
-              {/* <p className="slider-card-points">
+
+    const navigate = useNavigate();
+
+
+    return (
+        <div id="main-slider-container">
+            <MdChevronLeft 
+                size={40} 
+                className="slider-icon left" 
+                onClick={slideLeft}
+            />
+            <div class="slider" id={props.idSlide}>
+               {props.slides.map((slide, index) => {
+                        return (
+                            // <div className="slider-card" key={index} onClick={()=>slide.clickEvent()}> להשתמש בזה אחכ
+                            <div 
+                                className="slider-card" 
+                                key={index} 
+                                onClick={() => navigate("/EventPage", { state: { slide: slide, slideId: slide.id }})}
+                            > 
+                                <div 
+                                    className="slider-card-image" 
+                                    style={{
+                                        backgroundImage:`url(${slide.eventPictureUrl})`,
+                                        backgroundSize:'cover',
+                                    }}
+                                ></div>
+                                <p className="slider-card-title">{slide.name}</p>
+                                {/* <p className="slider-card-description">{slide.description}</p> */}
+                                <hr class="slant-line"></hr>
+                                <p className="slider-card-date">
+                                    <AccessTimeRoundedIcon fontSize="small" sx={{ml:1, mr:1}}/>{slide.date + " | " + slide.time}</p>
+                                {/* <p className="slider-card-points">
                                     <StarBorderRoundedIcon fontSize="medium" sx={{ml:0.9, mr:1}}/>{slide.points}</p> */}
               <p className="slider-card-location">
                 <LocationOnIcon fontSize="medium" sx={{ ml: 0.9, mr: 1 }} />

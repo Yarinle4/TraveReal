@@ -53,7 +53,7 @@ function HomePageHost() {
 
   const FirstsliderName = "addEvent";
   const SecondsliderName = "addTip";
-  const Firstpeople = "addPeople"
+  const Firstpeople = "addPeople";
 
   // const hosts = [
   //     {
@@ -61,7 +61,6 @@ function HomePageHost() {
   //       name: "Dana"
   //     },
   //   ];
-
 
   // const People = () => {
   //   return (
@@ -266,7 +265,6 @@ function HomePageHost() {
   const [events, setEvents] = useState([]);
   const [hosts, setHosts] = useState([]);
   const [city, setCity] = useState("");
-  const [hostArray, setHostArray] = useState("");
 
   useEffect(() => {
     const fetchEvents = async () => {
@@ -279,19 +277,21 @@ function HomePageHost() {
         const querySnapshot = await getDocs(q);
         const eventsData = querySnapshot.docs.map((doc) => doc.data());
         const userFields = eventsData.map((doc) => doc.host);
+        console.log(userFields);
         setEvents(eventsData);
-        setHostArray(userFields);
-        console.log(hostArray);
+
+        const h = query(
+          collection(db, "users"),
+          where("uid", "in", userFields)
+        );
+        const querySnapshot_1 = await getDocs(h);
+        const eventsData_1 = querySnapshot_1.docs.map((doc) => doc.data());
+        console.log(eventsData_1);
+        setHosts(eventsData_1);
       } catch (error) {
         console.error("Error fetching events:", error);
       }
     };
-
-    const h = query(
-      collection(db, "users"),
-      where("user", "in", [hostArray]),
-      // setHosts(userFields)
-    )
 
     fetchEvents();
   }, [city]);
@@ -305,7 +305,7 @@ function HomePageHost() {
       </Box>
       <div class="body">
         <div id="title">People</div>
-        <People users={hosts} idPeople={Firstpeople}/>
+        <People users={hosts} idPeople={Firstpeople} />
       </div>
       <div class="body">
         <div id="title">Upcoming Events</div>

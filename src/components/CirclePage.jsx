@@ -32,6 +32,7 @@ import {
   doc,
   arrayUnion,
   updateDoc,
+  increment,
 } from "firebase/firestore";
 
 const CirclePageContainer = styled.div`
@@ -150,7 +151,6 @@ const CirclePage = (stars) => {
   );
 
   const handleCircleClick = () => {
-    //TODO: add location
     navigate("/ProfilePage");
   };
 
@@ -182,6 +182,7 @@ const CirclePage = (stars) => {
     if (userDoc.exists()) {
       await updateDoc(userRef, {
         circle: arrayUnion(circleClicked),
+        stars: increment(-10),
       });
     }
     console.log("calling get image");

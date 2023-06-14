@@ -80,13 +80,13 @@ function HomePage() {
   useEffect(() => {
     const loadStars = async () => {
       let userRef;
-  
+
       try {
         const auth = getAuth();
         const user = auth.currentUser;
         const uid = user ? user.uid : "";
         userRef = doc(db, "users", "user_" + uid);
-  
+
         const unsubscribe = onSnapshot(userRef, (doc) => {
           if (doc.exists()) {
             const userStars = doc.data().stars;
@@ -95,29 +95,29 @@ function HomePage() {
             localStorage.setItem("stars", parsedStars.toString());
           }
         });
-  
+
         return () => unsubscribe();
       } catch (error) {
         console.error(error);
       }
     };
-  
+
     try {
       const storedStars = localStorage.getItem("stars");
       const trimmedStars = storedStars ? storedStars.trim() : "";
-  
+
       if (trimmedStars && !Number.isNaN(parseInt(trimmedStars))) {
         setStars(parseInt(trimmedStars));
       } else {
         setStars(0);
       }
-  
+
       loadStars(); // Fetch the stars value on every page load
     } catch (error) {
       console.error(error);
     }
   }, []);
-  
+
   return (
     <>
       <GlobalStyle />
@@ -137,7 +137,7 @@ function HomePage() {
         <FloatingActionButtons />
         <DraggableDialog />
         <Box sx={{ mt: 2 }}>
-          <CirclePage />
+          <CirclePage stars={stars} />
         </Box>
 
         <Box

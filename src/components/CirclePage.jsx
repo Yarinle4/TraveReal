@@ -15,9 +15,24 @@ import Avatar from "@mui/material/Avatar";
 import avatarPic from "../assets/profile_picture_new.jpg";
 import { getAuth } from "firebase/auth";
 
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  Button,
+} from "@mui/material";
+
 import { db } from "../firebase";
 
-import { collection, getDocs, getDoc, doc } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  getDoc,
+  doc,
+  arrayUnion,
+  updateDoc,
+} from "firebase/firestore";
 
 const CirclePageContainer = styled.div`
   width: 100%;
@@ -71,16 +86,6 @@ const ImageCircle = styled(Circle)`
   }
 `;
 
-const ImageCircleSingle = styled(Circle)`
-  background-image: url(${(props) => props.imageUrl});
-  background-size: cover;
-
-  &:hover {
-    /* Add hover effect */
-    border: 2px solid #000;
-  }
-`;
-
 const CircleRapper = styled.div`
   display: flex;
   position: absolute;
@@ -104,7 +109,7 @@ const LockIcon = styled.div`
   z-index: 3; /* Set higher z-index to appear above the circle content and the pseudo-element */
 `;
 
-const CirclePage = () => {
+const CirclePage = (stars) => {
   const centerCircleSize = "150px";
   const smallerCircleSize = "90px";
 
@@ -118,19 +123,15 @@ const CirclePage = () => {
   const smallerCircleRadius = 150;
 
   const [rotationAngle, setRotationAngle] = useState(0);
-  const [isHovering, setIsHovering] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [alertOpen, setAlertOpen] = useState(false);
+  const [circleClicked, setCircleClicked] = useState();
+  const circleCollectionRef = collection(db, "circles");
+  const [circleList, setCircleList] = useState([]);
+  const [userCircleList, setUserCircleList] = useState([]);
+  const [userImg, setUserImg] = useState([]);
 
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     if (!isHovering) {
-  //       setRotationAngle((prevAngle) => prevAngle + 0.2); // Rotate by 6 degrees every 50 milliseconds
-  //     }
-  //   }, 50);
-
-  //   return () => {
-  //     clearInterval(interval);
-  //   };
-  // }, [isHovering]);
+  const navigate = useNavigate();
 
   const getCirclePosition = (radius, angle) => {
     const centerX = 0;
@@ -148,38 +149,54 @@ const CirclePage = () => {
     getCirclePosition(smallerCircleRadius, rotationAngle + index * 72)
   );
 
-  // const smallerCirclePositionsSingle = () =>
-  //   getCirclePosition(smallerCircleRadius, rotationAngle + 5 * 72);
-
-  // const [isVisible, setIsVisible] = useState(false);
-
   const handleCircleClick = () => {
+    //TODO: add location
     navigate("/ProfilePage");
   };
 
-  // const handleMouseEnter = () => {
-  //   setIsHovering(true);
-  // };
-
-  // const handleMouseLeave = () => {
-  //   setIsHovering(false);
-  // };
-
-  const navigate = useNavigate();
-
   const handleSingleCircleClick = (curCircle) => {
+    setCircleClicked(curCircle);
     if (isInUserCircle(curCircle)) {
       navigate("/activities", { state: { curCircle } });
+    } else {
+      console.log();
+      if (stars.stars < 10) {
+        setAlertOpen(true);
+      } else {
+        setOpen(true);
+      }
     }
   };
 
-  // const handleSingleCircleHover = () => {
-  //   console.log("hover");
-  //   setRotationAngle((prevAngle) => prevAngle + 0);
-  // };
+  const handleClose = () => {
+    setOpen(false);
+  };
 
-  const [userCircleList, setUserCircleList] = useState([]);
-  const [userImg, setUserImg] = useState([]);
+  const handleYes = async () => {
+    const auth = getAuth();
+    const user = auth.currentUser;
+    const uid = user ? user.uid : "a";
+    const userRef = doc(db, "users", "user_" + uid);
+    const userDoc = await getDoc(userRef);
+
+    if (userDoc.exists()) {
+      await updateDoc(userRef, {
+        circle: arrayUnion(circleClicked),
+      });
+    }
+    console.log("calling get image");
+    getImg();
+    setOpen(false);
+  };
+
+  const handleNo = () => {
+    // Handle "No" response here
+    setOpen(false);
+  };
+
+  const handleAlertClose = () => {
+    setAlertOpen(false);
+  };
 
   useEffect(() => {
     const loadUsers = async () => {
@@ -199,23 +216,20 @@ const CirclePage = () => {
     };
 
     loadUsers();
-  }, []);
+  }, [open]);
 
-  const circleCollectionRef = collection(db, "circles");
-  const [circleList, setCircleList] = useState([]);
+  const getImg = async () => {
+    try {
+      console.log("getImg");
+      const data = await getDocs(circleCollectionRef);
+      const dataFilltered = data.docs.map((doc) => ({ ...doc.data() }));
+      setCircleList(dataFilltered);
+    } catch (e) {
+      console.error(e);
+    }
+  };
 
   useEffect(() => {
-    const getImg = async () => {
-      try {
-        console.log("circles");
-        const data = await getDocs(circleCollectionRef);
-        const dataFilltered = data.docs.map((doc) => ({ ...doc.data() }));
-        setCircleList(dataFilltered);
-      } catch (e) {
-        console.error(e);
-      }
-    };
-
     getImg();
   }, []);
 
@@ -250,6 +264,24 @@ const CirclePage = () => {
           src={userImg}
         />
       </ProfileCircle>
+      <Dialog open={open} onClose={handleClose}>
+        <DialogTitle sx={{ fontWeight: "bold" }}>Confirmation</DialogTitle>
+        <DialogContent>Do you want to Unlock this circle?</DialogContent>
+        <DialogActions>
+          <Button onClick={handleYes}>Yes</Button>
+          <Button onClick={handleNo}>No</Button>
+        </DialogActions>
+      </Dialog>
+
+      <Dialog open={alertOpen} onClose={handleAlertClose}>
+        <DialogTitle sx={{ fontWeight: "bold" }}>
+          You don't have enough stars.
+        </DialogTitle>
+        <DialogContent>To unlock this circle, collect 10 stars</DialogContent>
+        <DialogActions>
+          <Button onClick={handleAlertClose}>OK</Button>
+        </DialogActions>
+      </Dialog>
     </CirclePageContainer>
   );
 };

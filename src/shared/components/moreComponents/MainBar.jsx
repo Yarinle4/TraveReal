@@ -18,7 +18,7 @@ import Switch from "@mui/material/Switch";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-import logo from "../../../assets/newlogo.png";
+import logo from "../../../assets/UpdateLogo.png";
 import avatarPic from "../../../assets/no_pic.png";
 
 // const avatarPic =
@@ -85,7 +85,8 @@ function ResponsiveAppBar() {
           disableGutters
           sx={{ display: "flex", justifyContent: "space-between" }}
         >
-          <LogoContainer>TraveReal</LogoContainer>
+          {/* <image src={logo} /> */}
+          <LogoContainer> <img src={logo} style={{maxHeight: 55}}/></LogoContainer>
 
           {/* 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>

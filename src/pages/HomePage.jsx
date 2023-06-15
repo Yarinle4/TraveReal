@@ -19,6 +19,7 @@ import DraggableDialog from "../components/AlertPopUp";
 import Rating from "@mui/material/Rating";
 import { FcRating } from "react-icons/fc";
 import { createGlobalStyle } from "styled-components";
+import HomePageLogo from "../assets/HomePageLogo.png";
 
 const CoinIcon = styled(FcRating)`
   font-size: 20px;
@@ -126,17 +127,30 @@ function HomePage() {
         <Box
           sx={{
             mt: 8,
-            fontSize: 40,
+            fontSize: 30,
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
+            color: '#679E84'
           }}
         >
-          Welcome!
+          Welcome to TraveReal!
         </Box>
+        <Box
+          sx={{
+            mt: 1,
+            fontSize: 20,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            color: '#679E84'
+          }}
+        >
+          Join a circle and start your journey
+        </Box>        
         <FloatingActionButtons />
         <DraggableDialog />
-        <Box sx={{ mt: 2 }}>
+        <Box>
           <CirclePage stars={stars} />
         </Box>
 

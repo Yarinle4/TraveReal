@@ -17,8 +17,9 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import DensityMediumIcon from '@mui/icons-material/DensityMedium';
 
-import logo from "../../../assets/UpdateLogo.png";
+import logo from "../../../assets/UpdateLogo.svg";
 import avatarPic from "../../../assets/no_pic.png";
 
 // const avatarPic =
@@ -171,11 +172,12 @@ function ResponsiveAppBar() {
           <Box sx={{ display: "flex", alignItems: "center" }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar
+                <DensityMediumIcon sx={{ color: '#DBFFEE', fontSize: 'large' }}/>
+                {/* <Avatar
                   alt="Remy Sharp"
                   src={avatarPic}
                   sx={{ width: 50, height: 50 }}
-                />
+                /> */}
               </IconButton>
             </Tooltip>
             <Menu

@@ -21,6 +21,7 @@ import ResponsiveAppBar from "../shared/components/moreComponents/MainBar";
 import "../pages/HomePageHost/homeHost.css";
 import { auth, db } from "../firebase";
 import { UserAuth } from "../context/AuthContext";
+import signUpLogo from "../assets/signUpLogo.svg"
 
 const textFieldStyle = {
   backgroundColor: "white",
@@ -91,7 +92,9 @@ export default function SignUp() {
             alignItems: "center",
           }}
         >
-          <Avatar sx={{ mt: 10, mb: 1, bgcolor: "secondary.main" }}></Avatar>
+          <Avatar sx={{ mt: 10, bgcolor: "#f3fbf4" }}>
+            <img src={signUpLogo} style={{maxWidth: '100%'}}/>
+            </Avatar>
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>

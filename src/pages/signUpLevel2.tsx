@@ -63,11 +63,11 @@ export default function SignUp() {
           <Typography
             component="h1"
             fontSize={20}
-            sx={{ mt: 2, mb: 1, fontWeight: "20px" }}
+            sx={{ mt: 2, mb: 1, fontWeight: "20px", color: '#679E84'}}
           >
             Choose a circle that interests you
           </Typography>
-          <Typography component="h1" fontSize={13}>
+          <Typography component="h1" fontSize={13} sx ={{ color: '#679E84' }}>
             Currently, you can only select one circle
           </Typography>
           <Box

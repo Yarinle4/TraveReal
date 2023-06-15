@@ -7,31 +7,52 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { useNavigate } from "react-router-dom";
 import { Typography } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
+import Box from "@mui/material/Box";
+
 
 const People = (props) => {
   const navigate = useNavigate();
 
   return (
-    <div class="people" id={props.idPeople}>
-      {props.users.map((user, index) => {
-        return (
-          <div>
-            <p>
-              <Avatar
-                sx={{ width: 80, height: 80, mb: 1 }}
-                alt="Person 1"
-                src={user.profilePictureUrl}
-                onClick={() => navigate("/HostProfilePage",{state: {uid: user.uid}})}
-              />
-            </p>
-            <p>
-              <Typography sx={{ fontSize: "100%" }} align="center" />
-              {user.firstName + " " + user.lastName}
-            </p>
-          </div>
-        );
-      })}
-    </div>
+<div className="people" id={props.idPeople}>
+  <Box sx={{ display: 'flex', flexDirection: 'row' }}>
+    {props.users.map((user, index) => {
+      return (
+        <Box
+          key={index}
+          sx={{
+            width: 80,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            margin: '0 5px',
+          }}
+        >
+          <p>
+            <Avatar
+              sx={{ width: 80, height: 80, mb: 1 }}
+              alt="Person 1"
+              src={user.profilePictureUrl}
+              onClick={() => navigate("/HostProfilePage", { state: { uid: user.uid } })}
+            />
+          </p>
+          <p>
+            <Typography
+              sx={{
+                maxWidth: '100%',
+                wordWrap: 'break-word',
+              }}
+              align="center"
+            >
+              {user.firstName + ' ' + user.lastName}
+            </Typography>
+          </p>
+        </Box>
+      );
+    })}
+  </Box>
+</div>
+
   );
 };
 export default People;

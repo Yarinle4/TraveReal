@@ -86,6 +86,10 @@ const CoinCount = styled.span`
   font-weight: normal;
 `;
 
+const textFieldStyle = {
+  backgroundColor: "white",
+};
+
 
 // const example_uid = 'user_w8C4C8C9M4P8gnjkHjf4D1jkruC2';
 
@@ -209,7 +213,7 @@ function ProfilePage() {
       </DetailsWrapper>
 
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Contact Information</DialogTitle>
+        <DialogTitle >Contact Information</DialogTitle>
         
         <DialogContent>
         <ProfileContact>

@@ -1,14 +1,20 @@
-import React, { useState } from 'react';
-import { Box, Typography, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
+import React, { useState } from "react";
+import {
+  Box,
+  Typography,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+} from "@mui/material";
 
-const genderList = [
-  'Female',
-  'Male',
-  'Other',
-];
+const genderList = ["Female", "Male", "Other"];
+
+const textFieldStyle = {
+  backgroundColor: "white",
+};
 
 export default function GenderSelection(props) {
-
   const handleGenderChange = (event) => {
     props.setGender(event.target.value);
   };
@@ -20,8 +26,10 @@ export default function GenderSelection(props) {
   };
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+    <Box
+      sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+    >
+      <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
         <Typography variant="h6" sx={{ mr: 1 }}>
           Select Your Gender:
         </Typography>
@@ -33,13 +41,14 @@ export default function GenderSelection(props) {
           id="gender-select"
           value={props.gender}
           onChange={handleGenderChange}
+          style={textFieldStyle}
         >
           {genderList.map((gender) => (
             <MenuItem
               key={gender}
               value={gender}
               style={getMenuItemStyle(gender)}
-              sx={{ '&.Mui-selected': { backgroundColor: '#f8f8f8' } }}
+              sx={{ "&.Mui-selected": { backgroundColor: "#f8f8f8" } }}
             >
               {gender}
             </MenuItem>

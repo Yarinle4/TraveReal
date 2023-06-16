@@ -1,6 +1,10 @@
 import React from "react";
 import { Box, Typography, Select, MenuItem } from "@mui/material";
 
+const textFieldStyle = {
+  backgroundColor: "white",
+};
+
 function EventCircleSelection(props) {
   const handleCircleChange = (event) => {
     props.setCircle(event.target.value);
@@ -24,13 +28,14 @@ function EventCircleSelection(props) {
 
   return (
     <Box sx={{ display: "flex", alignItems: "center" }}>
-      <Typography variant="h6" sx={{ mr: 1 }}>
+      <Typography variant="h5" sx={{ mr: 1 }}>
         Select Circle:
       </Typography>
       <Select
         value={props.Circle}
         onChange={handleCircleChange}
-        sx={{ minWidth: 200 }}
+        sx={{ minWidth: 250 }}
+        style={textFieldStyle}
       >
         {generateCircleOptions()}
       </Select>

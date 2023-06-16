@@ -1,6 +1,10 @@
 import React from "react";
 import { Box, Typography, Select, MenuItem } from "@mui/material";
 
+const textFieldStyle = {
+  backgroundColor: "white",
+};
+
 function EventCitySelection(props) {
   const handleCityChange = (event) => {
     props.setCity(event.target.value);
@@ -21,14 +25,15 @@ function EventCitySelection(props) {
   };
 
   return (
-    <Box sx={{ display: "flex", alignItems: "center", justifyContent: 'center',}}>
-      <Typography variant="h6" sx={{ mr: 2.5  }}>
+    <Box sx={{ display: "flex", alignItems: "center" }}>
+      <Typography variant="h5" sx={{ mr: 2.5 }}>
         Select City:
       </Typography>
       <Select
         value={props.city}
         onChange={handleCityChange}
-        sx={{ minWidth: 200 }}
+        sx={{ minWidth: 250 }}
+        style={textFieldStyle}
       >
         {generateCityOptions()}
       </Select>

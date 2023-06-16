@@ -1,46 +1,55 @@
-import React, { useState } from 'react';
-import { Box, Typography, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
+import React, { useState } from "react";
+import {
+  Box,
+  Typography,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+} from "@mui/material";
 
 const hobbiesList = [
-  'Arts',
-  'Basketball',
-  'Clubbing',
-  'Collecting',
-  'Cooking',
-  'Crafting',
-  'Cycling',
-  'Dancing',
-  'DIY Projects',
-  'Drawing',
-  'Football',
-  'Fishing',
-  'Gaming',
-  'Gardening',
-  'Hiking',
-  'Hummus eating',
-  'Knitting',
-  'Listening to Music',
-  'Meditation',
-  'Painting',
-  'Photography',
-  'Playing Musical Instruments',
-  'Playing Sports',
-  'Reading',
-  'Running',
-  'Sewing',
-  'Shopping',
-  'Singing',
-  'Surfing',
-  'Swimming',
-  'Traveling',
-  'Volunteering',
-  'Watching Movies',
-  'Woodworking',
+  "Arts",
+  "Basketball",
+  "Clubbing",
+  "Collecting",
+  "Cooking",
+  "Crafting",
+  "Cycling",
+  "Dancing",
+  "DIY Projects",
+  "Drawing",
+  "Football",
+  "Fishing",
+  "Gaming",
+  "Gardening",
+  "Hiking",
+  "Hummus eating",
+  "Knitting",
+  "Listening to Music",
+  "Meditation",
+  "Painting",
+  "Photography",
+  "Playing Musical Instruments",
+  "Playing Sports",
+  "Reading",
+  "Running",
+  "Sewing",
+  "Shopping",
+  "Singing",
+  "Surfing",
+  "Swimming",
+  "Traveling",
+  "Volunteering",
+  "Watching Movies",
+  "Woodworking",
 ];
 
+const textFieldStyle = {
+  backgroundColor: "white",
+};
+
 export default function HobbySelection(props) {
-
-
   const handleHobbyChange = (event) => {
     props.setSelectedHobbies(event.target.value);
   };
@@ -52,8 +61,10 @@ export default function HobbySelection(props) {
   };
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+    <Box
+      sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+    >
+      <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
         <Typography variant="h6" sx={{ mr: 1 }}>
           Select Up To 5 Hobbies:
         </Typography>
@@ -65,15 +76,16 @@ export default function HobbySelection(props) {
           id="hobby-select"
           multiple
           value={props.selectedHobbies}
+          style={textFieldStyle}
           onChange={handleHobbyChange}
-          renderValue={(selected) => selected.join(', ')}
+          renderValue={(selected) => selected.join(", ")}
         >
           {hobbiesList.map((hobby) => (
             <MenuItem
               key={hobby}
               value={hobby}
               style={getMenuItemStyle(hobby)}
-              sx={{ '&.Mui-selected': { backgroundColor: '#98FB98' } }}
+              sx={{ "&.Mui-selected": { backgroundColor: "#98FB98" } }}
             >
               {hobby}
             </MenuItem>

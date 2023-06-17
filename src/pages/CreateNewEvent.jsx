@@ -120,6 +120,7 @@ function CreateEventPage() {
       location,
       host: getAuth().currentUser.uid, // Set host as user's UID,
       eventPictureUrl: selectedFile.downloadURL,
+      participants: [],
     };
 
     try {

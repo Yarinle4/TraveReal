@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { doc, getFirestore, getDoc, onSnapshot } from "firebase/firestore";
 import BasicRating from "./BasicRating";
 import Stack from "@mui/joy/Stack";
-import ImageAvatars from "./Avatar";
 import "./NewHeader.css";
 import QuiltedImageList from "./QuiltedImageList";
 import Button from "@mui/material/Button";
@@ -11,47 +11,72 @@ import SimpleMap from "./SimpleMap";
 import "leaflet/dist/leaflet.css";
 import Box from "@mui/material/Box";
 import AlertDialogSlide from "./PopUpDialog";
+import Avatar from "@mui/material/Avatar";
+import Typography from '@mui/material/Typography';
+import { db } from "../firebase"; 
 
 const lat = 123;
 const lng = 230;
 const mapLocation = [lat, lng];
 
 const NewHeader = ({ eventData }) => {
+    
+  const [profilePic, setProfilePic] = useState("");
+  const [hostName, setHostName] = useState("");
+  
+  useEffect(() => {
+    console.log("event host uid:", eventData.host);
+    const fetchHostProfilePic = async () => {
+      const db = getFirestore();
+      const docRef = doc(db, 'users', 'user_' + eventData.host);
+      const docSnap = await getDoc(docRef);
+      
+      if (docSnap.exists()) {
+        const userProfile = docSnap.data();
+        setProfilePic(userProfile.profilePictureUrl);
+        setHostName(userProfile.firstName);
+      } else {
+        console.log("No such document!");
+      }
+    };
+
+    fetchHostProfilePic();
+  }, [eventData.host]);
+
   return (
     <Box sx={{ width: "100%"}}>
-      <Box sx={{ my: 3, mx: 2 }}>
+      <Box sx={{  my: 3, mx: 2 }}>
         <div class="EventHeader">
-          {/* <div class="EventHeader"> */}
           <Stack direction="row" spacing={3} sx={{ mt: 8 }}>
-            <ImageAvatars />
-            <h2>{eventData.title}</h2>
-            <BasicRating rating={eventData.rating}/>
+            <Avatar src={profilePic}  sx={{ width: 70, height: 70 }} />
+            <Box sx={{ flexGrow: 1 , }}>
+              <Typography variant="h2" component="div" sx={{   fontWeight: 'bold', }}>
+              {eventData.title}
+              </Typography>
+          </Box>
           </Stack>
-          {/* </div> */}
           <div class="EventBody">
             <MiddleDividers 
-              host = {eventData.host}
               time = {eventData.time}
               name = {eventData.name}
               details={eventData.details}
               photos={eventData.photos}
               circles={eventData.circles}
               location={eventData.location}
+              hostName={hostName} 
             />
           </div>
           <Box sx={{ my: 3, mx: 2 }}>
             <Card>
-              <SimpleMap location={eventData.mapLocation}/>
+              <SimpleMap city={eventData.mapLocation} />
             </Card>
             <Box sx={{ my: 3, mx: 2 }}></Box>
-
-            <AlertDialogSlide />
+            <AlertDialogSlide eventID={eventData.eventID} />
           </Box>
         </div>
       </Box>
     </Box>
   );
 };
-
 
 export default NewHeader;

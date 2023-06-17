@@ -8,11 +8,27 @@ import Divider from "@mui/material/Divider";
 import Typography from "@mui/material/Typography";
 import QuiltedImageList from "./QuiltedImageList";
 
-export default function MiddleDividers({host,time, name, details, photos, circles, location }) {
+export default function MiddleDividers({time, name, details, photos, circles, location, hostName }) {
 
   
   return (
     <Box sx={{ width: "100%", maxWidth: 360 }}>
+        <Box sx={{ my: 3, mx: 2 }}>
+        <Grid container alignItems="center">
+          <Grid item>
+            <Typography
+              gutterBottom
+              variant="h4"
+            >
+              Host:
+            </Typography>
+          </Grid>
+        </Grid>
+        <Typography sx={{ fontSize: "3vw" }}>
+          {hostName}
+        </Typography>
+      </Box>
+      <Divider variant="middle" />
       <Box sx={{ my: 3, mx: 2 }}>
         <Grid container alignItems="center">
           <Grid item>
@@ -24,12 +40,11 @@ export default function MiddleDividers({host,time, name, details, photos, circle
             </Typography>
           </Grid>
         </Grid>
-        <Typography sx={{ fontSize: "4vw" }}>
+        <Typography sx={{ fontSize: "3vw" }}>
           {details}
         </Typography>
       </Box>
-      <Box sx={{ m: 2 }}>
-        {/* <Divider variant="middle" /> */}
+      <Box sx={{ mt: 1 }}>
         <Grid container alignItems="center">
           <Grid item xs>
             <Typography gutterBottom variant="h4" component="div">

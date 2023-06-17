@@ -133,7 +133,7 @@ function HomePageHost() {
 
   // const events = [
   //   {
-  //     image: WineryTour,
+      // image: WineryTour,
   //     title: "Winery Tour",
   //     description: "Cheers to good times",
   //     date: "Today | 5PM",

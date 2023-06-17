@@ -53,10 +53,10 @@ const CardSlider = (props) => {
                                     <AccessTimeRoundedIcon fontSize="small" sx={{ml:1, mr:1}}/>{slide.date + " | " + slide.time}</p>
                                 {/* <p className="slider-card-points">
                                     <StarBorderRoundedIcon fontSize="medium" sx={{ml:0.9, mr:1}}/>{slide.points}</p> */}
-              <p className="slider-card-location">
-                <LocationOnIcon fontSize="medium" sx={{ ml: 0.9, mr: 1 }} />
-                {slide.location}
-              </p>
+                                <p className="slider-card-location" style={{ maxWidth: '100%', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                                  <LocationOnIcon fontSize="medium" sx={{ ml: 0.9, mr: 1 }} />
+                                  {slide.location}
+                                </p>
             </div>
           );
         })}

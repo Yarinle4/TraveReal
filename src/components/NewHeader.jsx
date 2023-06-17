@@ -14,6 +14,10 @@ import AlertDialogSlide from "./PopUpDialog";
 import Avatar from "@mui/material/Avatar";
 import Typography from '@mui/material/Typography';
 import { db } from "../firebase"; 
+import IconButton from "@mui/material/IconButton";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { useNavigate } from "react-router-dom";
+
 
 const lat = 123;
 const lng = 230;
@@ -23,6 +27,7 @@ const NewHeader = ({ eventData }) => {
     
   const [profilePic, setProfilePic] = useState("");
   const [hostName, setHostName] = useState("");
+  const navigate = useNavigate();
   
   useEffect(() => {
     console.log("event host uid:", eventData.host);
@@ -44,8 +49,22 @@ const NewHeader = ({ eventData }) => {
   }, [eventData.host]);
 
   return (
-    <Box sx={{ width: "100%"}}>
-      <Box sx={{  my: 3, mx: 2 }}>
+    <Box sx={{  mb: 5, width: "100%"}}>
+      <IconButton
+            aria-label="Back"
+            size="large"
+            onClick={() => navigate("/HomePage")}
+            sx={{
+              top: -23,
+              left: 0,
+              display: "flex",
+              position: "absolute",
+              mt: 10,
+            }}
+          >
+            <ArrowBackIcon fontSize="inherit" />
+          </IconButton>
+      <Box sx={{   my: 3, mx: 2 }}>
         <div class="EventHeader">
           <Stack direction="row" spacing={3} sx={{ mt: 8 }}>
             <Avatar src={profilePic}  sx={{ width: 70, height: 70 }} />

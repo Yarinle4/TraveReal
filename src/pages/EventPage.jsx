@@ -14,6 +14,9 @@ import { getAuth } from "firebase/auth";
 import React, { useState, useEffect } from 'react';
 import { getFirestore, collection, getDocs, doc, getDoc, onSnapshot } from 'firebase/firestore';
 
+
+
+
 function Event() {
   const location = useLocation();
   const { slide, slideId } = location.state;

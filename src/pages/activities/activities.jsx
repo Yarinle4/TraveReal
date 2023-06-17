@@ -275,18 +275,21 @@ function HomePageHost() {
           where("city", "==", city)
         );
         const querySnapshot = await getDocs(q);
-        const eventsData = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+        const eventsData = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
         const userFields = eventsData.map((doc) => doc.host);
-        console.log(userFields);
         setEvents(eventsData);
-
-        const h = query(
-          collection(db, "users"),
-          where("uid", "in", userFields)
-        );
-        const querySnapshot_1 = await getDocs(h);
-        const eventsData_1 = querySnapshot_1.docs.map((doc) => doc.data());
-        console.log(eventsData_1);
+        var eventsData_1 = [];
+        if (userFields.length != 0) {
+          const h = query(
+            collection(db, "users"),
+            where("uid", "in", userFields)
+          );
+          const querySnapshot_1 = await getDocs(h);
+          eventsData_1 = querySnapshot_1.docs.map((doc) => doc.data());
+        }
         setHosts(eventsData_1);
       } catch (error) {
         console.error("Error fetching events:", error);

@@ -79,6 +79,8 @@ function HomePage() {
   const [stars, setStars] = useState(0);
 
   useEffect(() => {
+    window.scrollTo(0, 0); // Scroll to top on route change
+
     const loadStars = async () => {
       let userRef;
 
@@ -131,7 +133,7 @@ function HomePage() {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            color: '#679E84'
+            color: "#679E84",
           }}
         >
           Welcome to TraveReal!
@@ -143,11 +145,11 @@ function HomePage() {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            color: '#679E84'
+            color: "#679E84",
           }}
         >
           Join a circle and start your journey
-        </Box>        
+        </Box>
         <FloatingActionButtons />
         <DraggableDialog />
         <Box>

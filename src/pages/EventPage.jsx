@@ -32,6 +32,7 @@ function Event() {
         // Map Firestore document data to myEventData format
         const eventData = docSnap.data();
         setMyEventData({
+          host: eventData.host,
           time: eventData.time,
           title: eventData.name, 
           rating: 4.3, // This needs to be updated with the correct field from Firestore
@@ -39,8 +40,10 @@ function Event() {
           photos: eventData.eventPictureUrl,
           circles: [eventData.circle], // This needs to be updated if 'circle' field in Firestore is an array
           location: eventData.location,
-          mapLocation: [123, 230] // This needs to be updated with the correct field from Firestore
+          mapLocation: eventData.city,
+          eventID: slideId
         });
+        console.log("user host:", eventData.city);
       } else {
         console.log("No such document!");
       }
@@ -57,7 +60,7 @@ function Event() {
   return (
     <>
       <ResponsiveAppBar position="fixed" />
-        <NewHeader eventData={myEventData} slide={slide} />
+        <NewHeader eventData={myEventData} slide={slide}  />
       <SimpleBottomNavigation />
     </>
   );

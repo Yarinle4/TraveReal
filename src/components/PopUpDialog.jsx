@@ -8,13 +8,42 @@ import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
 import "../pages/HomePageHost/homeHost.css";
 import { useNavigate } from "react-router-dom";
+import { arrayUnion, doc, updateDoc } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
+import { db } from "../firebase"; 
+
+
+
+
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function AlertDialogSlide() {
+
+export default function AlertDialogSlide({ eventID }) {
   const [open, setOpen] = React.useState(false);
+
+
+  const handleJoin = async () => {
+    console.log("eventid:", eventID);
+    const user = getAuth().currentUser;
+    const userRef = doc(db, "users", getAuth().currentUser.uid)
+    if (user) {
+      const eventRef = doc(db, "events", eventID);
+      
+      try {
+        await updateDoc(eventRef, {
+          participants: arrayUnion(user.uid)
+        });
+        console.log("User successfully joined the event!");
+        navigate("/HomePage"); // Or wherever you want to redirect after successfully joining.
+      } catch (error) {
+        console.error("Error joining event: ", error);
+      }
+    }
+  };
+  
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -51,7 +80,7 @@ export default function AlertDialogSlide() {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => navigate("/HomePage")}>Join</Button>
+        <Button onClick={handleJoin}>Join</Button>
           <Button onClick={handleClose}>Cancel</Button>
         </DialogActions>
       </Dialog>

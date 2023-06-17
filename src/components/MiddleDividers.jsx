@@ -8,7 +8,7 @@ import Divider from "@mui/material/Divider";
 import Typography from "@mui/material/Typography";
 import QuiltedImageList from "./QuiltedImageList";
 
-export default function MiddleDividers({time, name, details, photos, circles, location }) {
+export default function MiddleDividers({host,time, name, details, photos, circles, location }) {
 
   
   return (
@@ -29,15 +29,15 @@ export default function MiddleDividers({time, name, details, photos, circles, lo
         </Typography>
       </Box>
       <Box sx={{ m: 2 }}>
-        <Divider variant="middle" />
+        {/* <Divider variant="middle" /> */}
         <Grid container alignItems="center">
           <Grid item xs>
             <Typography gutterBottom variant="h4" component="div">
-              Photos
+              {/* Photos */}
             </Typography>
           </Grid>
           <Grid item>
-            <QuiltedImageList photos={photos}/>
+            {/* <QuiltedImageList photos={photos}/> */}
           </Grid>
         </Grid>
       </Box>

@@ -30,6 +30,7 @@ const NewHeader = ({ eventData }) => {
           {/* </div> */}
           <div class="EventBody">
             <MiddleDividers 
+              host = {eventData.host}
               time = {eventData.time}
               name = {eventData.name}
               details={eventData.details}

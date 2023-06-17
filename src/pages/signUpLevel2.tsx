@@ -13,7 +13,8 @@ import CircleSelection from "../components/SelectCircle2";
 import { useState } from "react";
 import { getAuth } from "firebase/auth";
 import { getFirestore, doc, updateDoc, collection } from "firebase/firestore";
-import { db } from "../firebase"
+import { db } from "../firebase";
+import { useEffect } from "react";
 
 export default function SignUp() {
   const [circle, setCircle] = useState([]);
@@ -27,17 +28,17 @@ export default function SignUp() {
       const auth = getAuth();
       const user = auth.currentUser;
       const uid = user ? user.uid : "a";
-      const userRef = doc(db, 'users', "user_"+uid);
+      const userRef = doc(db, "users", "user_" + uid);
       console.log("Document ref is updated with UID: ", uid);
 
-       // Update the fields of the user document
-       await updateDoc(userRef, {
+      // Update the fields of the user document
+      await updateDoc(userRef, {
         // selectedFile,
-        circle
+        circle,
       });
 
       console.log("Document updated succefully with UID: ", uid);
-  
+
       // Navigate to "/details" after successful submission
       navigate("/HomePage");
     } catch (error) {
@@ -45,7 +46,9 @@ export default function SignUp() {
     }
   };
 
-
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scroll to top on route change
+  }, []);
 
   return (
     <>
@@ -63,11 +66,11 @@ export default function SignUp() {
           <Typography
             component="h1"
             fontSize={20}
-            sx={{ mt: 2, mb: 1, fontWeight: "20px", color: '#679E84'}}
+            sx={{ mt: 2, mb: 1, fontWeight: "20px", color: "#679E84" }}
           >
             Choose a circle that interests you
           </Typography>
-          <Typography component="h1" fontSize={13} sx ={{ color: '#679E84' }}>
+          <Typography component="h1" fontSize={13} sx={{ color: "#679E84" }}>
             Currently, you can only select one circle
           </Typography>
           <Box
@@ -77,11 +80,13 @@ export default function SignUp() {
             sx={{ mt: 3 }}
           >
             <Grid container spacing={2}>
-            <CircleSelection circle={circle} setCircle={setCircle} />
+              <CircleSelection circle={circle} setCircle={setCircle} />
             </Grid>
-            
+
             <Button
-              onClick={() => {handleSubmit}}
+              onClick={() => {
+                handleSubmit;
+              }}
               type="submit"
               fullWidth
               variant="contained"

@@ -33,23 +33,38 @@ function CommunityPage() {
       <ResponsiveAppBar position="fixed" />
 
       <Box
-        sx={{
-          textAlign: "center",
-          fontWeight: "bold",
-          fontSize: 40,
-          my: 1,
-          mx: 1,
-          mt: 7,
-        }}
+        // sx={{
+        //   textAlign: "center",
+        //   fontWeight: "bold",
+        //   fontSize: 40,
+        //   my: 1,
+        //   mx: 1,
+        //   mt: 7,
+          sx={{
+            mt: 8,
+            fontSize: 30,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            color: "#679E84",
+          }}
+        // }}
       >
         {" "}
         Community
       </Box>
-      <Box sx={{ textAlign: "center", fontSize: 25, my: 2, mx: 1, mt: 1 }}>
+      <Box sx={{
+            mt: 1,
+            fontSize: 20,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            color: "#679E84",
+          }}>
         {" "}
         This is where we share our experience!
       </Box>
-      <Box sx={{ my: 3, mx: 2, mt: 4 }}></Box>
+      <Box sx={{ my: 3, mx: 2 }}></Box>
       <Box>
         <PostFeed/>
       </Box>

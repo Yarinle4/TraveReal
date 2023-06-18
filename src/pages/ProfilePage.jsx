@@ -11,6 +11,8 @@ import avatarPic from "../assets/profile_picture_new.jpg";
 import { doc, onSnapshot, getDoc } from "firebase/firestore";
 import { db } from "../firebase";
 import { getAuth } from "firebase/auth";
+import Avatar from "@mui/material/Avatar";
+
 const ProfileWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -57,16 +59,16 @@ const DetailsWrapper = styled.div`
 `;
 
 const ProfileContact = styled.p`
-display: flex;
-flex-direction: row;
+  display: flex;
+  flex-direction: row;
   font-size: 16px;
   font-weight: bold;
   text-align: left;
 `;
 
 const ProfileData = styled.p`
-display: flex;
-flex-direction: row;
+  display: flex;
+  flex-direction: row;
   font-size: 16px;
   margin: 0px 10px;
   font-weight: normal;
@@ -107,19 +109,21 @@ const CoinCount = styled.span`
 `;
 
 function ProfilePage() {
+  const centerCircleSize = "150px";
+
   const [stars, setStars] = useState(0);
   const navigate = useNavigate();
-  const [downloadURL, setDownloadURL] = useState('');
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [aboutText, setAboutText] = useState('');
-  const [age, setAge] = useState('');
-  const [country, setCountry] = useState('');
-  const [hobbies, setHobbies] = useState('');
-  const [gender, setGender] = useState('');
-  const [languages, setLanguages] = useState('');
+  const [downloadURL, setDownloadURL] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [aboutText, setAboutText] = useState("");
+  const [age, setAge] = useState("");
+  const [country, setCountry] = useState("");
+  const [hobbies, setHobbies] = useState("");
+  const [gender, setGender] = useState("");
+  const [languages, setLanguages] = useState("");
   const [circles, setCircles] = useState([]);
-  const [email,setEmail] = useState('');
+  const [email, setEmail] = useState("");
 
   const auth = getAuth();
   const user = auth.currentUser;
@@ -164,12 +168,11 @@ function ProfilePage() {
           setCircles(userData.circle);
         }
       } catch (error) {
-        console.error('Error fetching user data:', error);
+        console.error("Error fetching user data:", error);
       }
-    }
+    };
 
     fetchUserData();
-
   }, []);
 
   return (
@@ -193,8 +196,14 @@ function ProfilePage() {
             <ArrowBackIcon fontSize="inherit" />
           </IconButton>
         </ProfileHeader>
-        <ProfileImage src={downloadURL||avatarPic} alt="Profile picture" />
-        <ProfileName>{firstName} {lastName}</ProfileName>
+        <Avatar
+          sx={{ width: 150, height: 150, mt: 3, mb: 3 }}
+          alt="Profile picture"
+          src={downloadURL || avatarPic}
+        />
+        <ProfileName>
+          {firstName} {lastName}
+        </ProfileName>
         <ProfileBio>{aboutText}</ProfileBio>
         <CoinWrapper>
           <CoinIcon />
@@ -203,33 +212,32 @@ function ProfilePage() {
       </ProfileWrapper>
       <DetailsWrapper>
         <ProfileContact>
-        Country: <ProfileData>{country}</ProfileData>
+          Country: <ProfileData>{country}</ProfileData>
         </ProfileContact>
         <ProfileContact>
-        Age: <ProfileData>{age}</ProfileData>
+          Age: <ProfileData>{age}</ProfileData>
         </ProfileContact>
         <ProfileContact>
-        Gender: <ProfileData>{gender}</ProfileData>
+          Gender: <ProfileData>{gender}</ProfileData>
         </ProfileContact>
         <ProfileContact>
-        Country: <ProfileData>{country}</ProfileData>
+          Country: <ProfileData>{country}</ProfileData>
         </ProfileContact>
         <ProfileContact>
-        Email: <ProfileData>{email}</ProfileData>
+          Email: <ProfileData>{email}</ProfileData>
         </ProfileContact>
         <ProfileContact>
-          Languges: <ProfileData>{languages && languages.join(", ")}</ProfileData>
+          Languges:{" "}
+          <ProfileData>{languages && languages.join(", ")}</ProfileData>
         </ProfileContact>
         <ProfileContact>
-        Hobbies: <ProfileData>{hobbies && hobbies.join(", ")}</ProfileData>
+          Hobbies: <ProfileData>{hobbies && hobbies.join(", ")}</ProfileData>
         </ProfileContact>
-        <ProfileContact>
-        Circles:
-        </ProfileContact>
+        <ProfileContact>Circles:</ProfileContact>
         <Stack direction="row" spacing={1}>
-        {circles.map((circle, index) => (
-        <Chip key={index} color="primary" label={circle} />
-        ))}
+          {circles.map((circle, index) => (
+            <Chip key={index} color="primary" label={circle} />
+          ))}
         </Stack>
       </DetailsWrapper>
     </>

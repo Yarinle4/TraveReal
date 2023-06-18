@@ -246,6 +246,7 @@ function HomePageHost() {
 
   const location = useLocation();
   const circleclicked = location.state.curCircle;
+  const curCity = location.state.curCity;
 
   const getCircle = (circleclicked) => {
     switch (circleclicked) {
@@ -264,7 +265,7 @@ function HomePageHost() {
 
   const [events, setEvents] = useState([]);
   const [hosts, setHosts] = useState([]);
-  const [city, setCity] = useState("");
+  const [city, setCity] = useState(curCity);
 
   useEffect(() => {
     const fetchEvents = async () => {
@@ -312,6 +313,7 @@ function HomePageHost() {
           users={hosts}
           idPeople={Firstpeople}
           curCircle={circleclicked}
+          curCity={city}
         />
       </div>
       <div class="body">
@@ -322,6 +324,7 @@ function HomePageHost() {
             slides={events}
             idSlide={FirstsliderName}
             curCircle={circleclicked}
+            curCity={city}
           />
         </div>
       </div>

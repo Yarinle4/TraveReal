@@ -104,6 +104,8 @@ function ProfilePage() {
 
   const curCircle = location.state.curCircle;
 
+  const curCity = location.state.curCity;
+
   const navigate = useNavigate();
   const [downloadURL, setDownloadURL] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -162,7 +164,9 @@ function ProfilePage() {
         <IconButton
           aria-label="Back"
           size="large"
-          onClick={() => navigate("/activities", { state: { curCircle } })}
+          onClick={() =>
+            navigate("/activities", { state: { curCircle, curCity } })
+          }
           sx={{
             top: 0,
             left: 0,

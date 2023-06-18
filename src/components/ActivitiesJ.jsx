@@ -42,6 +42,7 @@ const CardSlider = (props) => {
                     slide: slide,
                     slideId: slide.id,
                     curCircle: props.curCircle,
+                    curCity: props.curCity,
                   },
                 })
               }

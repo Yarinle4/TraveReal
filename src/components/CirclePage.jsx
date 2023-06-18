@@ -157,7 +157,7 @@ const CirclePage = (stars) => {
   const handleSingleCircleClick = (curCircle) => {
     setCircleClicked(curCircle);
     if (isInUserCircle(curCircle)) {
-      navigate("/activities", { state: { curCircle } });
+      navigate("/activities", { state: { curCircle, curCity: "" } });
     } else {
       console.log();
       if (stars.stars < 10) {

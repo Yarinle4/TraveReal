@@ -11,17 +11,23 @@ import SimpleBottomNavigation from "../shared/components/moreComponents/BottomNa
 import { useLocation } from "react-router-dom";
 import { db } from "../firebase";
 import { getAuth } from "firebase/auth";
-import React, { useState, useEffect } from 'react';
-import { getFirestore, collection, getDocs, doc, getDoc, onSnapshot } from 'firebase/firestore';
-
-
-
+import React, { useState, useEffect } from "react";
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  doc,
+  getDoc,
+  onSnapshot,
+} from "firebase/firestore";
 
 function Event() {
   const location = useLocation();
   const { slide, slideId } = location.state;
 
   const curCircle = location.state.curCircle;
+
+  const curCity = location.state.curCity;
 
   // Initialise event data as null
   const [myEventData, setMyEventData] = useState(null);
@@ -30,23 +36,23 @@ function Event() {
   useEffect(() => {
     const fetchEventData = async () => {
       const db = getFirestore();
-      const docRef = doc(db, 'events', slideId);
+      const docRef = doc(db, "events", slideId);
       const docSnap = await getDoc(docRef);
-      console.log("event id:", )
+      console.log("event id:");
       if (docSnap.exists(docRef.ID)) {
         // Map Firestore document data to myEventData format
         const eventData = docSnap.data();
         setMyEventData({
           host: eventData.host,
           time: eventData.time,
-          title: eventData.name, 
+          title: eventData.name,
           rating: 4.3, // This needs to be updated with the correct field from Firestore
           details: eventData.description,
           photos: eventData.eventPictureUrl,
           circles: [eventData.circle], // This needs to be updated if 'circle' field in Firestore is an array
           location: eventData.location,
           mapLocation: eventData.city,
-          eventID: slideId
+          eventID: slideId,
         });
         console.log("user host:", eventData.city);
       } else {
@@ -65,7 +71,12 @@ function Event() {
   return (
     <>
       <ResponsiveAppBar position="fixed" />
-        <NewHeader eventData={myEventData} slide={slide} curCircle={curCircle}  />
+      <NewHeader
+        eventData={myEventData}
+        slide={slide}
+        curCircle={curCircle}
+        curCity={curCity}
+      />
       <SimpleBottomNavigation />
     </>
   );

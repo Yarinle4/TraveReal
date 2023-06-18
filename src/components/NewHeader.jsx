@@ -22,7 +22,7 @@ const lat = 123;
 const lng = 230;
 const mapLocation = [lat, lng];
 
-const NewHeader = ({ eventData, curCircle }) => {
+const NewHeader = ({ eventData, curCircle, curCity }) => {
   const [profilePic, setProfilePic] = useState("");
   const [hostName, setHostName] = useState("");
   const navigate = useNavigate();
@@ -51,7 +51,9 @@ const NewHeader = ({ eventData, curCircle }) => {
       <IconButton
         aria-label="Back"
         size="large"
-        onClick={() => navigate("/activities", { state: { curCircle } })}
+        onClick={() =>
+          navigate("/activities", { state: { curCircle, curCity } })
+        }
         sx={{
           top: -23,
           left: 0,

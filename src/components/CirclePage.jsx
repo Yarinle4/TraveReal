@@ -278,7 +278,10 @@ const CirclePage = (stars) => {
         <DialogTitle sx={{ fontWeight: "bold" }}>
           You don't have enough stars.
         </DialogTitle>
-        <DialogContent>To unlock this circle, collect 10 stars</DialogContent>
+        <DialogContent>
+          You need 10 stars to unlock this circle.<br></br>
+          Create an event to earn points!
+        </DialogContent>
         <DialogActions>
           <Button onClick={handleAlertClose}>OK</Button>
         </DialogActions>

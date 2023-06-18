@@ -21,6 +21,8 @@ function Event() {
   const location = useLocation();
   const { slide, slideId } = location.state;
 
+  const curCircle = location.state.curCircle;
+
   // Initialise event data as null
   const [myEventData, setMyEventData] = useState(null);
 
@@ -63,7 +65,7 @@ function Event() {
   return (
     <>
       <ResponsiveAppBar position="fixed" />
-        <NewHeader eventData={myEventData} slide={slide}  />
+        <NewHeader eventData={myEventData} slide={slide} curCircle={curCircle}  />
       <SimpleBottomNavigation />
     </>
   );

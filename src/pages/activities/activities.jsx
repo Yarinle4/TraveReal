@@ -307,7 +307,7 @@ function HomePageHost() {
         <EventCitySelection city={city} setCity={setCity} />
       </Box>
       <div class="body">
-        <div id="title">People</div>
+        <div id="title">Circle Hosts</div>
         <People
           users={hosts}
           idPeople={Firstpeople}
@@ -318,7 +318,11 @@ function HomePageHost() {
         <div id="title">Upcoming Events</div>
         <Search />
         <div>
-          <ActivitiesCards slides={events} idSlide={FirstsliderName} />
+          <ActivitiesCards
+            slides={events}
+            idSlide={FirstsliderName}
+            curCircle={circleclicked}
+          />
         </div>
       </div>
       <div class="buttomBody">

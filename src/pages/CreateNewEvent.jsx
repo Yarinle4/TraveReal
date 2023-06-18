@@ -7,18 +7,28 @@ import {
   AppBar,
   Toolbar,
   Divider,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
 } from "@mui/material";
 import styled from "styled-components";
 import ResponsiveAppBar from "../shared/components/moreComponents/MainBar";
 import SimpleBottomNavigation from "../shared/components/moreComponents/BottomNav";
 import { useNavigate } from "react-router-dom";
 import EventCircleSelection from "../components/EventCircleSelection.jsx";
-import { getFirestore, doc,addDoc, updateDoc, collection,increment, } from "firebase/firestore";
+import {
+  getFirestore,
+  doc,
+  addDoc,
+  updateDoc,
+  collection,
+  increment,
+} from "firebase/firestore";
 import { db } from "../firebase";
 import { getAuth } from "firebase/auth";
 import EventCitySelection from "../components/CitySelection";
 import EventPictureUpload from "../components/EventPictureUpload.jsx";
-
 
 const StyledTitle = styled(Typography)`
   font-weight: bold;
@@ -64,12 +74,13 @@ function CreateEventPage() {
   const [circle, setCircle] = useState("");
   const [city, setCity] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
+  const [open, setOpen] = useState(false);
+
   // const [eventPictureUrl, setEventPictureUrl] = useState("");
 
   // const handleEventPictureUrl = (e) => {
   //   setEventPictureUrl(e.target.value);
   // };
-
 
   const handleHostChange = (e) => {
     setHost(e.target.value);
@@ -132,10 +143,8 @@ function CreateEventPage() {
       // Increment the stars for the user
       const userRef = doc(db, "users", "user_" + getAuth().currentUser.uid);
       await updateDoc(userRef, {
-      stars: increment(5), // Increment the stars by 5
-    });
-
-  
+        stars: increment(5), // Increment the stars by 5
+      });
 
       // Perform any additional actions or navigate to another page
     } catch (error) {
@@ -148,6 +157,10 @@ function CreateEventPage() {
   const handleNext = async () => {
     const event = { preventDefault: () => {} }; // Create a dummy event object to prevent the error
     await handleSubmit(event); // Pass the event object to handleSubmit
+    setOpen(true);
+  };
+
+  const handleClose = () => {
     navigate("/HomePage"); // Navigate to the next page
   };
 
@@ -228,7 +241,10 @@ function CreateEventPage() {
           style={textFieldStyle}
         />
         <Box mb={2}>
-        <EventPictureUpload selectedFile={selectedFile} setSelectedFile={setSelectedFile}/>
+          <EventPictureUpload
+            selectedFile={selectedFile}
+            setSelectedFile={setSelectedFile}
+          />
           {/* <Button variant="contained" component="label" sx={{ width: 400 }}>
             Upload Event Photos
             <input type="file" multiple hidden onChange={handlePhotoUpload} />
@@ -268,6 +284,17 @@ function CreateEventPage() {
           </Toolbar>
         </AppBar>
       </Box>
+      <Dialog open={open} onClose={handleClose}>
+        <DialogTitle sx={{ fontWeight: "bold" }}>
+          You created an event and earned 5 stars!
+        </DialogTitle>
+        <DialogContent>
+          You have 10 stars, you can unlock a circle!
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>ok</Button>
+        </DialogActions>
+      </Dialog>
     </StyledDiv>
   );
 }

@@ -70,7 +70,7 @@ const BigList = ({ stars }) => (
           fontFamily: "Montserrat",
         }}
       />
-      <Rating name="read-only" value={4} readOnly sx={RatingcustomStyle} />
+      <Rating name="read-only" value={0} readOnly sx={RatingcustomStyle} />
     </ListItem>
   </List>
 );

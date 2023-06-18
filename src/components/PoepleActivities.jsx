@@ -33,7 +33,7 @@ const People = (props) => {
               sx={{ width: 80, height: 80, mb: 1 }}
               alt="Person 1"
               src={user.profilePictureUrl}
-              onClick={() => navigate("/HostProfilePage", { state: { uid: user.uid } })}
+              onClick={() => navigate("/HostProfilePage", { state: { uid: user.uid, curCircle: props.curCircle } })}
             />
           </p>
           <p>

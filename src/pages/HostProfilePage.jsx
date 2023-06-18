@@ -8,10 +8,16 @@ import IconButton from "@mui/material/IconButton";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { useLocation, useNavigate } from "react-router-dom";
 import avatarPic from "../assets/profile_picture_new.jpg";
-import { Button, Dialog, DialogTitle, DialogContent, DialogActions } from "@mui/material";
+import {
+  Button,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+} from "@mui/material";
 import { doc, getDoc } from "@firebase/firestore";
 import { db } from "../firebase";
-import {getDownloadURL} from 'firebase/storage';
+import { getDownloadURL } from "firebase/storage";
 
 const ProfileWrapper = styled.div`
   display: flex;
@@ -53,16 +59,16 @@ const DetailsWrapper = styled.div`
 `;
 
 const ProfileContact = styled.p`
-display: flex;
-flex-direction: row;
+  display: flex;
+  flex-direction: row;
   font-size: 16px;
   font-weight: bold;
   text-align: left;
 `;
 
 const ProfileData = styled.p`
-display: flex;
-flex-direction: row;
+  display: flex;
+  flex-direction: row;
   font-size: 16px;
   margin: 0px 10px;
   font-weight: normal;
@@ -90,26 +96,26 @@ const textFieldStyle = {
   backgroundColor: "white",
 };
 
-
 // const example_uid = 'user_w8C4C8C9M4P8gnjkHjf4D1jkruC2';
 
 function ProfilePage() {
-  
   const location = useLocation();
-  const user_uid = 'user_' + location.state.uid;
+  const user_uid = "user_" + location.state.uid;
+
+  const curCircle = location.state.curCircle;
 
   const navigate = useNavigate();
-  const [downloadURL, setDownloadURL] = useState('');
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [aboutText, setAboutText] = useState('');
-  const [age, setAge] = useState('');
-  const [country, setCountry] = useState('');
-  const [hobbies, setHobbies] = useState('');
-  const [gender, setGender] = useState('');
-  const [languages, setLanguages] = useState('');
+  const [downloadURL, setDownloadURL] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [aboutText, setAboutText] = useState("");
+  const [age, setAge] = useState("");
+  const [country, setCountry] = useState("");
+  const [hobbies, setHobbies] = useState("");
+  const [gender, setGender] = useState("");
+  const [languages, setLanguages] = useState("");
   const [circles, setCircles] = useState([]);
-  const [email,setEmail] = useState('');
+  const [email, setEmail] = useState("");
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
@@ -123,7 +129,7 @@ function ProfilePage() {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const userSnapshot = await getDoc(doc(db, 'users', user_uid));
+        const userSnapshot = await getDoc(doc(db, "users", user_uid));
         //edit example uid to passed uid from
         const userData = userSnapshot.data();
         if (userData && userData.profilePictureUrl) {
@@ -140,7 +146,7 @@ function ProfilePage() {
           setCircles(userData.circle);
         }
       } catch (error) {
-        console.error('Error fetching user data:', error);
+        console.error("Error fetching user data:", error);
       }
     };
 
@@ -156,7 +162,7 @@ function ProfilePage() {
         <IconButton
           aria-label="Back"
           size="large"
-          onClick={() => navigate("/HomePage")}
+          onClick={() => navigate("/activities", { state: { curCircle } })}
           sx={{
             top: 0,
             left: 0,
@@ -167,29 +173,28 @@ function ProfilePage() {
         >
           <ArrowBackIcon fontSize="inherit" />
         </IconButton>
-        <ProfileImage
-          src={downloadURL || avatarPic}
-          alt="Profile picture"
-        />
-        <ProfileName>{firstName} {lastName}</ProfileName>
+        <ProfileImage src={downloadURL || avatarPic} alt="Profile picture" />
+        <ProfileName>
+          {firstName} {lastName}
+        </ProfileName>
         <ProfileBio>{aboutText}</ProfileBio>
-
       </ProfileWrapper>
       <DetailsWrapper>
         <ProfileContact>
-        Country: <ProfileData>{country}</ProfileData>
+          Country: <ProfileData>{country}</ProfileData>
         </ProfileContact>
         <ProfileContact>
-        Age: <ProfileData>{age}</ProfileData>
+          Age: <ProfileData>{age}</ProfileData>
         </ProfileContact>
         <ProfileContact>
-        Gender: <ProfileData>{gender}</ProfileData>
+          Gender: <ProfileData>{gender}</ProfileData>
         </ProfileContact>
         <ProfileContact>
-          Languges: <ProfileData>{languages && languages.join(", ")}</ProfileData>
+          Languges:{" "}
+          <ProfileData>{languages && languages.join(", ")}</ProfileData>
         </ProfileContact>
         <ProfileContact>
-        Hobbies: <ProfileData>{hobbies && hobbies.join(", ")}</ProfileData>
+          Hobbies: <ProfileData>{hobbies && hobbies.join(", ")}</ProfileData>
         </ProfileContact>
         {/* <ProfileContact>Hobbies:</ProfileContact>
         <Stack useFlexGap="true" direction="row" spacing={1}>
@@ -198,27 +203,27 @@ function ProfilePage() {
           <Chip color="primary" label="Cooking" />
         </Stack> */}
         <ProfileContact></ProfileContact>
-        <ProfileContact>
-        Circles:
-        </ProfileContact>
+        <ProfileContact>Circles:</ProfileContact>
         <Stack direction="row" spacing={1}>
-        {circles.map((circle, index) => (
-        <Chip key={index} color="primary" label={circle} />
-        ))}
+          {circles.map((circle, index) => (
+            <Chip key={index} color="primary" label={circle} />
+          ))}
         </Stack>
       </DetailsWrapper>
-      
+
       <DetailsWrapper>
-      <Button variant="outlined" onClick={handleOpen}>Contact me!</Button>
+        <Button variant="outlined" onClick={handleOpen}>
+          Contact me!
+        </Button>
       </DetailsWrapper>
 
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle >Contact Information</DialogTitle>
-        
+        <DialogTitle>Contact Information</DialogTitle>
+
         <DialogContent>
-        <ProfileContact>
-          Email: <ProfileData>{email}</ProfileData>
-        </ProfileContact>
+          <ProfileContact>
+            Email: <ProfileData>{email}</ProfileData>
+          </ProfileContact>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Close</Button>

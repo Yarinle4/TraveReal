@@ -17,7 +17,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import DensityMediumIcon from '@mui/icons-material/DensityMedium';
+import DensityMediumIcon from "@mui/icons-material/DensityMedium";
 
 import logo from "../../../assets/UpdateLogo.svg";
 import avatarPic from "../../../assets/no_pic.png";
@@ -26,7 +26,7 @@ import avatarPic from "../../../assets/no_pic.png";
 //   "https://marketplace.canva.com/EAFEits4-uw/1/0/1600w/canva-boy-cartoon-gamer-animated-twitch-profile-photo-oEqs2yqaL8s.jpg";
 
 const pages = ["Home Page", "Events Page", "Host Page", "Community Page"];
-const settings = ["Profile", "Host Profile","Logout"];
+const settings = ["Profile", "Logout"];
 
 const LogoContainer = styled("div")({
   fontFamily: "Montserrat, sans-serif",
@@ -72,8 +72,6 @@ function ResponsiveAppBar() {
     switch (pageName) {
       case "Profile":
         return "/ProfilePage";
-      case "Host Profile":
-          return "/HostProfilePage";
       case "Logout":
         return "/";
     }
@@ -87,7 +85,10 @@ function ResponsiveAppBar() {
           sx={{ display: "flex", justifyContent: "space-between" }}
         >
           {/* <image src={logo} /> */}
-          <LogoContainer> <img src={logo} style={{maxHeight: 55}}/></LogoContainer>
+          <LogoContainer>
+            {" "}
+            <img src={logo} style={{ maxHeight: 55 }} />
+          </LogoContainer>
 
           {/* 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -172,7 +173,9 @@ function ResponsiveAppBar() {
           <Box sx={{ display: "flex", alignItems: "center" }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <DensityMediumIcon sx={{ color: '#DBFFEE', fontSize: 'large' }}/>
+                <DensityMediumIcon
+                  sx={{ color: "#DBFFEE", fontSize: "large" }}
+                />
                 {/* <Avatar
                   alt="Remy Sharp"
                   src={avatarPic}

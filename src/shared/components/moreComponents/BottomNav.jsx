@@ -37,8 +37,8 @@ export default function SimpleBottomNavigation() {
             icon={<HomeIcon style={{ fontSize: 32 }} />}
           />
           <BottomNavigationAction
-            value="/CommunityPage"
-            label="Community"
+            value="/MyEvents"
+            label="MyEvents"
             icon={<GroupIcon style={{ fontSize: 32 }} />}
           />
         </BottomNavigation>

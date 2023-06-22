@@ -8,6 +8,8 @@ import IconButton from "@mui/material/IconButton";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { useLocation, useNavigate } from "react-router-dom";
 import avatarPic from "../assets/profile_picture_new.jpg";
+import Rating from "@mui/material/Rating";
+
 import {
   Button,
   Dialog,
@@ -18,6 +20,18 @@ import {
 import { doc, getDoc } from "@firebase/firestore";
 import { db } from "../firebase";
 import { getDownloadURL } from "firebase/storage";
+
+const RatingcustomStyle = {
+  "& .MuiRating-iconFilled": {
+    color: "#FFFF00",
+  },
+  "& .MuiRating-iconHover": {
+    color: "purple",
+  },
+  "& .MuiRating-decimal:hover": {
+    transform: "scale(2.5)",
+  },
+};
 
 const ProfileWrapper = styled.div`
   display: flex;
@@ -119,6 +133,7 @@ function ProfilePage() {
   const [circles, setCircles] = useState([]);
   const [email, setEmail] = useState("");
   const [open, setOpen] = useState(false);
+  const [rating, setRating] = useState(0);
 
   const handleOpen = () => {
     setOpen(true);
@@ -146,6 +161,7 @@ function ProfilePage() {
           setGender(userData.gender);
           setLanguages(userData.selectedLanguages);
           setCircles(userData.circle);
+          setRating(userData.rating);
         }
       } catch (error) {
         console.error("Error fetching user data:", error);
@@ -184,6 +200,12 @@ function ProfilePage() {
         <ProfileBio>{aboutText}</ProfileBio>
       </ProfileWrapper>
       <DetailsWrapper>
+        <Rating
+          name="read-only"
+          value={rating}
+          readOnly
+          sx={RatingcustomStyle}
+        />
         <ProfileContact>
           Country: <ProfileData>{country}</ProfileData>
         </ProfileContact>

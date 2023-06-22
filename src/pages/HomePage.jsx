@@ -44,7 +44,7 @@ const RatingcustomStyle = {
   },
 };
 
-const BigList = ({ stars }) => (
+const BigList = ({ stars, rating }) => (
   <List>
     <ListItem disablePadding>
       <ListItemIcon sx={{ fontSize: "40px" }}>
@@ -70,13 +70,14 @@ const BigList = ({ stars }) => (
           fontFamily: "Montserrat",
         }}
       />
-      <Rating name="read-only" value={0} readOnly sx={RatingcustomStyle} />
+      <Rating name="read-only" value={rating} readOnly sx={RatingcustomStyle} />
     </ListItem>
   </List>
 );
 
 function HomePage() {
   const [stars, setStars] = useState(0);
+  const [rating, setRating] = useState(0);
 
   useEffect(() => {
     window.scrollTo(0, 0); // Scroll to top on route change
@@ -96,6 +97,9 @@ function HomePage() {
             const parsedStars = parseInt(userStars);
             setStars(parsedStars);
             localStorage.setItem("stars", parsedStars.toString());
+
+            const userRating = doc.data().rating;
+            setRating(userRating);
           }
         });
 
@@ -168,7 +172,7 @@ function HomePage() {
             color: "white",
           }}
         >
-          <BigList stars={stars} />
+          <BigList stars={stars} rating={rating} />
         </Box>
         <SimpleBottomNavigation />
       </Box>

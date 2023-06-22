@@ -21,9 +21,9 @@ import HobbySelection from "../components/HobbySelection.jsx";
 import GenderSelection from "../components/GenderSelection.jsx";
 import LanguageSelection from "../components/LanguageSelection.jsx";
 import { useState } from "react";
-import { db } from "../firebase"
-import { getAuth}  from "firebase/auth"
-import { doc, updateDoc } from 'firebase/firestore';
+import { db } from "../firebase";
+import { getAuth } from "firebase/auth";
+import { doc, updateDoc } from "firebase/firestore";
 
 const textFieldStyle = {
   backgroundColor: "white",
@@ -35,83 +35,115 @@ export default function UserInfoPage() {
       overflow: auto;
     }
   `;
-    // State variables to hold user input
-    const [selectedFile, setSelectedFile] = useState(null);
-    const [age, setAge] = useState("");
-    const [selectedHobbies, setSelectedHobbies] = useState([]);
-    const [selectedLanguages, setSelectedLanguages] = useState([]);
-    const [gender, setGender] = useState("");
-    const [aboutText, setAboutText] = useState('');
-    const [stars, setStars] = useState(5); // Default value of 5 stars
+  // State variables to hold user input
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [age, setAge] = useState("");
+  const [selectedHobbies, setSelectedHobbies] = useState([]);
+  const [selectedLanguages, setSelectedLanguages] = useState([]);
+  const [gender, setGender] = useState("");
+  const [aboutText, setAboutText] = useState("");
+  const [stars, setStars] = useState(5); // Default value of 5 stars
+  const [rating, setRating] = useState(3);
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-  
-    // Function to handle form submission
-    const handleSubmit = async () => {
-      try {
-        const auth = getAuth();
-        const user = auth.currentUser;
-        const userRef = doc(db, 'users', "user_"+user.uid);
-        console.log("Document ref is updated with UID: ", user.uid);
+  // Function to handle form submission
+  const handleSubmit = async () => {
+    try {
+      const auth = getAuth();
+      const user = auth.currentUser;
+      const userRef = doc(db, "users", "user_" + user.uid);
+      console.log("Document ref is updated with UID: ", user.uid);
 
+      // Update the fields of the user document
+      await updateDoc(userRef, {
+        profilePictureUrl: selectedFile.downloadURL,
+        age,
+        selectedHobbies,
+        selectedLanguages,
+        gender,
+        aboutText,
+        stars,
+        rating,
+      });
 
-         // Update the fields of the user document
-         await updateDoc(userRef, {
-          profilePictureUrl: selectedFile.downloadURL,
-          age,
-          selectedHobbies,
-          selectedLanguages,
-          gender,
-          aboutText,
-          stars,
-        });
-  
-        console.log("Document updated succefully with UID: ", userRef.uid);
-  
-        // Navigate to "/details" after successful submission
-        navigate("/details");
-      } catch (error) {
-        console.error("Error updating document: ", error);
-      }
-    };
+      console.log("Document updated succefully with UID: ", userRef.uid);
+
+      // Navigate to "/details" after successful submission
+      navigate("/details");
+    } catch (error) {
+      console.error("Error updating document: ", error);
+    }
+  };
 
   return (
     <>
       <CssBaseline />
       <ResponsiveAppBar />
-      <Container component="main" maxWidth="xs" sx={{ paddingBottom: 8, overflowY: "scroll" }}>
+      <Container
+        component="main"
+        maxWidth="xs"
+        sx={{ paddingBottom: 8, overflowY: "scroll" }}
+      >
         <GlobalStyle />
-        <Box sx={{ pt: 10, margin: 2, display: "flex", flexDirection: "column", alignItems: "center" }}>
+        <Box
+          sx={{
+            pt: 10,
+            margin: 2,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
           <Grid container spacing={2}>
-            <Grid item xs={12} sm={6} sx={{ pt: 10, margin: 2, display: "flex", flexDirection: "column", alignItems: "center" }}>
-              <ProfilePictureUpload selectedFile={selectedFile} setSelectedFile={setSelectedFile}/>
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              sx={{
+                pt: 10,
+                margin: 2,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <ProfilePictureUpload
+                selectedFile={selectedFile}
+                setSelectedFile={setSelectedFile}
+              />
             </Grid>
             <Grid item xs={12} sm={6}>
               <AgeSelection age={age} setAge={setAge} />
             </Grid>
             <Grid item xs={12} sm={6}>
-              <HobbySelection selectedHobbies={selectedHobbies} setSelectedHobbies={setSelectedHobbies}/>
+              <HobbySelection
+                selectedHobbies={selectedHobbies}
+                setSelectedHobbies={setSelectedHobbies}
+              />
             </Grid>
             <Grid item xs={12} sm={6}>
-              <LanguageSelection selectedLanguages={selectedLanguages} setSelectedLanguages={setSelectedLanguages}/>
+              <LanguageSelection
+                selectedLanguages={selectedLanguages}
+                setSelectedLanguages={setSelectedLanguages}
+              />
             </Grid>
             <Grid item xs={12} sm={6}>
               <GenderSelection gender={gender} setGender={setGender} />
             </Grid>
             <Grid item xs={12} sm={6}>
-              <AboutMe aboutText={aboutText} setAboutText={setAboutText}/>
+              <AboutMe aboutText={aboutText} setAboutText={setAboutText} />
             </Grid>
           </Grid>
           <Button
-              onClick={handleSubmit}
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Next
-            </Button>
+            onClick={handleSubmit}
+            type="submit"
+            fullWidth
+            variant="contained"
+            sx={{ mt: 3, mb: 2 }}
+          >
+            Next
+          </Button>
         </Box>
       </Container>
     </>

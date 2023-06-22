@@ -24,6 +24,10 @@ import { getDownloadURL } from "firebase/storage";
 const RatingcustomStyle = {
   "& .MuiRating-iconFilled": {
     color: "#FFFF00",
+    fontSize: "23px",
+  },
+  "& .MuiRating-iconEmpty": {
+    fontSize: "23px",
   },
   "& .MuiRating-iconHover": {
     color: "purple",
@@ -200,12 +204,16 @@ function ProfilePage() {
         <ProfileBio>{aboutText}</ProfileBio>
       </ProfileWrapper>
       <DetailsWrapper>
-        <Rating
-          name="read-only"
-          value={rating}
-          readOnly
-          sx={RatingcustomStyle}
-        />
+        <ProfileContact>
+          Rating:
+          <Rating
+            name="read-only"
+            value={rating}
+            readOnly
+            sx={RatingcustomStyle}
+          />
+        </ProfileContact>
+
         <ProfileContact>
           Country: <ProfileData>{country}</ProfileData>
         </ProfileContact>

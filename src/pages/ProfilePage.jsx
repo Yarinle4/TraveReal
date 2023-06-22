@@ -12,6 +12,23 @@ import { doc, onSnapshot, getDoc } from "firebase/firestore";
 import { db } from "../firebase";
 import { getAuth } from "firebase/auth";
 import Avatar from "@mui/material/Avatar";
+import Rating from "@mui/material/Rating";
+
+const RatingcustomStyle = {
+  "& .MuiRating-iconFilled": {
+    color: "#FFFF00",
+    fontSize: "30px",
+  },
+  "& .MuiRating-iconEmpty": {
+    fontSize: "30px",
+  },
+  "& .MuiRating-iconHover": {
+    color: "purple",
+  },
+  "& .MuiRating-decimal:hover": {
+    transform: "scale(2.5)",
+  },
+};
 
 const ProfileWrapper = styled.div`
   display: flex;
@@ -124,6 +141,7 @@ function ProfilePage() {
   const [languages, setLanguages] = useState("");
   const [circles, setCircles] = useState([]);
   const [email, setEmail] = useState("");
+  const [rating, setRating] = useState(0);
 
   const auth = getAuth();
   const user = auth.currentUser;
@@ -166,6 +184,7 @@ function ProfilePage() {
           setGender(userData.gender);
           setLanguages(userData.selectedLanguages);
           setCircles(userData.circle);
+          setRating(userData.rating);
         }
       } catch (error) {
         console.error("Error fetching user data:", error);
@@ -208,6 +227,15 @@ function ProfilePage() {
         <CoinWrapper>
           <CoinIcon />
           <CoinCount>{stars}</CoinCount>
+        </CoinWrapper>
+        <CoinWrapper>
+          <Rating
+            name="read-only"
+            value={rating}
+            readOnly
+            sx={RatingcustomStyle}
+            size="large"
+          />
         </CoinWrapper>
       </ProfileWrapper>
       <DetailsWrapper>

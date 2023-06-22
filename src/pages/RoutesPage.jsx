@@ -13,6 +13,9 @@ import TipsPage from "./TipsPage";
 import HostProfilePage from "./HostProfilePage";
 import UserInfoPage from "./UserInfoPage";
 import SelectCircle from "./CreateEventCircles";
+import MyEvents from "./MyEvents";
+import PrevEvent from "./PrevEvent";
+import UpcomingEvent from "./UpcomingEvent";
 
 
 
@@ -46,7 +49,11 @@ function Routess() {
 
       <Route path="/CreateEventCircles" element={<SelectCircle />} />
 
+      <Route path="/MyEvents" element={<MyEvents />} />
 
+      <Route path="/PrevEvent" element={<PrevEvent />} />
+
+      <Route path="/UpcomingEvent" element={<UpcomingEvent />} />
 
 
     </Routes>

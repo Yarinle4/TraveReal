@@ -87,18 +87,14 @@ function PrevEvent() {
   }
 
   const handleRatingSubmit = async (rating) => {
-    const user = getAuth().currentUser;
-    if (user) {
-      const userRef = doc(db, "users", user.uid);
-
-      try {
-        await updateDoc(userRef, {
-          rating: arrayUnion(rating),
-        });
-        console.log("Rating submitted successfully!");
-      } catch (error) {
-        console.error("Error submitting rating: ", error);
-      }
+    const userRef = doc(db, "users", "user_" + myEventData.host);
+    try {
+      await updateDoc(userRef, {
+        rating: arrayUnion(rating),
+      });
+      console.log("Rating submitted successfully!");
+    } catch (error) {
+      console.error("Error submitting rating: ", error);
     }
   };
 

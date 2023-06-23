@@ -26,9 +26,9 @@ export default function AlertDialogSlide({ eventID }) {
 
 
   const handleJoin = async () => {
-    console.log("eventid:", eventID);
     const user = getAuth().currentUser;
-    const userRef = doc(db, "users", getAuth().currentUser.uid)
+    const userRef = doc(db, "users", "user_" + user.uid)
+
     if (user) {
       const eventRef = doc(db, "events", eventID);
       
@@ -37,7 +37,14 @@ export default function AlertDialogSlide({ eventID }) {
           participants: arrayUnion(user.uid)
         });
         console.log("User successfully joined the event!");
-        navigate("/HomePage"); // Or wherever you want to redirect after successfully joining.
+        console.log("user id:", user.uid);
+        console.log("event id:", eventID);
+
+        await updateDoc(userRef, {
+          events: arrayUnion(eventID)
+        });
+
+        navigate("/HomePage"); 
       } catch (error) {
         console.error("Error joining event: ", error);
       }

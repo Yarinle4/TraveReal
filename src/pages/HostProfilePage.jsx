@@ -165,7 +165,14 @@ function ProfilePage() {
           setGender(userData.gender);
           setLanguages(userData.selectedLanguages);
           setCircles(userData.circle);
-          setRating(userData.rating);
+          const userRatingArray = userData.rating;
+          // Calculate the average
+          const sum = userRatingArray.reduce(
+            (accumulator, currentValue) => accumulator + currentValue,
+            0
+          );
+          const average = sum / userRatingArray.length;
+          setRating(average);
         }
       } catch (error) {
         console.error("Error fetching user data:", error);

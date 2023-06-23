@@ -43,7 +43,6 @@ export default function UserInfoPage() {
   const [gender, setGender] = useState("");
   const [aboutText, setAboutText] = useState("");
   const [stars, setStars] = useState(5); // Default value of 5 stars
-  const [rating, setRating] = useState(3);
 
   const navigate = useNavigate();
 
@@ -64,7 +63,7 @@ export default function UserInfoPage() {
         gender,
         aboutText,
         stars,
-        rating,
+        rating: [],
         events: [],
       });
 

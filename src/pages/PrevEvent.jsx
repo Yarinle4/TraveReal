@@ -12,7 +12,7 @@ import { useLocation } from "react-router-dom";
 import { db } from "../firebase";
 import { getAuth } from "firebase/auth";
 import React, { useState, useEffect } from "react";
-import RatingPopupContent from "../components/RatingPopupContent"
+import RatingPopupContent from "../components/RatingPopupContent";
 import {
   getFirestore,
   collection,
@@ -20,20 +20,22 @@ import {
   doc,
   getDoc,
   onSnapshot,
+  arrayUnion,
+  updateDoc,
 } from "firebase/firestore";
 
 function PrevEvent() {
   const location = useLocation();
-//   const { slide, slideId } = location.state;
+  //   const { slide, slideId } = location.state;
 
-//   const curCircle = location.state.curCircle;
+  //   const curCircle = location.state.curCircle;
 
-//   const curCity = location.state.curCity;
+  //   const curCity = location.state.curCity;
 
-const slideId = "n0OZxc97icAC3hBbtFer";
-const slide = "a";
-const curCircle = "Culinary Circle"
-const curCity = "Jerusalem"
+  const slideId = "n0OZxc97icAC3hBbtFer";
+  const slide = "a";
+  const curCircle = "Culinary Circle";
+  const curCity = "Jerusalem";
 
   // Initialise event data as null
   const [myEventData, setMyEventData] = useState(null);
@@ -88,10 +90,10 @@ const curCity = "Jerusalem"
     const user = getAuth().currentUser;
     if (user) {
       const userRef = doc(db, "users", user.uid);
-  
+
       try {
         await updateDoc(userRef, {
-          rating: arrayUnion(rating)
+          rating: arrayUnion(rating),
         });
         console.log("Rating submitted successfully!");
       } catch (error) {
@@ -109,13 +111,13 @@ const curCity = "Jerusalem"
         curCircle={curCircle}
         curCity={curCity}
       />
-    {showPopup && (
-    <RatingPopupContent
-        open={showPopup}
-        onClose={() => setShowPopup(false)}
-        onSubmit={handleRatingSubmit}
-    />
-    )}
+      {showPopup && (
+        <RatingPopupContent
+          open={showPopup}
+          onClose={() => setShowPopup(false)}
+          onSubmit={handleRatingSubmit}
+        />
+      )}
       <SimpleBottomNavigation />
     </>
   );

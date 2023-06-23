@@ -98,8 +98,14 @@ function HomePage() {
             setStars(parsedStars);
             localStorage.setItem("stars", parsedStars.toString());
 
-            const userRating = doc.data().rating;
-            setRating(userRating);
+            const userRatingArray = doc.data().rating;
+            // Calculate the average
+            const sum = userRatingArray.reduce(
+              (accumulator, currentValue) => accumulator + currentValue,
+              0
+            );
+            const average = sum / userRatingArray.length;
+            setRating(average);
           }
         });
 

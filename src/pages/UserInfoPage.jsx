@@ -65,6 +65,7 @@ export default function UserInfoPage() {
           gender,
           aboutText,
           stars,
+          events: [], 
         });
   
         console.log("Document updated succefully with UID: ", userRef.uid);

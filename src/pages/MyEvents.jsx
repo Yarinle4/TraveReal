@@ -25,12 +25,7 @@ import ActivitiesCards from "../components/ActivitiesJ";
 import People from "../components/PoepleActivities";
 import ReactCardSlider from "../components/ReactCardSlider";
 
-//tips:
-import Bakery from "../assets/Bakery.jpg";
-import picnic from "../assets/picnic.jpg";
-import apps from "../assets/apps.png";
-import strawberryPicking from "../assets/strawberryPicking.jpg";
-import resturant from "../assets/resturant.jpg";
+
 import SimpleBottomNavigation from "../shared/components/moreComponents/BottomNav";
 import { useEffect, useState } from "react";
 
@@ -84,7 +79,7 @@ function MyEvents() {
   };
 
   const location = useLocation();
-  const circleclicked = location.state?.curCircle || "Culinary Circle";
+//   const circleclicked = location.state?.curCircle || "Culinary Circle";
   const curCity = location.state?.curCity || "Jerusalem";
 
   const getCircle = (circleclicked) => {
@@ -131,7 +126,17 @@ function MyEvents() {
   return (
     <div className="hostHome">
       <ResponsiveAppBar position="fixed" />
-      <div id="upper">My Events</div>
+      <Box id="upper"
+        sx={{
+            mt: 8,
+            fontSize: 30,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            color: "#679E84",
+            }}>
+            My Events
+        </Box>
       <Box mt={3}>
       </Box>
       <div class="body">
@@ -141,7 +146,7 @@ function MyEvents() {
             slides={events}
             idSlide={FirstsliderName}
             // curCircle={circleclicked}
-            curCity={city}
+            // curCity={city}
           />
         </div>
       </div>

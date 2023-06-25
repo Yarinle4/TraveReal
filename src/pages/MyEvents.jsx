@@ -48,54 +48,14 @@ function MyEvents() {
 
   const navigate = useNavigate();
 
-  const sliderClick = (slider) => {
-    alert("hello world");
-  };
 
   const FirstsliderName = "addEvent";
   const SecondSliderName = "second-slider";
-
-
-  const Search = () => {
-    return (
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <input
-          placeholder="search"
-          style={{
-            width: "90%",
-            borderRadius: 7,
-            height: 30,
-            backgroundColor: "white",
-            opacity: 0.5,
-          }}
-        ></input>
-      </div>
-    );
-  };
+  const UpcomingEvent = "/UpcomingEvent";
+  const PrevEvent = "/PrevEvent";
 
   const location = useLocation();
   const curCity = location.state?.curCity || "Jerusalem";
-
-  const getCircle = (circleclicked) => {
-    switch (circleclicked) {
-      case "Culinary Circle":
-        return "culinary";
-      case "Digital Nomads Circle":
-        return "digital-nomads";
-      case "History Circle":
-        return "History";
-      case "Bonding Circle":
-        return "bonding";
-      case "Architecture Circle":
-        return "architecture";
-    }
-  };
 
 const [upcomingEvents, setUpcomingEvents] = useState([]);
 const [previousEvents, setPreviousEvents] = useState([]);
@@ -154,13 +114,13 @@ return (
     <div class="body">
       <div id="title"> My Upcoming Events</div>
       <div>
-        <ActivitiesCards slides={upcomingEvents} idSlide={FirstsliderName} />
+        <ActivitiesCards slides={upcomingEvents} idSlide={FirstsliderName} path={UpcomingEvent}/>
       </div>
     </div>
     <div class="buttomBody">
       <div id="title">My Previous Events</div>
       <div>
-        <ActivitiesCards slides={previousEvents} idSlide={SecondSliderName} />
+        <ActivitiesCards slides={previousEvents} idSlide={SecondSliderName} path={PrevEvent}/>
       </div>
     </div>
     <SimpleBottomNavigation />

@@ -22,6 +22,21 @@ const CardSlider = (props) => {
 
   const navigate = useNavigate();
 
+  const handleCustomClick = (path, state) => {
+    navigate(path, { state });
+  };
+
+  const handleSlideClick = (slide) => {
+    // if (slide.slides === "upcomingEvents") {
+    //   handleCustomClick("/UpcomingEvent");
+    // } else if (slide.slides === "previousEvents") {
+    //   handleCustomClick("/PrevEvent");
+    // } else 
+    if (slide.slides === "events") {
+      handleCustomClick("/EventPage");
+    }
+  };
+
   return (
     <div id="main-slider-container">
       <MdChevronLeft
@@ -37,13 +52,14 @@ const CardSlider = (props) => {
               className="slider-card"
               key={index}
               onClick={() =>
-                navigate("/EventPage", {
-                  state: {
+                handleCustomClick(props.path, {
+                // navigate("/EventPage", {
+                  // state: {
                     slide: slide,
                     slideId: slide.id,
                     curCircle: props.curCircle,
                     curCity: props.curCity,
-                  },
+                  // },
                 })
               }
             >

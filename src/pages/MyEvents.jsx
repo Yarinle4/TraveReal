@@ -53,7 +53,8 @@ function MyEvents() {
   };
 
   const FirstsliderName = "addEvent";
-  const SecondsliderName = "addTip";
+  const SecondSliderName = "second-slider";
+
 
   const Search = () => {
     return (
@@ -79,7 +80,6 @@ function MyEvents() {
   };
 
   const location = useLocation();
-//   const circleclicked = location.state?.curCircle || "Culinary Circle";
   const curCity = location.state?.curCity || "Jerusalem";
 
   const getCircle = (circleclicked) => {
@@ -97,74 +97,77 @@ function MyEvents() {
     }
   };
 
-  const [events, setEvents] = useState([]);
-//   const [hosts, setHosts] = useState([]);
-  const [city, setCity] = useState(curCity);
+const [upcomingEvents, setUpcomingEvents] = useState([]);
+const [previousEvents, setPreviousEvents] = useState([]);
+const [city, setCity] = useState(curCity);
+const currentDate = new Date();
 
-  useEffect(() => {
-    const fetchEvents = async () => {
-      try {
-        const q = query(
-          collection(db, "events"),
-        //   where("circle", "==", getCircle(circleclicked)),
-        //   where("city", "==", city)
-        );
-        const querySnapshot = await getDocs(q);
-        const eventsData = querySnapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-        setEvents(eventsData);
-      } catch (error) {
-        console.error("Error fetching events:", error);
-      }
-    };
+useEffect(() => {
+  const fetchEvents = async () => {
+    try {
+      const upcomingQ = query(
+        collection(db, "events"),
+        where("date", ">=", currentDate.toISOString().split("T")[0])
+      );
+      const upcomingSnapshot = await getDocs(upcomingQ);
+      const upcomingData = upcomingSnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setUpcomingEvents(upcomingData);
 
-    fetchEvents();
-  }, [city]);
+      const previousQ = query(
+        collection(db, "events"),
+        where("date", "<", currentDate.toISOString().split("T")[0])
+      );
+      const previousSnapshot = await getDocs(previousQ);
+      const previousData = previousSnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setPreviousEvents(previousData);
+    } catch (error) {
+      console.error("Error fetching events:", error);
+    }
+  };
 
-  return (
-    <div className="hostHome">
-      <ResponsiveAppBar position="fixed" />
-      <Box id="upper"
-        sx={{
-            mt: 8,
-            fontSize: 30,
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            color: "#679E84",
-            }}>
-            My Events
-        </Box>
-      <Box mt={3}>
-      </Box>
-      <div class="body">
-        <div id="title"> My Upcoming Events</div>
-        <div>
-          <ActivitiesCards
-            slides={events}
-            idSlide={FirstsliderName}
-            // curCircle={circleclicked}
-            // curCity={city}
-          />
-        </div>
+  fetchEvents();
+}, [city]);
+
+return (
+  <div className="hostHome">
+    <ResponsiveAppBar position="fixed" />
+    <Box
+      id="upper"
+      sx={{
+        mt: 8,
+        fontSize: 30,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        color: "#679E84",
+      }}
+    >
+      My Events
+    </Box>
+    <Box mt={3}></Box>
+    <div class="body">
+      <div id="title"> My Upcoming Events</div>
+      <div>
+        <ActivitiesCards slides={upcomingEvents} idSlide={FirstsliderName} />
       </div>
-      <div class="buttomBody">
-        <div id="title">My Previous Events</div>
-        <div>
-        <ActivitiesCards
-            slides={events}
-            idSlide={FirstsliderName}
-            // curCircle={circleclicked}
-            // curCity={city}
-          />
-        </div>
-      </div>
-      <SimpleBottomNavigation />
     </div>
-  );
+    <div class="buttomBody">
+      <div id="title">My Previous Events</div>
+      <div>
+        <ActivitiesCards slides={previousEvents} idSlide={SecondSliderName} />
+      </div>
+    </div>
+    <SimpleBottomNavigation />
+  </div>
+);
 }
+
 
 export default MyEvents;
 

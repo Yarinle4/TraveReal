@@ -22,6 +22,10 @@ const CardSlider = (props) => {
 
   const navigate = useNavigate();
 
+  const handleCustomClick = (path, state) => {
+    navigate(path, { state });
+  };
+
   return (
     <div id="main-slider-container">
       <MdChevronLeft
@@ -37,13 +41,14 @@ const CardSlider = (props) => {
               className="slider-card"
               key={index}
               onClick={() =>
-                navigate("/EventPage", {
-                  state: {
+                handleCustomClick(props.path, {
+                // navigate("/EventPage", {
+                  // state: {
                     slide: slide,
                     slideId: slide.id,
                     curCircle: props.curCircle,
                     curCity: props.curCity,
-                  },
+                  // },
                 })
               }
             >

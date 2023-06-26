@@ -263,6 +263,7 @@ function HomePageHost() {
     }
   };
 
+  const event = "/EventPage";
   const [events, setEvents] = useState([]);
   const [hosts, setHosts] = useState([]);
   const [city, setCity] = useState(curCity);
@@ -325,6 +326,7 @@ function HomePageHost() {
             idSlide={FirstsliderName}
             curCircle={circleclicked}
             curCity={city}
+            path={event}
           />
         </div>
       </div>

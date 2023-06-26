@@ -26,16 +26,16 @@ import {
 
 function PrevEvent() {
   const location = useLocation();
-  //   const { slide, slideId } = location.state;
+    const { slide, slideId } = location.state;
 
-  //   const curCircle = location.state.curCircle;
+    const curCircle = location.state.curCircle;
 
-  //   const curCity = location.state.curCity;
+    const curCity = location.state.curCity;
 
-  const slideId = "n0OZxc97icAC3hBbtFer";
-  const slide = "a";
-  const curCircle = "Culinary Circle";
-  const curCity = "Jerusalem";
+  // const slideId = "n0OZxc97icAC3hBbtFer";
+  // const slide = "a";
+  // const curCircle = "Culinary Circle";
+  // const curCity = "Jerusalem";
 
   // Initialise event data as null
   const [myEventData, setMyEventData] = useState(null);

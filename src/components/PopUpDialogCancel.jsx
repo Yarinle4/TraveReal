@@ -8,7 +8,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
 import "../pages/HomePageHost/homeHost.css";
 import { useNavigate } from "react-router-dom";
-import { arrayUnion, doc, updateDoc } from "firebase/firestore";
+import { arrayRemove, doc, updateDoc } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { db } from "../firebase"; 
 
@@ -28,7 +28,7 @@ export default function AlertDialogSlideCancel({ eventID }) {
   const handleCancel = async () => {
     console.log("eventid:", eventID);
     const user = getAuth().currentUser;
-    const userRef = doc(db, "users", getAuth().currentUser.uid)
+    const userRef = doc(db, "users", "user_"+ getAuth().currentUser.uid)
     if (user) {
       const eventRef = doc(db, "events", eventID);
       try {

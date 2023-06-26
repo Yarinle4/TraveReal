@@ -42,6 +42,7 @@ import {
   where,
 } from "firebase/firestore";
 import EventCitySelection from "../components/CitySelection";
+import { Events } from "leaflet";
 
 function MyEvents() {
   const fakeCircle = "culinary";
@@ -65,16 +66,30 @@ const currentDate = new Date();
 useEffect(() => {
   const fetchEvents = async () => {
     try {
+      const auth = getAuth();
+      const user = auth.currentUser;
+      const uid = user ? user.uid : "";
+
       const upcomingQ = query(
         collection(db, "events"),
-        where("date", ">=", currentDate.toISOString().split("T")[0])
+        where("date", ">=", currentDate.toISOString().split("T")[0]),
       );
+      
       const upcomingSnapshot = await getDocs(upcomingQ);
       const upcomingData = upcomingSnapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
       }));
-      setUpcomingEvents(upcomingData);
+
+      const upcomingEventsWithUser = upcomingData.filter((event) => {
+        if (event.participants.length !== 0) {
+        return event.participants.includes(uid);
+      }
+      return false;
+    });
+
+    setUpcomingEvents(upcomingEventsWithUser);
+
 
       const previousQ = query(
         collection(db, "events"),
@@ -85,14 +100,22 @@ useEffect(() => {
         id: doc.id,
         ...doc.data(),
       }));
-      setPreviousEvents(previousData);
+
+      const previousEventsWithUser = previousData.filter((event) => {
+        if (event.participants.length !== 0) {
+        return event.participants.includes(uid);
+      }
+      return false;
+    });
+      setPreviousEvents(previousEventsWithUser);
+      
     } catch (error) {
       console.error("Error fetching events:", error);
     }
   };
 
   fetchEvents();
-}, [city]);
+}, []);
 
 return (
   <div className="hostHome">

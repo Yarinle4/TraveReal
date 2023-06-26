@@ -26,17 +26,6 @@ const CardSlider = (props) => {
     navigate(path, { state });
   };
 
-  const handleSlideClick = (slide) => {
-    // if (slide.slides === "upcomingEvents") {
-    //   handleCustomClick("/UpcomingEvent");
-    // } else if (slide.slides === "previousEvents") {
-    //   handleCustomClick("/PrevEvent");
-    // } else 
-    if (slide.slides === "events") {
-      handleCustomClick("/EventPage");
-    }
-  };
-
   return (
     <div id="main-slider-container">
       <MdChevronLeft

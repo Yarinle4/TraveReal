@@ -7,6 +7,8 @@ import HomeIcon from "@mui/icons-material/Home";
 import Paper from "@mui/material/Paper";
 import SportsHandballIcon from "@mui/icons-material/SportsHandball";
 import { useNavigate } from "react-router-dom";
+import PersonIcon from '@mui/icons-material/Person';
+import EventIcon from '@mui/icons-material/Event';
 
 export default function SimpleBottomNavigation() {
   const pathname = window.location.pathname; // in case user visits the path directly. The BottomNavBar is able to follow suit.
@@ -27,9 +29,9 @@ export default function SimpleBottomNavigation() {
       <Box sx={{ width: "100%", bgcolor: "red" }}>
         <BottomNavigation showLabels value={value} onChange={changePage}>
           <BottomNavigationAction
-            value="/activities"
-            label="Activities"
-            icon={<SportsHandballIcon style={{ fontSize: 32 }} />}
+            value="/ProfilePage"
+            label="Profile Page"
+            icon={<PersonIcon style={{ fontSize: 32 }} />}
           />
           <BottomNavigationAction
             value="/HomePage"
@@ -38,8 +40,8 @@ export default function SimpleBottomNavigation() {
           />
           <BottomNavigationAction
             value="/MyEvents"
-            label="MyEvents"
-            icon={<GroupIcon style={{ fontSize: 32 }} />}
+            label="My Events"
+            icon={<EventIcon style={{ fontSize: 32 }} />}
           />
         </BottomNavigation>
       </Box>

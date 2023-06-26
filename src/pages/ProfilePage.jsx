@@ -13,6 +13,7 @@ import { db } from "../firebase";
 import { getAuth } from "firebase/auth";
 import Avatar from "@mui/material/Avatar";
 import Rating from "@mui/material/Rating";
+import SimpleBottomNavigation from "../shared/components/moreComponents/BottomNav";
 
 const RatingcustomStyle = {
   "& .MuiRating-iconFilled": {
@@ -208,7 +209,7 @@ function ProfilePage() {
 
       <ProfileWrapper sx={{ mt: 10 }}>
         <ProfileHeader>
-          <IconButton
+          {/* <IconButton
             aria-label="Back"
             size="large"
             onClick={() => navigate("/HomePage")}
@@ -221,7 +222,7 @@ function ProfilePage() {
             }}
           >
             <ArrowBackIcon fontSize="inherit" />
-          </IconButton>
+          </IconButton> */}
         </ProfileHeader>
         <Avatar
           sx={{ width: 150, height: 150, mt: 3, mb: 3 }}
@@ -276,6 +277,7 @@ function ProfilePage() {
           ))}
         </Stack>
       </DetailsWrapper>
+      <SimpleBottomNavigation />
     </>
   );
 }

@@ -14,14 +14,13 @@ import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { useNavigate } from "react-router-dom";
 import { collection, addDoc } from "firebase/firestore"; // Assuming Firestore is being used
-
 import ResponsiveAppBar from "../shared/components/moreComponents/MainBar";
 import "../pages/HomePageHost/homeHost.css";
 import { auth, db } from "../firebase";
 import { UserAuth } from "../context/AuthContext";
 import signUpLogo from "../assets/signUpLogo.svg"
+import { Link as RouterLink, useNavigate } from "react-router-dom";
 
 const textFieldStyle = {
   backgroundColor: "white",
@@ -35,6 +34,10 @@ export default function SignUp() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
+
+  const handleSignInLinkClick = () => {
+    navigate("/SignIn"); // Navigate to the sign-in page
+  };
 
   const { signUp } = UserAuth();
   const { addToUserdb } = UserAuth();
@@ -201,7 +204,11 @@ export default function SignUp() {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link 
+                  component={RouterLink}
+                  to="/SignIn"
+                  variant="body2"
+                  onClick={handleSignInLinkClick}>
                   Already have an account? Sign in
                 </Link>
               </Grid>

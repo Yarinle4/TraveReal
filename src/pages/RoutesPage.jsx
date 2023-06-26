@@ -16,7 +16,7 @@ import SelectCircle from "./CreateEventCircles";
 import MyEvents from "./MyEvents";
 import PrevEvent from "./PrevEvent";
 import UpcomingEvent from "./UpcomingEvent";
-
+import SignIn from "./SignIn";
 
 
 function Routess() {
@@ -55,6 +55,7 @@ function Routess() {
 
       <Route path="/UpcomingEvent" element={<UpcomingEvent />} />
 
+      <Route path="/SignIn" element={<SignIn />} />
 
     </Routes>
   );

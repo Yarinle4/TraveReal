@@ -88,12 +88,23 @@ function PrevEvent() {
 
   const handleRatingSubmit = async (rating) => {
     const userRef = doc(db, "users", "user_" + myEventData.host);
-    try {
-      await updateDoc(userRef, {
-        rating: arrayUnion(rating),
-      });
-      console.log("Rating submitted successfully!");
-    } catch (error) {
+    // try {
+      // await updateDoc(userRef, {
+      //   rating: arrayUnion(rating),
+      // });
+      try {
+        const userDoc = await getDoc(userRef);
+        if (userDoc.exists()) {
+          const userRating = userDoc.data().rating || [];
+          const updatedRating = [...userRating, rating];
+          await updateDoc(userRef, {
+            rating: updatedRating,
+          });
+          console.log("Rating submitted successfully!");
+        } else {
+          console.log("User document does not exist!");
+        }
+      } catch (error) {
       console.error("Error submitting rating: ", error);
     }
   };

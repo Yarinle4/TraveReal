@@ -35,6 +35,9 @@ export default function AlertDialogSlideCancel({ eventID }) {
         await updateDoc(eventRef, {
           participants: arrayRemove(user.uid)
         });
+        await updateDoc(userRef, {
+          events: arrayRemove(eventID)
+        });
         console.log("User successfully canceled the event!");
         navigate("/HomePage"); // Or wherever you want to redirect after successfully joining.
       } catch (error) {

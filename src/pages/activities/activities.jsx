@@ -189,24 +189,24 @@ function HomePageHost() {
   // ];
 
   const tips = [
-    {
-      image: picnic,
-      title: "Picnic Spots",
-      description: "Blue skies and good food",
-      clickEvent: sliderClick,
-    },
-    {
-      image: strawberryPicking,
-      title: "Agriculture",
-      description: "Picking fresh food",
-      clickEvent: sliderClick,
-    },
-    {
-      image: Bakery,
-      title: "Bakeries",
-      description: "The best in town",
-      clickEvent: sliderClick,
-    },
+    // {
+    //   image: picnic,
+    //   title: "Picnic Spots",
+    //   description: "Blue skies and good food",
+    //   clickEvent: sliderClick,
+    // },
+    // {
+    //   image: strawberryPicking,
+    //   title: "Agriculture",
+    //   description: "Picking fresh food",
+    //   clickEvent: sliderClick,
+    // },
+    // {
+    //   image: Bakery,
+    //   title: "Bakeries",
+    //   description: "The best in town",
+    //   clickEvent: sliderClick,
+    // },
     {
       image: resturant,
       title: "Have to Visit",
@@ -304,7 +304,8 @@ function HomePageHost() {
   return (
     <div className="hostHome">
       <ResponsiveAppBar position="fixed" />
-      <div id="upper">{circleclicked}</div>
+      <div id="upper">{circleclicked}
+      </div>
       <Box mt={3}>
         <EventCitySelection city={city} setCity={setCity} />
       </Box>
@@ -332,7 +333,7 @@ function HomePageHost() {
       </div>
       <div class="buttomBody">
         <div id="title">Tips</div>
-        <Search />
+        {/* <Search /> */}
         <div>
           <ReactCardSlider slides={tips} idSlide={SecondsliderName} />
         </div>

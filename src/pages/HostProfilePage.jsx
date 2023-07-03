@@ -263,7 +263,10 @@ function ProfilePage() {
 
         <DialogContent>
           <ProfileContact>
-            Email: <ProfileData>{email}</ProfileData>
+            Email: <ProfileData>
+            <div onClick={(e) => {window.location.href ='mailto:'+{email};}}>{email}</div>
+              {/* mailto:{email} */}
+              </ProfileData>
           </ProfileContact>
         </DialogContent>
         <DialogActions>

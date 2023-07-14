@@ -17,6 +17,7 @@ import MyEvents from "./MyEvents";
 import PrevEvent from "./PrevEvent";
 import UpcomingEvent from "./UpcomingEvent";
 import SignIn from "./SignIn";
+import EmergencyAssistance from "./EmergencyAssistancePage";
 
 
 function Routess() {
@@ -42,6 +43,8 @@ function Routess() {
       <Route path="/CommunityPage" element={<CommunityPage />} />
 
       <Route path="/TipsPage" element={<TipsPage />} />
+
+      <Route path="/EmergencyAssistance" element={<EmergencyAssistance />} />
 
       <Route path="/HostProfilePage" element={<HostProfilePage />} />
 

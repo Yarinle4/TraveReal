@@ -43,6 +43,7 @@ const ReactCardSlider = (props) => {
               ></div>
               <p className="slider-card-title">{slide.title}</p>
               <p className="slider-card-description">{slide.description}</p>
+              <p className="slider-card-description">{slide.phone}</p>
             </div>
           );
         })}

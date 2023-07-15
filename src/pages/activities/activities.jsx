@@ -209,7 +209,7 @@ function HomePageHost() {
     // },
     {
       image: resturant,
-      title: "Have to Visit",
+      title: "Emergency Assistance",
       description: "Places not to be missed!",
       clickEvent: sliderClick,
     },

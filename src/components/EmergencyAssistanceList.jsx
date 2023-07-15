@@ -8,31 +8,35 @@ import { makeStyles } from "@mui/styles";
 import IconButton from "@mui/material/IconButton";
 import { useNavigate } from "react-router-dom";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import AppleIcon from '@mui/icons-material/Apple';
 import MDA from "../assets/MDA.png";
-import Firefighters from "../assets/Firefighters.png";
+import Firefighters from "../assets/Firefighters.jpg";
 import police from "../assets/Police.png";
 import HFC from "../assets/HFC.png";
+import PhoneIcon from '@mui/icons-material/Phone';
 
 const apps = [
   { image: MDA, 
     title: "MDA", 
-    description: "Emergency medical services" 
+    description: "Emergency Medical Services",
+    phone: "101",
   },
   {
     image: police,
     title: "Police",
-    description: "Police services",
+    description: "Police Services",
+    phone: "100",
   },
   {
     image: Firefighters,
     title: "Firefighters",
-    description: "Jerusalem weather station",
+    description: "Firefighting and Rescuing",
+    phone: "102",
   },
   {
     image: HFC,
     title: "HFC",
-    description: "All Transit Options Bus, Train, Subway Live Times ",
+    description: "Updates for all emergency scenarios",
+    phone: "104"
   },
 ];
 
@@ -52,10 +56,13 @@ const generateCards = (apps) => {
         <Typography variant="h6" color="text.secondary">
           {app.description}
         </Typography>
+        <Box sx={{ display: "flex", alignItems: "center", mt: 1 }}>
+          <PhoneIcon sx={{ mr: 1 }} />
+          <Typography variant="h6" color="text.secondary">
+            {app.phone}
+          </Typography>
+        </Box>
       </CardContent>
-      {/* <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-          <AppleIcon fontSize="medium" />
-        </div> */}
     </Card>
   ));
 };

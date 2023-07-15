@@ -7,42 +7,65 @@ import Stack from "@mui/material/Stack";
 import Divider from "@mui/material/Divider";
 import Typography from "@mui/material/Typography";
 import QuiltedImageList from "./QuiltedImageList";
+import Rating from "@mui/material/Rating";
+import { styled } from "@mui/material/styles";
 
-export default function MiddleDividers({time, name, details, photos, circles, location, hostName }) {
+const RatingcustomStyle = {
+  "& .MuiRating-iconFilled": {
+    color: "#FFFF00",
+    fontSize: "20px",
+  },
+  "& .MuiRating-iconEmpty": {
+    fontSize: "20px",
+  },
+  "& .MuiRating-iconHover": {
+    color: "purple",
+  },
+  "& .MuiRating-decimal:hover": {
+    transform: "scale(2.5)",
+  },
+};
 
-  
+export default function MiddleDividers({
+  time,
+  name,
+  details,
+  photos,
+  circles,
+  location,
+  hostName,
+  rating,
+}) {
+  console.log("hostName:", hostName);
+  console.log("r:", rating);
   return (
     <Box sx={{ width: "100%", maxWidth: 360 }}>
-        <Box sx={{ my: 3, mx: 2 }}>
+      <Box sx={{ my: 3, mx: 2 }}>
         <Grid container alignItems="center">
           <Grid item>
-            <Typography
-              gutterBottom
-              variant="h4"
-            >
+            <Rating
+              name="read-only"
+              value={rating}
+              readOnly
+              sx={RatingcustomStyle}
+            />
+            <Typography gutterBottom variant="h4">
               Host:
             </Typography>
           </Grid>
         </Grid>
-        <Typography sx={{ fontSize: "3vw" }}>
-          {hostName}
-        </Typography>
+        <Typography sx={{ fontSize: "3vw" }}>{hostName}</Typography>
       </Box>
       <Divider variant="middle" />
       <Box sx={{ my: 3, mx: 2 }}>
         <Grid container alignItems="center">
           <Grid item>
-            <Typography
-              gutterBottom
-              variant="h4"
-            >
+            <Typography gutterBottom variant="h4">
               Details
             </Typography>
           </Grid>
         </Grid>
-        <Typography sx={{ fontSize: "3vw" }}>
-          {details}
-        </Typography>
+        <Typography sx={{ fontSize: "3vw" }}>{details}</Typography>
       </Box>
       <Box sx={{ mt: 1 }}>
         <Grid container alignItems="center">
@@ -51,9 +74,7 @@ export default function MiddleDividers({time, name, details, photos, circles, lo
               {/* Photos */}
             </Typography>
           </Grid>
-          <Grid item>
-            {/* <QuiltedImageList photos={photos}/> */}
-          </Grid>
+          <Grid item>{/* <QuiltedImageList photos={photos}/> */}</Grid>
         </Grid>
       </Box>
       <Divider variant="middle" />
@@ -72,11 +93,10 @@ export default function MiddleDividers({time, name, details, photos, circles, lo
         <Typography gutterBottom variant="h4" component="div">
           Time: {time}
         </Typography>
-        <Stack direction="row" spacing={1}>
-        </Stack>
+        <Stack direction="row" spacing={1}></Stack>
       </Box>
       <Divider variant="middle" />
-      <Box sx={{ ml:2, mt:2 }}>
+      <Box sx={{ ml: 2, mt: 2 }}>
         <Typography gutterBottom variant="h4" component="div">
           Location
         </Typography>

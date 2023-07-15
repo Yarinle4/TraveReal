@@ -22,6 +22,14 @@ export const AuthContextProvider = ({ children }) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
+  const signIn = (email, password) => {
+    return signInWithEmailAndPassword(auth, email, password);
+  };
+
+  const logout = () => {
+    return signOut(auth);
+  };
+
   const addToUserdb = (user_details) => {
     try {
       const auth = getAuth();
@@ -53,6 +61,8 @@ export const AuthContextProvider = ({ children }) => {
     currentUser,
     signUp,
     addToUserdb,
+    signIn,
+    logout,
   };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;

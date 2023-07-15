@@ -21,6 +21,7 @@ import { auth, db } from "../firebase";
 import { UserAuth } from "../context/AuthContext";
 import signUpLogo from "../assets/signUpLogo.svg"
 import { Link as RouterLink, useNavigate } from "react-router-dom";
+import CountrySelection from "../components/CountrySelection";
 
 const textFieldStyle = {
   backgroundColor: "white",
@@ -146,17 +147,7 @@ export default function SignUp() {
                 />
               </Grid>
               <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="country"
-                  label="Country"
-                  name="country"
-                  autoComplete="country"
-                  style={textFieldStyle}
-                  value={country}
-                  onChange={(e) => setCountry(e.target.value)}
-                />
+                <CountrySelection country={country} setCountry={setCountry} />
               </Grid>
               <Grid item xs={12}>
                 <TextField

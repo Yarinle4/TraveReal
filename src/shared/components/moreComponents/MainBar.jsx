@@ -18,6 +18,7 @@ import Switch from "@mui/material/Switch";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import DensityMediumIcon from "@mui/icons-material/DensityMedium";
+import { UserAuth } from "../../../context/AuthContext";
 
 import logo from "../../../assets/UpdateLogo.svg";
 import avatarPic from "../../../assets/no_pic.png";
@@ -40,6 +41,8 @@ function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+  const { logout } = UserAuth();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -64,7 +67,8 @@ function ResponsiveAppBar() {
 
   const navigate = useNavigate();
 
-  const routeChange = (pageName) => {
+  const routeChange = async (pageName) => {
+    await logout();
     navigate(getPath(pageName));
   };
 

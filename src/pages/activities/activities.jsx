@@ -24,7 +24,7 @@ import Bakery from "../../assets/Bakery.jpg";
 import picnic from "../../assets/picnic.jpg";
 import apps from "../../assets/apps.png";
 import strawberryPicking from "../../assets/strawberryPicking.jpg";
-import resturant from "../../assets/resturant.jpg";
+import doctor from "../../assets/doctor.jpg";
 import SimpleBottomNavigation from "../../shared/components/moreComponents/BottomNav";
 import { useEffect, useState } from "react";
 
@@ -208,9 +208,9 @@ function HomePageHost() {
     //   clickEvent: sliderClick,
     // },
     {
-      image: resturant,
-      title: "Emergency Assistance",
-      description: "Places not to be missed!",
+      image: doctor,
+      title: "Emergency Info",
+      description: "Essential contacts",
       clickEvent: sliderClick,
     },
     {

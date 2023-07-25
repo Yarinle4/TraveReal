@@ -25,6 +25,8 @@ const mapLocation = [lat, lng];
 const NewHeaderRate = ({ eventData, curCircle, curCity }) => {
   const [profilePic, setProfilePic] = useState("");
   const [hostName, setHostName] = useState("");
+  const [rating, setRating] = useState(0);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -38,6 +40,15 @@ const NewHeaderRate = ({ eventData, curCircle, curCity }) => {
         const userProfile = docSnap.data();
         setProfilePic(userProfile.profilePictureUrl);
         setHostName(userProfile.firstName);
+
+        const userRatingArray = userProfile.rating;
+        // Calculate the average
+        const sum = userRatingArray.reduce(
+          (accumulator, currentValue) => accumulator + currentValue,
+          0
+        );
+        const average = sum / userRatingArray.length;
+        setRating(average);
       } else {
         console.log("No such document!");
       }
@@ -51,9 +62,7 @@ const NewHeaderRate = ({ eventData, curCircle, curCity }) => {
       <IconButton
         aria-label="Back"
         size="large"
-        onClick={() =>
-          navigate("/MyEvents", { state: { curCircle, curCity } })
-        }
+        onClick={() => navigate("/MyEvents", { state: { curCircle, curCity } })}
         sx={{
           top: -23,
           left: 0,
@@ -87,6 +96,7 @@ const NewHeaderRate = ({ eventData, curCircle, curCity }) => {
               circles={eventData.circles}
               location={eventData.location}
               hostName={hostName}
+              rating={rating}
             />
           </div>
           <Box sx={{ my: 3, mx: 2 }}>

@@ -20,11 +20,9 @@ import PostFeed from "../components/PostFeed.jsx";
 // import SimpleBottomNavigation from "../shared/components/moreComponents/BottomNav.jsx";
 import Button from "@mui/material/Button";
 
-import "./Activities/activities.css";
 import ActivitiesCards from "../components/ActivitiesJ";
 import People from "../components/PoepleActivities";
 import ReactCardSlider from "../components/ReactCardSlider";
-
 
 import SimpleBottomNavigation from "../shared/components/moreComponents/BottomNav";
 import { useEffect, useState } from "react";
@@ -49,7 +47,6 @@ function MyEvents() {
 
   const navigate = useNavigate();
 
-
   const FirstsliderName = "addEvent";
   const SecondSliderName = "second-slider";
   const UpcomingEvent = "/UpcomingEvent";
@@ -58,103 +55,106 @@ function MyEvents() {
   const location = useLocation();
   const curCity = location.state?.curCity || "Jerusalem";
 
-const [upcomingEvents, setUpcomingEvents] = useState([]);
-const [previousEvents, setPreviousEvents] = useState([]);
-const [city, setCity] = useState(curCity);
-const currentDate = new Date();
+  const [upcomingEvents, setUpcomingEvents] = useState([]);
+  const [previousEvents, setPreviousEvents] = useState([]);
+  const [city, setCity] = useState(curCity);
+  const currentDate = new Date();
 
-useEffect(() => {
-  const fetchEvents = async () => {
-    try {
-      const auth = getAuth();
-      const user = auth.currentUser;
-      const uid = user ? user.uid : "";
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const auth = getAuth();
+        const user = auth.currentUser;
+        const uid = user ? user.uid : "";
 
-      const upcomingQ = query(
-        collection(db, "events"),
-        where("date", ">=", currentDate.toISOString().split("T")[0]),
-      );
-      
-      const upcomingSnapshot = await getDocs(upcomingQ);
-      const upcomingData = upcomingSnapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
+        const upcomingQ = query(
+          collection(db, "events"),
+          where("date", ">=", currentDate.toISOString().split("T")[0])
+        );
 
-      const upcomingEventsWithUser = upcomingData.filter((event) => {
-        if (event.participants.length !== 0) {
-        return event.participants.includes(uid);
+        const upcomingSnapshot = await getDocs(upcomingQ);
+        const upcomingData = upcomingSnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+
+        const upcomingEventsWithUser = upcomingData.filter((event) => {
+          if (event.participants.length !== 0) {
+            return event.participants.includes(uid);
+          }
+          return false;
+        });
+
+        setUpcomingEvents(upcomingEventsWithUser);
+
+        const previousQ = query(
+          collection(db, "events"),
+          where("date", "<", currentDate.toISOString().split("T")[0])
+        );
+        const previousSnapshot = await getDocs(previousQ);
+        const previousData = previousSnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+
+        const previousEventsWithUser = previousData.filter((event) => {
+          if (event.participants.length !== 0) {
+            return event.participants.includes(uid);
+          }
+          return false;
+        });
+        setPreviousEvents(previousEventsWithUser);
+      } catch (error) {
+        console.error("Error fetching events:", error);
       }
-      return false;
-    });
+    };
 
-    setUpcomingEvents(upcomingEventsWithUser);
+    fetchEvents();
+  }, []);
 
-
-      const previousQ = query(
-        collection(db, "events"),
-        where("date", "<", currentDate.toISOString().split("T")[0])
-      );
-      const previousSnapshot = await getDocs(previousQ);
-      const previousData = previousSnapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-
-      const previousEventsWithUser = previousData.filter((event) => {
-        if (event.participants.length !== 0) {
-        return event.participants.includes(uid);
-      }
-      return false;
-    });
-      setPreviousEvents(previousEventsWithUser);
-      
-    } catch (error) {
-      console.error("Error fetching events:", error);
-    }
-  };
-
-  fetchEvents();
-}, []);
-
-return (
-  <div className="hostHome">
-    <ResponsiveAppBar position="fixed" />
-    <Box
-      id="upper"
-      sx={{
-        mt: 8,
-        fontSize: 30,
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        color: "#679E84",
-      }}
-    >
-      My Events
-    </Box>
-    <Box mt={3}></Box>
-    <div class="body">
-      <div id="title"> My Upcoming Events</div>
-      <div>
-        <ActivitiesCards slides={upcomingEvents} idSlide={FirstsliderName} path={UpcomingEvent}/>
+  return (
+    <div className="hostHome">
+      <ResponsiveAppBar position="fixed" />
+      <Box
+        id="upper"
+        sx={{
+          mt: 8,
+          fontSize: 30,
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          color: "#679E84",
+        }}
+      >
+        My Events
+      </Box>
+      <Box mt={3}></Box>
+      <div class="body">
+        <div id="title"> My Upcoming Events</div>
+        <div>
+          <ActivitiesCards
+            slides={upcomingEvents}
+            idSlide={FirstsliderName}
+            path={UpcomingEvent}
+          />
+        </div>
       </div>
-    </div>
-    <div class="buttomBody">
-      <div id="title">My Previous Events</div>
-      <div>
-        <ActivitiesCards slides={previousEvents} idSlide={SecondSliderName} path={PrevEvent}/>
+      <div class="buttomBody">
+        <div id="title">My Previous Events</div>
+        <div>
+          <ActivitiesCards
+            slides={previousEvents}
+            idSlide={SecondSliderName}
+            path={PrevEvent}
+          />
+        </div>
       </div>
+      <SimpleBottomNavigation />
     </div>
-    <SimpleBottomNavigation />
-  </div>
-);
+  );
 }
 
-
 export default MyEvents;
-
-
 
 // function MyEvents() {
 //   const navigate = useNavigate();

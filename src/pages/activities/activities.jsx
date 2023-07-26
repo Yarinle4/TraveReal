@@ -212,12 +212,14 @@ function HomePageHost() {
       title: "Emergency Info",
       description: "Essential contacts",
       clickEvent: sliderClick,
+      destination: "/EmergencyAssistancePage",
     },
     {
       image: apps,
       title: "Useful Apps",
       description: "Public Transport, etc.",
       clickEvent: sliderClick,
+      destination: "/TipsPage",
     },
   ];
 

@@ -18,6 +18,10 @@ const ReactCardSlider = (props) => {
 
   const navigate = useNavigate();
 
+  const navigateToPage = (destination) => {
+    navigate(destination);
+
+  };
   return (
     <div id="main-slider-container">
       <MdChevronLeft
@@ -32,7 +36,7 @@ const ReactCardSlider = (props) => {
             <div
               className="slider-card"
               key={index}
-              onClick={() => navigate("/TipsPage")}
+              onClick={() => navigateToPage(slide.destination)}
             >
               <div
                 className="slider-card-image"

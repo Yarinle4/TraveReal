@@ -44,7 +44,7 @@ function Routess() {
 
       <Route path="/TipsPage" element={<TipsPage />} />
 
-      <Route path="/EmergencyAssistance" element={<EmergencyAssistance />} />
+      <Route path="/EmergencyAssistancePage" element={<EmergencyAssistance />} />
 
       <Route path="/HostProfilePage" element={<HostProfilePage />} />
 

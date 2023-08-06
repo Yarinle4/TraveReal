@@ -8,21 +8,19 @@ import { makeStyles } from "@mui/styles";
 import IconButton from "@mui/material/IconButton";
 import { useNavigate } from "react-router-dom";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import AppleIcon from '@mui/icons-material/Apple';
+import AppleIcon from "@mui/icons-material/Apple";
 import app1 from "../assets/app1.png";
 import app2 from "../assets/app2.png";
 import app3 from "../assets/app3.png";
 import app4 from "../assets/app4.png";
 
 const apps = [
-  { image: app1, 
-    title: "Easy", 
-    description: "find everything around you!" 
-  },
+  { image: app1, title: "Easy", description: "find everything around you!" },
   {
     image: app2,
     title: "Rav Kav",
-    description: "the Israeli public transport smart card, from anywhere, anytime",
+    description:
+      "the Israeli public transport smart card, from anywhere, anytime",
   },
   {
     image: app3,
@@ -79,44 +77,42 @@ const useStyles = makeStyles({
   },
 });
 
-
-
-const TipsList = ({ curCircle }) => {
+const TipsList = ({ curCircle, curCity }) => {
   const classes = useStyles();
   const navigate = useNavigate();
 
   return (
     <>
-    <Box sx={{ mt: 8, mb: 5, width: "100%" }}>
-    <IconButton
-        aria-label="Back"
-        size="large"
-        onClick={() =>
-          navigate("/activities", { state: { curCircle } })
-        }
-        sx={{
-          top: -23,
-          left: 0,
-          display: "flex",
-          position: "absolute",
-          mt: 10,
-        }}
-      >
-        <ArrowBackIcon fontSize="inherit" />
-      </IconButton>
-      <Box
-        sx={{
-          mt: 7,
-          fontSize: 30,
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          color: "#679E84",
-        }}
-      >
-        Useful Apps
-      </Box>
-      <Box
+      <Box sx={{ mt: 8, mb: 5, width: "100%" }}>
+        <IconButton
+          aria-label="Back"
+          size="large"
+          onClick={() =>
+            navigate("/activities", { state: { curCircle, curCity } })
+          }
+          sx={{
+            top: -23,
+            left: 0,
+            display: "flex",
+            position: "absolute",
+            mt: 10,
+          }}
+        >
+          <ArrowBackIcon fontSize="inherit" />
+        </IconButton>
+        <Box
+          sx={{
+            mt: 7,
+            fontSize: 30,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            color: "#679E84",
+          }}
+        >
+          Useful Apps
+        </Box>
+        <Box
           sx={{
             mt: 1,
             fontSize: 20,
@@ -127,11 +123,13 @@ const TipsList = ({ curCircle }) => {
             ml: 2,
             mr: 2,
           }}
-        >Navigate your destination like a local with a handpicked selection of essential apps!
+        >
+          Navigate your destination like a local with a handpicked selection of
+          essential apps!
         </Box>
         <Box sx={{ mt: 3 }} className={classes.pictureRow}>
-        {generateCards(apps)}
-      </Box>
+          {generateCards(apps)}
+        </Box>
       </Box>
     </>
   );

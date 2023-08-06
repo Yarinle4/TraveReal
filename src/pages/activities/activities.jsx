@@ -306,8 +306,7 @@ function HomePageHost() {
   return (
     <div className="hostHome">
       <ResponsiveAppBar position="fixed" />
-      <div id="upper">{circleclicked}
-      </div>
+      <div id="upper">{circleclicked}</div>
       <Box mt={3}>
         <EventCitySelection city={city} setCity={setCity} />
       </Box>
@@ -337,7 +336,12 @@ function HomePageHost() {
         <div id="title">Tips</div>
         {/* <Search /> */}
         <div>
-          <ReactCardSlider slides={tips} idSlide={SecondsliderName} />
+          <ReactCardSlider
+            slides={tips}
+            idSlide={SecondsliderName}
+            curCircle={circleclicked}
+            curCity={city}
+          />
         </div>
       </div>
       <SimpleBottomNavigation />

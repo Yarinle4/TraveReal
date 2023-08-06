@@ -19,8 +19,12 @@ const ReactCardSlider = (props) => {
   const navigate = useNavigate();
 
   const navigateToPage = (destination) => {
-    navigate(destination);
-
+    navigate(destination, {
+      state: {
+        curCircle: props.curCircle,
+        curCity: props.curCity,
+      },
+    });
   };
   return (
     <div id="main-slider-container">

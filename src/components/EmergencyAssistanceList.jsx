@@ -12,11 +12,12 @@ import MDA from "../assets/MDA.png";
 import Firefighters from "../assets/Firefighters.jpg";
 import police from "../assets/Police.png";
 import HFC from "../assets/HFC.png";
-import PhoneIcon from '@mui/icons-material/Phone';
+import PhoneIcon from "@mui/icons-material/Phone";
 
 const apps = [
-  { image: MDA, 
-    title: "MDA", 
+  {
+    image: MDA,
+    title: "MDA",
     description: "Emergency Medical Services",
     phone: "101",
   },
@@ -36,7 +37,7 @@ const apps = [
     image: HFC,
     title: "HFC",
     description: "Updates for all emergency scenarios",
-    phone: "104"
+    phone: "104",
   },
 ];
 
@@ -86,44 +87,42 @@ const useStyles = makeStyles({
   },
 });
 
-
-
-const EmergencyAssistanceList = ({ curCircle }) => {
+const EmergencyAssistanceList = ({ curCircle, curCity }) => {
   const classes = useStyles();
   const navigate = useNavigate();
 
   return (
     <>
-    <Box sx={{ mt: 8, mb: 5, width: "100%" }}>
-    <IconButton
-        aria-label="Back"
-        size="large"
-        onClick={() =>
-          navigate("/activities", { state: { curCircle } })
-        }
-        sx={{
-          top: -23,
-          left: 0,
-          display: "flex",
-          position: "absolute",
-          mt: 10,
-        }}
-      >
-        <ArrowBackIcon fontSize="inherit" />
-      </IconButton>
-      <Box
-        sx={{
-          mt: 7,
-          fontSize: 27,
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          color: "#679E84",
-        }}
-      >
-        Emergency Assistance
-      </Box>
-      <Box
+      <Box sx={{ mt: 8, mb: 5, width: "100%" }}>
+        <IconButton
+          aria-label="Back"
+          size="large"
+          onClick={() =>
+            navigate("/activities", { state: { curCircle, curCity } })
+          }
+          sx={{
+            top: -23,
+            left: 0,
+            display: "flex",
+            position: "absolute",
+            mt: 10,
+          }}
+        >
+          <ArrowBackIcon fontSize="inherit" />
+        </IconButton>
+        <Box
+          sx={{
+            mt: 7,
+            fontSize: 27,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            color: "#679E84",
+          }}
+        >
+          Emergency Assistance
+        </Box>
+        <Box
           sx={{
             mt: 1,
             fontSize: 20,
@@ -134,11 +133,13 @@ const EmergencyAssistanceList = ({ curCircle }) => {
             ml: 2,
             mr: 2,
           }}
-        >Be prepared for any situation with safety tips, emergency contacts, and real-time alerts
+        >
+          Be prepared for any situation with safety tips, emergency contacts,
+          and real-time alerts
         </Box>
         <Box sx={{ mt: 3 }} className={classes.pictureRow}>
-        {generateCards(apps)}
-      </Box>
+          {generateCards(apps)}
+        </Box>
       </Box>
     </>
   );

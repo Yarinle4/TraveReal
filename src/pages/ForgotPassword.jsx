@@ -1,9 +1,4 @@
 import React, { useState } from "react";
-// import { getAuth, signInWithEmailAndPassword } from "firebase/auth"; // Firebase Authentication
-
-import ResponsiveAppBar from "../shared/components/moreComponents/MainBar";
-import { db } from "../firebase";
-import signUpLogo from "../assets/signUpLogo.svg";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
@@ -14,19 +9,21 @@ import Alert from "@mui/material/Alert";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { UserAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { UserAuth } from "../context/AuthContext";
+import ResponsiveAppBar from "../shared/components/moreComponents/MainBar";
+import signUpLogo from "../assets/signUpLogo.svg";
 
 const textFieldStyle = {
   backgroundColor: "white",
 };
 
-export default function SignIn() {
+const ForgotPassword = () => {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [isEmailSent, setIsEmailSent] = useState(false);
 
-  const { signIn } = UserAuth();
+  const { resetPassword } = UserAuth(); // Access the resetPassword function from the context
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
@@ -34,27 +31,16 @@ export default function SignIn() {
 
     try {
       setError("");
-
-      // Sign in the user using Firebase Authentication
-      await signIn(email, password);
-      console.log("Signed in successfully");
-
-      // Navigate to the next page
-      navigate("/HomePage");
-      console.log("test");
+      await resetPassword(email); // Call the resetPassword function
+      setIsEmailSent(true);
     } catch (e) {
       console.log(e.code);
       if (e.code === "auth/invalid-email") {
         setError("Invalid email");
-      }
-      if (
-        e.code === "auth/wrong-password" ||
-        e.code === "auth/missing-password"
-      ) {
-        setError("Invalid password");
-      }
-      if (e.code === "auth/user-not-found") {
+      } else if (e.code === "auth/user-not-found") {
         setError("User not found");
+      } else {
+        setError("Something went wrong");
       }
     }
   };
@@ -62,6 +48,7 @@ export default function SignIn() {
   return (
     <>
       <ResponsiveAppBar />
+
       <Container component="main" maxWidth="xs">
         <Box
           sx={{
@@ -74,7 +61,7 @@ export default function SignIn() {
             <img src={signUpLogo} style={{ maxWidth: "100%" }} />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            Forgot Password
           </Typography>
           <Stack sx={{ width: "100%" }} spacing={2}>
             {error && (
@@ -83,6 +70,14 @@ export default function SignIn() {
                 sx={{ fontSize: "14px", fontFamily: "Montserrat" }}
               >
                 {error}
+              </Alert>
+            )}
+            {isEmailSent && (
+              <Alert
+                severity="success"
+                sx={{ fontSize: "14px", fontFamily: "Montserrat" }}
+              >
+                Password reset email sent! Please check your inbox.
               </Alert>
             )}
           </Stack>
@@ -106,43 +101,23 @@ export default function SignIn() {
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="password"
-                  label="Password"
-                  type="password"
-                  id="password"
-                  autoComplete="current-password"
-                  style={textFieldStyle}
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </Grid>
             </Grid>
             <Button
               type="submit"
-              onSubmit={handleSubmit}
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign In
+              Reset Password
             </Button>
-            <Grid container justifyContent="space-between">
-              <Grid item>
-                <Link href="#" variant="body2" onClick={() => navigate("/")}>
-                  dont have an account? Sign up
-                </Link>
-              </Grid>
+            <Grid container justifyContent="flex-end">
               <Grid item>
                 <Link
                   href="#"
                   variant="body2"
-                  onClick={() => navigate("/ForgotPassword")}
+                  onClick={() => navigate("/SignIn")}
                 >
-                  forgot password?
+                  Back to Sign In
                 </Link>
               </Grid>
             </Grid>
@@ -151,4 +126,6 @@ export default function SignIn() {
       </Container>
     </>
   );
-}
+};
+
+export default ForgotPassword;

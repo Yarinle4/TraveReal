@@ -18,12 +18,11 @@ import PrevEvent from "./PrevEvent";
 import UpcomingEvent from "./UpcomingEvent";
 import SignIn from "./SignIn";
 import EmergencyAssistance from "./EmergencyAssistancePage";
-
+import ForgotPassword from "./ForgotPassword";
 
 function Routess() {
   return (
     <Routes>
-
       <Route path="/HomePage" element={<HomePage />} />
 
       <Route path="/" element={<SignUp />} />
@@ -44,7 +43,10 @@ function Routess() {
 
       <Route path="/TipsPage" element={<TipsPage />} />
 
-      <Route path="/EmergencyAssistancePage" element={<EmergencyAssistance />} />
+      <Route
+        path="/EmergencyAssistancePage"
+        element={<EmergencyAssistance />}
+      />
 
       <Route path="/HostProfilePage" element={<HostProfilePage />} />
 
@@ -60,6 +62,7 @@ function Routess() {
 
       <Route path="/SignIn" element={<SignIn />} />
 
+      <Route path="/ForgotPassword" element={<ForgotPassword />} />
     </Routes>
   );
 }

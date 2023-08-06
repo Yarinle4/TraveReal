@@ -5,6 +5,7 @@ import {
   signOut,
   onAuthStateChanged,
   getAuth,
+  sendPasswordResetEmail, // Import the function for password reset
 } from "firebase/auth";
 import { auth, db } from "../firebase";
 import { addDoc, collection, setDoc, doc } from "firebase/firestore";
@@ -47,6 +48,9 @@ export const AuthContextProvider = ({ children }) => {
       console.log(e);
     }
   };
+  const resetPassword = (email) => {
+    return sendPasswordResetEmail(auth, email);
+  };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -63,6 +67,7 @@ export const AuthContextProvider = ({ children }) => {
     addToUserdb,
     signIn,
     logout,
+    resetPassword, // Include the resetPassword function in the context
   };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;

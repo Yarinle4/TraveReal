@@ -29,10 +29,10 @@ function UpcomingEvent() {
 
   const curCity = location.state.curCity;
 
-// const slideId = "n0OZxc97icAC3hBbtFer";
-// const slide = "a";
-// const curCircle = "Culinary Circle"
-// const curCity = "Jerusalem"
+  // const slideId = "n0OZxc97icAC3hBbtFer";
+  // const slide = "a";
+  // const curCircle = "Culinary Circle"
+  // const curCity = "Jerusalem"
 
   // Initialise event data as null
   const [myEventData, setMyEventData] = useState(null);
@@ -80,6 +80,7 @@ function UpcomingEvent() {
         slide={slide}
         curCircle={curCircle}
         curCity={curCity}
+        isHost={myEventData.host === getAuth().currentUser.uid}
       />
       <SimpleBottomNavigation />
     </>

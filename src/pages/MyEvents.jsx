@@ -41,6 +41,7 @@ import {
 } from "firebase/firestore";
 import EventCitySelection from "../components/CitySelection";
 import { Events } from "leaflet";
+import EventsSelection from "../components/EventsSelection.jsx";
 
 function MyEvents() {
   const fakeCircle = "culinary";
@@ -59,6 +60,7 @@ function MyEvents() {
   const [previousEvents, setPreviousEvents] = useState([]);
   const [city, setCity] = useState(curCity);
   const currentDate = new Date();
+  const [option, SetOption] = useState("");
 
   useEffect(() => {
     const fetchEvents = async () => {
@@ -79,9 +81,15 @@ function MyEvents() {
         }));
 
         const upcomingEventsWithUser = upcomingData.filter((event) => {
-          if (event.participants.length !== 0) {
-            return event.participants.includes(uid);
+          if (option === "Traveler") {
+            if (event.participants.length !== 0) {
+              return event.participants.includes(uid);
+            }
           }
+          if (option === "Host") {
+            return event.host === uid;
+          }
+
           return false;
         });
 
@@ -98,8 +106,13 @@ function MyEvents() {
         }));
 
         const previousEventsWithUser = previousData.filter((event) => {
-          if (event.participants.length !== 0) {
-            return event.participants.includes(uid);
+          if (option === "Traveler") {
+            if (event.participants.length !== 0) {
+              return event.participants.includes(uid);
+            }
+          }
+          if (option === "Host") {
+            return event.host === uid;
           }
           return false;
         });
@@ -110,7 +123,7 @@ function MyEvents() {
     };
 
     fetchEvents();
-  }, []);
+  }, [option]);
 
   return (
     <div className="hostHome">
@@ -127,6 +140,9 @@ function MyEvents() {
         }}
       >
         My Events
+      </Box>
+      <Box mt={3}>
+        <EventsSelection option={option} setOption={SetOption} />
       </Box>
       <Box mt={3}></Box>
       <div class="body">

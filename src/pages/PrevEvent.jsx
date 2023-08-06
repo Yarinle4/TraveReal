@@ -26,11 +26,11 @@ import {
 
 function PrevEvent() {
   const location = useLocation();
-    const { slide, slideId } = location.state;
+  const { slide, slideId } = location.state;
 
-    const curCircle = location.state.curCircle;
+  const curCircle = location.state.curCircle;
 
-    const curCity = location.state.curCity;
+  const curCity = location.state.curCity;
 
   // const slideId = "n0OZxc97icAC3hBbtFer";
   // const slide = "a";
@@ -88,22 +88,22 @@ function PrevEvent() {
   const handleRatingSubmit = async (rating) => {
     const userRef = doc(db, "users", "user_" + myEventData.host);
     // try {
-      // await updateDoc(userRef, {
-      //   rating: arrayUnion(rating),
-      // });
-      try {
-        const userDoc = await getDoc(userRef);
-        if (userDoc.exists()) {
-          const userRating = userDoc.data().rating || [];
-          const updatedRating = [...userRating, rating];
-          await updateDoc(userRef, {
-            rating: updatedRating,
-          });
-          console.log("Rating submitted successfully!");
-        } else {
-          console.log("User document does not exist!");
-        }
-      } catch (error) {
+    // await updateDoc(userRef, {
+    //   rating: arrayUnion(rating),
+    // });
+    try {
+      const userDoc = await getDoc(userRef);
+      if (userDoc.exists()) {
+        const userRating = userDoc.data().rating || [];
+        const updatedRating = [...userRating, rating];
+        await updateDoc(userRef, {
+          rating: updatedRating,
+        });
+        console.log("Rating submitted successfully!");
+      } else {
+        console.log("User document does not exist!");
+      }
+    } catch (error) {
       console.error("Error submitting rating: ", error);
     }
   };
@@ -117,7 +117,7 @@ function PrevEvent() {
         curCircle={curCircle}
         curCity={curCity}
       />
-      {showPopup && (
+      {!(myEventData.host === getAuth().currentUser.uid) && showPopup && (
         <RatingPopupContent
           open={showPopup}
           onClose={() => setShowPopup(false)}

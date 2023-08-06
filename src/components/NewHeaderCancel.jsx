@@ -22,7 +22,7 @@ const lat = 123;
 const lng = 230;
 const mapLocation = [lat, lng];
 
-const NewHeaderCancel = ({ eventData, curCircle, curCity }) => {
+const NewHeaderCancel = ({ eventData, curCircle, curCity, isHost }) => {
   const [profilePic, setProfilePic] = useState("");
   const [hostName, setHostName] = useState("");
   const [rating, setRating] = useState(0);
@@ -103,7 +103,7 @@ const NewHeaderCancel = ({ eventData, curCircle, curCity }) => {
               <SimpleMap city={eventData.mapLocation} />
             </Card>
             <Box sx={{ my: 3, mx: 2 }}></Box>
-            <AlertDialogSlideCancel eventID={eventData.eventID} />
+            {!isHost && <AlertDialogSlideCancel eventID={eventData.eventID} />}
           </Box>
         </div>
       </Box>

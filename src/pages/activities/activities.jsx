@@ -269,13 +269,15 @@ function HomePageHost() {
   const [events, setEvents] = useState([]);
   const [hosts, setHosts] = useState([]);
   const [city, setCity] = useState(curCity);
+  const currentDate = new Date();
 
   useEffect(() => {
     const fetchEvents = async () => {
       try {
         const q = query(
           collection(db, "events"),
-          where("circle", "==", getCircle(circleclicked)),
+          where("date", ">=", currentDate.toISOString().split("T")[0]),
+          where("circle", "in", [getCircle(circleclicked)]),
           where("city", "==", city)
         );
         const querySnapshot = await getDocs(q);

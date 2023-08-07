@@ -95,6 +95,7 @@ const NewHeaderRate = ({ eventData, curCircle, curCity }) => {
               photos={eventData.photos}
               circles={eventData.circles}
               location={eventData.location}
+              participants={eventData.participants}
               hostName={hostName}
               rating={rating}
             />

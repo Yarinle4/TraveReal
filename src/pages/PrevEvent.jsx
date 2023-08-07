@@ -70,6 +70,7 @@ function PrevEvent() {
           location: eventData.location,
           mapLocation: eventData.city,
           eventID: slideId,
+          participants: eventData.participants,
         });
         console.log("user host:", eventData.city);
       } else {

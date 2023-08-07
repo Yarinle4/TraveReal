@@ -289,7 +289,7 @@ function CreateEventPage() {
           You created an event and earned 5 stars!
         </DialogTitle>
         <DialogContent>
-          You have 10 stars, you can unlock a circle!
+          If you have 10 stars, you can unlock a circle!
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>ok</Button>

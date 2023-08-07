@@ -165,7 +165,7 @@ export default function DraggableDialog() {
                 sx={{ fontSize: "1.5rem" }}
               >
                 <strong>
-                  You hosting a tour in {HostedEventLocation} on{" "}
+                  You are hosting a tour in {HostedEventLocation} on{" "}
                   {HostedEventDate}!
                 </strong>
               </Alert>

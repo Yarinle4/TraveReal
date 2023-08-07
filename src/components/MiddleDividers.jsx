@@ -35,6 +35,7 @@ export default function MiddleDividers({
   location,
   hostName,
   rating,
+  participants,
 }) {
   console.log("hostName:", hostName);
   console.log("r:", rating);
@@ -66,6 +67,17 @@ export default function MiddleDividers({
           </Grid>
         </Grid>
         <Typography sx={{ fontSize: "3vw" }}>{details}</Typography>
+      </Box>
+      <Divider variant="middle" />
+      <Box sx={{ my: 3, mx: 2 }}>
+        <Grid container alignItems="center">
+          <Grid item>
+            <Typography gutterBottom variant="h4">
+              Participants
+            </Typography>
+          </Grid>
+        </Grid>
+        <Typography sx={{ fontSize: "3vw" }}>{participants}</Typography>
       </Box>
       <Box sx={{ mt: 1 }}>
         <Grid container alignItems="center">

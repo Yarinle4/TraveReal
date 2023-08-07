@@ -112,11 +112,7 @@ const ForgotPassword = () => {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link
-                  href="#"
-                  variant="body2"
-                  onClick={() => navigate("/SignIn")}
-                >
+                <Link href="#" variant="body2" onClick={() => navigate("/")}>
                   Back to Sign In
                 </Link>
               </Grid>

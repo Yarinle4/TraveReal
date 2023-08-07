@@ -19,7 +19,7 @@ import ResponsiveAppBar from "../shared/components/moreComponents/MainBar";
 import "../pages/HomePageHost/homeHost.css";
 import { auth, db } from "../firebase";
 import { UserAuth } from "../context/AuthContext";
-import signUpLogo from "../assets/signUpLogo.svg"
+import signUpLogo from "../assets/signUpLogo.svg";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 import CountrySelection from "../components/CountrySelection";
 
@@ -37,7 +37,7 @@ export default function SignUp() {
   const navigate = useNavigate();
 
   const handleSignInLinkClick = () => {
-    navigate("/SignIn"); // Navigate to the sign-in page
+    navigate("/"); // Navigate to the sign-in page
   };
 
   const { signUp } = UserAuth();
@@ -97,8 +97,8 @@ export default function SignUp() {
           }}
         >
           <Avatar sx={{ mt: 10, bgcolor: "#f3fbf4" }}>
-            <img src={signUpLogo} style={{maxWidth: '100%'}}/>
-            </Avatar>
+            <img src={signUpLogo} style={{ maxWidth: "100%" }} />
+          </Avatar>
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
@@ -195,11 +195,12 @@ export default function SignUp() {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link 
+                <Link
                   component={RouterLink}
-                  to="/SignIn"
+                  to="/"
                   variant="body2"
-                  onClick={handleSignInLinkClick}>
+                  onClick={handleSignInLinkClick}
+                >
                   Already have an account? Sign in
                 </Link>
               </Grid>

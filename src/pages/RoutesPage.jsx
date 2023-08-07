@@ -25,7 +25,7 @@ function Routess() {
     <Routes>
       <Route path="/HomePage" element={<HomePage />} />
 
-      <Route path="/" element={<SignUp />} />
+      <Route path="/SignUp" element={<SignUp />} />
 
       <Route path="/EventPage" element={<Event />} />
 
@@ -60,7 +60,7 @@ function Routess() {
 
       <Route path="/UpcomingEvent" element={<UpcomingEvent />} />
 
-      <Route path="/SignIn" element={<SignIn />} />
+      <Route path="/" element={<SignIn />} />
 
       <Route path="/ForgotPassword" element={<ForgotPassword />} />
     </Routes>

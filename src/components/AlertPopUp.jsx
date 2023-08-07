@@ -25,6 +25,10 @@ function PaperComponent(props) {
 
 export default function DraggableDialog() {
   const [open, setOpen] = React.useState(false);
+  const [upcomingEvent, setUpcomingEvent] = React.useState([]);
+  const [closestLocation, setClosestLocation] = React.useState(null);
+  const [closestDate, setClosestDate] = React.useState(null);
+  const currentDate = new Date();
 
   const handleClickOpen = () => {
     console.log()
@@ -35,14 +39,61 @@ export default function DraggableDialog() {
     setOpen(false);
   };
 
+  React.useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const auth = getAuth();
+        const user = auth.currentUser;
+        const uid = user ? user.uid : "";
+
+        const upcomingQ = query(
+          collection(db, "events"),
+          where("date", ">=", currentDate.toISOString().split("T")[0]),
+          orderBy("date", "asc"),
+          limit(1)
+        );
+
+        const upcomingSnapshot = await getDocs(upcomingQ);
+        const upcomingData = upcomingSnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+
+        const closestUpcomingEvent = upcomingData[0]; 
+
+        if (
+          closestUpcomingEvent &&
+          closestUpcomingEvent.participants.length !== 0 &&
+          closestUpcomingEvent.participants.includes(uid)
+        ) {
+          setUpcomingEvent([closestUpcomingEvent]);
+          setClosestLocation(closestUpcomingEvent.location);
+          setClosestDate(closestUpcomingEvent.date);
+        } else {
+          setUpcomingEvent(null); 
+          setClosestLocation(null);
+          setClosestDate(null);
+        }
+
+      } catch (error) {
+        console.error("Error fetching events:", error);
+      }
+    };
+
+    fetchEvents();
+  }, [currentDate]);
+
   return (
     <div>
-        <Fab color="primary"
-                aria-label="alert"
-                onClick={() => handleClickOpen()}
-                sx={{  position: 'fixed',
-                                      bottom: '18%',
-                                      right: '5%'}} 
+        <Fab 
+          color="primary"
+          aria-label="alert"
+          onClick={() => handleClickOpen()}
+          sx={{  
+            position: 'fixed',
+            bottom: '18%',
+            right: '5%'
+          }} 
                 >
         <NotificationsNoneIcon />
       </Fab>
@@ -59,14 +110,26 @@ export default function DraggableDialog() {
             overflow: 'hidden',
           },
         }}
-        
       >
-
-        <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title" >
-        </DialogTitle>
+        <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title" ></DialogTitle>
         
-        <DialogContent >
+        <DialogContent>
+        <DialogContentText>
+          {upcomingEvent && upcomingEvent.length > 0 ? (
+            <Alert variant="standard" severity="info" sx={{ fontSize: '1.5rem' }}>
+              <strong>You have a tour in {closestLocation} on {closestDate}!</strong>
+            </Alert>
+          ) : (
+            <Alert variant="standard" severity="info" sx={{ fontSize: '1.5rem' }}>
+              <strong>No upcoming events found!</strong>
+            </Alert>
+          )}
+        </DialogContentText>
+        </DialogContent>
+
+        {/* <DialogContent >
           <DialogContentText>
+
             <Alert variant="standard" severity="info" sx={{ fontSize: '1.5rem' }}>
             <strong>You have a tour in Mahne Yehoda market tomorrow!</strong>
             </Alert>
@@ -74,7 +137,7 @@ export default function DraggableDialog() {
             <strong>There is a new member in your circle - dont forget to say hello!</strong>
             </Alert>
           </DialogContentText>
-        </DialogContent>
+        </DialogContent> */}
 
         <DialogActions>
           <Button autoFocus onClick={handleClose}>

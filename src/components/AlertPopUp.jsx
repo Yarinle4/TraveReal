@@ -39,6 +39,10 @@ export default function DraggableDialog() {
   const [upcomingEvent, setUpcomingEvent] = React.useState([]);
   const [closestLocation, setClosestLocation] = React.useState(null);
   const [closestDate, setClosestDate] = React.useState(null);
+  const [HostedEvent, setHostedEvent] = React.useState([]);
+  const [HostedEventLocation, setHostedEventLocation] = React.useState(null);
+  const [HostedEventDate, setHostedEventDate] = React.useState(null);
+
   const currentDate = new Date();
 
   const handleClickOpen = () => {
@@ -60,8 +64,7 @@ export default function DraggableDialog() {
         const upcomingQ = query(
           collection(db, "events"),
           where("date", ">=", currentDate.toISOString().split("T")[0]),
-          orderBy("date", "asc"),
-          limit(1)
+          orderBy("date", "asc")
         );
 
         const upcomingSnapshot = await getDocs(upcomingQ);
@@ -70,14 +73,18 @@ export default function DraggableDialog() {
           ...doc.data(),
         }));
 
-        const closestUpcomingEvent = upcomingData[0];
+        const upcomingEventsWithUser = upcomingData.filter((event) => {
+          if (event.participants.length !== 0) {
+            return event.participants.includes(uid);
+          }
+        });
+        const upcomingEventsWithHost = upcomingData.filter((event) => {
+          return event.host === uid;
+        });
 
-        if (
-          closestUpcomingEvent &&
-          closestUpcomingEvent.participants.length !== 0 &&
-          closestUpcomingEvent.participants.includes(uid)
-        ) {
-          console.log("closestUpcomingEvent", closestUpcomingEvent);
+        if (upcomingEventsWithUser.length > 0) {
+          console.log("upcomingEventsWithUser", upcomingEventsWithUser);
+          const closestUpcomingEvent = upcomingEventsWithUser[0];
           setUpcomingEvent([closestUpcomingEvent]);
           setClosestLocation(closestUpcomingEvent.location);
           setClosestDate(closestUpcomingEvent.date);
@@ -85,6 +92,17 @@ export default function DraggableDialog() {
           setUpcomingEvent(null);
           setClosestLocation(null);
           setClosestDate(null);
+        }
+        if (upcomingEventsWithHost.length > 0) {
+          console.log("upcomingEventsWithHost", upcomingEventsWithHost);
+          const closestUpcomingEventHost = upcomingEventsWithHost[0];
+          setHostedEvent([closestUpcomingEventHost]);
+          setHostedEventLocation(closestUpcomingEventHost.location);
+          setHostedEventDate(closestUpcomingEventHost.date);
+        } else {
+          setHostedEvent(null);
+          setHostedEventLocation(null);
+          setHostedEventDate(null);
         }
       } catch (error) {
         console.error("Error fetching events:", error);
@@ -129,7 +147,7 @@ export default function DraggableDialog() {
 
         <DialogContent>
           <DialogContentText>
-            {upcomingEvent && upcomingEvent.length > 0 ? (
+            {upcomingEvent && upcomingEvent.length > 0 && (
               <Alert
                 variant="standard"
                 severity="info"
@@ -139,7 +157,20 @@ export default function DraggableDialog() {
                   You have a tour in {closestLocation} on {closestDate}!
                 </strong>
               </Alert>
-            ) : (
+            )}
+            {HostedEvent && HostedEvent.length > 0 && (
+              <Alert
+                variant="standard"
+                severity="success"
+                sx={{ fontSize: "1.5rem" }}
+              >
+                <strong>
+                  You hosting a tour in {HostedEventLocation} on{" "}
+                  {HostedEventDate}!
+                </strong>
+              </Alert>
+            )}
+            {!upcomingEvent && !HostedEvent && (
               <Alert
                 variant="standard"
                 severity="info"

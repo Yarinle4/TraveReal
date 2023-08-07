@@ -321,7 +321,7 @@ function HomePageHost() {
       </div>
       <div class="body">
         <div id="title">Upcoming Events</div>
-        <Search />
+        {/* <Search /> */}
         <div>
           <ActivitiesCards
             slides={events}
